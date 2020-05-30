@@ -7,11 +7,6 @@ import {
 class HuntAndKill extends Maze {
 
   resetVariables() {
-    this.currentCell = {
-      x: this.startCell.x,
-      y: this.startCell.y
-    };
-
     this.startHuntingFrom = {
       x: this.currentCell.x,
       y: this.currentCell.y

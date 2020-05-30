@@ -2,14 +2,6 @@ import Maze from "../Maze.js";
 
 class BinaryTree extends Maze {
 
-  resetVariables() {
-
-    this.currentCell = {
-      x: this.startCell.x,
-      y: this.startCell.y
-    }
-  }
-
   step() {
 
     let passageDirection = this.prng.random() < 0.5 ? "S" : "E";
