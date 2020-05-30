@@ -1,14 +1,12 @@
-import Maze from "../Maze.js"
+import Maze from "../Maze.js";
 import {
   dx,
   dy,
-  directions
-} from "../directions.js"
+  directions,
+} from "../directions.js";
 
 class SimplifiedPrims extends Maze {
-
   resetVariables() {
-
     this.visited = [];
     for (let y = 0; y < this.ySize; y++) {
       this.visited[y] = [];
@@ -22,7 +20,7 @@ class SimplifiedPrims extends Maze {
 
     let startCell = {
       x: this.startCell.x,
-      y: this.startCell.y
+      y: this.startCell.y,
     };
 
     this.activeCells.push(startCell);
@@ -41,10 +39,12 @@ class SimplifiedPrims extends Maze {
       let neighbor = {
         x: cell.x + dx[direction],
         y: cell.y + dy[direction],
-        direction: direction
-      }
+        direction: direction,
+      };
 
-      if (this.cellIsInMaze(neighbor) && !this.visited[neighbor.y][neighbor.x]) {
+      if (
+        this.cellIsInMaze(neighbor) && !this.visited[neighbor.y][neighbor.x]
+      ) {
         unvisitedNeighbors.push(neighbor);
       }
     }
@@ -56,15 +56,12 @@ class SimplifiedPrims extends Maze {
       this.totalVisted++;
 
       this.activeCells.push(newCell);
-
     } else {
       this.activeCells.splice(cellIndex, 1);
     }
 
     if (this.activeCells.length === 0) this.finishedGenerating = true;
   }
-
-
-};
+}
 
 export default SimplifiedPrims;

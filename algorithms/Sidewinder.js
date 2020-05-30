@@ -1,14 +1,10 @@
-import Maze from "../Maze.js"
+import Maze from "../Maze.js";
 
 class Sidewinder extends Maze {
-
-
-
   resetVariables() {
-
     this.currentCell = {
       x: this.startCell.x,
-      y: this.startCell.y
+      y: this.startCell.y,
     };
 
     this.runSet = [];
@@ -22,12 +18,11 @@ class Sidewinder extends Maze {
 
     this.runSet.push({
       x: this.currentCell.x,
-      y: this.currentCell.y
+      y: this.currentCell.y,
     });
 
     //north east corner can't carve north or east
     if (!(this.currentCell.x === this.xSize - 1 && this.currentCell.y === 0)) {
-
       if (carveEast) {
         this.removeWall(this.currentCell, "E");
 
@@ -54,7 +49,6 @@ class Sidewinder extends Maze {
 
     return !this.finishedGenerating;
   }
-
-};
+}
 
 export default Sidewinder;

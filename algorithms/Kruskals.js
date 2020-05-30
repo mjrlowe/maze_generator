@@ -2,31 +2,29 @@ import DisjointSet from "../DisjointSet.js";
 import Maze from "../Maze.js";
 import {
   dx,
-  dy
-} from "../directions.js"
+  dy,
+} from "../directions.js";
 
 class Kruskals extends Maze {
-
   resetVariables() {
     this.disjointSubsets = new DisjointSet(this.xSize * this.ySize);
 
     this.edges = [];
 
-    let cell = {}
+    let cell = {};
     for (cell.y = 0; cell.y < this.ySize; cell.y++) {
       for (cell.x = 0; cell.x < this.xSize; cell.x++) {
-
         if (cell.y > 0) {
           this.edges.push({
             ...cell,
-            direction: "N"
+            direction: "N",
           });
         }
 
         if (cell.x > 0) {
           this.edges.push({
             ...cell,
-            direction: "W"
+            direction: "W",
           });
         }
       }
@@ -38,12 +36,12 @@ class Kruskals extends Maze {
     let edge = this.edges.pop();
     let cell1 = {
       x: edge.x,
-      y: edge.y
+      y: edge.y,
     };
     let cell2 = {
       x: cell1.x + dx[edge.direction],
-      y: cell1.y + dy[edge.direction]
-    }
+      y: cell1.y + dy[edge.direction],
+    };
 
     let cell1Index = this.getCellIndex(cell1);
     let cell2Index = this.getCellIndex(cell2);
@@ -67,7 +65,5 @@ class Kruskals extends Maze {
     return cell.y * this.xSize + cell.x;
   }
 }
-
-
 
 export default Kruskals;

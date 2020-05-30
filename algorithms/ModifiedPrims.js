@@ -1,20 +1,18 @@
-import Maze from "../Maze.js"
+import Maze from "../Maze.js";
 import {
   dx,
   dy,
-  directions
-} from "../directions.js"
+  directions,
+} from "../directions.js";
 
 class ModifiedPrims extends Maze {
   resetVariables() {
-
     this.visited = [];
     this.costs = [];
     for (let y = 0; y < this.ySize; y++) {
       this.visited[y] = [];
       this.costs[y] = [];
       for (let x = 0; x < this.xSize; x++) {
-
         //mark every cell as unvisited
         this.visited[y][x] = false;
 
@@ -28,7 +26,7 @@ class ModifiedPrims extends Maze {
 
     let startCell = {
       x: this.startCell.x,
-      y: this.startCell.y
+      y: this.startCell.y,
     };
 
     this.activeCells.push(startCell);
@@ -36,7 +34,6 @@ class ModifiedPrims extends Maze {
   }
 
   step() {
-
     //find index of cell with minimum cost
     let minCost = Infinity;
     let cellIndex = 0;
@@ -55,10 +52,12 @@ class ModifiedPrims extends Maze {
       let neighbor = {
         x: cell.x + dx[direction],
         y: cell.y + dy[direction],
-        direction: direction
-      }
+        direction: direction,
+      };
 
-      if (this.cellIsInMaze(neighbor) && !this.visited[neighbor.y][neighbor.x]) {
+      if (
+        this.cellIsInMaze(neighbor) && !this.visited[neighbor.y][neighbor.x]
+      ) {
         unvisitedNeighbors.push(neighbor);
       }
     }
@@ -71,9 +70,8 @@ class ModifiedPrims extends Maze {
 
       this.activeCells.push({
         x: newCell.x,
-        y: newCell.y
+        y: newCell.y,
       });
-
     } else {
       this.activeCells.splice(cellIndex, 1);
     }
@@ -82,6 +80,6 @@ class ModifiedPrims extends Maze {
 
     return !this.finishedGenerating;
   }
-};
+}
 
 export default ModifiedPrims;

@@ -1,14 +1,12 @@
-import Maze from "../Maze.js"
+import Maze from "../Maze.js";
 import {
   dx,
-  dy
-} from "../directions.js"
+  dy,
+} from "../directions.js";
 
 class AldousBroder extends Maze {
-
   //called when the maze is intitalized
   resetVariables() {
-
     this.visited = [];
     for (let y = 0; y < this.ySize; y++) {
       this.visited[y] = [];
@@ -16,19 +14,17 @@ class AldousBroder extends Maze {
         this.visited[y][x] = false;
       }
     }
-    
 
     this.currentCell = {
       x: this.startCell.x,
-      y: this.startCell.y
-    }
+      y: this.startCell.y,
+    };
     this.visited[this.currentCell.y][this.currentCell.x] = true;
     this.totalVisted = 1;
   }
 
   //called every time the maze needs to be updated
   step() {
-    
     let possibleDirections = [];
     if (this.currentCell.y !== 0) possibleDirections.push("N");
     if (this.currentCell.y !== this.ySize - 1) possibleDirections.push("S");
@@ -38,7 +34,7 @@ class AldousBroder extends Maze {
     let chosenDirection = this.prng.random(possibleDirections);
     let newCell = {
       x: this.currentCell.x + dx[chosenDirection],
-      y: this.currentCell.y + dy[chosenDirection]
+      y: this.currentCell.y + dy[chosenDirection],
     };
 
     if (!this.visited[newCell.y][newCell.x]) {
@@ -49,13 +45,15 @@ class AldousBroder extends Maze {
 
     this.currentCell = {
       x: newCell.x,
-      y: newCell.y
-    }
+      y: newCell.y,
+    };
 
-    if (this.totalVisted >= this.xSize * this.ySize) this.finishedGenerating = true;
+    if (this.totalVisted >= this.xSize * this.ySize) {
+      this.finishedGenerating = true;
+    }
 
     return !this.finishedGenerating;
   }
-};
+}
 
 export default AldousBroder;

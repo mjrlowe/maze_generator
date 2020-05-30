@@ -1,14 +1,13 @@
-import {dx, dy} from "./directions.js";
+import { dx, dy } from "./directions.js";
 
 export default function solve(maze) {
-
   let startPoint = {
     x: constrain(maze.startXY.x, 0, maze.xSize - 1),
     y: constrain(maze.startXY.y, 0, maze.ySize - 1),
   };
   let endPoint = {
     x: constrain(maze.finishXY.x, 0, maze.xSize - 1),
-    y: constrain(maze.finishXY.y, 0, maze.ySize - 1)
+    y: constrain(maze.finishXY.y, 0, maze.ySize - 1),
   };
 
   let Q = []; //queue
@@ -36,20 +35,22 @@ export default function solve(maze) {
     let v = Q.pop();
 
     if (v.x === endPoint.x && v.y === endPoint.y) {
-
       //We have reached the finish point. Now we need to convert the route into an array of points that we can use to draw the line
 
       let solutionPath = [];
       let cell = v;
       solutionPath.unshift({
         x: cell.x,
-        y: cell.y
+        y: cell.y,
       });
-      while (!(cell.parent === undefined || (cell.parent.x === cell.x && cell.parent.y === cell.y))) {
+      while (
+        !(cell.parent === undefined ||
+          (cell.parent.x === cell.x && cell.parent.y === cell.y))
+      ) {
         cell = cell.parent;
         solutionPath.unshift({
           x: cell.x,
-          y: cell.y
+          y: cell.y,
         });
       }
 
@@ -75,26 +76,22 @@ export default function solve(maze) {
     }
 
     for (let direction in maze.walls[v.y][v.x]) {
-
       //there's not a wall here so we can go this way
       if (!maze.walls[v.y][v.x][direction]) {
-
         let x = v.x + dx[direction];
         let y = v.y + dy[direction];
 
         //valid cell to move to
         if (discovered[y] !== undefined && discovered[y][x] !== undefined) {
-
           //hasn't already been visited (discovered)
           if (!discovered[y][x]) {
-
             discovered[y][x] = true;
             maze.distances[y][x] = depth;
             //enqueue
             Q.unshift({
               x: x,
               y: y,
-              parent: v
+              parent: v,
             });
           }
         }
@@ -108,4 +105,4 @@ export default function solve(maze) {
 
 function constrain(value, min, max) {
   return Math.min(Math.max(value, min), max);
-};
+}

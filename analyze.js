@@ -1,23 +1,21 @@
-import solve from "./solve.js"
-import { opposite, directions, fullNames } from "./directions.js"
-
+import solve from "./solve.js";
+import { opposite, directions, fullNames } from "./directions.js";
 
 export default function analyze(maze) {
-
   let solution = solve(maze);
   let deadEnds = {
     total: 0,
     N: 0,
     S: 0,
     E: 0,
-    W: 0
+    W: 0,
   };
 
   let straightPassages = {
     total: 0,
     NS: 0,
-    EW: 0
-  }
+    EW: 0,
+  };
 
   let numberOfCellWalls = [0, 0, 0, 0, 0];
 
@@ -44,7 +42,7 @@ export default function analyze(maze) {
         }
       }
 
-      numberOfCellWalls[4-neighbors.length]++;
+      numberOfCellWalls[4 - neighbors.length]++;
     }
   }
 
@@ -52,12 +50,16 @@ export default function analyze(maze) {
 
   let walls = {
     ...numberOfCellWalls,
-    mean: numberOfCellWalls.slice(0).reduce((a, b, i) => a + b*i, 0)/(maze.xSize*maze.ySize),
-    mode: numberOfCellWalls.indexOf(numberOfCellWalls.reduce((a, b, i) => Math.max(a, b))),
+    mean: numberOfCellWalls.slice(0).reduce((a, b, i) => a + b * i, 0) /
+      (maze.xSize * maze.ySize),
+    mode: numberOfCellWalls.indexOf(
+      numberOfCellWalls.reduce((a, b, i) => Math.max(a, b)),
+    ),
     //total doesn't count shared walls twice
-    total: numberOfCellWalls.reduce((a, b) => a + b, 0)/2+maze.xSize+maze.ySize
-  }
-  
+    total: numberOfCellWalls.reduce((a, b) => a + b, 0) / 2 + maze.xSize +
+      maze.ySize,
+  };
+
   // let analysis = {
   //   solution: solution,
   //   deadEnds: deadEnds,
@@ -65,51 +67,47 @@ export default function analyze(maze) {
   //   totalCells: maze.xSize*maze.ySize,
   //   numberOfCellWalls: walls
   // };
-  
 
-
-  
   let analysis = [];
 
   let totalNumberOfCells = {
     label: "Total number of cells",
-    value: maze.xSize*maze.ySize,
-    string: String(maze.xSize*maze.ySize)
-  }
-  
-  for(let dir of directions){
+    value: maze.xSize * maze.ySize,
+    string: String(maze.xSize * maze.ySize),
+  };
+
+  for (let dir of directions) {
     analysis.push({
       label: `Dead Ends ${fullNames[dir]}`,
       value: deadEnds[dir],
-      string: `${deadEnds[dir]} (${percentage(deadEnds[dir], deadEnds.total)} of all dead ends)`
+      string: `${deadEnds[dir]} (${
+        percentage(deadEnds[dir], deadEnds.total)
+      } of all dead ends)`,
     });
   }
 
   let solutionLength = {
     label: "Solution Length",
     value: solution.length,
-    string: `${solution.length} cells (covers ${percentage(solution.length, totalNumberOfCells.value)} of the maze)`
-  }
+    string: `${solution.length} cells (covers ${
+      percentage(solution.length, totalNumberOfCells.value)
+    } of the maze)`,
+  };
 
-  
-  if(solutionLength.value){
+  if (solutionLength.value) {
     analysis.push(solutionLength);
   }
 
-
-  
-
-  return analysis; 
+  return analysis;
 }
 
-function percentage(value, total){
-  return `${round(value/total*100, 1)}%`
+function percentage(value, total) {
+  return `${round(value / total * 100, 1)}%`;
 }
 
 function round(number, dp) {
-  let exponent = 10 ** dp
+  let exponent = 10 ** dp;
   let roundedDown = Math.floor(number * exponent) / exponent;
   let roundedUp = Math.ceil(number * exponent) / exponent;
   return (number - roundedDown < roundedUp - number) ? roundedDown : roundedUp;
-
 }

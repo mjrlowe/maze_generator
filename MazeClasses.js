@@ -8,8 +8,8 @@ import RecursiveDivision from "./algorithms/RecursiveDivision.js";
 import SimplifiedPrims from "./algorithms/SimplifiedPrims.js";
 import ModifiedPrims from "./algorithms/ModifiedPrims.js";
 import Kruskals from "./algorithms/Kruskals.js";
-import BinaryTree from "./algorithms/BinaryTree.js"
-import Wilsons from "./algorithms/Wilsons.js"
+import BinaryTree from "./algorithms/BinaryTree.js";
+import Wilsons from "./algorithms/Wilsons.js";
 
 Maze.algorithms = {
   huntandkill: HuntAndKill,
@@ -23,7 +23,19 @@ Maze.algorithms = {
   sidewinder: Sidewinder,
   binarytree: BinaryTree,
   wilsons: Wilsons,
-}
+};
 
-
-export {Maze, Sidewinder, RecursiveBacktracker, HuntAndKill, Ellers, AldousBroder, RecursiveDivision, SimplifiedPrims, ModifiedPrims, Kruskals, BinaryTree, Wilsons};
+export {
+  Maze,
+  Sidewinder,
+  RecursiveBacktracker,
+  HuntAndKill,
+  Ellers,
+  AldousBroder,
+  RecursiveDivision,
+  SimplifiedPrims,
+  ModifiedPrims,
+  Kruskals,
+  BinaryTree,
+  Wilsons,
+};

@@ -1,14 +1,12 @@
-import Maze from "../Maze.js"
+import Maze from "../Maze.js";
 import {
   dx,
   dy,
-  directions
-} from "../directions.js"
+  directions,
+} from "../directions.js";
 
 class RecursiveBacktracker extends Maze {
-
   resetVariables() {
-
     this.visited = [];
     for (let y = 0; y < this.ySize; y++) {
       this.visited[y] = [];
@@ -22,7 +20,7 @@ class RecursiveBacktracker extends Maze {
 
     let startCell = {
       x: this.startCell.x,
-      y: this.startCell.y
+      y: this.startCell.y,
     };
     this.stack.push(startCell);
     this.visited[startCell.y][startCell.x] = 1;
@@ -30,34 +28,37 @@ class RecursiveBacktracker extends Maze {
   }
 
   step() {
-
     let unvisitedNeighbors = [];
 
     for (let direction of directions) {
       let neighbor = {
         x: this.currentCell.x + dx[direction],
         y: this.currentCell.y + dy[direction],
-        direction: direction
-      }
+        direction: direction,
+      };
 
-      if (this.cellIsInMaze(neighbor) && !this.visited[neighbor.y][neighbor.x]) {
+      if (
+        this.cellIsInMaze(neighbor) && !this.visited[neighbor.y][neighbor.x]
+      ) {
         unvisitedNeighbors.push(neighbor);
       }
     }
 
     if (unvisitedNeighbors.length > 0 && this.prng.random() < 0.99) {
-      let newCell = unvisitedNeighbors[Math.floor(this.prng.random()*unvisitedNeighbors.length)];
+      let newCell =
+        unvisitedNeighbors[
+          Math.floor(this.prng.random() * unvisitedNeighbors.length)
+        ];
       this.removeWall(this.currentCell, newCell.direction);
       this.visited[newCell.y][newCell.x]++;
       this.totalVisted++;
 
       this.stack.push({
         x: newCell.x,
-        y: newCell.y
+        y: newCell.y,
       });
 
       this.currentCell = newCell;
-
     } else {
       this.currentCell = this.stack.pop();
     }
@@ -68,7 +69,6 @@ class RecursiveBacktracker extends Maze {
 
     return !this.finishedGenerating;
   }
-};
-
+}
 
 export default RecursiveBacktracker;
