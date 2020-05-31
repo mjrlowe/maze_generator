@@ -10,7 +10,7 @@ Almost everything is subject to change so this is all very unstable
 
 ```javascript
 
-import {Maze} from "https://deno.land/x/maze_generator/MazeClasses.js"
+import {Maze} from "https://deno.land/x/maze_generator/dep.js"
 
 let mazeSettings = {
   width: 12,
