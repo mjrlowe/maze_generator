@@ -1,4 +1,4 @@
-import {Maze} from "https://deno.land/x/maze_generator/dep.js"
+import {Maze} from "https://deno.land/x/maze_generator/mod.js"
 import solve from "https://deno.land/x/maze_generator/solve.js"
 
 
