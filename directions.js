@@ -1,4 +1,4 @@
-export let dx = {
+export const dx = {
     E: 1,
     W: -1,
     N: 0,
