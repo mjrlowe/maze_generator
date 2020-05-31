@@ -1,8 +1,8 @@
-# maze\_generator
+# maze\_generator (WIP)
 
 **maze\_generator** is a module for easily generating mazes.
 
-This is all very much work-in-progress, however feedback is welcome.
+This is work-in-progress, and feedback is welcome.
 
 Almost everything is subject to change so this is all very unstable
 
