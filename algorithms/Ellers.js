@@ -1,8 +1,7 @@
 import Maze from "../Maze.js";
 
-class Eller extends Maze
+class Eller extends Maze {
  
-
   resetVariables() {
 
     this.rowState = new State(this.xSize).populate();

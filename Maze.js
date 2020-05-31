@@ -20,11 +20,12 @@ class Maze {
     this.finishedGenerating = false;
     this.seed = mazeSettings.seed ?? Math.floor(Math.random() * 10e8);
     // this.removeWallsAtEntranceAndExit = mazeSettings.removeWallsAtEntranceAndExit ?? true;
-    this.algorithm = mazeSettings.algorithm.toLowerCase();
+    this.algorithm = mazeSettings.algorithm;
+		this.algorithmId = mazeSettings.algorithmId;
 
     if (
-      this.algorithm === "sidewinder" || this.algorithm === "binary tree" ||
-      this.algorithm === "ellers"
+      this.algorithmId === "sidewinder" || this.algorithmId === "binary tree" ||
+      this.algorithmId === "ellers"
     ) {
       this.startGenerationFrom = "top left";
     } else {
