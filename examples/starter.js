@@ -1,5 +1,4 @@
-import {Maze} from "https://deno.land/x/maze_generator/mod.js"
-import solve from "../solve.js"
+import {Maze, solve} from "https://deno.land/x/maze_generator/mod.js"
 
 // 12x12 maze using Eeller's algorithm
 let mazeSettings = {
