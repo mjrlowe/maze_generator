@@ -13,7 +13,7 @@ import BinaryTree from "./algorithms/BinaryTree.js";
 import Wilsons from "./algorithms/Wilsons.js";
 
 import solve from "./solve.js";
-import anaylze from "./analyze.js"
+import analyze from "./analyze.js"
 
 Maze.algorithms = {
   huntandkill: HuntAndKill,
