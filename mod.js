@@ -12,9 +12,6 @@ import Kruskals from "./algorithms/Kruskals.js";
 import BinaryTree from "./algorithms/BinaryTree.js";
 import Wilsons from "./algorithms/Wilsons.js";
 
-import solve from "./solve.js";
-import analyze from "./analyze.js"
-
 Maze.algorithms = {
   huntandkill: HuntAndKill,
   recursivebacktracker: RecursiveBacktracker,
@@ -29,6 +26,9 @@ Maze.algorithms = {
   wilsons: Wilsons,
 };
 
+export {default as analyze} from "./analyze.js";
+export {default as solve} from "./solve.js";
+
 export {
   Maze,
   Sidewinder,
@@ -42,6 +42,4 @@ export {
   Kruskals,
   BinaryTree,
   Wilsons,
-  solve,
-  analyze
 };
