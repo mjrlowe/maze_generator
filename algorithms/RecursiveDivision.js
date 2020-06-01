@@ -79,10 +79,10 @@ class RecursiveDivision extends Maze {
       x: this.region.x +
         (this.horizontal
           ? 0
-          : Math.floor(this.prng.random()*this.region.width - 2),
+          : Math.floor(this.prng.random()*(this.region.width - 2))),
       y: this.region.y +
         (this.horizontal
-          ? Math.floor(this.prng.random()*this.region.height - 2)
+          ? Math.floor(this.prng.random()*(this.region.height - 2))
           : 0),
     };
 
