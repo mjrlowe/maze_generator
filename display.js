@@ -1,6 +1,6 @@
 export default function display(maze, canvas) {
   let ctx = canvas.getContext("2d");
-  
+
 
   if (typeof maze.colorScheme === "string") maze.colorScheme = maze.colorScheme.toLowerCase();
   if (typeof maze.coloringMode === "string") maze.coloringMode = maze.coloringMode.toLowerCase();
@@ -19,7 +19,7 @@ export default function display(maze, canvas) {
 
   //clear the background
   ctx.fillStyle = maze.backgroundColor;
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   if (maze.displayMode === 0 || (maze.displayMode === 1 && maze.cellSize <= 3)) { //thin walls
 
@@ -27,9 +27,12 @@ export default function display(maze, canvas) {
 
     for (let y = 0; y < maze.ySize; y++) {
       for (let x = 0; x < maze.xSize; x++) {
-  
-        ctx.fillStyle = getCellColor({x, y});
-  
+
+        ctx.fillStyle = getCellColor({
+          x,
+          y
+        });
+
         ctx.fillRect(x * maze.cellSize, y * maze.cellSize, maze.cellSize, maze.cellSize);
       }
     }
@@ -44,16 +47,16 @@ export default function display(maze, canvas) {
 
 
         if (maze.walls[y][x].W) {
-          ctx.line(x * maze.cellSize, y * maze.cellSize, x * maze.cellSize, (y + 1) * maze.cellSize);
+          line(x * maze.cellSize, y * maze.cellSize, x * maze.cellSize, (y + 1) * maze.cellSize);
         }
         if (maze.walls[y][x].N) {
-          ctx.line(x * maze.cellSize, y * maze.cellSize, (x + 1) * maze.cellSize, y * maze.cellSize);
+          line(x * maze.cellSize, y * maze.cellSize, (x + 1) * maze.cellSize, y * maze.cellSize);
         }
         if (maze.walls[y][x].E && x === maze.xSize - 1) {
-          ctx.line((x + 1) * maze.cellSize, y * maze.cellSize, (x + 1) * maze.cellSize, (y + 1) * maze.cellSize);
+          line((x + 1) * maze.cellSize, y * maze.cellSize, (x + 1) * maze.cellSize, (y + 1) * maze.cellSize);
         }
         if (maze.walls[y][x].S && y === maze.ySize - 1) {
-          ctx.line(x * maze.cellSize, (y + 1) * maze.cellSize, (x + 1) * maze.cellSize, (y + 1) * maze.cellSize);
+          line(x * maze.cellSize, (y + 1) * maze.cellSize, (x + 1) * maze.cellSize, (y + 1) * maze.cellSize);
         }
       }
     }
@@ -75,7 +78,10 @@ export default function display(maze, canvas) {
     for (let y = 0; y < maze.ySize; y++) {
       for (let x = 0; x < maze.xSize; x++) {
 
-        ctx.fillStyle = getCellColor({x, y});
+        ctx.fillStyle = getCellColor({
+          x,
+          y
+        });
 
         ctx.fillRect(x * cellSize * 2, y * cellSize * 2, cellSize, cellSize);
 
@@ -108,16 +114,16 @@ export default function display(maze, canvas) {
 
 
         if (!maze.walls[y][x].W) {
-          ctx.line(x * maze.cellSize, y * maze.cellSize, (x - 0.5) * maze.cellSize, y * maze.cellSize);
+          line(x * maze.cellSize, y * maze.cellSize, (x - 0.5) * maze.cellSize, y * maze.cellSize);
         }
         if (!maze.walls[y][x].N) {
-          ctx.line(x * maze.cellSize, y * maze.cellSize, x * maze.cellSize, (y - 0.5) * maze.cellSize);
+          line(x * maze.cellSize, y * maze.cellSize, x * maze.cellSize, (y - 0.5) * maze.cellSize);
         }
         if (!maze.walls[y][x].E) {
-          ctx.line(x * maze.cellSize, y * maze.cellSize, (x + 0.5) * maze.cellSize, y * maze.cellSize);
+          line(x * maze.cellSize, y * maze.cellSize, (x + 0.5) * maze.cellSize, y * maze.cellSize);
         }
         if (!maze.walls[y][x].S) {
-          ctx.line(x * maze.cellSize, y * maze.cellSize, x * maze.cellSize, (y + 0.5) * maze.cellSize);
+          line(x * maze.cellSize, y * maze.cellSize, x * maze.cellSize, (y + 0.5) * maze.cellSize);
         }
       }
     }
@@ -128,12 +134,12 @@ export default function display(maze, canvas) {
   if (maze.showSolution) {
     ctx.strokeStyle = maze.solutionColor;
     ctx.lineWidth = maze.cellSize * 0.27
-    if(ctx.lineWidth < 1) ctx.lineWidth = 1;
-    if(ctx.lineWidth > 10) ctx.lineWidth = 10;
+    if (ctx.lineWidth < 1) ctx.lineWidth = 1;
+    if (ctx.lineWidth > 10) ctx.lineWidth = 10;
     //ctx.push();
     ctx.translate(maze.cellSize / 2, maze.cellSize / 2);
     for (let i = 0; i < maze.solution.length - 1; i++) {
-      ctx.line(maze.solution[i].x * maze.cellSize, maze.solution[i].y * maze.cellSize, maze.solution[i + 1].x * maze.cellSize, maze.solution[i + 1].y * maze.cellSize);
+      line(maze.solution[i].x * maze.cellSize, maze.solution[i].y * maze.cellSize, maze.solution[i + 1].x * maze.cellSize, maze.solution[i + 1].y * maze.cellSize);
     }
     //ctx.pop();
   }
@@ -202,4 +208,9 @@ export default function display(maze, canvas) {
       }
     }
   }
+}
+
+function line(x1, y1, x2, y2) {
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
 }
