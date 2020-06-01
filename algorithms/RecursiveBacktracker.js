@@ -45,10 +45,9 @@ class RecursiveBacktracker extends Maze {
     }
 
     if (unvisitedNeighbors.length > 0 && this.prng.random() < 0.99) {
-      let newCell =
-        unvisitedNeighbors[
-          Math.floor(this.prng.random() * unvisitedNeighbors.length)
-        ];
+      let newCell = unvisitedNeighbors[
+        Math.floor(this.prng.random() * unvisitedNeighbors.length)
+      ];
       this.removeWall(this.currentCell, newCell.direction);
       this.visited[newCell.y][newCell.x]++;
       this.totalVisted++;

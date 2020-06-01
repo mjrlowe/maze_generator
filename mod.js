@@ -26,8 +26,8 @@ Maze.algorithms = {
   wilsons: Wilsons,
 };
 
-export {default as analyze} from "./analyze.js";
-export {default as solve} from "./solve.js";
+export { default as analyze } from "./analyze.js";
+export { default as solve } from "./solve.js";
 
 export {
   Maze,

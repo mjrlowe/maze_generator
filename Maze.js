@@ -21,10 +21,11 @@ class Maze {
     this.seed = mazeSettings.seed ?? Math.floor(Math.random() * 10e8);
     // this.removeWallsAtEntranceAndExit = mazeSettings.removeWallsAtEntranceAndExit ?? true;
     this.algorithm = mazeSettings.algorithm;
-		this.algorithmId = mazeSettings.algorithmId;
+    this.algorithmId = mazeSettings.algorithmId;
 
     if (
-      this.algorithmId === "sidewinder" || this.algorithmId === "binary tree" ||
+      this.algorithmId === "sidewinder" ||
+      this.algorithmId === "binary tree" ||
       this.algorithmId === "ellers"
     ) {
       this.startGenerationFrom = "top left";
@@ -59,9 +60,12 @@ class Maze {
       ? settings.algorithm.replace(/[^a-zA-Z]/g, "")
       : "recursive backtracker";
     settings.algorithmId = settings.algorithmId.toLowerCase();
-    if(settings.algorithmId === "random"){
-      settings.algorithmId = Object.keys(this.algorithms)[Math.floor(Math.random()*Object.keys(this.algorithms).length)];
-    }else if (!this.algorithms[settings.algorithmId]) {
+    if (settings.algorithmId === "random") {
+      settings.algorithmId =
+        Object.keys(
+          this.algorithms,
+        )[Math.floor(Math.random() * Object.keys(this.algorithms).length)];
+    } else if (!this.algorithms[settings.algorithmId]) {
       console.warn(
         `maze.algorithms[${settings.algorithmId}] is not defined, defaulting to recursive backtracker`,
       );
@@ -82,7 +86,6 @@ class Maze {
     };
 
     console.log(this);
-
 
     this.finishedGenerating = false;
 

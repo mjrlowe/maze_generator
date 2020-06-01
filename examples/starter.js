@@ -1,11 +1,11 @@
-import {Maze} from "../mod.js"
+import { Maze } from "../mod.js";
 
 // 12x12 maze using Eller's algorithm
 let mazeSettings = {
   width: 12,
   height: 12,
-  algorithm: "hunt and kill"
-}
+  algorithm: "hunt and kill",
+};
 
 //initialize the maze
 let m = Maze.create(mazeSettings);
