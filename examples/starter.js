@@ -1,6 +1,6 @@
 import {Maze} from "https://deno.land/x/maze_generator/mod.js"
 
-// 12x12 maze using Eeller's algorithm
+// 12x12 maze using Eller's algorithm
 let mazeSettings = {
   width: 12,
   height: 12,
