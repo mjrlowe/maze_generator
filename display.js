@@ -155,29 +155,29 @@ export default function display(maze, canvas) {
     //highlight cells that haven't finished generating differently, depending on the display mode
     //an unfinished cell is one that has all it's walls around it
     //not used for display mode 2 (line) because it looks weird
-    if (isUnfinishedCell(cell)) {
-      if (maze.displayMode === 0) {
-        fillColor = ctx.lerpColor(ctx.color(maze.backgroundColor), ctx.color(maze.wallColor), 0.24);
-      } else if (maze.displayMode === 1) {
-        fillColor = ctx.lerpColor(ctx.color(maze.backgroundColor), ctx.color(maze.wallColor), 0.5);
-      } else {
-        fillColor = maze.backgroundColor;
-      }
+    // if (isUnfinishedCell(cell)) {
+    //   if (maze.displayMode === 0) {
+    //     fillColor = ctx.lerpColor(ctx.color(maze.backgroundColor), ctx.color(maze.wallColor), 0.24);
+    //   } else if (maze.displayMode === 1) {
+    //     fillColor = ctx.lerpColor(ctx.color(maze.backgroundColor), ctx.color(maze.wallColor), 0.5);
+    //   } else {
+    //     fillColor = maze.backgroundColor;
+    //   }
 
-    } else {
+    // } else {
 
-      if (maze.coloringMode === "distance" || maze.coloringMode === "color by distance") {
-        fillColor = interpolate(maze.colorScheme, maze.distances[cell.y][cell.x] / maze.maxDistance);
-      } else if (maze.coloringMode === "set" || maze.coloringMode === "color by set") {
-        if (maze.algorithm === "kruskals") {
-          fillColor = interpolate(maze.colorScheme, maze.disjointSubsetctx.findParent(maze.getCellIndex(cell)) / (maze.xSize * maze.ySize), 1);
-        } else if (maze.algorithm === "ellers") {
-          // fillColor = interpolate(maze.colorScheme, maze.rowState.setForCell[cell.x]/maze.xSize);
-        }
-      } else if (maze.coloringMode === "direction" || maze.coloringMode === "color by direction") {
-        fillColor = 0
-      }
-    }
+    //   if (maze.coloringMode === "distance" || maze.coloringMode === "color by distance") {
+    //     fillColor = interpolate(maze.colorScheme, maze.distances[cell.y][cell.x] / maze.maxDistance);
+    //   } else if (maze.coloringMode === "set" || maze.coloringMode === "color by set") {
+    //     if (maze.algorithm === "kruskals") {
+    //       fillColor = interpolate(maze.colorScheme, maze.disjointSubsetctx.findParent(maze.getCellIndex(cell)) / (maze.xSize * maze.ySize), 1);
+    //     } else if (maze.algorithm === "ellers") {
+    //       // fillColor = interpolate(maze.colorScheme, maze.rowState.setForCell[cell.x]/maze.xSize);
+    //     }
+    //   } else if (maze.coloringMode === "direction" || maze.coloringMode === "color by direction") {
+    //     fillColor = 0
+    //   }
+    // }
 
     // if (maze.currentCell && cell.x === maze.currentCell.x && cell.y === maze.currentCell.y){
     //   fillColor = ctx.lerpColor(ctx.color("yellow"), ctx.color(fillColor), 0.2);
