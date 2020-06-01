@@ -30,7 +30,7 @@ class SimplifiedPrims extends Maze {
   step() {
     if (this.finishedGenerating) return;
 
-    let cellIndex = Math.floor(this.prng.random(this.activeCells.length));
+    let cellIndex = Math.floor(this.prng.random()*this.activeCells.length);
     let cell = this.activeCells[cellIndex];
 
     let unvisitedNeighbors = [];
@@ -50,7 +50,7 @@ class SimplifiedPrims extends Maze {
     }
 
     if (unvisitedNeighbors.length > 0) {
-      let newCell = this.prng.random(unvisitedNeighbors);
+      let newCell = unvisitedNeighbors[Math.floor(this.prng.random()*unvisitedNeighbors.length)];
       this.removeWall(cell, newCell.direction);
       this.visited[newCell.y][newCell.x] = true;
       this.totalVisted++;

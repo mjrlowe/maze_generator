@@ -60,7 +60,7 @@ class Maze {
       : "recursive backtracker";
     settings.algorithmId = settings.algorithmId.toLowerCase();
     if(settings.algorithmId === "random"){
-      settings.algorithmId = Object.keys(this.algorithms)[Math.floor(Math.random(Object.keys(this.algorithms)))];
+      settings.algorithmId = Object.keys(this.algorithms)[Math.floor(Math.random()*Object.keys(this.algorithms).length)];
     }else if (!this.algorithms[settings.algorithmId]) {
       console.warn(
         `maze.algorithms[${settings.algorithmId}] is not defined, defaulting to recursive backtracker`,
