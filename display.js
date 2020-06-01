@@ -12,7 +12,7 @@ export default function display(maze, canvas) {
   if (maze.displayMode === "thick walls") maze.displayMode = 1;
   if (maze.displayMode === "line") maze.displayMode = 2;
   maze.displayMode = Number(maze.displayMode); //dat.gui stores 0 as a string so I need to convert it back to a number
-  ctx.push();
+  //ctx.push();
 
   //center the screen
   ctx.translate(ctx.width / 2 - maze.xSize / 2 * maze.cellSize, ctx.height / 2 - maze.ySize / 2 * maze.cellSize);
@@ -65,7 +65,7 @@ export default function display(maze, canvas) {
 
     ctx.fillStyle = maze.wallColor;
 
-    ctx.push();
+    //ctx.push();
     ctx.translate(cellSize / 2, cellSize / 2);
 
     ctx.fillRect(-cellSize, -cellSize, cellSize * 2 * maze.xSize + cellSize, cellSize * 2 * maze.ySize + cellSize);
@@ -93,13 +93,13 @@ export default function display(maze, canvas) {
       }
     }
 
-    ctx.pop();
+    //ctx.pop();
     cellSize *= 2;
   } else { //display mode 2: line
     ctx.stroke(maze.wallColor);
     ctx.strokeWeight(maze.strokeWeight);
 
-    ctx.push();
+    //ctx.push();
     ctx.translate(maze.cellSize / 2, maze.cellSize / 2);
 
     for (let y = 0; y < maze.ySize; y++) {
@@ -121,20 +121,20 @@ export default function display(maze, canvas) {
       }
     }
 
-    ctx.pop();
+    //ctx.pop();
   }
 
   if (maze.showSolution) {
     ctx.stroke(maze.solutionColor);
     ctx.strokeWeight(ctx.constrain(maze.cellSize * 0.27, 1, 10));
-    ctx.push();
+    //ctx.push();
     ctx.translate(maze.cellSize / 2, maze.cellSize / 2);
     for (let i = 0; i < maze.solution.length - 1; i++) {
       ctx.line(maze.solution[i].x * maze.cellSize, maze.solution[i].y * maze.cellSize, maze.solution[i + 1].x * maze.cellSize, maze.solution[i + 1].y * maze.cellSize);
     }
-    ctx.pop();
+    //ctx.pop();
   }
-  ctx.pop();
+  //ctx.pop();
 
   function isUnfinishedCell(cell) {
     if (maze.walls[cell.y][cell.x].N === false && cell.y > 0) return false;
