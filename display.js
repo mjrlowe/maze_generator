@@ -34,13 +34,13 @@ export default function display(maze, canvas) {
       }
     }
 
-    ctx.stroke(maze.wallColor);
+    ctx.strokeStyle = maze.wallColor;
     ctx.strokeWeight(maze.strokeWeight);
 
     for (let y = 0; y < maze.ySize; y++) {
       for (let x = 0; x < maze.xSize; x++) {
 
-        ctx.stroke(maze.wallColor);
+        ctx.strokeStyle = maze.wallColor;
 
 
         if (maze.walls[y][x].W) {
@@ -97,7 +97,7 @@ export default function display(maze, canvas) {
     //ctx.pop();
     cellSize *= 2;
   } else { //display mode 2: line
-    ctx.stroke(maze.wallColor);
+    ctx.strokeStyle = maze.wallColor;
     ctx.strokeWeight(maze.strokeWeight);
 
     //ctx.push();
@@ -126,7 +126,7 @@ export default function display(maze, canvas) {
   }
 
   if (maze.showSolution) {
-    ctx.stroke(maze.solutionColor);
+    ctx.strokeStyle = maze.solutionColor;
     ctx.strokeWeight(ctx.constrain(maze.cellSize * 0.27, 1, 10));
     //ctx.push();
     ctx.translate(maze.cellSize / 2, maze.cellSize / 2);
