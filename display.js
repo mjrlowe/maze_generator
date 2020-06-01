@@ -35,7 +35,7 @@ export default function display(maze, canvas) {
     }
 
     ctx.strokeStyle = maze.wallColor;
-    ctx.strokeWeight(maze.strokeWeight);
+    ctx.lineWidth = maze.strokeWeight;
 
     for (let y = 0; y < maze.ySize; y++) {
       for (let x = 0; x < maze.xSize; x++) {
@@ -98,7 +98,7 @@ export default function display(maze, canvas) {
     cellSize *= 2;
   } else { //display mode 2: line
     ctx.strokeStyle = maze.wallColor;
-    ctx.strokeWeight(maze.strokeWeight);
+    ctx.lineWidth = maze.strokeWeight;
 
     //ctx.push();
     ctx.translate(maze.cellSize / 2, maze.cellSize / 2);
@@ -127,7 +127,9 @@ export default function display(maze, canvas) {
 
   if (maze.showSolution) {
     ctx.strokeStyle = maze.solutionColor;
-    ctx.strokeWeight(ctx.constrain(maze.cellSize * 0.27, 1, 10));
+    ctx.lineWidth = maze.cellSize * 0.27
+    if(ctx.lineWidth < 1) ctx.lineWidth = 1;
+    if(ctx.lineWidth > 10) ctx.lineWidth = 10;
     //ctx.push();
     ctx.translate(maze.cellSize / 2, maze.cellSize / 2);
     for (let i = 0; i < maze.solution.length - 1; i++) {
