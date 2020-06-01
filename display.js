@@ -14,8 +14,8 @@ export default function display(maze, canvas) {
   maze.displayMode = Number(maze.displayMode); //dat.gui stores 0 as a string so I need to convert it back to a number
   //ctx.push();
 
-  //center the screen
-  // ctx.translate(canvas.width / 2 - maze.xSize / 2 * maze.cellSize, canvas.height / 2 - maze.ySize / 2 * maze.cellSize);
+  //center the maze
+  ctx.translate(canvas.width / 2 - maze.xSize / 2 * maze.cellSize, canvas.height / 2 - maze.ySize / 2 * maze.cellSize);
 
   //clear the background
   ctx.fillStyle = maze.backgroundColor;
