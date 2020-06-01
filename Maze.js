@@ -58,7 +58,7 @@ class Maze {
   static create(settings = {}) {
     settings.algorithmId = settings.algorithm
       ? settings.algorithm.replace(/[^a-zA-Z]/g, "")
-      : "recursive backtracker";
+      : "recursivebacktracker";
     settings.algorithmId = settings.algorithmId.toLowerCase();
     if (settings.algorithmId === "random") {
       settings.algorithmId =
