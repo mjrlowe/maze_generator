@@ -23,8 +23,6 @@ export default function display(maze, canvas) {
 
   if (maze.displayMode === 0 || (maze.displayMode === 1 && maze.cellSize <= 3)) { //thin walls
 
-    ctx.noStroke();
-
     for (let y = 0; y < maze.ySize; y++) {
       for (let x = 0; x < maze.xSize; x++) {
 
@@ -62,8 +60,6 @@ export default function display(maze, canvas) {
     }
 
   } else if (maze.displayMode === 1) { //thick walls
-
-    ctx.noStroke();
 
     let cellSize = maze.cellSize / 2;
 
