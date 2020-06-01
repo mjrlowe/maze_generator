@@ -6,6 +6,7 @@ import {
 
 class HuntAndKill extends Maze {
   resetVariables() {
+
     this.startHuntingFrom = {
       x: this.currentCell.x,
       y: this.currentCell.y,
@@ -25,6 +26,7 @@ class HuntAndKill extends Maze {
   step() {
     //random walk
     if (!this.hunting) {
+
       this.visited[this.currentCell.y][this.currentCell.x] = true;
 
       let unvisitedDirections = [];
@@ -42,12 +44,13 @@ class HuntAndKill extends Maze {
       }
 
       if (unvisitedDirections.length > 0) {
-        let chosenDirection = this.prng.random(unvisitedDirections);
+        let chosenDirection = unvisitedDirections[Math.floor(this.prng.random()*unvisitedDirections.length)];
         this.removeWall(this.currentCell, chosenDirection);
         this.currentCell = {
           x: this.currentCell.x + dx[chosenDirection],
           y: this.currentCell.y + dy[chosenDirection],
         };
+
         if (
           Math.max(this.currentCell.y - 1, 0) < this.startHuntingFrom.y ||
           (Math.max(this.currentCell.x - 1, 0) < this.startHuntingFrom.x &&
@@ -120,7 +123,7 @@ class HuntAndKill extends Maze {
               y: this.currentCell.y,
             };
           }
-          let chosenDirection = this.prng.random(visitedDirections);
+          let chosenDirection = visitedDirections[Math.floor(this.prng.random()*visitedDirections.length)];
           //this.visited[this.currentCell.y][this.currentCell.x] = true;
           this.removeWall(this.currentCell, chosenDirection);
           //this.currentCell = neighbour;

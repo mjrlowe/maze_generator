@@ -57,9 +57,11 @@ class Maze {
   static create(settings = {}) {
     settings.algorithmId = settings.algorithm
       ? settings.algorithm.replace(/[^a-zA-Z]/g, "")
-      : "";
+      : "recursive backtracker";
     settings.algorithmId = settings.algorithmId.toLowerCase();
-    if (!this.algorithms[settings.algorithmId]) {
+    if(settings.algorithmId === "random"){
+      settings.algorithmId = Object.keys(this.algorithms)[Math.floor(Math.random(Object.keys(this.algorithms)))];
+    }else if (!this.algorithms[settings.algorithmId]) {
       console.warn(
         `maze.algorithms[${settings.algorithmId}] is not defined, defaulting to recursive backtracker`,
       );
@@ -70,8 +72,6 @@ class Maze {
   }
 
   reset() {
-    console.log(this);
-
     //random seed would go here
 
     this.startCell = this.getXYPosition(this.startGenerationFrom);
@@ -80,6 +80,9 @@ class Maze {
       x: this.startCell.x,
       y: this.startCell.y,
     };
+
+    console.log(this);
+
 
     this.finishedGenerating = false;
 
