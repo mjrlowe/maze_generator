@@ -76,14 +76,14 @@ class RecursiveDivision extends Maze {
 
     // where will the wall be drawn?
     this.wallStartCell = {
-      x: this.region.x +
+      x: (this.region.x +
         (this.horizontal
           ? 0
-          : Math.floor(this.prng.random() * (this.region.width - 2))),
-      y: this.region.y +
+          : Math.floor(this.prng.random() * (this.region.width - 2)))),
+      y: (this.region.y +
         (this.horizontal
           ? Math.floor(this.prng.random() * (this.region.height - 2))
-          : 0),
+          : 0)),
     };
 
     // what direction will the wall be drawn?
@@ -100,14 +100,17 @@ class RecursiveDivision extends Maze {
       x: this.wallStartCell.x,
       y: this.wallStartCell.y,
     };
+
     while (length > 0) {
       this.addWall(currentWallCell, this.dir);
 
       currentWallCell.x += dxt;
       currentWallCell.y += dyt;
-      length -= 1;
+      length--;
     }
+
     this.state = this.MAKE_PASSAGE;
+    
     return true;
   }
 
