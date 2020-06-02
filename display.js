@@ -212,4 +212,7 @@ export default function display(maze, canvas) {
     ctx.lineTo(x2, y2);
     ctx.stroke(); 
   }
+
+  //translate back
+  ctx.setTransform(1, 0, 0, 1, 0 0);
 }
