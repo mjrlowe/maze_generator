@@ -15,7 +15,7 @@ export default function display(maze, canvas) {
   //ctx.push();
 
   //center the maze
-  ctx.translate(canvas.width / 2 - maze.xSize / 2 * maze.cellSize, canvas.height / 2 - maze.ySize / 2 * maze.cellSize);
+  ctx.setTransform(1, 1, 1, 1, canvas.width / 2 - maze.xSize / 2 * maze.cellSize, canvas.height / 2 - maze.ySize / 2 * maze.cellSize);
 
   //clear the background
   ctx.fillStyle = maze.backgroundColor;
