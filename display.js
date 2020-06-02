@@ -14,12 +14,12 @@ export default function display(maze, canvas) {
   maze.displayMode = Number(maze.displayMode); //dat.gui stores 0 as a string so I need to convert it back to a number
   //ctx.push();
 
-  //center the maze
-  ctx.setTransform(1, 0, 0, 1, canvas.width / 2 - maze.xSize / 2 * maze.cellSize, canvas.height / 2 - maze.ySize / 2 * maze.cellSize);
-
   //clear the background
   ctx.fillStyle = maze.backgroundColor;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  //center the maze
+  ctx.setTransform(1, 0, 0, 1, canvas.width / 2 - maze.xSize / 2 * maze.cellSize, canvas.height / 2 - maze.ySize / 2 * maze.cellSize);
 
   if (maze.displayMode === 0 || (maze.displayMode === 1 && maze.cellSize <= 3)) { //thin walls
 
