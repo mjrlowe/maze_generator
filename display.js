@@ -19,7 +19,7 @@ export default function display(maze, canvas) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   //center the maze
-  ctx.transform(1, 0, 0, 1, canvas.width / 2 - maze.xSize / 2 * maze.cellSize, canvas.height / 2 - maze.ySize / 2 * maze.cellSize);
+  ctx.setTransform(1, 0, 0, 1, canvas.width / 2 - maze.xSize / 2 * maze.cellSize, canvas.height / 2 - maze.ySize / 2 * maze.cellSize);
 
   if (maze.displayMode === 0 || (maze.displayMode === 1 && maze.cellSize <= 3)) { //thin walls
 
