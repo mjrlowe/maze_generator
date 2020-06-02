@@ -6,7 +6,7 @@ This is work-in-progress, and feedback is welcome.
 
 Almost everything is subject to change so this is all very unstable.
 
-This module is heavily influenced by [Jamis Buck's Coffeescript mazes](https://github.com/jamis/csmazes). It is structured a little differently though and is written entirely in Javascript rather than Coffeescript. It also functions as a module, as well as a library. I aim to eventually have all the functionality that Jamis's CS maze library has.
+This module is heavily influenced by [Jamis Buck's Coffeescript mazes](https://github.com/jamis/csmazes). It is structured a little differently though and is written entirely in Javascript rather than Coffeescript. It also functions as a module, as well as a library. I aim to eventually add all the functionality that Jamis's CS maze library has.
 
 ## Example Usage
 
