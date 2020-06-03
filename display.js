@@ -2,7 +2,7 @@ export default function display({
   maze,
   canvas = document.getElementsByTag("canvas")[0],
   displayMode = 1,
-  cellSize = canvas.height / maze.ySize * 0.9,
+  cellSize = Math.min(canvas.width / maze.xSize, canvas.height / maze.ySize) * 0.9,
   backgroundColor = "white",
   wallColor = "black",
   colorScheme= "rainbow",
@@ -107,7 +107,7 @@ export default function display({
 
     //ctx.pop();
     cellSize *= 2;
-    
+
   } else { //display mode 2: line
     ctx.strokeStyle = wallColor;
     ctx.lineWidth = strokeWeight;
