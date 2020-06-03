@@ -27,8 +27,13 @@ Maze.algorithms = {
 };
 
 Maze.createWidget = settings => {
-  console.log(settings)
-
+  let m = Maze.create(settings);
+  
+  let html = 
+  `
+  <canvas id="${m.algorithmId}-canvas" class="${m.algorithmId} canvas" style="width:100%" width="1000" height="700" onLoad="display(m, this)"></canvas>
+  `
+  document.body.innerHTML += html;
 }
 
 export { default as analyze } from "./analyze.js";
