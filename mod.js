@@ -33,11 +33,13 @@ Maze.createWidget = settings => {
   `
   <canvas id="${m.algorithmId}-canvas" class="${m.algorithmId} canvas" style="width:100%" width="1000" height="700" onLoad="console.log({this})"></canvas>
   `
+  
+  document.body.innerHTML += html;
+  
   document.getElementById(`${m.algorithmId}-canvas`).addEventListener("load", (element) =>{
     console.log({element});
     display({maze: m, canvas:element})
   }); 
-  document.body.innerHTML += html;
 }
 
 export { default as analyze } from "./analyze.js";
