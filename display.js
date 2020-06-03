@@ -9,8 +9,8 @@ export default function display({
   strokeWeight = 4
 }) {
   let ctx = canvas.getContext("2d");
-  ctx.imageSmoothingEnabled= false
 
+  //ctx.imageSmoothingEnabled = false;
 
   if (typeof colorScheme === "string") colorScheme = colorScheme.toLowerCase();
   if (typeof maze.coloringMode === "string") maze.coloringMode = maze.coloringMode.toLowerCase();
@@ -22,7 +22,6 @@ export default function display({
   if (displayMode === "thick walls") displayMode = 1;
   if (displayMode === "line") displayMode = 2;
   displayMode = Number(displayMode); //dat.gui stores 0 as a string so I need to convert it back to a number
-  //ctx.push();
 
   //clear the background
   ctx.fillStyle = backgroundColor;
@@ -75,7 +74,6 @@ export default function display({
 
     ctx.fillStyle = wallColor;
 
-    //ctx.push();
     ctx.translate(cellSize / 2, cellSize / 2);
 
     ctx.fillRect(-cellSize, -cellSize, cellSize * 2 * maze.xSize + cellSize, cellSize * 2 * maze.ySize + cellSize);
@@ -106,14 +104,12 @@ export default function display({
       }
     }
 
-    //ctx.pop();
     cellSize *= 2;
 
   } else { //display mode 2: line
     ctx.strokeStyle = wallColor;
     ctx.lineWidth = strokeWeight;
 
-    //ctx.push();
     ctx.translate(cellSize / 2, cellSize / 2);
 
     for (let y = 0; y < maze.ySize; y++) {
@@ -135,7 +131,6 @@ export default function display({
       }
     }
 
-    //ctx.pop();
   }
 
   if (maze.showSolution) {
@@ -143,14 +138,13 @@ export default function display({
     ctx.lineWidth = cellSize * 0.27
     if (ctx.lineWidth < 1) ctx.lineWidth = 1;
     if (ctx.lineWidth > 10) ctx.lineWidth = 10;
-    //ctx.push();
+
     ctx.translate(cellSize / 2, cellSize / 2);
     for (let i = 0; i < maze.solution.length - 1; i++) {
       line(maze.solution[i].x * cellSize, maze.solution[i].y * cellSize, maze.solution[i + 1].x * cellSize, maze.solution[i + 1].y * cellSize);
     }
-    //ctx.pop();
+
   }
-  //ctx.pop();
 
   function isUnfinishedCell(cell) {
     if (maze.walls[cell.y][cell.x].N === false && cell.y > 0) return false;
