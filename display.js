@@ -70,7 +70,7 @@ export default function display({
 
   } else if (displayMode === 1) { //thick walls
 
-    let cellSize = cellSize / 2;
+    cellSize /= 2;
 
     ctx.fillStyle = wallColor;
 
@@ -107,6 +107,7 @@ export default function display({
 
     //ctx.pop();
     cellSize *= 2;
+    
   } else { //display mode 2: line
     ctx.strokeStyle = wallColor;
     ctx.lineWidth = strokeWeight;
