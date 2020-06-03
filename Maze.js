@@ -25,7 +25,7 @@ class Maze {
 
     if (
       this.algorithmId === "sidewinder" ||
-      this.algorithmId === "binary tree" ||
+      this.algorithmId === "binarytree" ||
       this.algorithmId === "ellers"
     ) {
       this.startGenerationFrom = "top left";
