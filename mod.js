@@ -11,6 +11,8 @@ import ModifiedPrims from "./algorithms/ModifiedPrims.js";
 import Kruskals from "./algorithms/Kruskals.js";
 import BinaryTree from "./algorithms/BinaryTree.js";
 import Wilsons from "./algorithms/Wilsons.js";
+import display from "./display.js"
+
 
 Maze.algorithms = {
   huntandkill: HuntAndKill,
@@ -45,9 +47,9 @@ Maze.createWidget = settings => {
 
 export { default as analyze } from "./analyze.js";
 export { default as solve } from "./solve.js";
-export { default as display } from "./display.js";
 
 export {
+  display,
   Maze,
   Sidewinder,
   RecursiveBacktracker,
