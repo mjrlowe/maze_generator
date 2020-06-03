@@ -63,10 +63,9 @@ class ModifiedPrims extends Maze {
     }
 
     if (unvisitedNeighbors.length > 0) {
-      let newCell =
-        unvisitedNeighbors[
-          Math.floor(this.prng.random() * unvisitedNeighbors.length)
-        ];
+      let newCell = unvisitedNeighbors[
+        Math.floor(this.prng.random() * unvisitedNeighbors.length)
+      ];
       this.removeWall(cell, newCell.direction);
       this.visited[newCell.y][newCell.x] = true;
       this.totalVisted++;

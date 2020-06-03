@@ -110,7 +110,7 @@ class RecursiveDivision extends Maze {
     }
 
     this.state = this.MAKE_PASSAGE;
-    
+
     return true;
   }
 

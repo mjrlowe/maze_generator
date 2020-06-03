@@ -42,10 +42,9 @@ class HuntAndKill extends Maze {
       }
 
       if (unvisitedDirections.length > 0) {
-        let chosenDirection =
-          unvisitedDirections[
-            Math.floor(this.prng.random() * unvisitedDirections.length)
-          ];
+        let chosenDirection = unvisitedDirections[
+          Math.floor(this.prng.random() * unvisitedDirections.length)
+        ];
         this.removeWall(this.currentCell, chosenDirection);
         this.currentCell = {
           x: this.currentCell.x + dx[chosenDirection],
@@ -124,10 +123,9 @@ class HuntAndKill extends Maze {
               y: this.currentCell.y,
             };
           }
-          let chosenDirection =
-            visitedDirections[
-              Math.floor(this.prng.random() * visitedDirections.length)
-            ];
+          let chosenDirection = visitedDirections[
+            Math.floor(this.prng.random() * visitedDirections.length)
+          ];
           //this.visited[this.currentCell.y][this.currentCell.x] = true;
           this.removeWall(this.currentCell, chosenDirection);
           //this.currentCell = neighbour;

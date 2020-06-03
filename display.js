@@ -2,18 +2,22 @@ export default function display({
   maze,
   canvas = document.getElementsByTag("canvas")[0],
   displayMode = 1,
-  cellSize = Math.min(canvas.width / maze.xSize, canvas.height / maze.ySize) * 0.9,
+  cellSize = Math.min(canvas.width / maze.xSize, canvas.height / maze.ySize) *
+    0.9,
   backgroundColor = "white",
   wallColor = "black",
-  colorScheme= "rainbow",
-  strokeWeight = 4
+  colorScheme = "rainbow",
+  strokeWeight = 4,
+  antiAliasing = false,
 }) {
   let ctx = canvas.getContext("2d");
 
-  ctx.imageSmoothingEnabled = false;
+  ctx.imageSmoothingEnabled = antiAliasing;
 
   if (typeof colorScheme === "string") colorScheme = colorScheme.toLowerCase();
-  if (typeof maze.coloringMode === "string") maze.coloringMode = maze.coloringMode.toLowerCase();
+  if (typeof maze.coloringMode === "string") {
+    maze.coloringMode = maze.coloringMode.toLowerCase();
+  }
   if (typeof displayMode === "string") displayMode = displayMode.toLowerCase();
 
   strokeWeight = Math.min(strokeWeight, 40);
@@ -28,16 +32,21 @@ export default function display({
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   //center the maze
-  ctx.setTransform(1, 0, 0, 1, canvas.width / 2 - maze.xSize / 2 * cellSize, canvas.height / 2 - maze.ySize / 2 * cellSize);
+  ctx.setTransform(
+    1,
+    0,
+    0,
+    1,
+    canvas.width / 2 - maze.xSize / 2 * cellSize,
+    canvas.height / 2 - maze.ySize / 2 * cellSize,
+  );
 
   if (displayMode === 0 || (displayMode === 1 && cellSize <= 3)) { //thin walls
-
     for (let y = 0; y < maze.ySize; y++) {
       for (let x = 0; x < maze.xSize; x++) {
-
         ctx.fillStyle = getCellColor({
           x,
-          y
+          y,
         });
 
         ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
@@ -49,9 +58,7 @@ export default function display({
 
     for (let y = 0; y < maze.ySize; y++) {
       for (let x = 0; x < maze.xSize; x++) {
-
         ctx.strokeStyle = wallColor;
-
 
         if (maze.walls[y][x].W) {
           line(x * cellSize, y * cellSize, x * cellSize, (y + 1) * cellSize);
@@ -60,52 +67,83 @@ export default function display({
           line(x * cellSize, y * cellSize, (x + 1) * cellSize, y * cellSize);
         }
         if (maze.walls[y][x].E && x === maze.xSize - 1) {
-          line((x + 1) * cellSize, y * cellSize, (x + 1) * cellSize, (y + 1) * cellSize);
+          line(
+            (x + 1) * cellSize,
+            y * cellSize,
+            (x + 1) * cellSize,
+            (y + 1) * cellSize,
+          );
         }
         if (maze.walls[y][x].S && y === maze.ySize - 1) {
-          line(x * cellSize, (y + 1) * cellSize, (x + 1) * cellSize, (y + 1) * cellSize);
+          line(
+            x * cellSize,
+            (y + 1) * cellSize,
+            (x + 1) * cellSize,
+            (y + 1) * cellSize,
+          );
         }
       }
     }
-
   } else if (displayMode === 1) { //thick walls
-
     cellSize /= 2;
 
     ctx.fillStyle = wallColor;
 
     ctx.translate(cellSize / 2, cellSize / 2);
 
-    ctx.fillRect(-cellSize, -cellSize, cellSize * 2 * maze.xSize + cellSize, cellSize * 2 * maze.ySize + cellSize);
+    ctx.fillRect(
+      -cellSize,
+      -cellSize,
+      cellSize * 2 * maze.xSize + cellSize,
+      cellSize * 2 * maze.ySize + cellSize,
+    );
     ctx.fillStyle = backgroundColor;
 
     for (let y = 0; y < maze.ySize; y++) {
       for (let x = 0; x < maze.xSize; x++) {
-
         ctx.fillStyle = getCellColor({
           x,
-          y
+          y,
         });
 
         ctx.fillRect(x * cellSize * 2, y * cellSize * 2, cellSize, cellSize);
 
         if (!maze.walls[y][x].W) {
-          ctx.fillRect(x * cellSize * 2 - cellSize, y * cellSize * 2, cellSize, cellSize);
+          ctx.fillRect(
+            x * cellSize * 2 - cellSize,
+            y * cellSize * 2,
+            cellSize,
+            cellSize,
+          );
         }
         if (!maze.walls[y][x].N) {
-          ctx.fillRect(x * cellSize * 2, y * cellSize * 2 - cellSize, cellSize, cellSize);
+          ctx.fillRect(
+            x * cellSize * 2,
+            y * cellSize * 2 - cellSize,
+            cellSize,
+            cellSize,
+          );
         }
         if (!maze.walls[y][x].E && x === maze.xSize - 1) {
-          ctx.fillRect(x * cellSize * 2 + cellSize, y * cellSize * 2, cellSize, cellSize);
+          ctx.fillRect(
+            x * cellSize * 2 + cellSize,
+            y * cellSize * 2,
+            cellSize,
+            cellSize,
+          );
         }
         if (!maze.walls[y][x].S && y === maze.ySize - 1) {
-          ctx.fillRect(x * cellSize * 2, y * cellSize * 2 + cellSize, cellSize, cellSize);
+          ctx.fillRect(
+            x * cellSize * 2,
+            y * cellSize * 2 + cellSize,
+            cellSize,
+            cellSize,
+          );
         }
       }
     }
 
     cellSize *= 2;
-
   } else { //display mode 2: line
     ctx.strokeStyle = wallColor;
     ctx.lineWidth = strokeWeight;
@@ -114,8 +152,6 @@ export default function display({
 
     for (let y = 0; y < maze.ySize; y++) {
       for (let x = 0; x < maze.xSize; x++) {
-
-
         if (!maze.walls[y][x].W) {
           line(x * cellSize, y * cellSize, (x - 0.5) * cellSize, y * cellSize);
         }
@@ -130,26 +166,37 @@ export default function display({
         }
       }
     }
-
   }
 
   if (maze.showSolution) {
     ctx.strokeStyle = solutionColor;
-    ctx.lineWidth = cellSize * 0.27
+    ctx.lineWidth = cellSize * 0.27;
     if (ctx.lineWidth < 1) ctx.lineWidth = 1;
     if (ctx.lineWidth > 10) ctx.lineWidth = 10;
 
     ctx.translate(cellSize / 2, cellSize / 2);
     for (let i = 0; i < maze.solution.length - 1; i++) {
-      line(maze.solution[i].x * cellSize, maze.solution[i].y * cellSize, maze.solution[i + 1].x * cellSize, maze.solution[i + 1].y * cellSize);
+      line(
+        maze.solution[i].x * cellSize,
+        maze.solution[i].y * cellSize,
+        maze.solution[i + 1].x * cellSize,
+        maze.solution[i + 1].y * cellSize,
+      );
     }
-
   }
 
   function isUnfinishedCell(cell) {
     if (maze.walls[cell.y][cell.x].N === false && cell.y > 0) return false;
-    if (maze.walls[cell.y][cell.x].S === false && cell.y < maze.ySize - 1) return false;
-    if (maze.walls[cell.y][cell.x].E === false && cell.x < maze.xSize - 1) return false;
+    if (
+      maze.walls[cell.y][cell.x].S === false && cell.y < maze.ySize - 1
+    ) {
+      return false;
+    }
+    if (
+      maze.walls[cell.y][cell.x].E === false && cell.x < maze.xSize - 1
+    ) {
+      return false;
+    }
     if (maze.walls[cell.y][cell.x].W === false && cell.x > 0) return false;
     return true;
   }
@@ -191,7 +238,11 @@ export default function display({
     //   fillColor = ctx.lerpColor(ctx.color("red"), ctx.color(fillColor), 0.2);
     // }
 
-    if (maze.algorithmId === "wilsons" && cell.x === maze.x && cell.y === maze.y) fillColor = "red";
+    if (
+      maze.algorithmId === "wilsons" && cell.x === maze.x && cell.y === maze.y
+    ) {
+      fillColor = "red";
+    }
 
     return fillColor;
 
@@ -205,7 +256,6 @@ export default function display({
         case "rainbow":
         default:
           return d3ScaleChromatic.interpolateRainbow(k);
-
       }
     }
   }
@@ -217,5 +267,4 @@ export default function display({
     ctx.lineTo(x2, y2);
     ctx.stroke();
   }
-
 }
