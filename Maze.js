@@ -84,8 +84,6 @@ class Maze {
       y: this.startCell.y,
     };
 
-    console.log(this);
-
     this.finishedGenerating = false;
 
     this.solution = [];

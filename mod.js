@@ -31,19 +31,27 @@ Maze.algorithms = {
 Maze.createWidget = settings => {
   let m = Maze.create(settings);
   
-  let html = 
-  `
-  <canvas id="${m.algorithmId}-canvas" class="${m.algorithmId} canvas" style="width:100%" width="1000" height="700"></canvas>
-  `
+  let html = `<canvas id="${m.algorithmId}-canvas" class="${m.algorithmId} canvas" style="width:100%" width="1000" height="700"></canvas>`;
   
   document.body.innerHTML += html;
+
+  let canvas = document.getElementById(`${m.algorithmId}-canvas`);
 
   console.log({display, m})
   display({
     maze: m,
-    canvas: document.getElementById(`${m.algorithmId}-canvas`)
+    canvas
   })
   
+  let updateCanvas = () =>{
+    setTimeout(()=>{
+      m.step();
+      display({maze:m, canvas});
+      
+      updateCanvas();
+    }, 100)
+  }
+
 }
 
 export { default as analyze } from "./analyze.js";
