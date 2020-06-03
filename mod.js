@@ -35,10 +35,11 @@ Maze.createWidget = settings => {
   `
   
   document.body.innerHTML += html;
-  
-  document.getElementById(`${m.algorithmId}-canvas`).addEventListener("load", (element) =>{
-    console.log({element});
-    display({maze: m, canvas:element})
+
+  console.log(document.body)
+  document.getElementById(`${m.algorithmId}-canvas`).addEventListener("load", (event) =>{
+    console.log({event});
+    display({maze: m, canvas:event.target})
   }); 
 }
 
