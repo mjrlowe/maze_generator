@@ -103,7 +103,8 @@ class Maze {
         };
       }
     }
-    this.resetVariables();
+   
+    if(this.resetVariables) this.resetVariables();
   }
 
   generate() {
