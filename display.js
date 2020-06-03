@@ -9,6 +9,7 @@ export default function display({
   strokeWeight = 4
 }) {
   let ctx = canvas.getContext("2d");
+  ctx.imageSmoothingEnabled= false
 
 
   if (typeof colorScheme === "string") colorScheme = colorScheme.toLowerCase();
