@@ -31,8 +31,12 @@ Maze.createWidget = settings => {
   
   let html = 
   `
-  <canvas id="${m.algorithmId}-canvas" class="${m.algorithmId} canvas" style="width:100%" width="1000" height="700" onLoad="display(m, this)"></canvas>
+  <canvas id="${m.algorithmId}-canvas" class="${m.algorithmId} canvas" style="width:100%" width="1000" height="700" onLoad="console.log({this})"></canvas>
   `
+  document.getElementById(`${m.algorithmId}-canvas`).addEventListener("load", (element) =>{
+    console.log({element});
+    display({maze: m, canvas:element})
+  }); 
   document.body.innerHTML += html;
 }
 
