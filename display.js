@@ -10,7 +10,7 @@ export default function display({
 }) {
   let ctx = canvas.getContext("2d");
 
-  //ctx.imageSmoothingEnabled = false;
+  ctx.imageSmoothingEnabled = false;
 
   if (typeof colorScheme === "string") colorScheme = colorScheme.toLowerCase();
   if (typeof maze.coloringMode === "string") maze.coloringMode = maze.coloringMode.toLowerCase();
