@@ -31,7 +31,7 @@ Maze.createWidget = settings => {
   
   let html = 
   `
-  <canvas id="${m.algorithmId}-canvas" class="${m.algorithmId} canvas" style="width:100%" width="1000" height="700" onLoad="console.log({this})"></canvas>
+  <canvas id="${m.algorithmId}-canvas" class="${m.algorithmId} canvas" style="width:100%" width="1000" height="700"></canvas>
   `
   
   document.body.innerHTML += html;
