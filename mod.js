@@ -26,6 +26,11 @@ Maze.algorithms = {
   wilsons: Wilsons,
 };
 
+Maze.createWidget = settings => {
+  console.log(settings)
+
+}
+
 export { default as analyze } from "./analyze.js";
 export { default as solve } from "./solve.js";
 export { default as display } from "./display.js";
