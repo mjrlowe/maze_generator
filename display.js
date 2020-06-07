@@ -12,6 +12,8 @@ export default function display({
   strokeWeight = 4,
   antiAliasing = false,
 }) {
+
+  maze.calculateDistances();
   let ctx = canvas.getContext("2d");
 
   ctx.imageSmoothingEnabled = antiAliasing;
