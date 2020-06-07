@@ -45,12 +45,15 @@ Maze.createWidget = settings => {
   
   let updateCanvas = () =>{
     setTimeout(()=>{
+
       m.step();
       display({maze:m, canvas});
       
       updateCanvas();
     }, 100)
   }
+
+  updateCanvas();
 
 }
 
