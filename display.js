@@ -1,3 +1,5 @@
+import d3ScaleChromatic from "./libraries/cubehelix.min.js";
+
 export default function display({
   maze,
   canvas = document.getElementsByTag("canvas")[0],
@@ -219,7 +221,7 @@ export default function display({
     // } else {
 
     //   if (maze.coloringMode === "distance" || maze.coloringMode === "color by distance") {
-    //     fillColor = interpolate(colorScheme, maze.distances[cell.y][cell.x] / maze.maxDistance);
+         fillColor = interpolate(colorScheme, maze.distances[cell.y][cell.x] / maze.maxDistance);
     //   } else if (maze.coloringMode === "set" || maze.coloringMode === "color by set") {
     //     if (maze.algorithm === "kruskals") {
     //       fillColor = interpolate(colorScheme, maze.disjointSubsetctx.findParent(maze.getCellIndex(cell)) / (maze.xSize * maze.ySize), 1);
