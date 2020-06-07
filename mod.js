@@ -37,7 +37,6 @@ Maze.createWidget = settings => {
 
   let canvas = document.getElementById(`${m.algorithmId}-canvas`);
 
-  console.log({display, m})
   display({
     maze: m,
     canvas
