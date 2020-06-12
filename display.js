@@ -281,7 +281,7 @@ export default function display({
     });
   }
 
-  //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+  //adapted from https://stackoverflow.com/questions/5623838
   function hexToRgb(hex) {
     if (typeof hex === "object") return hex;
 
@@ -297,7 +297,7 @@ export default function display({
         r: parseInt(sixDigitHexRegexResult[1], 16),
         g: parseInt(sixDigitHexRegexResult[2], 16),
         b: parseInt(sixDigitHexRegexResult[3], 16)
-      
+
       } : threeDigitHexRegexResult ? {
         r: parseInt(threeDigitHexRegexResult[1] + threeDigitHexRegexResult[1], 16),
         g: parseInt(threeDigitHexRegexResult[2] + threeDigitHexRegexResult[2], 16),
@@ -316,12 +316,13 @@ export default function display({
     return hex.length === 1 ? "0" + hex : hex;
   }
 
-}
 
-function line(x1, y1, x2, y2) {
-  ctx.beginPath();
-  ctx.lineJoin = "round";
-  ctx.moveTo(x1, y1);
-  ctx.lineTo(x2, y2);
-  ctx.stroke();
+  function line(x1, y1, x2, y2) {
+    ctx.beginPath();
+    ctx.lineJoin = "round";
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+  }
+
 }
