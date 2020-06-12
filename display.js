@@ -254,7 +254,7 @@ export default function display({
       switch (colorScheme) {
         case "night train":
           return "blue";
-        case "moduleURL":
+        case "grayscale":
           let v = 255 - k * 247;
           return `rgb(${v}, ${v}, ${v})`
         case "rainbow":
