@@ -206,6 +206,7 @@ export default function display({
   function getCellColor(cell) {
     let fillColor = backgroundColor;
 
+
     //highlight cells that haven't finished generating differently, depending on the display mode
     //an unfinished cell is one that has all it's walls around it
     //not used for display mode 2 (line) because it looks weird
@@ -253,13 +254,24 @@ export default function display({
       switch (colorScheme) {
         case "night train":
           return "blue";
-        case "grayscale":
-          return 255 - k * 247;
+        case "moduleURL":
+          let v = 255 - k * 247;
+          return `rgb(${v}, ${v}, ${v})`
         case "rainbow":
           //pass
         default:
           return "white"
       }
+    }
+
+    //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+    function hexToRgb(hex) {
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : null;
     }
   }
 
