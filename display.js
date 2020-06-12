@@ -285,19 +285,23 @@ export default function display({
   function hexToRgb(hex) {
     if (typeof hex === "object") return hex;
 
+    //e.g. #15C22F
+    let sixDigitHexRegexResult = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+    //e.g. #1C3
+    let threeDigitHexRegexResult = /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hex);
+
     return (
 
-      //#15C22F (6 character hex)
-      /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex) ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
+      sixDigitHexRegexResult ? {
+        r: parseInt(sixDigitHexRegexResult[1], 16),
+        g: parseInt(sixDigitHexRegexResult[2], 16),
+        b: parseInt(sixDigitHexRegexResult[3], 16)
       
-      //#1C2 (3 character hex)
-      } : /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hex) ? {
-        r: parseInt(result[1] + result[1], 16),
-        g: parseInt(result[2] + result[2], 16),
-        b: parseInt(result[3] + result[3], 16),
+      } : threeDigitHexRegexResult ? {
+        r: parseInt(threeDigitHexRegexResult[1] + threeDigitHexRegexResult[1], 16),
+        g: parseInt(threeDigitHexRegexResult[2] + threeDigitHexRegexResult[2], 16),
+        b: parseInt(threeDigitHexRegexResult[3] + threeDigitHexRegexResult[3], 16),
       } : null
     );
 
