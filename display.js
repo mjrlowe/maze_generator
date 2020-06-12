@@ -229,16 +229,16 @@ export default function display({
         if (maze.algorithm === "kruskals") {
           fillColor = interpolate(colorScheme, maze.disjointSubsets.findParent(maze.getCellIndex(cell)) / (maze.xSize * maze.ySize), 1);
         } else if (maze.algorithm === "ellers") {
-          fillColor = interpolate(colorScheme, maze.rowState.setForCell[cell.x]/maze.xSize);
+          fillColor = interpolate(colorScheme, maze.rowState.setForCell[cell.x] / maze.xSize);
         }
       }
     }
 
-    if (maze.currentCell && cell.x === maze.currentCell.x && cell.y === maze.currentCell.y){
-      fillColor = lerpBetween("#FFFF00", fillColor, 0.2); 
+    if (maze.currentCell && cell.x === maze.currentCell.x && cell.y === maze.currentCell.y) {
+      fillColor = lerpBetween("#FFFF00", fillColor, 0.2);
     }
-    if(maze.startHuntingFrom && cell.x === maze.startHuntingFrom.x && cell.y === maze.startHuntingFrom.y){
-      fillColor = lerpBetween("#F00", fillColor, 0.2); 
+    if (maze.startHuntingFrom && cell.x === maze.startHuntingFrom.x && cell.y === maze.startHuntingFrom.y) {
+      fillColor = lerpBetween("#F00", fillColor, 0.2);
     }
 
     if (maze.algorithmId === "wilsons" && cell.x === maze.x && cell.y === maze.y) {
@@ -283,16 +283,26 @@ export default function display({
 
   //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
   function hexToRgb(hex) {
-    if(typeof hex === "object") return hex;
+    if (typeof hex === "object") return hex;
 
-    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
+    return (
+
+      //#15C22F (6 character hex)
+      /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex) ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      
+      //#1C2 (3 character hex)
+      } : /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hex) ? {
+        r: parseInt(result[1] + result[1], 16),
+        g: parseInt(result[2] + result[2], 16),
+        b: parseInt(result[3] + result[3], 16),
+      } : null
+    );
+
   }
-  
+
   function rgbToHex(rgbObject) {
     return "#" + componentToHex(rgbObject.r) + componentToHex(rgbObject.g) + componentToHex(rgbObject.b);
   }
@@ -301,7 +311,7 @@ export default function display({
     var hex = c.toString(16);
     return hex.length === 1 ? "0" + hex : hex;
   }
-  
+
 }
 
 function line(x1, y1, x2, y2) {
