@@ -296,6 +296,8 @@ export default function display({
 
   //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
   function hexToRgb(hex) {
+    if(typeof hex === "object") return hex;
+    
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
       r: parseInt(result[1], 16),
