@@ -7,8 +7,6 @@
 * get createWidget() properly working
 * add options in widget (e.g. step, run/pause, restart)
 * get seeds working
-* color merging (unfinished cells)
-* color schemes (e.g. night rail, rainbow) (color by distance)
 * color by direction
 * color by number of times visited
 * Wilson's
