@@ -31,7 +31,7 @@ Maze.algorithms = {
 Maze.createWidget = settings => {
   let width = 1000, height = 700;
 
-  let m = Maze.create(settings);
+  let maze = Maze.create(settings);
   
   let html = `<canvas id="${m.algorithmId}-canvas" class="${m.algorithmId} maze canvas" style="width:90%" width="${width}" height="${height}"></canvas>`;
   
@@ -40,21 +40,23 @@ Maze.createWidget = settings => {
   let canvas = document.getElementById(`${m.algorithmId}-canvas`);
 
   display({
-    maze: m,
+    maze,
     canvas
   })
   
   let updateCanvas = () =>{
     setTimeout(()=>{
 
-      m.step();
-      display({maze:m, canvas});
+      maze.step();
+      display({maze, canvas});
       
       updateCanvas();
     }, 100)
   }
 
   updateCanvas();
+
+  return maze;
 
 }
 
