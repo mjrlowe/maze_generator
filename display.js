@@ -256,8 +256,8 @@ export default function display({
 
       if (Array.isArray(colorScheme)) {
         let i = k * (colorScheme.length - 1);
-        let color1 = color(colorSchemes[settings.colorScheme].colors[floor(i)]);
-        let color2 = color(colorSchemes[settings.colorScheme].colors[floor(i) + 1]);
+        let color1 = color(colorSchemes[floor(i)]);
+        let color2 = color(colorSchemes[floor(i) + 1]);
         interpolatedColor = lerpBetween(color1, color2, i % 1);
 
       } else if (colorScheme === "grayscale" || colorScheme === "greyscale") {
@@ -284,8 +284,8 @@ export default function display({
   }
 
   function lerpBetween(color1, color2, k) {
-    if (typeof color1 === "string") color1 = hexToRgb(color1);
-    if (typeof color2 === "string") color2 = hexToRgb(color1);
+    color1 = hexToRgb(color1);
+    color2 = hexToRgb(color2);
 
     let newColor = {
       r: color1.r + (color2.r - color1.r) * k,
@@ -313,5 +313,4 @@ function line(x1, y1, x2, y2) {
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
   ctx.stroke();
-}
 }
