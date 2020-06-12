@@ -282,8 +282,8 @@ export default function display({
   }
 
   function lerpBetween(color1, color2, k) {
-    color1 = hexToRgb(color1);
-    color2 = hexToRgb(color2);
+    color1 = typeof color1 === "string" ? hexToRgb(color1) : color1;
+    color2 = typeof color2 === "string" ? hexToRgb(color2) : color2;
 
     let newColor = {
       r: color1.r + (color2.r - color1.r) * k,
