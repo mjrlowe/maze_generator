@@ -262,21 +262,10 @@ export default function display({
         interpolatedColor = lerpBetween("#FFFFFF", "#000008", k);
 
       } else {
-        interpolatedColor = {
-          r: 255,
-          g: 255,
-          b: 255
-        };
+        interpolatedColor = "white"
       }
 
-      let colorString;
-      if (typeof interpolatedColor === "object") {
-        colorString = `rgb(${interpolatedColor.r}, ${interpolatedColor.g}, ${interpolatedColor.b})`;
-      } else {
-        colorString = interpolatedColor;
-      }
-
-      return colorString;
+      return interpolatedColor;
 
     }
   }
@@ -285,19 +274,17 @@ export default function display({
     color1 = typeof color1 === "string" ? hexToRgb(color1) : color1;
     color2 = typeof color2 === "string" ? hexToRgb(color2) : color2;
 
-    let newColor = {
+    return rgbToHex({
       r: color1.r + (color2.r - color1.r) * k,
       g: color1.g + (color2.g - color1.g) * k,
       b: color1.b + (color2.b - color1.b) * k,
-    }
-
-    return newColor;
+    });
   }
 
   //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
   function hexToRgb(hex) {
     if(typeof hex === "object") return hex;
-    
+
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
       r: parseInt(result[1], 16),
@@ -305,6 +292,16 @@ export default function display({
       b: parseInt(result[3], 16)
     } : null;
   }
+  
+  function rgbToHex(rgbObject) {
+    return "#" + componentToHex(rgbObject.r) + componentToHex(rgbObject.g) + componentToHex(rgbObject.b);
+  }
+
+  function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+  }
+  
 }
 
 function line(x1, y1, x2, y2) {
