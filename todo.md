@@ -6,6 +6,8 @@ _notes to self_
 
 * get createWidget() properly working
 * add options in widget (e.g. step, run/pause, restart)
+* rainbow color scheme
+* support color strings other than just hex values
 * get seeds working
 * color by direction
 * color by number of times visited
