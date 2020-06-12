@@ -1,5 +1,3 @@
-import d3ScaleChromatic from "./libraries/cubehelix.min.js";
-
 export default function display({
   maze,
   canvas = document.getElementsByTag("canvas")[0],
@@ -258,8 +256,9 @@ export default function display({
         case "grayscale":
           return 255 - k * 247;
         case "rainbow":
+          //pass
         default:
-          return d3ScaleChromatic.interpolateRainbow(k);
+          return "white"
       }
     }
   }
