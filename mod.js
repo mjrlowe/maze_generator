@@ -11,8 +11,7 @@ import ModifiedPrims from "./algorithms/ModifiedPrims.js";
 import Kruskals from "./algorithms/Kruskals.js";
 import BinaryTree from "./algorithms/BinaryTree.js";
 import Wilsons from "./algorithms/Wilsons.js";
-import display from "./display.js"
-
+import display from "./display.js";
 
 Maze.algorithms = {
   huntandkill: HuntAndKill,
@@ -28,37 +27,36 @@ Maze.algorithms = {
   wilsons: Wilsons,
 };
 
-Maze.createWidget = settings => {
+Maze.createWidget = (settings) => {
   let width = 1000, height = 700;
 
   let maze = Maze.create(settings);
-  
-  let html = `<canvas id="${maze.algorithmId}-canvas" class="${maze.algorithmId} maze canvas" style="width:90%" width="${width}" height="${height}"></canvas>`;
-  
+
+  let html =
+    `<canvas id="${maze.algorithmId}-canvas" class="${maze.algorithmId} maze canvas" style="width:90%" width="${width}" height="${height}"></canvas>`;
+
   document.body.innerHTML += html;
 
   let canvas = document.getElementById(`${m.algorithmId}-canvas`);
 
   display({
     maze,
-    canvas
-  })
-  
-  let updateCanvas = () =>{
-    setTimeout(()=>{
+    canvas,
+  });
 
+  let updateCanvas = () => {
+    setTimeout(() => {
       maze.step();
-      display({maze, canvas});
-      
+      display({ maze, canvas });
+
       updateCanvas();
-    }, 100)
-  }
+    }, 100);
+  };
 
   updateCanvas();
 
   return maze;
-
-}
+};
 
 export { default as analyze } from "./analyze.js";
 export { default as solve } from "./solve.js";

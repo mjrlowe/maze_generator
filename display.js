@@ -3,15 +3,14 @@ export default function display({
   canvas = document.getElementsByTag("canvas")[0],
   displayMode = 1,
   cellSize = Math.min(canvas.width / maze.xSize, canvas.height / maze.ySize) *
-  0.9,
+    0.9,
   backgroundColor = "#FFF",
   wallColor = "#000",
   colorScheme = "rainbow",
   strokeWeight = 4,
   antiAliasing = false,
-  coloringMode = "normal"
+  coloringMode = "normal",
 }) {
-
   maze.calculateDistances();
   let ctx = canvas.getContext("2d");
 
@@ -207,7 +206,6 @@ export default function display({
   function getCellColor(cell) {
     let fillColor = backgroundColor;
 
-
     //highlight cells that haven't finished generating differently, depending on the display mode
     //an unfinished cell is one that has all it's walls around it
     //not used for display mode 2 (line) because it looks weird
@@ -219,29 +217,45 @@ export default function display({
       } else {
         fillColor = backgroundColor;
       }
-
     } else {
-
       if (coloringMode === "distance" || coloringMode === "color by distance") {
-        fillColor = interpolate(colorScheme, maze.distances[cell.y][cell.x] / maze.maxDistance);
+        fillColor = interpolate(
+          colorScheme,
+          maze.distances[cell.y][cell.x] / maze.maxDistance,
+        );
       } else if (coloringMode === "set" || coloringMode === "color by set") {
-
         if (maze.algorithm === "kruskals") {
-          fillColor = interpolate(colorScheme, maze.disjointSubsets.findParent(maze.getCellIndex(cell)) / (maze.xSize * maze.ySize), 1);
+          fillColor = interpolate(
+            colorScheme,
+            maze.disjointSubsets.findParent(maze.getCellIndex(cell)) /
+              (maze.xSize * maze.ySize),
+            1,
+          );
         } else if (maze.algorithm === "ellers") {
-          fillColor = interpolate(colorScheme, maze.rowState.setForCell[cell.x] / maze.xSize);
+          fillColor = interpolate(
+            colorScheme,
+            maze.rowState.setForCell[cell.x] / maze.xSize,
+          );
         }
       }
     }
 
-    if (maze.currentCell && cell.x === maze.currentCell.x && cell.y === maze.currentCell.y) {
+    if (
+      maze.currentCell && cell.x === maze.currentCell.x &&
+      cell.y === maze.currentCell.y
+    ) {
       fillColor = lerpBetween("#FFFF00", fillColor, 0.2);
     }
-    if (maze.startHuntingFrom && cell.x === maze.startHuntingFrom.x && cell.y === maze.startHuntingFrom.y) {
+    if (
+      maze.startHuntingFrom && cell.x === maze.startHuntingFrom.x &&
+      cell.y === maze.startHuntingFrom.y
+    ) {
       fillColor = lerpBetween("#F00", fillColor, 0.2);
     }
 
-    if (maze.algorithmId === "wilsons" && cell.x === maze.x && cell.y === maze.y) {
+    if (
+      maze.algorithmId === "wilsons" && cell.x === maze.x && cell.y === maze.y
+    ) {
       fillColor = "#F00";
     }
 
@@ -257,21 +271,17 @@ export default function display({
         let color1 = colorScheme[floor(i)];
         let color2 = colorScheme[floor(i) + 1];
         interpolatedColor = lerpBetween(color1, color2, i % 1);
-
       } else if (colorScheme === "grayscale" || colorScheme === "greyscale") {
         interpolatedColor = lerpBetween("#FFFFFF", "#000008", k);
-
       } else {
-        interpolatedColor = "white"
+        interpolatedColor = "white";
       }
 
       return interpolatedColor;
-
     }
   }
 
   function lerpBetween(color1, color2, k) {
-
     color1 = typeof color1 === "string" ? hexToRgb(color1) : color1;
     color2 = typeof color2 === "string" ? hexToRgb(color2) : color2;
 
@@ -287,36 +297,48 @@ export default function display({
     if (typeof hex === "object") return hex;
 
     //e.g. #15C22F
-    let sixDigitHexRegexResult = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    let sixDigitHexRegexResult = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i
+      .exec(hex);
 
     //e.g. #1C3
-    let threeDigitHexRegexResult = /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hex);
+    let threeDigitHexRegexResult = /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i
+      .exec(hex);
 
     return (
-
-      sixDigitHexRegexResult ? {
-        r: parseInt(sixDigitHexRegexResult[1], 16),
-        g: parseInt(sixDigitHexRegexResult[2], 16),
-        b: parseInt(sixDigitHexRegexResult[3], 16)
-
-      } : threeDigitHexRegexResult ? {
-        r: parseInt(threeDigitHexRegexResult[1] + threeDigitHexRegexResult[1], 16),
-        g: parseInt(threeDigitHexRegexResult[2] + threeDigitHexRegexResult[2], 16),
-        b: parseInt(threeDigitHexRegexResult[3] + threeDigitHexRegexResult[3], 16),
-      } : null
+      sixDigitHexRegexResult
+        ? {
+          r: parseInt(sixDigitHexRegexResult[1], 16),
+          g: parseInt(sixDigitHexRegexResult[2], 16),
+          b: parseInt(sixDigitHexRegexResult[3], 16),
+        }
+        : threeDigitHexRegexResult
+        ? {
+          r: parseInt(
+            threeDigitHexRegexResult[1] + threeDigitHexRegexResult[1],
+            16,
+          ),
+          g: parseInt(
+            threeDigitHexRegexResult[2] + threeDigitHexRegexResult[2],
+            16,
+          ),
+          b: parseInt(
+            threeDigitHexRegexResult[3] + threeDigitHexRegexResult[3],
+            16,
+          ),
+        }
+        : null
     );
-
   }
 
   function rgbToHex(rgbObject) {
-    return "#" + componentToHex(rgbObject.r) + componentToHex(rgbObject.g) + componentToHex(rgbObject.b);
+    return "#" + componentToHex(rgbObject.r) + componentToHex(rgbObject.g) +
+      componentToHex(rgbObject.b);
   }
 
   function componentToHex(c) {
     let hex = Math.round(c).toString(16);
     return hex.length === 1 ? "0" + hex : hex;
   }
-
 
   function line(x1, y1, x2, y2) {
     ctx.beginPath();
@@ -325,5 +347,4 @@ export default function display({
     ctx.lineTo(x2, y2);
     ctx.stroke();
   }
-
 }
