@@ -1,6 +1,6 @@
 # TODO
 
-``_notes to self_
+_notes to self_
 
 ## General
 
