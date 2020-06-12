@@ -4,8 +4,8 @@ export default function display({
   displayMode = 1,
   cellSize = Math.min(canvas.width / maze.xSize, canvas.height / maze.ySize) *
   0.9,
-  backgroundColor = "white",
-  wallColor = "black",
+  backgroundColor = "#FFF",
+  wallColor = "#000",
   colorScheme = "rainbow",
   strokeWeight = 4,
   antiAliasing = false,
