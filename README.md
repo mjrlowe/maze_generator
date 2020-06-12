@@ -31,6 +31,12 @@ console.log(JSON.stringify(m));
 
 ```
 
+## Other examples
+
+See the examples folder for more examples.
+
+Also see this OpenProcessing sketch: [https://openprocessing.org/sketch/908761](https://www.openprocessing.org/sketch/908761).
+
 ## Maze Settings (object)
 
 | Property | Description | Valid Values | Default Value |
