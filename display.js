@@ -249,15 +249,15 @@ export default function display({
 
     return fillColor;
 
-    function interpolate(colorScheme, k, repeats = 1) {
+    function interpolate(colorScheme, k = 0, repeats = 1) {
       k = k * repeats % 1;
 
       let interpolatedColor;
 
       if (Array.isArray(colorScheme)) {
         let i = k * (colorScheme.length - 1);
-        let color1 = color(colorSchemes[floor(i)]);
-        let color2 = color(colorSchemes[floor(i) + 1]);
+        let color1 = colorSchemes[floor(i)];
+        let color2 = colorSchemes[floor(i) + 1];
         interpolatedColor = lerpBetween(color1, color2, i % 1);
 
       } else if (colorScheme === "grayscale" || colorScheme === "greyscale") {
