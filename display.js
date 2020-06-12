@@ -250,6 +250,8 @@ export default function display({
     function interpolate(colorScheme, k = 0, repeats = 1) {
       k = k * repeats % 1;
 
+      console.log({colorScheme, k, repeats, fillColor})
+
       let interpolatedColor;
 
       if (Array.isArray(colorScheme)) {
