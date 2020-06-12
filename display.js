@@ -3,7 +3,7 @@ export default function display({
   canvas = document.getElementsByTag("canvas")[0],
   displayMode = 1,
   cellSize = Math.min(canvas.width / maze.xSize, canvas.height / maze.ySize) *
-    0.9,
+  0.9,
   backgroundColor = "white",
   wallColor = "black",
   colorScheme = "rainbow",
@@ -222,7 +222,7 @@ export default function display({
     // } else {
 
     //   if (maze.coloringMode === "distance" || maze.coloringMode === "color by distance") {
-         fillColor = interpolate(colorScheme, maze.distances[cell.y][cell.x] / maze.maxDistance);
+    fillColor = interpolate(colorScheme, maze.distances[cell.y][cell.x] / maze.maxDistance);
     //   } else if (maze.coloringMode === "set" || maze.coloringMode === "color by set") {
     //     if (maze.algorithm === "kruskals") {
     //       fillColor = interpolate(colorScheme, maze.disjointSubsetctx.findParent(maze.getCellIndex(cell)) / (maze.xSize * maze.ySize), 1);
@@ -251,36 +251,67 @@ export default function display({
 
     function interpolate(colorScheme, k, repeats = 1) {
       k = k * repeats % 1;
-      switch (colorScheme) {
-        case "night train":
-          return "blue";
-        case "grayscale":
-        case "greyscale":
-          let v = 255 - k * 247;
-          return `rgb(${v}, ${v}, ${v})`
-        case "rainbow":
-          //pass
-        default:
-          return "white"
+
+      let interpolatedColor;
+
+      if (typeof colorScheme === "array") {
+        let i = k * (colorScheme.length - 1);
+        let color1 = color(colorSchemes[settings.colorScheme].colors[floor(i)]);
+        let color2 = color(colorSchemes[settings.colorScheme].colors[floor(i) + 1]);
+        interpolatedColor = lerpBetween(color1, color2, i % 1);
+
+      } else if (colorScheme === "grayscale" || colorScheme === "greyscale") {
+        interpolatedColor = lerpBetween("#000008", "#FFFFFF", k);
+
+      } else {
+        interpolatedColor = {
+          r: 255,
+          g: 255,
+          b: 255
+        };
       }
-    }
 
-    //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-    function hexToRgb(hex) {
-      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-      } : null;
+      let colorString;
+      if (typeof interpolatedColor === "object") {
+        colorString = `rgb(${interpolatedColor.r}, ${interpolatedColor.g}, ${interpolatedColor.b})`;
+      } else {
+        colorString = interpolatedColor;
+      }
+
+      return colorString;
+
     }
   }
 
-  function line(x1, y1, x2, y2) {
-    ctx.beginPath();
-    ctx.lineJoin = "round";
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
+  function lerpBetween(color1, color2, k) {
+    if (typeof color1 === "string") color1 = hexToRgb(color1);
+    if (typeof color2 === "string") color2 = hexToRgb(color1);
+
+    let newColor = {
+      r: color1.r + (color2.r - color1.r) * k,
+      g: color1.g + (color2.g - color1.g) * k,
+      b: color1.b + (color2.b - color1.b) * k,
+    }
+
+    return newColor;
   }
+
+  //https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+  function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+}
+
+function line(x1, y1, x2, y2) {
+  ctx.beginPath();
+  ctx.lineJoin = "round";
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+}
 }
