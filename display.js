@@ -254,7 +254,7 @@ export default function display({
 
       let interpolatedColor;
 
-      if (typeof colorScheme === "array") {
+      if (Array.isArray(colorScheme)) {
         let i = k * (colorScheme.length - 1);
         let color1 = color(colorSchemes[settings.colorScheme].colors[floor(i)]);
         let color2 = color(colorSchemes[settings.colorScheme].colors[floor(i) + 1]);
