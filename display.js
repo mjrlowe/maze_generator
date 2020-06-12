@@ -261,7 +261,7 @@ export default function display({
         interpolatedColor = lerpBetween(color1, color2, i % 1);
 
       } else if (colorScheme === "grayscale" || colorScheme === "greyscale") {
-        interpolatedColor = lerpBetween("#000008", "#FFFFFF", k);
+        interpolatedColor = lerpBetween("#FFFFFF", "#000008", k);
 
       } else {
         interpolatedColor = {
