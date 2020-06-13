@@ -1,4 +1,4 @@
-class TruePrims{
+export default class TruePrims{
 
 
   resetVariables(){
