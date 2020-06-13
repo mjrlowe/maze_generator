@@ -12,6 +12,14 @@ export default class TruePrims extends Maze{
     this.DONE = 3;
     this.frontierCells = [];
     this.state = this.START;
+
+    this.visited = [];
+    for (let y = 0; y < this.ySize; y++) {
+      this.visited[y] = [];
+      for (let x = 0; x < this.xSize; x++) {
+        this.visited[y][x] = 0;
+      }
+    }
   }
 
   isOutside(cell){
