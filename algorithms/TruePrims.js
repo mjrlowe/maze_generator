@@ -54,7 +54,7 @@ export default class TruePrims extends Maze{
   }
 
   findNeighborsOf(cell){
-    neighbors = []
+    let neighbors = []
 
     if(this.isInside({x:cell.x-1, y: cell.y})) neighbors.push("W");
     if(this.isInside({x:cell.x+1, y: cell.y})) neighbors.push("E");
@@ -77,7 +77,7 @@ export default class TruePrims extends Maze{
     let cell = this.frontierCells.splice(Math.floor(this.prng.random()*this.frontierCells), 1);
 
     let cellNeighbors = this.findNeighborsOf(cell);
-    direction = cellNeighbors[Math.floor(this.prng.random()*cellNeighbors.length)]
+    let direction = cellNeighbors[Math.floor(this.prng.random()*cellNeighbors.length)]
   
 
     this.removeWall(cell, direction);
