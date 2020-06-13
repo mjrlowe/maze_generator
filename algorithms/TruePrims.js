@@ -1,4 +1,6 @@
-export default class TruePrims{
+import Maze from "../Maze.js";
+
+export default class TruePrims extends Maze{
 
 
   resetVariables(){
