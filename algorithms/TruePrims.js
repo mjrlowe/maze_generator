@@ -15,7 +15,7 @@ export default class TruePrims extends Maze{
   }
 
   isOutside(cell){
-    return this.cellIsInMaze(cell) && this.isBlank(cell)
+    return this.cellIsInMaze(cell) && !this.visited[cell.y][cell.x]
   }
   
   isInside (cell){
@@ -33,6 +33,7 @@ export default class TruePrims extends Maze{
   }
 
   markCell(cell){
+    this.visited[cell.y][cell.x]++;
     this.removeWall(cell, this.IN);
     this.addWall(cell, this.FRONTIER);
 
