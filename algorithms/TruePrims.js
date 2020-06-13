@@ -74,7 +74,7 @@ export default class TruePrims extends Maze{
 
   expandStep(){
 
-    cell = this.frontierCells.splice(Math.floor(this.prng.random()*this.frontierCells), 1);
+    let cell = this.frontierCells.splice(Math.floor(this.prng.random()*this.frontierCells), 1);
 
     let cellNeighbors = this.findNeighborsOf(cell);
     direction = cellNeighbors[Math.floor(this.prng.random()*cellNeighbors.length)]
