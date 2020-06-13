@@ -36,6 +36,8 @@ export default class TruePrims extends Maze{
     this.removeWall(cell, this.IN);
     this.addWall(cell, this.FRONTIER);
 
+    let {x, y} = cell;
+
     this.addFrontier({x: x-1, y});
     this.addFrontier({x: x+1, y});
     this.addFrontier({x, y: y-1});
