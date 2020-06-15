@@ -85,8 +85,7 @@ It takes in an object with the properties listed below. All of them are optional
 
 ### Example usage
 
-```
-
+```javascript
 let m = Maze.create({
   width: 20,
   height: 20,
