@@ -28,6 +28,8 @@ class RecursiveBacktracker extends Maze {
   }
 
   step() {
+    if(this.finishedGenerating) return false;
+
     let unvisitedNeighbors = [];
 
     for (let direction of directions) {
