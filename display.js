@@ -1,9 +1,7 @@
 export default function display({
   maze,
-  canvas = document.getElementsByTag("canvas")[0],
+  canvas = document?.getElementsByTag("canvas")[0],
   displayMode = 1,
-  asLine = false, //whether to display the walls/path as a line (true) or as squares (false)
-  drawWalls = true, //whether to draw the walls (true) or the passages (false)
   cellSize = Math.min(canvas.width / maze.xSize, canvas.height / maze.ySize) *
     0.9,
   backgroundColor = "#FFF",
@@ -13,6 +11,12 @@ export default function display({
   antiAliasing = false,
   coloringMode = "normal",
 }) {
+
+  if(!canvas){
+    console.error("Tried to display maze without a canvas")
+    return false;
+  }
+
   maze.calculateDistances();
   let ctx = canvas.getContext("2d");
 
