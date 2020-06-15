@@ -82,3 +82,19 @@ It takes in an object with the properties listed below. All of them are optional
 |-|-|-|-|
 | maze | The maze to display | A maze  | _required (no default)_ |
 | canvas | The canvas to display the maze on. | A canvas element (e.g. `canvas: document.getElementsByTagName("canvas")[0]`). | The first canvas element |
+
+### Example usage
+
+```
+
+let m = Maze.create({
+  width: 20,
+  height: 20,
+  algorithm: "Kruskal's"
+})
+
+display({
+  maze: m,
+  canvas: document.getElementById("maze-canvas")
+})
+```
