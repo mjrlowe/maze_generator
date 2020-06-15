@@ -94,6 +94,6 @@ let m = Maze.create({
 
 display({
   maze: m,
-  canvas: document.getElementById("maze-canvas")
+  canvas: document.getElementById("maze-canvas") //replace this with your canvas element you want to display the maze on
 })
 ```
