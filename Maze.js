@@ -9,8 +9,8 @@ class Maze {
   constructor(mazeSettings) {
     this.prng = mazeSettings.prng ?? Math;
     this.width = mazeSettings.width ??
-      (mazeSettings.width ?? (mazeSettings.height ?? 30));
-    this.height = mazeSettings.height ?? (mazeSettings.height ?? this.width);
+      (mazeSettings.xSize ?? (mazeSettings.height ?? 30));
+    this.height = mazeSettings.height ?? (mazeSettings.ySize ?? this.width);
     this.width = Math.min(this.width, 100);
     this.height = Math.min(this.height, 100);
     this.start = mazeSettings.start ?? "top left";
