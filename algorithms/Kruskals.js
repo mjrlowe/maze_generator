@@ -7,13 +7,13 @@ import {
 
 class Kruskals extends Maze {
   resetVariables() {
-    this.disjointSubsets = new DisjointSet(this.xSize * this.ySize);
+    this.disjointSubsets = new DisjointSet(this.width * this.height);
 
     this.edges = [];
 
     let cell = {};
-    for (cell.y = 0; cell.y < this.ySize; cell.y++) {
-      for (cell.x = 0; cell.x < this.xSize; cell.x++) {
+    for (cell.y = 0; cell.y < this.height; cell.y++) {
+      for (cell.x = 0; cell.x < this.width; cell.x++) {
         if (cell.y > 0) {
           this.edges.push({
             ...cell,
@@ -62,7 +62,7 @@ class Kruskals extends Maze {
   }
 
   getCellIndex(cell) {
-    return cell.y * this.xSize + cell.x;
+    return cell.y * this.width + cell.x;
   }
 }
 

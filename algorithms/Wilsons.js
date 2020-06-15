@@ -4,9 +4,9 @@ import { dx, dy, opposite, directions } from "../directions.js";
 class Wilsons extends Maze {
   resetVariables() {
     this.visited = [];
-    for (let y = 0; y < this.ySize; y++) {
+    for (let y = 0; y < this.height; y++) {
       this.visited[y] = [];
-      for (let x = 0; x < this.xSize; x++) {
+      for (let x = 0; x < this.width; x++) {
         this.visited[y][x] = 0;
       }
     }
@@ -18,7 +18,7 @@ class Wilsons extends Maze {
     };
 
     this.state = 0;
-    this.remaining = this.xSize * this.ySize;
+    this.remaining = this.width * this.height;
     this.visits = {};
   }
 
@@ -44,8 +44,8 @@ class Wilsons extends Maze {
     this.visits = {};
     let i = 0;
     while (i++ < 10000) {
-      this.x = Math.floor(this.prng.random() * this.xSize);
-      this.y = Math.floor(this.prng.random() * this.ySize);
+      this.x = Math.floor(this.prng.random() * this.width);
+      this.y = Math.floor(this.prng.random() * this.height);
       if (!this.visited[this.y][this.x]) {
         this.state = 2;
         this.start = {

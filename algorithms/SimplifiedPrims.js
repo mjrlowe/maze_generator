@@ -8,9 +8,9 @@ import {
 class SimplifiedPrims extends Maze {
   resetVariables() {
     this.visited = [];
-    for (let y = 0; y < this.ySize; y++) {
+    for (let y = 0; y < this.height; y++) {
       this.visited[y] = [];
-      for (let x = 0; x < this.xSize; x++) {
+      for (let x = 0; x < this.width; x++) {
         this.visited[y][x] = false;
       }
     }

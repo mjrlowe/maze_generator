@@ -8,9 +8,9 @@ class AldousBroder extends Maze {
   //called when the maze is intitalized
   resetVariables() {
     this.visited = [];
-    for (let y = 0; y < this.ySize; y++) {
+    for (let y = 0; y < this.height; y++) {
       this.visited[y] = [];
-      for (let x = 0; x < this.xSize; x++) {
+      for (let x = 0; x < this.width; x++) {
         this.visited[y][x] = false;
       }
     }
@@ -27,8 +27,8 @@ class AldousBroder extends Maze {
   step() {
     let possibleDirections = [];
     if (this.currentCell.y !== 0) possibleDirections.push("N");
-    if (this.currentCell.y !== this.ySize - 1) possibleDirections.push("S");
-    if (this.currentCell.x !== this.xSize - 1) possibleDirections.push("E");
+    if (this.currentCell.y !== this.height - 1) possibleDirections.push("S");
+    if (this.currentCell.x !== this.width - 1) possibleDirections.push("E");
     if (this.currentCell.x !== 0) possibleDirections.push("W");
 
     let chosenDirection = possibleDirections[
@@ -50,7 +50,7 @@ class AldousBroder extends Maze {
       y: newCell.y,
     };
 
-    if (this.totalVisted >= this.xSize * this.ySize) {
+    if (this.totalVisted >= this.width * this.height) {
       this.finishedGenerating = true;
     }
 

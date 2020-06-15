@@ -8,8 +8,8 @@ See https://www.openprocessing.org/sketch/908761
 let iterationsPerFrame = 12;
 
 let mazeSettings = {
-  xSize: 30,
-  ySize: 30,
+  width: 30,
+  height: 30,
   algorithm: "simplified prims",
 };
 
@@ -48,7 +48,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight); //settings.xSize*16, settings.ySize*16);
+  createCanvas(windowWidth, windowHeight); //settings.width*16, settings.height*16);
   background(255);
 
   textSize(32);
@@ -84,17 +84,17 @@ function getMouseCell() {
     width / 2 - smallerSide * 0.45,
     width / 2 + smallerSide * 0.45,
     0,
-    mazeSettings.xSize,
+    mazeSettings.width,
   );
   let y = map(
     mouseY,
     height / 2 - smallerSide * 0.45,
     height / 2 + smallerSide * 0.45,
     0,
-    mazeSettings.ySize,
+    mazeSettings.height,
   );
-  x = constrain(Math.round(x), 0, mazeSettings.xSize - 1);
-  y = constrain(Math.round(y), 0, mazeSettings.ySize - 1);
+  x = constrain(Math.round(x), 0, mazeSettings.width - 1);
+  y = constrain(Math.round(y), 0, mazeSettings.height - 1);
 
   return { x, y };
 }

@@ -2,7 +2,7 @@ import Maze from "../Maze.js";
 
 class Eller extends Maze {
   resetVariables() {
-    this.rowState = new State(this.xSize).populate();
+    this.rowState = new State(this.width).populate();
 
     this.HORIZONTAL = 0;
     this.VERTICAL = 1;
@@ -19,7 +19,7 @@ class Eller extends Maze {
     if (
       !(this.rowState.cells[this.currentCell.x] ===
         this.rowState.cells[this.currentCell.x + 1]) &&
-      (this.currentCell.y === this.xSize - 1 || this.prng.random() > 0.5)
+      (this.currentCell.y === this.width - 1 || this.prng.random() > 0.5)
     ) {
       this.rowState.merge(this.currentCell.x, this.currentCell.x + 1);
 
@@ -28,8 +28,8 @@ class Eller extends Maze {
 
     this.currentCell.x++;
 
-    if (this.currentCell.x >= this.xSize - 1) {
-      if (this.currentCell.y === this.ySize - 1) {
+    if (this.currentCell.x >= this.width - 1) {
+      if (this.currentCell.y === this.height - 1) {
         this.finishedGenerating = true;
       } else {
         this.mode = this.VERTICAL;

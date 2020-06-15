@@ -2,18 +2,18 @@ import Maze from "../Maze.js";
 
 class RecursiveDivision extends Maze {
   resetVariables() {
-    for (let y = 0; y < this.ySize; y++) {
-      for (let x = 0; x < this.xSize; x++) {
-        if (y < this.ySize - 1) this.removeWall({ x, y }, "S");
-        if (x < this.xSize - 1) this.removeWall({ x, y }, "E");
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        if (y < this.height - 1) this.removeWall({ x, y }, "S");
+        if (x < this.width - 1) this.removeWall({ x, y }, "E");
       }
     }
 
     this.stack = [{
       x: 0,
       y: 0,
-      width: this.xSize,
-      height: this.ySize,
+      width: this.width,
+      height: this.height,
     }];
     this.CHOOSE_REGION = 0;
     this.MAKE_WALL = 1;

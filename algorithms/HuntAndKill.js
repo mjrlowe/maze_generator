@@ -14,9 +14,9 @@ class HuntAndKill extends Maze {
     this.hunting = false;
 
     this.visited = [];
-    for (let y = 0; y < this.ySize; y++) {
+    for (let y = 0; y < this.height; y++) {
       this.visited[y] = [];
-      for (let x = 0; x < this.xSize; x++) {
+      for (let x = 0; x < this.width; x++) {
         this.visited[y][x] = false;
       }
     }
@@ -136,13 +136,13 @@ class HuntAndKill extends Maze {
       //move on to the next cell if we are still hunting
       if (this.hunting) {
         this.currentCell.x++;
-        if (this.currentCell.x >= this.xSize) {
+        if (this.currentCell.x >= this.width) {
           this.currentCell.x = 0;
           this.currentCell.y++;
         }
 
         //finished with the maze
-        if (this.currentCell.y >= this.ySize) {
+        if (this.currentCell.y >= this.height) {
           this.finishedGenerating = true;
           this.currentCell.y = 0;
         }

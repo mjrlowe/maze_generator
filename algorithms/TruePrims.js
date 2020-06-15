@@ -14,9 +14,9 @@ export default class TruePrims extends Maze{
     this.state = this.START;
 
     this.visited = [];
-    for (let y = 0; y < this.ySize; y++) {
+    for (let y = 0; y < this.height; y++) {
       this.visited[y] = [];
-      for (let x = 0; x < this.xSize; x++) {
+      for (let x = 0; x < this.width; x++) {
         this.visited[y][x] = 0;
       }
     }
@@ -66,8 +66,8 @@ export default class TruePrims extends Maze{
 
   startStep(){
     this.markCell({
-      x: Math.floor(this.prng.random()*this.xSize), 
-      y: Math.floor(this.prng.random()*this.ySize)
+      x: Math.floor(this.prng.random()*this.width), 
+      y: Math.floor(this.prng.random()*this.height)
     });
     this.state = this.EXPAND
   }

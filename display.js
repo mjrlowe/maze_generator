@@ -2,7 +2,7 @@ export default function display({
   maze,
   canvas = document?.getElementsByTag("canvas")[0],
   displayMode = 1,
-  cellSize = Math.min(canvas.width / maze.xSize, canvas.height / maze.ySize) *
+  cellSize = Math.min(canvas.width / maze.width, canvas.height / maze.height) *
     0.9,
   backgroundColor = "#FFF",
   wallColor = "#000",
@@ -45,13 +45,13 @@ export default function display({
     0,
     0,
     1,
-    canvas.width / 2 - maze.xSize / 2 * cellSize,
-    canvas.height / 2 - maze.ySize / 2 * cellSize,
+    canvas.width / 2 - maze.width / 2 * cellSize,
+    canvas.height / 2 - maze.height / 2 * cellSize,
   );
 
   if (displayMode === 0 || (displayMode === 1 && cellSize <= 3)) { //thin walls
-    for (let y = 0; y < maze.ySize; y++) {
-      for (let x = 0; x < maze.xSize; x++) {
+    for (let y = 0; y < maze.height; y++) {
+      for (let x = 0; x < maze.width; x++) {
         ctx.fillStyle = getCellColor({
           x,
           y,
@@ -64,8 +64,8 @@ export default function display({
     ctx.strokeStyle = wallColor;
     ctx.lineWidth = strokeWeight;
 
-    for (let y = 0; y < maze.ySize; y++) {
-      for (let x = 0; x < maze.xSize; x++) {
+    for (let y = 0; y < maze.height; y++) {
+      for (let x = 0; x < maze.width; x++) {
         ctx.strokeStyle = wallColor;
 
         if (maze.walls[y][x].W) {
@@ -74,7 +74,7 @@ export default function display({
         if (maze.walls[y][x].N) {
           line(x * cellSize, y * cellSize, (x + 1) * cellSize, y * cellSize);
         }
-        if (maze.walls[y][x].E && x === maze.xSize - 1) {
+        if (maze.walls[y][x].E && x === maze.width - 1) {
           line(
             (x + 1) * cellSize,
             y * cellSize,
@@ -82,7 +82,7 @@ export default function display({
             (y + 1) * cellSize,
           );
         }
-        if (maze.walls[y][x].S && y === maze.ySize - 1) {
+        if (maze.walls[y][x].S && y === maze.height - 1) {
           line(
             x * cellSize,
             (y + 1) * cellSize,
@@ -102,13 +102,13 @@ export default function display({
     ctx.fillRect(
       -cellSize,
       -cellSize,
-      cellSize * 2 * maze.xSize + cellSize,
-      cellSize * 2 * maze.ySize + cellSize,
+      cellSize * 2 * maze.width + cellSize,
+      cellSize * 2 * maze.height + cellSize,
     );
     ctx.fillStyle = backgroundColor;
 
-    for (let y = 0; y < maze.ySize; y++) {
-      for (let x = 0; x < maze.xSize; x++) {
+    for (let y = 0; y < maze.height; y++) {
+      for (let x = 0; x < maze.width; x++) {
         ctx.fillStyle = getCellColor({
           x,
           y,
@@ -132,7 +132,7 @@ export default function display({
             cellSize,
           );
         }
-        if (!maze.walls[y][x].E && x === maze.xSize - 1) {
+        if (!maze.walls[y][x].E && x === maze.width - 1) {
           ctx.fillRect(
             x * cellSize * 2 + cellSize,
             y * cellSize * 2,
@@ -140,7 +140,7 @@ export default function display({
             cellSize,
           );
         }
-        if (!maze.walls[y][x].S && y === maze.ySize - 1) {
+        if (!maze.walls[y][x].S && y === maze.height - 1) {
           ctx.fillRect(
             x * cellSize * 2,
             y * cellSize * 2 + cellSize,
@@ -158,8 +158,8 @@ export default function display({
 
     ctx.translate(cellSize / 2, cellSize / 2);
 
-    for (let y = 0; y < maze.ySize; y++) {
-      for (let x = 0; x < maze.xSize; x++) {
+    for (let y = 0; y < maze.height; y++) {
+      for (let x = 0; x < maze.width; x++) {
         if (!maze.walls[y][x].W) {
           line(x * cellSize, y * cellSize, (x - 0.5) * cellSize, y * cellSize);
         }
@@ -196,12 +196,12 @@ export default function display({
   function isUnfinishedCell(cell) {
     if (maze.walls[cell.y][cell.x].N === false && cell.y > 0) return false;
     if (
-      maze.walls[cell.y][cell.x].S === false && cell.y < maze.ySize - 1
+      maze.walls[cell.y][cell.x].S === false && cell.y < maze.height - 1
     ) {
       return false;
     }
     if (
-      maze.walls[cell.y][cell.x].E === false && cell.x < maze.xSize - 1
+      maze.walls[cell.y][cell.x].E === false && cell.x < maze.width - 1
     ) {
       return false;
     }
@@ -234,13 +234,13 @@ export default function display({
           fillColor = interpolate(
             colorScheme,
             maze.disjointSubsets.findParent(maze.getCellIndex(cell)) /
-              (maze.xSize * maze.ySize),
+              (maze.width * maze.height),
             1,
           );
         } else if (maze.algorithm === "ellers") {
           fillColor = interpolate(
             colorScheme,
-            maze.rowState.setForCell[cell.x] / maze.xSize,
+            maze.rowState.setForCell[cell.x] / maze.width,
           );
         }
       }

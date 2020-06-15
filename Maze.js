@@ -8,11 +8,11 @@ import {
 class Maze {
   constructor(mazeSettings) {
     this.prng = mazeSettings.prng ?? Math;
-    this.xSize = mazeSettings.xSize ??
-      (mazeSettings.width ?? (mazeSettings.ySize ?? 30));
-    this.ySize = mazeSettings.ySize ?? (mazeSettings.height ?? this.xSize);
-    this.xSize = Math.min(this.xSize, 100);
-    this.ySize = Math.min(this.ySize, 100);
+    this.width = mazeSettings.width ??
+      (mazeSettings.width ?? (mazeSettings.height ?? 30));
+    this.height = mazeSettings.height ?? (mazeSettings.height ?? this.width);
+    this.width = Math.min(this.width, 100);
+    this.height = Math.min(this.height, 100);
     this.start = mazeSettings.start ?? "top left";
     this.finish = mazeSettings.finish ?? (mazeSettings.end ?? "bottom right");
     this.startXY = this.getXYPosition(this.start);
@@ -89,9 +89,9 @@ class Maze {
     this.solution = [];
 
     this.walls = [];
-    for (let y = 0; y < this.ySize; y++) {
+    for (let y = 0; y < this.height; y++) {
       this.walls[y] = [];
-      for (let x = 0; x < this.xSize; x++) {
+      for (let x = 0; x < this.width; x++) {
         this.walls[y][x] = {
           N: true,
           S: true,
@@ -160,8 +160,8 @@ class Maze {
   }
 
   cellIsInMaze(cell) {
-    let validX = cell.x >= 0 && cell.x < this.xSize;
-    let validY = cell.y >= 0 && cell.y < this.ySize;
+    let validX = cell.x >= 0 && cell.x < this.width;
+    let validY = cell.y >= 0 && cell.y < this.height;
     return validX && validY;
   }
 
@@ -188,62 +188,62 @@ class Maze {
       case "south west":
         XYPosition = {
           x: 0,
-          y: this.ySize - 1,
+          y: this.height - 1,
         };
         break;
       case "top right":
       case "north east":
         XYPosition = {
-          x: this.xSize - 1,
+          x: this.width - 1,
           y: 0,
         };
         break;
       case "bottom right":
       case "south east":
         XYPosition = {
-          x: this.xSize - 1,
-          y: this.ySize - 1,
+          x: this.width - 1,
+          y: this.height - 1,
         };
         break;
       case "center":
       case "middle":
         XYPosition = {
-          x: Math.floor(this.xSize / 2),
-          y: Math.floor(this.ySize / 2),
+          x: Math.floor(this.width / 2),
+          y: Math.floor(this.height / 2),
         };
         break;
       case "top middle":
       case "north middle":
         XYPosition = {
-          x: Math.floor(this.xSize / 2),
+          x: Math.floor(this.width / 2),
           y: 0,
         };
         break;
       case "bottom middle":
       case "south middle":
         XYPosition = {
-          x: Math.floor(this.xSize / 2),
-          y: this.ySize - 1,
+          x: Math.floor(this.width / 2),
+          y: this.height - 1,
         };
         break;
       case "right middle":
       case "east middle":
         XYPosition = {
-          x: this.xSize - 1,
-          y: Math.floor(this.ySize / 2),
+          x: this.width - 1,
+          y: Math.floor(this.height / 2),
         };
         break;
       case "left middle":
       case "west middle":
         XYPosition = {
           x: 0,
-          y: Math.floor(this.xSize / 2),
+          y: Math.floor(this.width / 2),
         };
         break;
       case "random":
         XYPosition = {
-          x: Math.floor(this.prng.random() * this.xSize),
-          y: Math.floor(this.prng.random() * this.ySize),
+          x: Math.floor(this.prng.random() * this.width),
+          y: Math.floor(this.prng.random() * this.height),
         };
         break;
       default:
@@ -259,8 +259,8 @@ class Maze {
 
     let possibleDirections = [];
     if (XYPosition.y <= 0) possibleDirections.push("N");
-    if (XYPosition.y >= this.ySize - 1) possibleDirections.push("S");
-    if (XYPosition.x >= this.xSize - 1) possibleDirections.push("E");
+    if (XYPosition.y >= this.height - 1) possibleDirections.push("S");
+    if (XYPosition.x >= this.width - 1) possibleDirections.push("E");
     if (XYPosition.x <= 0) possibleDirections.push("W");
 
     XYPosition.direction = possibleDirections[0];
@@ -274,10 +274,10 @@ class Maze {
 
     let discovered = []; //keeps track of which points have been discovered so far so it doesn't loop back on itself
     this.distances = [];
-    for (let y = 0; y < this.ySize; y++) {
+    for (let y = 0; y < this.height; y++) {
       discovered[y] = [];
       this.distances[y] = [];
-      for (let x = 0; x < this.xSize; x++) {
+      for (let x = 0; x < this.width; x++) {
         this.distances[y][x] = 0;
         discovered[y][x] = false;
       }

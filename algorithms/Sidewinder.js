@@ -14,7 +14,7 @@ class Sidewinder extends Maze {
     let carveEast = this.prng.random() < 0.5;
 
     if (this.currentCell.y === 0) carveEast = true;
-    if (this.currentCell.x === this.xSize - 1) carveEast = false;
+    if (this.currentCell.x === this.width - 1) carveEast = false;
 
     this.runSet.push({
       x: this.currentCell.x,
@@ -22,7 +22,7 @@ class Sidewinder extends Maze {
     });
 
     //north east corner can't carve north or east
-    if (!(this.currentCell.x === this.xSize - 1 && this.currentCell.y === 0)) {
+    if (!(this.currentCell.x === this.width - 1 && this.currentCell.y === 0)) {
       if (carveEast) {
         this.removeWall(this.currentCell, "E");
 
@@ -37,13 +37,13 @@ class Sidewinder extends Maze {
 
     this.currentCell.x++;
 
-    if (this.currentCell.x >= this.xSize) {
+    if (this.currentCell.x >= this.width) {
       this.currentCell.x = 0;
       this.currentCell.y++;
       this.runSet = [];
     }
 
-    if (this.currentCell.y >= this.ySize) {
+    if (this.currentCell.y >= this.height) {
       this.finishedGenerating = true;
     }
 

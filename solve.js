@@ -2,22 +2,22 @@ import { dx, dy } from "./directions.js";
 
 export default function solve(maze) {
   let startPoint = {
-    x: constrain(maze.startXY.x, 0, maze.xSize - 1),
-    y: constrain(maze.startXY.y, 0, maze.ySize - 1),
+    x: constrain(maze.startXY.x, 0, maze.width - 1),
+    y: constrain(maze.startXY.y, 0, maze.height - 1),
   };
   let endPoint = {
-    x: constrain(maze.finishXY.x, 0, maze.xSize - 1),
-    y: constrain(maze.finishXY.y, 0, maze.ySize - 1),
+    x: constrain(maze.finishXY.x, 0, maze.width - 1),
+    y: constrain(maze.finishXY.y, 0, maze.height - 1),
   };
 
   let Q = []; //queue
 
   let discovered = []; //keeps track of which points have been discovered so far so it doesn't loop back on itself
   maze.distances = [];
-  for (let y = 0; y < maze.ySize; y++) {
+  for (let y = 0; y < maze.height; y++) {
     discovered[y] = [];
     maze.distances[y] = [];
-    for (let x = 0; x < maze.xSize; x++) {
+    for (let x = 0; x < maze.width; x++) {
       maze.distances[y][x] = 0;
       discovered[y][x] = false;
     }
