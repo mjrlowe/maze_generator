@@ -25,7 +25,7 @@
     "maze-generation-algorithms"
   ],
   "author": "The Wizard Bear",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/TheWizardBear/maze_generator/issues"
   },
