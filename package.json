@@ -1,5 +1,5 @@
 {
-  "name": "maze_generator",
+  "name": "@thewizardbear/maze_generator",
   "version": "0.0.2",
   "description": "A deno-compatible package for maze generation",
   "main": "mod.js",
