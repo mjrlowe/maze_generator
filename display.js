@@ -2,6 +2,8 @@ export default function display({
   maze,
   canvas = document.getElementsByTag("canvas")[0],
   displayMode = 1,
+  asLine = false, //whether to display the walls/path as a line (true) or as squares (false)
+  drawWalls = true, //whether to draw the walls (true) or the passages (false)
   cellSize = Math.min(canvas.width / maze.xSize, canvas.height / maze.ySize) *
     0.9,
   backgroundColor = "#FFF",

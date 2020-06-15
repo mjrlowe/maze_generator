@@ -1,0 +1,33 @@
+{
+  "name": "maze_generator",
+  "version": "0.0.2",
+  "description": "A deno-compatible package for maze generation",
+  "main": "mod.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheWizardBear/maze_generator.git"
+  },
+  "keywords": [
+    "maze",
+    "maze-generation",
+    "maze-generator",
+    "maze-algorithms",
+    "deno",
+    "deno-module",
+    "mazes",
+    "maze-maker",
+    "maze-generation-algorithms"
+  ],
+  "author": "The Wizard Bear",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheWizardBear/maze_generator/issues"
+  },
+  "homepage": "https://github.com/TheWizardBear/maze_generator#readme"
+}
