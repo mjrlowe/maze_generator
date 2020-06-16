@@ -3,7 +3,8 @@ import {
   dy,
   opposite,
 } from "./directions.js";
-// import solve from "./solve.js"
+
+import createWidget from "./createWidget.js"
 
 class Maze {
   constructor(mazeSettings) {
@@ -320,5 +321,7 @@ class Maze {
     }
   }
 }
+
+Maze.createWidget = createWidget;
 
 export default Maze;
