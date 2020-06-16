@@ -1,4 +1,5 @@
-import { Maze } from "https://deno.land/x/maze_generator";
+import { Maze } from "https://deno.land/x/maze_generator/mod.js";
+import printMaze from "../print.js"
 
 // 12x12 maze using Eller's algorithm
 let mazeSettings = {
@@ -10,8 +11,10 @@ let mazeSettings = {
 //initialize the maze
 let m = Maze.create(mazeSettings);
 
-console.log(m)
+// console.log(m)
 //generate it
 m.generate();
 
-console.log(JSON.stringify(m));
+console.log(printMaze(m));
+
+// console.log(JSON.stringify(m));
