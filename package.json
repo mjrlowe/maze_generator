@@ -1,6 +1,6 @@
 {
   "name": "@thewizardbear/maze_generator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A deno-compatible package for maze generation",
   "main": "mod.js",
   "directories": {
@@ -22,7 +22,8 @@
     "deno-module",
     "mazes",
     "maze-maker",
-    "maze-generation-algorithms"
+    "maze-generation-algorithms",
+    "generator"
   ],
   "author": "The Wizard Bear",
   "license": "MIT",
