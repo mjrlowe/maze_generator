@@ -11,7 +11,7 @@ import ModifiedPrims from "./algorithms/ModifiedPrims.js";
 import Kruskals from "./algorithms/Kruskals.js";
 import BinaryTree from "./algorithms/BinaryTree.js";
 import Wilsons from "./algorithms/Wilsons.js";
-import TruePrims from "./algorithms/TruePrims.js"
+import TruePrims from "./algorithms/TruePrims.js";
 import display from "./display.js";
 
 Maze.algorithms = {
@@ -26,7 +26,7 @@ Maze.algorithms = {
   sidewinder: Sidewinder,
   binarytree: BinaryTree,
   wilsons: Wilsons,
-  trueprims: TruePrims
+  trueprims: TruePrims,
 };
 
 export { default as analyze } from "./analyze.js";

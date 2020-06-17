@@ -4,9 +4,9 @@ import {
   opposite,
 } from "./directions.js";
 
-import createWidget from "./createWidget.js"
-import mazeString from "./print.js"
-import display from "./display.js"
+import createWidget from "./createWidget.js";
+import mazeString from "./print.js";
+import display from "./display.js";
 
 class Maze {
   constructor(mazeSettings) {
@@ -54,7 +54,7 @@ class Maze {
 
       return arr;
     };
-    
+
     this.reset();
   }
 
@@ -323,16 +323,14 @@ class Maze {
     }
   }
 
-  printString(){
+  printString() {
     console.log(this.getString());
   }
 
-  display(settings){
-    return display({...settings, maze: this})
+  display(settings) {
+    return display({ ...settings, maze: this });
   }
 }
-
-
 
 Maze.prototype.getString = mazeString;
 Maze.createWidget = createWidget;

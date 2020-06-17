@@ -1,10 +1,7 @@
 import Maze from "../Maze.js";
 
-export default class TruePrims extends Maze{
-
-
-  resetVariables(){
- 
+export default class TruePrims extends Maze {
+  resetVariables() {
     this.IN = "W";
     this.FRONTIER = "E";
     this.START = 1;
@@ -22,75 +19,77 @@ export default class TruePrims extends Maze{
     }
   }
 
-  isOutside(cell){
-    return this.cellIsInMaze(cell) && !this.visited[cell.y][cell.x]
+  isOutside(cell) {
+    return this.cellIsInMaze(cell) && !this.visited[cell.y][cell.x];
   }
-  
-  isInside (cell){
+
+  isInside(cell) {
     return this.cellIsInMaze(cell) && this.isSet(cell, this.IN);
   }
-  isFrontier(cell){
+  isFrontier(cell) {
     return this.cellIsInMaze(cell) && this.isSet(cell, this.FRONTIER);
   }
 
-  addFrontier(cell){
-    if(this.isOutside(cell)){
-      this.frontierCells.push(cell)
-      this.removeWall(cell, this.FRONTIER)
+  addFrontier(cell) {
+    if (this.isOutside(cell)) {
+      this.frontierCells.push(cell);
+      this.removeWall(cell, this.FRONTIER);
     }
   }
 
-  markCell(cell){
+  markCell(cell) {
     this.visited[cell.y][cell.x]++;
     this.removeWall(cell, this.IN);
     this.addWall(cell, this.FRONTIER);
 
-    let {x, y} = cell;
+    let { x, y } = cell;
 
-    this.addFrontier({x: x-1, y});
-    this.addFrontier({x: x+1, y});
-    this.addFrontier({x, y: y-1});
-    this.addFrontier({x, y: y+1});
+    this.addFrontier({ x: x - 1, y });
+    this.addFrontier({ x: x + 1, y });
+    this.addFrontier({ x, y: y - 1 });
+    this.addFrontier({ x, y: y + 1 });
   }
 
-  findNeighborsOf(cell){
-    let neighbors = []
+  findNeighborsOf(cell) {
+    let neighbors = [];
 
-    if(this.isInside({x:cell.x-1, y: cell.y})) neighbors.push("W");
-    if(this.isInside({x:cell.x+1, y: cell.y})) neighbors.push("E");
-    if(this.isInside({x:cell.x, y: cell.y-1})) neighbors.push("N");
-    if(this.isInside({x:cell.x, y: cell.y+1})) neighbors.push("S");
+    if (this.isInside({ x: cell.x - 1, y: cell.y })) neighbors.push("W");
+    if (this.isInside({ x: cell.x + 1, y: cell.y })) neighbors.push("E");
+    if (this.isInside({ x: cell.x, y: cell.y - 1 })) neighbors.push("N");
+    if (this.isInside({ x: cell.x, y: cell.y + 1 })) neighbors.push("S");
 
     return neighbors;
   }
 
-  startStep(){
+  startStep() {
     this.markCell({
-      x: Math.floor(this.prng.random()*this.width), 
-      y: Math.floor(this.prng.random()*this.height)
+      x: Math.floor(this.prng.random() * this.width),
+      y: Math.floor(this.prng.random() * this.height),
     });
-    this.state = this.EXPAND
+    this.state = this.EXPAND;
   }
 
-  expandStep(){
-
-    let cell = this.frontierCells.splice(Math.floor(this.prng.random()*this.frontierCells), 1);
+  expandStep() {
+    let cell = this.frontierCells.splice(
+      Math.floor(this.prng.random() * this.frontierCells),
+      1,
+    );
 
     let cellNeighbors = this.findNeighborsOf(cell);
-    let direction = cellNeighbors[Math.floor(this.prng.random()*cellNeighbors.length)]
-  
+    let direction =
+      cellNeighbors[Math.floor(this.prng.random() * cellNeighbors.length)];
 
     this.removeWall(cell, direction);
 
-    this.markCell(cell)
+    this.markCell(cell);
 
-    if(this.frontierCells.length === 0) this.finishedGenerating = true;
+    if (this.frontierCells.length === 0) this.finishedGenerating = true;
   }
 
-  step(){
-    if(this.finishedGenerating) return false;
+  step() {
+    if (this.finishedGenerating) return false;
 
-    switch(this.state){
+    switch (this.state) {
       case this.START:
         this.startStep();
         break;
@@ -98,7 +97,7 @@ export default class TruePrims extends Maze{
         this.expandStep();
         break;
       default:
-        console.error(`State ${this.state} is not valid.`)
+        console.error(`State ${this.state} is not valid.`);
     }
 
     return !this.finishedGenerating;

@@ -11,9 +11,8 @@ export default function display({
   antiAliasing = false,
   coloringMode = "normal",
 }) {
-
-  if(!canvas){
-    console.error("Tried to display maze without a canvas")
+  if (!canvas) {
+    console.error("Tried to display maze without a canvas");
     return false;
   }
 
@@ -235,7 +234,6 @@ export default function display({
             colorScheme,
             maze.disjointSubsets.findParent(maze.getCellIndex(cell)) /
               (maze.width * maze.height),
-            1,
           );
         } else if (maze.algorithm === "ellers") {
           fillColor = interpolate(
@@ -282,8 +280,8 @@ export default function display({
       } else {
         interpolatedColor = backgroundColor;
       }
-      
-      console.log(interpolatedColor)
+
+      console.log(interpolatedColor);
       return interpolatedColor;
     }
   }

@@ -1,5 +1,5 @@
 import { Maze } from "../mod.js";
-import printMaze from "../print.js"
+import printMaze from "../print.js";
 
 // 12x12 maze using Eller's algorithm
 let mazeSettings = {

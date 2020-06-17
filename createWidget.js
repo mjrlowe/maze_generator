@@ -1,4 +1,4 @@
-export default function createWidget (settings) {
+export default function createWidget(settings) {
   let width = 1000, height = 700;
 
   let maze = Maze.create(settings);
@@ -10,7 +10,7 @@ export default function createWidget (settings) {
 
   let canvas = document.getElementById(`${maze.algorithmId}-canvas`);
 
-  maze.display({canvas});
+  maze.display({ canvas });
 
   let updateCanvas = () => {
     setTimeout(() => {
@@ -24,4 +24,4 @@ export default function createWidget (settings) {
   updateCanvas();
 
   return maze;
-};
+}
