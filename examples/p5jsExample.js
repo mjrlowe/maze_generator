@@ -63,8 +63,7 @@ function draw() {
     maze.step();
   }
 
-  display({
-    maze,
+  maze.display({
     canvas,
     ...displaySettings,
   });
