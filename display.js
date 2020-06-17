@@ -280,9 +280,10 @@ export default function display({
       } else if (colorScheme === "grayscale" || colorScheme === "greyscale") {
         interpolatedColor = lerpBetween("#FFFFFF", "#000008", k);
       } else {
-        interpolatedColor = "white";
+        interpolatedColor = backgroundColor;
       }
-
+      
+      console.log(interpolatedColor)
       return interpolatedColor;
     }
   }
