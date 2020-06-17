@@ -91,6 +91,6 @@ let kruskalMaze = Maze.create({
 })
 
 kruskalMaze.display({
-  canvas: document.getElementById("maze-canvas") //replace this with your canvas element you want to display the maze on 
+  canvas: document.getElementById("maze-canvas") //Replace this with your canvas element you want to display the maze on.
 })
 ```
