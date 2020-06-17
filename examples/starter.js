@@ -16,5 +16,3 @@ let m = Maze.create(mazeSettings);
 m.generate();
 
 m.printString();
-
-// console.log(JSON.stringify(m));
