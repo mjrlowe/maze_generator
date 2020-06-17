@@ -6,6 +6,7 @@ import {
 
 import createWidget from "./createWidget.js"
 import mazeString from "./print.js"
+import display from "./display.js"
 
 class Maze {
   constructor(mazeSettings) {
@@ -324,6 +325,10 @@ class Maze {
 
   printString(){
     console.log(this.getString())
+  }
+
+  display(settings){
+    return display({...settings, maze: this})
   }
 }
 
