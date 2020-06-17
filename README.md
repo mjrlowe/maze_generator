@@ -30,8 +30,7 @@ let m = Maze.create(mazeSettings);
 //generate it
 m.generate();
 
-
-console.log(JSON.stringify(m));
+m.printString();
 
 ```
 
@@ -73,7 +72,7 @@ You can also check if a maze has finished generating with `.finishedGenerating`,
 This method calls `.step()` repeatedly until the maze has finished generating (or it has given up).
 Returns the finished maze
 
-## display() (very unstable)
+## .display() (very unstable)
 
 This is the function which displays the maze.
 
@@ -81,20 +80,18 @@ It takes in an object with the properties listed below. All of them are optional
 
 | Property | Description | Valid Values | Default Value |
 |-|-|-|-|
-| maze | The maze to display | A maze  | _required (no default)_ |
 | canvas | The canvas to display the maze on. | A canvas element (e.g. `document.getElementsByTagName("canvas")[0]`). | The first canvas element in the html. [Note that this function (currently) only works in a html document.] |
 
 ### Example usage
 
 ```javascript
-let m = Maze.create({
+let kruskalMaze = Maze.create({
   width: 20,
   height: 20,
   algorithm: "Kruskal's"
 })
 
-display({
-  maze: m,
+kruskalMaze.display({
   canvas: document.getElementById("maze-canvas") //replace this with your canvas element you want to display the maze on
 })
 ```
