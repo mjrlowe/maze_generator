@@ -5,6 +5,7 @@ import {
 } from "./directions.js";
 
 import createWidget from "./createWidget.js"
+import mazeString from "./print.js"
 
 class Maze {
   constructor(mazeSettings) {
@@ -52,7 +53,7 @@ class Maze {
 
       return arr;
     };
-
+    
     this.reset();
   }
 
@@ -322,6 +323,9 @@ class Maze {
   }
 }
 
+
+
+Maze.prototype.getString = mazeString;
 Maze.createWidget = createWidget;
 
 export default Maze;
