@@ -324,7 +324,7 @@ class Maze {
   }
 
   printString(){
-    console.log(this.getString())
+    console.log(this.getString());
   }
 
   display(settings){
