@@ -10,15 +10,12 @@ export default function createWidget (settings) {
 
   let canvas = document.getElementById(`${maze.algorithmId}-canvas`);
 
-  display({
-    maze,
-    canvas,
-  });
+  maze.display({canvas});
 
   let updateCanvas = () => {
     setTimeout(() => {
       maze.step();
-      display({ maze, canvas });
+      maze.display({ canvas });
 
       updateCanvas();
     }, 100);
