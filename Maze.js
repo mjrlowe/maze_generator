@@ -321,6 +321,10 @@ class Maze {
       this.maxDistance = this.distances[v.y][v.x] + 1;
     }
   }
+
+  printString(){
+    console.log(this.getString())
+  }
 }
 
 
