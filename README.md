@@ -15,7 +15,6 @@ This module is heavily influenced by [Jamis Buck's Coffeescript mazes](https://g
 ## Example Usage
 
 ```javascript
-
 import {Maze} from "https://deno.land/x/maze_generator/mod.js"
 
 let mazeSettings = {
@@ -30,8 +29,8 @@ let m = Maze.create(mazeSettings);
 //generate it
 m.generate();
 
+//print the maze to the console
 m.printString();
-
 ```
 
 ## Other examples
@@ -76,7 +75,7 @@ Returns the finished maze
 
 This is the function which displays the maze.
 
-It takes in an object with the properties listed below. All of them are optional except the `maze` property.
+It takes in an object with the properties listed below.
 
 | Property | Description | Valid Values | Default Value |
 |-|-|-|-|
