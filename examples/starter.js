@@ -11,8 +11,8 @@ let mazeSettings = {
 //initialize the maze
 let m = Maze.create(mazeSettings);
 
-// console.log(m)
 //generate it
 m.generate();
 
+//print it to the console
 m.printString();
