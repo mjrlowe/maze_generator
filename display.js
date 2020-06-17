@@ -268,7 +268,7 @@ export default function display({
     return fillColor;
 
     function interpolate(colorScheme, k = 0, repeats = 1) {
-      k = k * repeats % 1;
+      k = k === 1 ? 1 : k * repeats % 1;
 
       let interpolatedColor;
 
