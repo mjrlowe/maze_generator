@@ -275,13 +275,18 @@ export default function display({
         let color1 = colorScheme[floor(i)];
         let color2 = colorScheme[floor(i) + 1];
         interpolatedColor = lerpBetween(color1, color2, i % 1);
+
       } else if (colorScheme === "grayscale" || colorScheme === "greyscale") {
         interpolatedColor = lerpBetween("#FFFFFF", "#000008", k);
+
+      //"less angry rainbow"
       }else if (colorScheme === "rainbow"){
         //hardcoded array of colors to interpolate between because that's easier than doing it properly
         interpolatedColor = interpolate(
           ["#6d3fa9", "#7d3eaf", "#8d3db2", "#9e3cb3", "#ae3cb1", "#bf3cae", "#ce3da9", "#dc3fa1", "#e94298", "#f5468e", "#fe4b82", "#ff5176", "#ff5969", "#ff625d", "#ff6c51", "#ff7746", "#ff833d", "#fe8f35", "#f69c30", "#ecaa2e", "#e2b72e", "#d6c431", "#cbd037", "#c1db40", "#b7e64c", "#afef5a", "#9bf257", "#88f457", "#75f659", "#62f65f", "#52f566", "#43f370", "#36f07c", "#2bec88", "#23e695", "#1ddea3", "#1ad6b0", "#19ccbc", "#1ac1c7", "#1eb6d0", "#23aad8", "#2a9edd", "#3192e0", "#3a85e1", "#4379df", "#4c6edb", "#5463d5", "#5c59cc", "#634fc2", "#6947b6"]
           , k);
+
+      //default    
       } else {
         interpolatedColor = backgroundColor;
       }
