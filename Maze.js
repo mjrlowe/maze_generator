@@ -271,7 +271,7 @@ class Maze {
   }
 
   calculateDistances() {
-    let startPoint = this.startXY; //this.getMouseCell();
+    let startPoint = this.startXY;
     startPoint = !this.cellIsInMaze(startPoint) ? this.startCell : startPoint;
     let Q = []; //queue
 
