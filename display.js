@@ -285,7 +285,6 @@ export default function display({
         interpolatedColor = backgroundColor;
       }
 
-      console.log(interpolatedColor);
       return interpolatedColor;
     }
   }
