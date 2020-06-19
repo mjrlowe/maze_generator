@@ -71,7 +71,7 @@ You can also check if a maze has finished generating with `.finishedGenerating`,
 This method calls `.step()` repeatedly until the maze has finished generating (or it has given up).
 Returns the finished maze
 
-## .display() (very unstable)
+## .display()
 
 This is the function which displays the maze.
 
@@ -81,7 +81,7 @@ It takes in an object with the properties listed below.
 |-|-|-|-|
 | canvas | The canvas to display the maze on. | A canvas element (e.g. `document.getElementsByTagName("canvas")[0]`). | The first canvas element in the html. [Note that this function (currently) only works in a html document.] |
 
-### Example usage
+### .display() example usage
 
 ```javascript
 let kruskalMaze = Maze.create({
@@ -93,4 +93,35 @@ let kruskalMaze = Maze.create({
 kruskalMaze.display({
   canvas: document.getElementById("maze-canvas") //Replace this with your canvas element you want to display the maze on.
 })
+```
+
+## .printString()
+
+Prints out the maze as a string to the console.
+
+### .printString() example usage
+
+#### Basic code
+
+```javascript
+Maze.create({
+  width: 10,
+  height: 10
+}).generate().printString()
+```
+
+#### Example output
+
+```
+ ___________________ 
+|__  _____|   |  __ |
+|   | ______|___| __|
+| |_|__ |   |_  |__ |
+|  _____| |__ | | __|
+| |  _____|  _| |_  |
+|_  |___  __| |  _| |
+| | |   |____ | |  _|
+|  _| | |_   ___| | |
+| | |_|_  |_|  ____ |
+|_______|_____|_____|
 ```
