@@ -16,7 +16,8 @@ export default function display({
     return false;
   }
 
-  maze.calculateDistances();
+  let {distances, maxDistance} = maze.calculateDistances(maze.startGenerationFrom);
+
   let ctx = canvas.getContext("2d");
 
   ctx.imageSmoothingEnabled = antiAliasing;
@@ -226,7 +227,7 @@ export default function display({
       if (coloringMode === "distance" || coloringMode === "color by distance") {
         fillColor = interpolate(
           colorScheme,
-          maze.distances[cell.y][cell.x] / maze.maxDistance,
+          distances[cell.y][cell.x] / maxDistance,
         );
       } else if (coloringMode === "set" || coloringMode === "color by set") {
         if (maze.algorithm === "kruskals") {

@@ -1,6 +1,9 @@
 import { dx, dy } from "./directions.js";
 
 export default function solve(maze) {
+
+  let {distances, maxDistance} = maze.calulateDistances();
+
   let startPoint = {
     x: constrain(maze.startXY.x, 0, maze.width - 1),
     y: constrain(maze.startXY.y, 0, maze.height - 1),
@@ -13,12 +16,12 @@ export default function solve(maze) {
   let Q = []; //queue
 
   let discovered = []; //keeps track of which points have been discovered so far so it doesn't loop back on itself
-  maze.distances = [];
+  distances = [];
   for (let y = 0; y < maze.height; y++) {
     discovered[y] = [];
-    maze.distances[y] = [];
+    distances[y] = [];
     for (let x = 0; x < maze.width; x++) {
-      maze.distances[y][x] = 0;
+      distances[y][x] = 0;
       discovered[y][x] = false;
     }
   }
@@ -86,7 +89,7 @@ export default function solve(maze) {
           //hasn't already been visited (discovered)
           if (!discovered[y][x]) {
             discovered[y][x] = true;
-            maze.distances[y][x] = depth;
+            distances[y][x] = depth;
             //enqueue
             Q.unshift({
               x: x,
