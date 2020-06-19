@@ -80,6 +80,7 @@ It takes in an object with the properties listed below.
 | Property | Description | Valid Values | Default Value |
 |-|-|-|-|
 | canvas | The canvas to display the maze on. | A canvas element (e.g. `document.getElementsByTagName("canvas")[0]`). | The first canvas element in the html. [Note that this function (currently) only works in a html document.] |
+| coloringMode | How the cells are colored. | `"normal"`: regular coloring, `"distance"`: each cell is colored by a distance from a point (WIP). More coloring modes coming soon hopefully | A string (not case sensitive). Anything other than the valid values specififed defaults to normal coloring. |
 
 ### .display() example usage
 
