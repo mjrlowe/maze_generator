@@ -1,15 +1,15 @@
-export default function calculateDistances() {
-  let startPoint = this.startXY;
-  startPoint = !this.cellIsInMaze(startPoint) ? this.startCell : startPoint;
+export default function calculateDistances(distanceFrom) {
+  let startPoint = this.getXYPosition(distanceFrom);
+  startPoint = this.cellIsInMaze(startPoint) ? startPoint : this.startCell;
   let Q = []; //queue
 
   let discovered = []; //keeps track of which points have been discovered so far so it doesn't loop back on itself
-  this.distances = [];
+  let distances = [];
   for (let y = 0; y < this.height; y++) {
     discovered[y] = [];
-    this.distances[y] = [];
+    distances[y] = [];
     for (let x = 0; x < this.width; x++) {
-      this.distances[y][x] = 0;
+      distances[y][x] = 0;
       discovered[y][x] = false;
     }
   }
@@ -19,7 +19,7 @@ export default function calculateDistances() {
   Q.unshift(startPoint);
 
   //don't want it to be 0 otherwise we might be dividing by zero
-  this.maxDistance = 1;
+  let maxDistance = 1;
 
   while (Q.length > 0) {
     //dequeue
@@ -36,7 +36,7 @@ export default function calculateDistances() {
           //hasn't already been visited (discovered)
           if (!discovered[y][x]) {
             discovered[y][x] = true;
-            this.distances[y][x] = this.distances[v.y][v.x] + 1;
+            distances[y][x] = distances[v.y][v.x] + 1;
             //enqueue
             Q.unshift({
               x: x,
@@ -47,6 +47,8 @@ export default function calculateDistances() {
         }
       }
     }
-    this.maxDistance = this.distances[v.y][v.x] + 1;
+    maxDistance = distances[v.y][v.x] + 1;
   }
+
+  return {distances, maxDistance}
 }
