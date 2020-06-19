@@ -30,5 +30,6 @@
   "bugs": {
     "url": "https://github.com/TheWizardBear/maze_generator/issues"
   },
-  "homepage": "https://github.com/TheWizardBear/maze_generator#readme"
+  "homepage": "https://github.com/TheWizardBear/maze_generator#readme",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" } 
 }
