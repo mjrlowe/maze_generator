@@ -7,7 +7,8 @@ import {
 import createWidget from "./createWidget.js";
 import mazeString from "./print.js";
 import display from "./display.js";
-import calculateDistances from "./distances.js"
+import calculateDistances from "./distances.js";
+import solve from "./solve.js";
 
 class Maze {
   constructor(mazeSettings) {
@@ -281,6 +282,10 @@ class Maze {
 
   display(settings) {
     return display({ ...settings, maze: this });
+  }
+
+  getSolution(){
+    return solve(this);
   }
 }
 
