@@ -21,7 +21,6 @@ let displaySettings = {
 };
 
 let Maze; //Maze class
-let display; //the function to display the maze on the canvas
 
 let moduleLoaded = false;
 
