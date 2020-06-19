@@ -272,10 +272,6 @@ class Maze {
     return XYPosition;
   }
 
-  calculateDistances(distanceFrom) {
-    return calculateDistances(distanceFrom);
-  }
-
   printString() {
     console.log(this.getString());
   }
@@ -290,6 +286,8 @@ class Maze {
 }
 
 Maze.prototype.getString = mazeString;
+Maze.prototype.calculateDistances = calculateDistances;
+
 Maze.createWidget = createWidget;
 
 export default Maze;
