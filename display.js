@@ -245,25 +245,6 @@ export default function display({
       }
     }
 
-    if (
-      maze.currentCell && cell.x === maze.currentCell.x &&
-      cell.y === maze.currentCell.y
-    ) {
-      fillColor = lerpBetween("#FFFF00", fillColor, 0.2);
-    }
-    if (
-      maze.startHuntingFrom && cell.x === maze.startHuntingFrom.x &&
-      cell.y === maze.startHuntingFrom.y
-    ) {
-      fillColor = lerpBetween("#F00", fillColor, 0.2);
-    }
-
-    if (
-      maze.algorithmId === "wilsons" && cell.x === maze.x && cell.y === maze.y
-    ) {
-      fillColor = "#F00";
-    }
-
     return fillColor;
 
     function interpolate(colorScheme, k = 0, repeats = 1) {
