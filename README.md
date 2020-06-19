@@ -37,7 +37,7 @@ m.printString();
 
 See the examples folder for more examples.
 
-Also see this OpenProcessing sketch: [https://openprocessing.org/sketch/908761](https://www.openprocessing.org/sketch/908761).
+Also see [this](https://www.openprocessing.org/sketch/908761) OpenProcessing sketch.
 
 ## Maze.create()
 
