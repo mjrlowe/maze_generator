@@ -33,7 +33,6 @@ function preload() {
       moduleLoaded = true;
 
       Maze = module.Maze;
-      display = module.display;
 
       maze = Maze.create(mazeSettings);
       background(255);
