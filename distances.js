@@ -1,3 +1,8 @@
+import {
+  dx,
+  dy,
+} from "./directions.js";
+
 export default function calculateDistances(distanceFrom) {
   let startPoint = this.getXYPosition(distanceFrom);
   startPoint = this.cellIsInMaze(startPoint) ? startPoint : this.startCell;
