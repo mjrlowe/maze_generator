@@ -85,6 +85,8 @@ It takes in an object with the properties listed below.
 | mainColor | This is the color of the walls (or line). | Any hex value as a string, with or without the `#` | `"#000"` |
 | backgroundColor | Background color and color of the space between walls (unless colorMode isn't `"normal"`) | Any hex value as a string, with or without the `#` | `"#000"` |
 | antiAliasing | Whether or not to apply anti-aliasing to the image drawn on the canvas (`context.imageSmoothingEnabled`). Setting it to false gives crisp edges but it can distort the output for small canvases where the cells do not line up with the canvas pixels well. | `true` or `false` | `false` |
+| showSolution | Whether or not to show the solution to the maze | `true` or `false` | `false` |
+| solutionColor | The color of the solution if `showSolution` is `true` | A hex value as a string | `"#F00"` |
 
 ### .display() example usage
 
