@@ -4,11 +4,12 @@ export default function solve(maze, startPoint=maze.getXYPosition("top left"), e
 
   let {distances, maxDistance} = maze.getDistances(from);
 
-  let startPoint = {
+  startPoint = {
     x: constrain(startPoint.x, 0, maze.width - 1),
     y: constrain(startPoint.y, 0, maze.height - 1),
   };
-  let endPoint = {
+  
+  endPoint = {
     x: constrain(endPoint.x, 0, maze.width - 1),
     y: constrain(endPoint.y, 0, maze.height - 1),
   };
