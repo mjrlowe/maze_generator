@@ -1,16 +1,16 @@
 import { dx, dy } from "./directions.js";
 
-export default function solve(maze) {
+export default function solve(maze, startPoint=maze.getXYPosition("top left"), endPoint=maze.getXYPosition("bottom right")) {
 
-  let {distances, maxDistance} = maze.getDistances();
+  let {distances, maxDistance} = maze.getDistances(from);
 
   let startPoint = {
-    x: constrain(maze.startXY.x, 0, maze.width - 1),
-    y: constrain(maze.startXY.y, 0, maze.height - 1),
+    x: constrain(startPoint.x, 0, maze.width - 1),
+    y: constrain(startPoint.y, 0, maze.height - 1),
   };
   let endPoint = {
-    x: constrain(maze.finishXY.x, 0, maze.width - 1),
-    y: constrain(maze.finishXY.y, 0, maze.height - 1),
+    x: constrain(endPoint.x, 0, maze.width - 1),
+    y: constrain(endPoint.y, 0, maze.height - 1),
   };
 
   let Q = []; //queue

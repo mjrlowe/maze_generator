@@ -280,8 +280,8 @@ class Maze {
     return display({ ...settings, maze: this });
   }
 
-  getSolution(){
-    return solve(this);
+  getSolution(start = this.getXYPosition("top left"), finish = this.getXYPosition("bottom right")){
+    return solve(this, start, finish);
   }
 }
 
