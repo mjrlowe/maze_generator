@@ -179,6 +179,16 @@ export default function display({
   }
 
   if (showSolution) {
+
+    ctx.setTransform(
+      1,
+      0,
+      0,
+      1,
+      canvas.width / 2 - maze.width / 2 * cellSize,
+      canvas.height / 2 - maze.height / 2 * cellSize,
+    );
+    
     let solution  = maze.getSolution();
     ctx.strokeStyle = solutionColor;
     ctx.lineWidth = cellSize * 0.27;
