@@ -3,7 +3,7 @@ import {
   dy,
 } from "./directions.js";
 
-export default function calculateDistances(distanceFrom) {
+export default function calculateDistances(distanceFrom = this.startCell) {
   let startPoint = this.getXYPosition(distanceFrom);
   startPoint = this.cellIsInMaze(startPoint) ? startPoint : this.startCell;
   let Q = []; //queue
