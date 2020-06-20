@@ -1,6 +1,6 @@
 {
   "name": "@thewizardbear/maze_generator",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A deno-compatible package for maze generation",
   "main": "mod.js",
   "directories": {
@@ -31,5 +31,7 @@
     "url": "https://github.com/TheWizardBear/maze_generator/issues"
   },
   "homepage": "https://github.com/TheWizardBear/maze_generator#readme",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" } 
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
