@@ -131,3 +131,11 @@ Maze.create({
 | | |_|_  |_|  ____ |
 |_______|_____|_____|
 ```
+
+## .getSolution()
+
+This is a method that returns the solution to the maze in the form of an array of cell positions.
+
+You can optionally pass in a start and end point, but it will default to the top left and bottom right of the maze.
+
+Try `console.log(Maze.create().generate().getSolution())`.
