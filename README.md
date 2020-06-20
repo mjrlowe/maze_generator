@@ -97,6 +97,10 @@ kruskalMaze.display({
 })
 ```
 
+This would display a maze like this:
+
+![Kruskal's maze](images/Kruskals-20x20.png)
+
 ## .printString()
 
 Prints out the maze as a string to the console.
