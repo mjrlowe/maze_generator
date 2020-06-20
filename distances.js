@@ -4,7 +4,9 @@ import {
 } from "./directions.js";
 
 export default function calculateDistances(distanceFrom) {
-  let startPoint = this.getXYPosition(distanceFrom ?? this.startCell ?? "top left");
+  let startPoint = this.getXYPosition(
+    distanceFrom ?? this.startCell ?? "top left",
+  );
   startPoint = this.cellIsInMaze(startPoint) ? startPoint : this.startCell;
   let Q = []; //queue
 
@@ -55,5 +57,5 @@ export default function calculateDistances(distanceFrom) {
     maxDistance = distances[v.y][v.x] + 1;
   }
 
-  return {distances, maxDistance}
+  return { distances, maxDistance };
 }

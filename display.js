@@ -11,14 +11,14 @@ export default function display({
   antiAliasing = false,
   coloringMode = "normal",
   showSolution = false,
-  solutionColor = "#F00"
+  solutionColor = "#F00",
 }) {
   if (!canvas) {
     console.error("Tried to display maze without a canvas");
     return false;
   }
 
-  let {distances, maxDistance} = maze.getDistances(maze.startCell);
+  let { distances, maxDistance } = maze.getDistances(maze.startCell);
 
   let ctx = canvas.getContext("2d");
 
@@ -162,7 +162,7 @@ export default function display({
 
     for (let y = 0; y < maze.height; y++) {
       for (let x = 0; x < maze.width; x++) {
-        ctx.strokeStyle = getCellColor({x, y});
+        ctx.strokeStyle = getCellColor({ x, y });
 
         if (!maze.walls[y][x].W) {
           line(x * cellSize, y * cellSize, (x - 0.5) * cellSize, y * cellSize);
@@ -181,7 +181,6 @@ export default function display({
   }
 
   if (showSolution) {
-
     ctx.setTransform(
       1,
       0,
@@ -190,8 +189,8 @@ export default function display({
       canvas.width / 2 - maze.width / 2 * cellSize,
       canvas.height / 2 - maze.height / 2 * cellSize,
     );
-    
-    let solution  = maze.getSolution();
+
+    let solution = maze.getSolution();
     ctx.strokeStyle = solutionColor;
     ctx.lineWidth = cellSize * 0.27;
     if (ctx.lineWidth < 1) ctx.lineWidth = 1;
@@ -272,18 +271,69 @@ export default function display({
         let color1 = colorScheme[floor(i)];
         let color2 = colorScheme[floor(i) + 1];
         interpolatedColor = lerpBetween(color1, color2, i % 1);
-
       } else if (colorScheme === "grayscale" || colorScheme === "greyscale") {
         interpolatedColor = lerpBetween("#FFFFFF", "#000008", k);
 
-      //"less angry rainbow"
-      }else if (colorScheme === "rainbow"){
+        //"less angry rainbow"
+      } else if (colorScheme === "rainbow") {
         //hardcoded array of colors to interpolate between because that's easier than doing it properly
         interpolatedColor = interpolate(
-          ["#6d3fa9", "#7d3eaf", "#8d3db2", "#9e3cb3", "#ae3cb1", "#bf3cae", "#ce3da9", "#dc3fa1", "#e94298", "#f5468e", "#fe4b82", "#ff5176", "#ff5969", "#ff625d", "#ff6c51", "#ff7746", "#ff833d", "#fe8f35", "#f69c30", "#ecaa2e", "#e2b72e", "#d6c431", "#cbd037", "#c1db40", "#b7e64c", "#afef5a", "#9bf257", "#88f457", "#75f659", "#62f65f", "#52f566", "#43f370", "#36f07c", "#2bec88", "#23e695", "#1ddea3", "#1ad6b0", "#19ccbc", "#1ac1c7", "#1eb6d0", "#23aad8", "#2a9edd", "#3192e0", "#3a85e1", "#4379df", "#4c6edb", "#5463d5", "#5c59cc", "#634fc2", "#6947b6"]
-          , k);
+          [
+            "#6d3fa9",
+            "#7d3eaf",
+            "#8d3db2",
+            "#9e3cb3",
+            "#ae3cb1",
+            "#bf3cae",
+            "#ce3da9",
+            "#dc3fa1",
+            "#e94298",
+            "#f5468e",
+            "#fe4b82",
+            "#ff5176",
+            "#ff5969",
+            "#ff625d",
+            "#ff6c51",
+            "#ff7746",
+            "#ff833d",
+            "#fe8f35",
+            "#f69c30",
+            "#ecaa2e",
+            "#e2b72e",
+            "#d6c431",
+            "#cbd037",
+            "#c1db40",
+            "#b7e64c",
+            "#afef5a",
+            "#9bf257",
+            "#88f457",
+            "#75f659",
+            "#62f65f",
+            "#52f566",
+            "#43f370",
+            "#36f07c",
+            "#2bec88",
+            "#23e695",
+            "#1ddea3",
+            "#1ad6b0",
+            "#19ccbc",
+            "#1ac1c7",
+            "#1eb6d0",
+            "#23aad8",
+            "#2a9edd",
+            "#3192e0",
+            "#3a85e1",
+            "#4379df",
+            "#4c6edb",
+            "#5463d5",
+            "#5c59cc",
+            "#634fc2",
+            "#6947b6",
+          ],
+          k,
+        );
 
-      //default    
+        //default
       } else {
         interpolatedColor = backgroundColor;
       }

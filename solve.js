@@ -1,8 +1,11 @@
 import { dx, dy } from "./directions.js";
 
-export default function solve(maze, startPoint=maze.getXYPosition("top left"), endPoint=maze.getXYPosition("bottom right")) {
-
-  let {distances, maxDistance} = maze.getDistances(startPoint);
+export default function solve(
+  maze,
+  startPoint = maze.getXYPosition("top left"),
+  endPoint = maze.getXYPosition("bottom right"),
+) {
+  let { distances, maxDistance } = maze.getDistances(startPoint);
 
   startPoint = {
     x: constrain(startPoint.x, 0, maze.width - 1),

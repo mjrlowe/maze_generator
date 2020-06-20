@@ -15,7 +15,8 @@ class Maze {
     this.prng = mazeSettings.prng ?? Math;
     this.width = mazeSettings.width ??
       (mazeSettings.xSize ?? (mazeSettings.height ?? 30));
-    this.height = mazeSettings.height ?? ((mazeSettings.ySize ?? this.width) ?? 30);
+    this.height = mazeSettings.height ??
+      ((mazeSettings.ySize ?? this.width) ?? 30);
     this.width = Math.min(this.width, 100);
     this.height = Math.min(this.height, 100);
     this.start = mazeSettings.start ?? "top left";
@@ -280,7 +281,10 @@ class Maze {
     return display({ ...settings, maze: this });
   }
 
-  getSolution(start = this.getXYPosition("top left"), finish = this.getXYPosition("bottom right")){
+  getSolution(
+    start = this.getXYPosition("top left"),
+    finish = this.getXYPosition("bottom right"),
+  ) {
     return solve(this, start, finish);
   }
 }
