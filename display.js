@@ -10,6 +10,8 @@ export default function display({
   strokeWeight = 4,
   antiAliasing = false,
   coloringMode = "normal",
+  showSolution = false,
+  solutionColor = "#F00"
 }) {
   if (!canvas) {
     console.error("Tried to display maze without a canvas");
@@ -176,19 +178,20 @@ export default function display({
     }
   }
 
-  if (maze.showSolution) {
+  if (showSolution) {
+    let solution  = maze.getSolution();
     ctx.strokeStyle = solutionColor;
     ctx.lineWidth = cellSize * 0.27;
     if (ctx.lineWidth < 1) ctx.lineWidth = 1;
     if (ctx.lineWidth > 10) ctx.lineWidth = 10;
 
     ctx.translate(cellSize / 2, cellSize / 2);
-    for (let i = 0; i < maze.solution.length - 1; i++) {
+    for (let i = 0; i < solution.length - 1; i++) {
       line(
-        maze.solution[i].x * cellSize,
-        maze.solution[i].y * cellSize,
-        maze.solution[i + 1].x * cellSize,
-        maze.solution[i + 1].y * cellSize,
+        solution[i].x * cellSize,
+        solution[i].y * cellSize,
+        solution[i + 1].x * cellSize,
+        solution[i + 1].y * cellSize,
       );
     }
   }
