@@ -218,6 +218,8 @@ class Maze {
           y: Math.floor(this.height / 2),
         };
         break;
+      case "top":
+      case "north":
       case "top middle":
       case "north middle":
         XYPosition = {
@@ -225,6 +227,8 @@ class Maze {
           y: 0,
         };
         break;
+      case "bottom":
+      case "south":
       case "bottom middle":
       case "south middle":
         XYPosition = {
@@ -232,6 +236,8 @@ class Maze {
           y: this.height - 1,
         };
         break;
+      case "right":
+      case "east":
       case "right middle":
       case "east middle":
         XYPosition = {
@@ -239,6 +245,8 @@ class Maze {
           y: Math.floor(this.height / 2),
         };
         break;
+      case "left":
+      case "west":
       case "left middle":
       case "west middle":
         XYPosition = {
