@@ -90,7 +90,7 @@ let kruskalMaze = Maze.create({
   width: 20,
   height: 20,
   algorithm: "Kruskal's"
-})
+}).generate();
 
 kruskalMaze.display({
   canvas: document.getElementById("maze-canvas") //Replace this with your canvas element you want to display the maze on.
