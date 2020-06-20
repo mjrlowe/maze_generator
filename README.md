@@ -1,4 +1,4 @@
-# maze\_generator (WIP)
+# maze\_generator
 
 **maze\_generator** is a module for easily generating mazes.
 
