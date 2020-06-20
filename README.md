@@ -83,7 +83,7 @@ It takes in an object with the properties listed below.
 | coloringMode | How the cells are colored. | `"normal"`: regular coloring, `"distance"`: each cell is colored by a distance from a point (WIP). More coloring modes coming soon hopefully. Anything other than the valid values specififed defaults to normal coloring. | `"normal"`  |
 | colorScheme | The color scheme to use when `coloringMode` is not `"normal"`. | This can either be `"grayscale"`, `"rainbow"` or an array or hex codes. | `"rainbow"` (note that `colorScheme` won't affect the output if `coloringMode` is `"normal"`) |
 | mainColor | This is the color of the walls (or line). | Any hex value as a string | `"#000"` |
-| backgroundColor | Background color and color of the space between walls (unless colorMode isn't `"normal"`) | A hex value as a string | `"#000"` |
+| backgroundColor | Background color and color of the space between walls (unless colorMode isn't `"normal"`) | A hex value as a string | `"#FFF"` |
 | antiAliasing | Whether or not to apply anti-aliasing to the image drawn on the canvas (`imageSmoothingEnabled`). Setting it to false gives crisp edges but it can distort the output for small canvases where the cells do not line up with the canvas pixels well. | `true` or `false` | `false` |
 | showSolution | Whether or not to show the solution when the maze is complete | `true` or `false` | `false` |
 | solutionColor | The color of the solution if `showSolution` is `true` | A hex value as a string | `"#F00"` |
