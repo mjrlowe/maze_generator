@@ -8,7 +8,7 @@ export default function solve(maze, startPoint=maze.getXYPosition("top left"), e
     x: constrain(startPoint.x, 0, maze.width - 1),
     y: constrain(startPoint.y, 0, maze.height - 1),
   };
-  
+
   endPoint = {
     x: constrain(endPoint.x, 0, maze.width - 1),
     y: constrain(endPoint.y, 0, maze.height - 1),
@@ -61,17 +61,17 @@ export default function solve(maze, startPoint=maze.getXYPosition("top left"), e
       //add extra lines at the beginning and end that go outside of the maze,
       //provided we are removing these walls and that we know what direction it should be
       if (maze.removeWallsAtEntranceAndExit) {
-        if (maze.startXY.direction !== undefined) {
+        if (startPoint.direction !== undefined) {
           solutionPath.unshift({
-            x: startPoint.x + dx[maze.startXY.direction],
-            y: startPoint.y + dy[maze.startXY.direction],
+            x: startPoint.x + dx[startPoint.direction],
+            y: startPoint.y + dy[startPoint.direction],
           });
         }
 
-        if (maze.finishXY.direction !== undefined) {
+        if (endPoint.direction !== undefined) {
           solutionPath.push({
-            x: endPoint.x + dx[maze.finishXY.direction],
-            y: endPoint.y + dy[maze.finishXY.direction],
+            x: endPoint.x + dx[endPoint.direction],
+            y: endPoint.y + dy[endPoint.direction],
           });
         }
       }
