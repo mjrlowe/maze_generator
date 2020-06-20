@@ -2,7 +2,7 @@ import { dx, dy } from "./directions.js";
 
 export default function solve(maze) {
 
-  let {distances, maxDistance} = maze.calulateDistances();
+  let {distances, maxDistance} = maze.getDistances();
 
   let startPoint = {
     x: constrain(maze.startXY.x, 0, maze.width - 1),

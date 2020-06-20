@@ -286,7 +286,7 @@ class Maze {
 }
 
 Maze.prototype.getString = mazeString;
-Maze.prototype.calculateDistances = calculateDistances;
+Maze.prototype.getDistances = calculateDistances;
 
 Maze.createWidget = createWidget;
 
