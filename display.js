@@ -1,6 +1,6 @@
 export default function display({
   maze,
-  canvas = document?.getElementsByTag("canvas")[0],
+  canvas = document?.getElementsByTagName("canvas")[0],
   displayMode = 1,
   cellSize = Math.min(canvas.width / maze.width, canvas.height / maze.height) *
     0.9,
@@ -163,7 +163,7 @@ export default function display({
     for (let y = 0; y < maze.height; y++) {
       for (let x = 0; x < maze.width; x++) {
         ctx.strokeStyle = getCellColor({x, y});
-        
+
         if (!maze.walls[y][x].W) {
           line(x * cellSize, y * cellSize, (x - 0.5) * cellSize, y * cellSize);
         }
