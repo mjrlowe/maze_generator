@@ -2,7 +2,7 @@ import solve from "./solve.js";
 import { opposite, directions, fullNames } from "./directions.js";
 
 export default function analyze(maze) {
-  let solution = solve(maze);
+  let solution = maze.getSolution();
   let deadEnds = {
     total: 0,
     N: 0,
