@@ -1,4 +1,3 @@
-import solve from "./solve.js";
 import { opposite, directions, fullNames } from "./directions.js";
 
 export default function analyze(maze) {
