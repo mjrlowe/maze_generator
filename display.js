@@ -5,7 +5,7 @@ export default function display({
   cellSize = Math.min(canvas.width / maze.width, canvas.height / maze.height) *
     0.9,
   backgroundColor = "#FFF",
-  wallColor = "#000",
+  mainColor = "#000",
   colorScheme = "rainbow",
   strokeWeight = 4,
   antiAliasing = false,
@@ -63,12 +63,12 @@ export default function display({
       }
     }
 
-    ctx.strokeStyle = wallColor;
+    ctx.strokeStyle = mainColor;
     ctx.lineWidth = strokeWeight;
 
     for (let y = 0; y < maze.height; y++) {
       for (let x = 0; x < maze.width; x++) {
-        ctx.strokeStyle = wallColor;
+        ctx.strokeStyle = mainColor;
 
         if (maze.walls[y][x].W) {
           line(x * cellSize, y * cellSize, x * cellSize, (y + 1) * cellSize);
@@ -97,7 +97,7 @@ export default function display({
   } else if (displayMode === 1) { //thick walls
     cellSize /= 2;
 
-    ctx.fillStyle = wallColor;
+    ctx.fillStyle = mainColor;
 
     ctx.translate(cellSize / 2, cellSize / 2);
 
@@ -155,7 +155,7 @@ export default function display({
 
     cellSize *= 2;
   } else { //display mode 2: line
-    ctx.strokeStyle = wallColor;
+    ctx.strokeStyle = mainColor;
     ctx.lineWidth = strokeWeight;
 
     ctx.translate(cellSize / 2, cellSize / 2);
@@ -230,9 +230,9 @@ export default function display({
     //not used for display mode 2 (line) because it looks weird
     if (isUnfinishedCell(cell)) {
       if (displayMode === 0) {
-        fillColor = lerpBetween(backgroundColor, wallColor, 0.24);
+        fillColor = lerpBetween(backgroundColor, mainColor, 0.24);
       } else if (displayMode === 1) {
-        fillColor = lerpBetween(backgroundColor, wallColor, 0.51);
+        fillColor = lerpBetween(backgroundColor, mainColor, 0.51);
       } else {
         fillColor = backgroundColor;
       }
