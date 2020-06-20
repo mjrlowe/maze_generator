@@ -162,6 +162,8 @@ export default function display({
 
     for (let y = 0; y < maze.height; y++) {
       for (let x = 0; x < maze.width; x++) {
+        ctx.strokeStyle = getCellColor({x, y});
+        
         if (!maze.walls[y][x].W) {
           line(x * cellSize, y * cellSize, (x - 0.5) * cellSize, y * cellSize);
         }
