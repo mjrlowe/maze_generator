@@ -224,7 +224,7 @@ export default function display({
   }
 
   function getCellColor(cell) {
-    let fillColor = backgroundColor;
+    let fillColor = displayMode === 2 ? mainColor : backgroundColor;
 
     //highlight cells that haven't finished generating differently, depending on the display mode
     //an unfinished cell is one that has all it's walls around it
