@@ -51,7 +51,7 @@ These are all the properties of the object you can pass in when you write `Maze.
 |-|-|-|-|
 | width (or xSize) | The width of the maze. (How many columns there should be.) | Any integer greater than 0. Any number greater than 100 defaults to 100.  | height or `30` |
 | height (or ySize) | The height of the maze. (How many rows there should be.) | Any integer greater than 0. Any number greater than 100 defaults to 100. | width or `30` |
-| algorithm | The algorithm to use. | Any one of the following: `"recursive backtracker"`, `"eller's"`, `"sidewinder"`, `"kruskal's"`, `"simplified prim's"`, `"modified prim's"`, `"hunt and kill"`, `"binary tree"`, `"aldous broder"`, `"recursive division"`. This isn't case sensitive. Characters other than a-z are ignored. | `"recursive backtracker"` |
+| algorithm | The algorithm to use. | Any one of the following: `"recursive backtracker"`, `"eller's"`, `"sidewinder"`, `"kruskal's"`, `"simplified prim's"`, `"modified prim's"`, `"hunt and kill"`, `"binary tree"`, `"aldous broder"`, `"recursive division"`, `"random"` (random algorithm). This isn't case sensitive. Characters other than a-z are ignored. | `"recursive backtracker"` |
 
 Algorithms coming soon (todo):
 
