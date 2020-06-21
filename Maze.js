@@ -19,8 +19,8 @@ class Maze {
       ((mazeSettings.ySize ?? this.width) ?? 30);
     this.width = Math.min(this.width, 100);
     this.height = Math.min(this.height, 100);
-    this.start = mazeSettings.start ?? "top left";
-    this.finish = mazeSettings.finish ?? (mazeSettings.end ?? "bottom right");
+    this.entrance = mazeSettings.entrance ?? "top left";
+    this.exit = mazeSettings.exit ?? "bottom right";
     this.startXY = this.getXYPosition(this.start);
     this.finishXY = this.getXYPosition(this.finish);
     this.finishedGenerating = false;
@@ -290,8 +290,8 @@ class Maze {
   }
 
   getSolution(
-    start = this.getXYPosition("top left"),
-    finish = this.getXYPosition("bottom right"),
+    start = this.entrance,
+    finish = this.exit,
   ) {
     return solve(this, start, finish);
   }
