@@ -86,10 +86,7 @@ class Maze {
   reset() {
     //random seed would go here
 
-    this.currentCell = {
-      x: this.startGenerationFrom.x,
-      y: this.startGenerationFrom.y,
-    };
+    this.currentCell = {...this.startGenerationFrom};
 
     this.finishedGenerating = false;
 
