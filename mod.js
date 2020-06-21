@@ -26,7 +26,6 @@ Maze.algorithms = {
   sidewinder: Sidewinder,
   binarytree: BinaryTree,
   wilsons: Wilsons,
-  trueprims: TruePrims,
 };
 
 export { default as analyze } from "./analyze.js";
