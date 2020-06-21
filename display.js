@@ -268,8 +268,8 @@ export default function display({
 
       if (Array.isArray(colorScheme)) {
         let i = k * (colorScheme.length - 1);
-        let color1 = colorScheme[floor(i)];
-        let color2 = colorScheme[floor(i) + 1];
+        let color1 = colorScheme[Math.floor(i)];
+        let color2 = colorScheme[Math.floor(i) + 1];
         interpolatedColor = lerpBetween(color1, color2, i % 1);
       } else if (colorScheme === "grayscale" || colorScheme === "greyscale") {
         interpolatedColor = lerpBetween("#FFFFFF", "#000008", k);
