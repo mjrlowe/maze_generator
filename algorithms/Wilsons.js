@@ -13,8 +13,8 @@ class Wilsons extends Maze {
     this.totalVisted = 0;
 
     this.currentCell = {
-      x: this.startCell.x,
-      y: this.startCell.y,
+      x: this.startGenerationFrom.x,
+      y: this.startGenerationFrom.y,
     };
 
     this.state = 0;

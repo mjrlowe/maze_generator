@@ -12,6 +12,9 @@ import solve from "./solve.js";
 
 class Maze {
   constructor(mazeSettings) {
+
+
+
     this.prng = mazeSettings.prng ?? Math;
     this.width = mazeSettings.width ??
       (mazeSettings.xSize ?? (mazeSettings.height ?? 30));
@@ -34,9 +37,9 @@ class Maze {
       this.algorithmId === "binarytree" ||
       this.algorithmId === "ellers"
     ) {
-      this.startGenerationFrom = "top left";
+      this.startGenerationFrom = {x: 0, y: 0};
     } else {
-      this.startGenerationFrom = mazeSettings.startGenerationFrom ?? "random";
+      this.startGenerationFrom = this.getXYPosition(mazeSettings.startGenerationFrom ?? "random");
     }
 
     this.prng.shuffle = (arr) => {
@@ -83,11 +86,9 @@ class Maze {
   reset() {
     //random seed would go here
 
-    this.startCell = this.getXYPosition(this.startGenerationFrom);
-
     this.currentCell = {
-      x: this.startCell.x,
-      y: this.startCell.y,
+      x: this.startGenerationFrom.x,
+      y: this.startGenerationFrom.y,
     };
 
     this.finishedGenerating = false;

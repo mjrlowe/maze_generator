@@ -3,8 +3,8 @@ import Maze from "../Maze.js";
 class Sidewinder extends Maze {
   resetVariables() {
     this.currentCell = {
-      x: this.startCell.x,
-      y: this.startCell.y,
+      x: this.startGenerationFrom.x,
+      y: this.startGenerationFrom.y,
     };
 
     this.runSet = [];
