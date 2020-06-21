@@ -68,7 +68,7 @@ class Maze {
           
     if (settings.algorithmId === "random") {
       settings.algorithmId = Object.keys(
-        this.algorithms,
+        this.algorithms
       )[Math.floor(Math.random() * Object.keys(this.algorithms).length)];
     } else if (!this.algorithms[settings.algorithmId]) {
       console.warn(
