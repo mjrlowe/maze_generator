@@ -9,6 +9,7 @@ import mazeString from "./print.js";
 import display from "./display.js";
 import calculateDistances from "./distances.js";
 import solve from "./solve.js";
+import analyze from "./analyze.js";
 
 class Maze {
   constructor(mazeSettings) {
@@ -130,6 +131,7 @@ class Maze {
     return this;
   }
 
+  //carve
   removeWall(cell, direction) {
     if (this.cellIsInMaze(cell)) {
       this.walls[cell.y][cell.x][direction] = false;
@@ -147,6 +149,7 @@ class Maze {
     return false;
   }
 
+  //uncarve
   addWall(cell, direction) {
     if (this.cellIsInMaze(cell)) {
       this.walls[cell.y][cell.x][direction] = true;
@@ -292,6 +295,10 @@ class Maze {
     finish = this.exit,
   ) {
     return solve(this, start, finish);
+  }
+
+  getAnalysis(){
+    return analyze(maze);
   }
 }
 
