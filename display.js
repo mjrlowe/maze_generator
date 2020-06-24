@@ -13,6 +13,7 @@ export default function display({
   showSolution = false,
   solutionColor = "#F00",
 }) {
+
   if (!canvas) {
     console.error("Tried to display maze without a canvas");
     return false;
@@ -35,7 +36,10 @@ export default function display({
   if (displayMode === "thin walls") displayMode = 0;
   if (displayMode === "thick walls") displayMode = 1;
   if (displayMode === "line") displayMode = 2;
-  displayMode = Number(displayMode); //dat.gui stores 0 as a string so I need to convert it back to a number
+
+  //slider element stores 0 as a string so we need to convert it back to a number
+  displayMode = Number(displayMode);
+  strokeWeight = Number(strokeWeight);
 
   //clear the background
   ctx.fillStyle = backgroundColor;
