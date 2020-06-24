@@ -19,7 +19,7 @@ export default function display({
     return false;
   }
 
-  let { distances, maxDistance } = maze.getDistances(maze.startCell);
+  let { distances, maxDistance } = maze.getDistances(maze.start);
 
   let ctx = canvas.getContext("2d");
 
