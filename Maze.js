@@ -4,7 +4,6 @@ import {
   opposite,
 } from "./directions.js";
 
-import createWidget from "./createWidget.js";
 import mazeString from "./print.js";
 import display from "./display.js";
 import calculateDistances from "./distances.js";
@@ -300,7 +299,5 @@ class Maze {
 
 Maze.prototype.getString = mazeString;
 Maze.prototype.getDistances = calculateDistances;
-
-Maze.createWidget = createWidget;
 
 export default Maze;
