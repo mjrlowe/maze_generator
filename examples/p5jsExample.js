@@ -57,7 +57,7 @@ function setup() {
 function draw() {
   if (!moduleLoaded) return;
 
-  for (let i = 0; i < iterationsPerFrame && !maze?.finishedGenerating; i++) {
+  for (let i = 0; i < iterationsPerFrame && !maze.finishedGenerating; i++) {
     maze.step();
   }
 
