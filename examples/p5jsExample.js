@@ -16,8 +16,8 @@ let mazeSettings = {
 let displaySettings = {
   displayMode: 1,
   strokeWeight: 4,
-  backgroundColor: "white",
-  wallColor: "black",
+  backgroundColor: "#FFF",
+  mainColor: "#000",
 };
 
 let Maze; //Maze class
@@ -57,7 +57,7 @@ function setup() {
 function draw() {
   if (!moduleLoaded) return;
 
-  for (let i = 0; i < iterationsPerFrame && !maze.finishedGenerating; i++) {
+  for (let i = 0; i < iterationsPerFrame && !maze?.finishedGenerating; i++) {
     maze.step();
   }
 
