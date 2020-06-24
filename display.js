@@ -1,9 +1,9 @@
 export default function display({
   maze,
-  canvas = document?.getElementsByTagName("canvas")[0],
+  canvas = document ? .getElementsByTagName("canvas")[0],
   displayMode = 1,
   cellSize = Math.min(canvas.width / maze.width, canvas.height / maze.height) *
-    0.9,
+  0.9,
   backgroundColor = "#FFF",
   mainColor = "#000",
   colorScheme = "rainbow",
@@ -19,13 +19,36 @@ export default function display({
     return false;
   }
 
-  let { distances, maxDistance } = maze.getDistances(maze.start);
+  let {
+    distances,
+    maxDistance
+  } = maze.getDistances(maze.start);
 
   let ctx = canvas.getContext("2d");
 
   ctx.imageSmoothingEnabled = antiAliasing;
 
-  if (typeof colorScheme === "string") colorScheme = colorScheme.toLowerCase();
+  if (typeof colorScheme === "string") {
+    colorScheme = colorScheme.toLowerCase();
+
+    switch (colorScheme) {
+      case "rainbow":
+        // deno-fmt-ignore
+        colorScheme = ["#6d3fa9", "#7d3eaf", "#8d3db2", "#9e3cb3", "#ae3cb1", "#bf3cae", "#ce3da9", "#dc3fa1", "#e94298", "#f5468e", "#fe4b82", "#ff5176", "#ff5969", "#ff625d", "#ff6c51", "#ff7746", "#ff833d", "#fe8f35", "#f69c30", "#ecaa2e", "#e2b72e", "#d6c431", "#cbd037", "#c1db40", "#b7e64c", "#afef5a", "#9bf257", "#88f457", "#75f659", "#62f65f", "#52f566", "#43f370", "#36f07c", "#2bec88", "#23e695", "#1ddea3", "#1ad6b0", "#19ccbc", "#1ac1c7", "#1eb6d0", "#23aad8", "#2a9edd", "#3192e0", "#3a85e1", "#4379df", "#4c6edb", "#5463d5", "#5c59cc", "#634fc2", "#6947b6"];
+        break;
+
+      case "grayscale":
+      case "greyscale":
+        colorScheme = ["#FFFFFF", "#000008"];
+        break;
+
+        //anything else
+      default:
+        colorScheme = [backgroundColor];
+
+    }
+  }
+
   if (typeof coloringMode === "string") {
     coloringMode = coloringMode.toLowerCase();
   }
@@ -166,7 +189,10 @@ export default function display({
 
     for (let y = 0; y < maze.height; y++) {
       for (let x = 0; x < maze.width; x++) {
-        ctx.strokeStyle = getCellColor({ x, y });
+        ctx.strokeStyle = getCellColor({
+          x,
+          y
+        });
 
         if (!maze.walls[y][x].W) {
           line(x * cellSize, y * cellSize, (x - 0.5) * cellSize, y * cellSize);
@@ -252,7 +278,7 @@ export default function display({
           fillColor = interpolate(
             colorScheme,
             maze.disjointSubsets.findParent(maze.getCellIndex(cell)) /
-              (maze.width * maze.height),
+            (maze.width * maze.height),
           );
         } else if (maze.algorithm === "ellers") {
           fillColor = interpolate(
@@ -268,29 +294,11 @@ export default function display({
     function interpolate(colorScheme, k = 0, repeats = 1) {
       k = k === 1 ? 1 : k * repeats % 1;
 
-      let interpolatedColor;
+      let i = k * (colorScheme.length - 1);
+      let color1 = colorScheme[Math.floor(i)];
+      let color2 = colorScheme[(Math.floor(i) + 1) % (colorScheme.length - 1)];
+      let interpolatedColor = lerpBetween(color1, color2, i % 1);
 
-      if (Array.isArray(colorScheme)) {
-        let i = k * (colorScheme.length - 1);
-        let color1 = colorScheme[Math.floor(i)];
-        let color2 = colorScheme[Math.floor(i) + 1];
-        interpolatedColor = lerpBetween(color1, color2, i % 1);
-      } else if (colorScheme === "grayscale" || colorScheme === "greyscale") {
-        interpolatedColor = lerpBetween("#FFFFFF", "#000008", k);
-
-        //"less angry rainbow"
-      } else if (colorScheme === "rainbow") {
-        //hardcoded array of colors to interpolate between because that's easier than doing it properly
-        interpolatedColor = interpolate(
-          // deno-fmt-ignore
-          [ "#6d3fa9", "#7d3eaf", "#8d3db2", "#9e3cb3", "#ae3cb1", "#bf3cae", "#ce3da9", "#dc3fa1", "#e94298", "#f5468e", "#fe4b82", "#ff5176", "#ff5969", "#ff625d", "#ff6c51", "#ff7746", "#ff833d", "#fe8f35", "#f69c30", "#ecaa2e", "#e2b72e", "#d6c431", "#cbd037", "#c1db40", "#b7e64c", "#afef5a", "#9bf257", "#88f457", "#75f659", "#62f65f", "#52f566", "#43f370", "#36f07c", "#2bec88", "#23e695", "#1ddea3", "#1ad6b0", "#19ccbc", "#1ac1c7", "#1eb6d0", "#23aad8", "#2a9edd", "#3192e0", "#3a85e1", "#4379df", "#4c6edb", "#5463d5", "#5c59cc", "#634fc2", "#6947b6",],
-          k,
-        );
-
-        //default
-      } else {
-        interpolatedColor = backgroundColor;
-      }
 
       return interpolatedColor;
     }
@@ -320,28 +328,28 @@ export default function display({
       .exec(hex);
 
     return (
-      sixDigitHexRegexResult
-        ? {
-          r: parseInt(sixDigitHexRegexResult[1], 16),
-          g: parseInt(sixDigitHexRegexResult[2], 16),
-          b: parseInt(sixDigitHexRegexResult[3], 16),
-        }
-        : threeDigitHexRegexResult
-        ? {
-          r: parseInt(
-            threeDigitHexRegexResult[1] + threeDigitHexRegexResult[1],
-            16,
-          ),
-          g: parseInt(
-            threeDigitHexRegexResult[2] + threeDigitHexRegexResult[2],
-            16,
-          ),
-          b: parseInt(
-            threeDigitHexRegexResult[3] + threeDigitHexRegexResult[3],
-            16,
-          ),
-        }
-        : null
+      sixDigitHexRegexResult ?
+      {
+        r: parseInt(sixDigitHexRegexResult[1], 16),
+        g: parseInt(sixDigitHexRegexResult[2], 16),
+        b: parseInt(sixDigitHexRegexResult[3], 16),
+      } :
+      threeDigitHexRegexResult ?
+      {
+        r: parseInt(
+          threeDigitHexRegexResult[1] + threeDigitHexRegexResult[1],
+          16,
+        ),
+        g: parseInt(
+          threeDigitHexRegexResult[2] + threeDigitHexRegexResult[2],
+          16,
+        ),
+        b: parseInt(
+          threeDigitHexRegexResult[3] + threeDigitHexRegexResult[3],
+          16,
+        ),
+      } :
+      null
     );
   }
 
@@ -356,7 +364,7 @@ export default function display({
   }
 
   function line(x1, y1, x2, y2) {
-    if(strokeWeight !== 0){
+    if (strokeWeight !== 0) {
       ctx.beginPath();
       ctx.lineJoin = "round";
       ctx.moveTo(x1, y1);
