@@ -84,7 +84,7 @@ It takes in an object with the properties listed below.
 | antiAliasing | Whether or not to apply anti-aliasing to the image drawn on the canvas (`imageSmoothingEnabled`). Setting it to false gives crisp edges but it can distort the output for small canvases where the cells do not line up with the canvas pixels well. | `true` or `false` | `false` |
 | showSolution | Whether or not to show the solution when the maze is complete | `true` or `false` | `false` |
 | solutionColor | The color of the solution if `showSolution` is `true` | A hex value as a string | `"#F00"` |
-| strokeWeight | The thickness of the lines draw | A number | `4` |
+| strokeWeight | The thickness of the lines drawn | A number | `4` |
 
 ### .display() example usage
 
