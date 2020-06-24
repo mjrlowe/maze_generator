@@ -296,7 +296,7 @@ class Maze {
   }
 
   getAnalysis(){
-    return analyze(maze);
+    return analyze(this);
   }
 }
 
