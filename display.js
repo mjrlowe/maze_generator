@@ -31,6 +31,8 @@ export default function display({
   }
   if (typeof displayMode === "string") displayMode = displayMode.toLowerCase();
 
+  //slider element stores 0 as a string so we need to convert it back to a number
+  strokeWeight = Number(strokeWeight);
   strokeWeight = Math.min(strokeWeight, 40);
 
   if (displayMode === "thin walls") displayMode = 0;
@@ -39,7 +41,6 @@ export default function display({
 
   //slider element stores 0 as a string so we need to convert it back to a number
   displayMode = Number(displayMode);
-  strokeWeight = Number(strokeWeight);
 
   //clear the background
   ctx.fillStyle = backgroundColor;
