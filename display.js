@@ -31,16 +31,15 @@ export default function display({
   }
   if (typeof displayMode === "string") displayMode = displayMode.toLowerCase();
 
-  //slider element stores 0 as a string so we need to convert it back to a number
-  strokeWeight = Number(strokeWeight);
-  strokeWeight = Math.min(strokeWeight, 40);
-
   if (displayMode === "thin walls") displayMode = 0;
   if (displayMode === "thick walls") displayMode = 1;
   if (displayMode === "line") displayMode = 2;
 
   //slider element stores 0 as a string so we need to convert it back to a number
   displayMode = Number(displayMode);
+  strokeWeight = Number(strokeWeight);
+
+  //strokeWeight = Math.min(strokeWeight, 40);
 
   //clear the background
   ctx.fillStyle = backgroundColor;
@@ -357,10 +356,12 @@ export default function display({
   }
 
   function line(x1, y1, x2, y2) {
-    ctx.beginPath();
-    ctx.lineJoin = "round";
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
+    if(strokeWeight !== "0"){
+      ctx.beginPath();
+      ctx.lineJoin = "round";
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+    }
   }
 }
