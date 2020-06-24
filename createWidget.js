@@ -1,3 +1,5 @@
+import {Maze} from "./Maze.js"
+
 export default function createWidget(settings) {
   let width = 1000, height = 700;
 
