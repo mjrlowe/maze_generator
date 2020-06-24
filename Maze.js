@@ -23,10 +23,8 @@ class Maze {
       ((mazeSettings.ySize ?? this.width) ?? 30);
     this.width = Math.min(this.width, 100);
     this.height = Math.min(this.height, 100);
-    this.entrance = mazeSettings.entrance ?? "top left";
-    this.exit = mazeSettings.exit ?? "bottom right";
-    this.startXY = this.getXYPosition(this.entrance);
-    this.finishXY = this.getXYPosition(this.exit);
+    this.entrance = this.getXYPosition(mazeSettings.entrance ?? "top left");
+    this.exit = this.getXYPosition(mazeSettings.exit ?? "bottom right");
     this.finishedGenerating = false;
     this.seed = mazeSettings.seed ?? Math.floor(Math.random() * 10e8);
     // this.removeWallsAtEntranceAndExit = mazeSettings.removeWallsAtEntranceAndExit ?? true;
