@@ -356,7 +356,7 @@ export default function display({
   }
 
   function line(x1, y1, x2, y2) {
-    if(strokeWeight !== "0"){
+    if(strokeWeight !== 0){
       ctx.beginPath();
       ctx.lineJoin = "round";
       ctx.moveTo(x1, y1);
