@@ -1,6 +1,6 @@
 export default function display({
   maze,
-  canvas = document?.getElementsByTagName("canvas")[0],
+  canvas = document.getElementsByTagName("canvas")[0],
   displayMode = 1,
   cellSize = Math.min(canvas.width / maze.width, canvas.height / maze.height) *
     0.9,
