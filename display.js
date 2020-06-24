@@ -295,7 +295,7 @@ export default function display({
 
       let i = k * (colorScheme.length - 1);
       let color1 = colorScheme[Math.floor(i)];
-      let color2 = colorScheme[(Math.floor(i) + 1) % (colorScheme.length - 1)];
+      let color2 = colorScheme[(Math.floor(i) + 1) % colorScheme.length];
       let interpolatedColor = lerpBetween(color1, color2, i % 1);
 
       return interpolatedColor;
