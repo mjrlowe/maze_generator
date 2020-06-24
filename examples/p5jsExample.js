@@ -70,7 +70,7 @@ function draw() {
 function mousePressed() {
   maze = Maze.create({
     ...mazeSettings,
-    startGenerationFrom: getMouseCell(),
+    start: getMouseCell(),
   });
 }
 

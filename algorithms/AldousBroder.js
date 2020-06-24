@@ -16,8 +16,8 @@ class AldousBroder extends Maze {
     }
 
     this.currentCell = {
-      x: this.startGenerationFrom.x,
-      y: this.startGenerationFrom.y,
+      x: this.start.x,
+      y: this.start.y,
     };
     this.visited[this.currentCell.y][this.currentCell.x] = true;
     this.totalVisted = 1;

@@ -5,9 +5,9 @@ import {
 
 export default function calculateDistances(distanceFrom) {
   let startPoint = this.getXYPosition(
-    distanceFrom ?? this.startGenerationFrom ?? "top left",
+    distanceFrom ?? this.start ?? "top left",
   );
-  startPoint = this.cellIsInMaze(startPoint) ? startPoint : this.startGenerationFrom;
+  startPoint = this.cellIsInMaze(startPoint) ? startPoint : this.start;
   let Q = []; //queue
 
   let discovered = []; //keeps track of which points have been discovered so far so it doesn't loop back on itself

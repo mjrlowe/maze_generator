@@ -18,7 +18,7 @@ class RecursiveBacktracker extends Maze {
 
     this.stack = [];
 
-    let startCell = {...this.startGenerationFrom}
+    let startCell = {...this.start}
     this.stack.push(startCell);
     this.visited[startCell.y][startCell.x] = 1;
     this.currentCell = startCell;

@@ -33,9 +33,9 @@ class Maze {
       this.algorithmId === "binarytree" ||
       this.algorithmId === "ellers"
     ) {
-      this.startGenerationFrom = {x: 0, y: 0};
+      this.start = {x: 0, y: 0};
     } else {
-      this.startGenerationFrom = this.getXYPosition(mazeSettings.startGenerationFrom ?? "random");
+      this.start = this.getXYPosition(mazeSettings.start ?? "random");
     }
 
     this.prng.shuffle = (arr) => {
@@ -82,7 +82,7 @@ class Maze {
   reset() {
     //random seed would go here
 
-    this.currentCell = {...this.startGenerationFrom};
+    this.currentCell = {...this.start};
 
     this.finishedGenerating = false;
 

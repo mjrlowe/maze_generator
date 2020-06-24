@@ -25,8 +25,8 @@ class ModifiedPrims extends Maze {
     this.activeCells = [];
 
     let startCell = {
-      x: this.startGenerationFrom.x,
-      y: this.startGenerationFrom.y,
+      x: this.start.x,
+      y: this.start.y,
     };
 
     this.activeCells.push(startCell);
