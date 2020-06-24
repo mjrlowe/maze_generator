@@ -12,7 +12,6 @@ import analyze from "./analyze.js";
 
 class Maze {
   constructor(mazeSettings) {
-
     this.prng = mazeSettings.prng ?? Math;
     this.width = mazeSettings.width ||
       (mazeSettings.xSize || (mazeSettings.height || 30));
@@ -33,7 +32,7 @@ class Maze {
       this.algorithmId === "binarytree" ||
       this.algorithmId === "ellers"
     ) {
-      this.start = {x: 0, y: 0};
+      this.start = { x: 0, y: 0 };
     } else {
       this.start = this.getXYPosition(mazeSettings.start ?? "random");
     }
@@ -64,10 +63,10 @@ class Maze {
     settings.algorithmId = settings.algorithm
       ? settings.algorithm.replace(/[^a-zA-Z]/g, "").toLowerCase()
       : "recursivebacktracker";
-          
+
     if (settings.algorithmId === "random") {
       settings.algorithmId = Object.keys(
-        this.algorithms
+        this.algorithms,
       )[Math.floor(Math.random() * Object.keys(this.algorithms).length)];
     } else if (!this.algorithms[settings.algorithmId]) {
       console.warn(
@@ -82,7 +81,7 @@ class Maze {
   reset() {
     //random seed would go here
 
-    this.currentCell = {...this.start};
+    this.currentCell = { ...this.start };
 
     this.finishedGenerating = false;
 
@@ -292,7 +291,7 @@ class Maze {
     return solve(this, start, finish);
   }
 
-  getAnalysis(){
+  getAnalysis() {
     return analyze(this);
   }
 }

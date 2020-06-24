@@ -1,9 +1,9 @@
 export default function display({
   maze,
-  canvas = document ? .getElementsByTagName("canvas")[0],
+  canvas = document?.getElementsByTagName("canvas")[0],
   displayMode = 1,
   cellSize = Math.min(canvas.width / maze.width, canvas.height / maze.height) *
-  0.9,
+    0.9,
   backgroundColor = "#FFF",
   mainColor = "#000",
   colorScheme = "rainbow",
@@ -13,7 +13,6 @@ export default function display({
   showSolution = false,
   solutionColor = "#F00",
 }) {
-
   if (!canvas) {
     console.error("Tried to display maze without a canvas");
     return false;
@@ -21,7 +20,7 @@ export default function display({
 
   let {
     distances,
-    maxDistance
+    maxDistance,
   } = maze.getDistances(maze.start);
 
   let ctx = canvas.getContext("2d");
@@ -43,9 +42,9 @@ export default function display({
         break;
 
         //anything else
+
       default:
         colorScheme = [backgroundColor];
-
     }
   }
 
@@ -191,7 +190,7 @@ export default function display({
       for (let x = 0; x < maze.width; x++) {
         ctx.strokeStyle = getCellColor({
           x,
-          y
+          y,
         });
 
         if (!maze.walls[y][x].W) {
@@ -278,7 +277,7 @@ export default function display({
           fillColor = interpolate(
             colorScheme,
             maze.disjointSubsets.findParent(maze.getCellIndex(cell)) /
-            (maze.width * maze.height),
+              (maze.width * maze.height),
           );
         } else if (maze.algorithm === "ellers") {
           fillColor = interpolate(
@@ -298,7 +297,6 @@ export default function display({
       let color1 = colorScheme[Math.floor(i)];
       let color2 = colorScheme[(Math.floor(i) + 1) % (colorScheme.length - 1)];
       let interpolatedColor = lerpBetween(color1, color2, i % 1);
-
 
       return interpolatedColor;
     }
@@ -328,28 +326,28 @@ export default function display({
       .exec(hex);
 
     return (
-      sixDigitHexRegexResult ?
-      {
-        r: parseInt(sixDigitHexRegexResult[1], 16),
-        g: parseInt(sixDigitHexRegexResult[2], 16),
-        b: parseInt(sixDigitHexRegexResult[3], 16),
-      } :
-      threeDigitHexRegexResult ?
-      {
-        r: parseInt(
-          threeDigitHexRegexResult[1] + threeDigitHexRegexResult[1],
-          16,
-        ),
-        g: parseInt(
-          threeDigitHexRegexResult[2] + threeDigitHexRegexResult[2],
-          16,
-        ),
-        b: parseInt(
-          threeDigitHexRegexResult[3] + threeDigitHexRegexResult[3],
-          16,
-        ),
-      } :
-      null
+      sixDigitHexRegexResult
+        ? {
+          r: parseInt(sixDigitHexRegexResult[1], 16),
+          g: parseInt(sixDigitHexRegexResult[2], 16),
+          b: parseInt(sixDigitHexRegexResult[3], 16),
+        }
+        : threeDigitHexRegexResult
+        ? {
+          r: parseInt(
+            threeDigitHexRegexResult[1] + threeDigitHexRegexResult[1],
+            16,
+          ),
+          g: parseInt(
+            threeDigitHexRegexResult[2] + threeDigitHexRegexResult[2],
+            16,
+          ),
+          b: parseInt(
+            threeDigitHexRegexResult[3] + threeDigitHexRegexResult[3],
+            16,
+          ),
+        }
+        : null
     );
   }
 
