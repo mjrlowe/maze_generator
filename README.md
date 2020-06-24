@@ -54,12 +54,6 @@ These are all the properties of the object you can pass in when you write `Maze.
 | algorithm | The algorithm to use. | Any one of the following: `"recursive backtracker"`, `"eller's"`, `"sidewinder"`, `"kruskal's"`, `"simplified prim's"`, `"modified prim's"`, `"hunt and kill"`, `"binary tree"`, `"aldous broder"`, `"recursive division"`, `"random"` (random algorithm). This isn't case sensitive. Characters other than a-z are ignored. | `"recursive backtracker"` |
 | start | Where to start the maze generation from (if there is an option). | An object with both an `x` and `y` property (both integers) or a string referencing a certain point (`"random"` or a certain side or corner such as `"north east"`) | `"random"` for all algorithms except Eller's, binary tree and sidewinder, which are all `{x: 0, y: 0}`. |
 
-Algorithms coming soon (todo):
-
-* True Prim's
-* Wilson's
-* Growing tree
-
 ## .step()
 
 Call `.step()` to advance the maze one step.
