@@ -12,6 +12,7 @@ export default function display({
   coloringMode = "normal",
   showSolution = false,
   solutionColor = "#F00",
+  distanceFrom = maze.start
 }) {
   if (!canvas) {
     console.error("Tried to display maze without a canvas");
@@ -21,7 +22,7 @@ export default function display({
   let {
     distances,
     maxDistance,
-  } = maze.getDistances(maze.start);
+  } = maze.getDistances(distanceFrom);
 
   let ctx = canvas.getContext("2d");
 
