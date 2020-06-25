@@ -11,7 +11,7 @@ export default function createWidget(settings) {
 
   let html =
   `
-  <div class="maze-widget ${maze.algorithmId}" id="${mazeId}--widget">
+  <div class="maze-widget ${maze.algorithmId}" id="${mazeId}--widget" style="display: inline-block; text-align: center;">
   <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${mazeId}-canvas"></canvas>
   <div class="maze-widget-options">
     <button class="play-pause-button">pause/play</button>
