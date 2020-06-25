@@ -1,12 +1,22 @@
 import Maze from "./Maze.js";
 
 export default function createWidget(settings) {
-  let width = 1000, height = 700;
+  let widgetWidth = 1000, widgetHeight = 700;
 
   let maze = Maze.create(settings);
 
   let html =
-    `<canvas id="${maze.algorithmId}-canvas" class="${maze.algorithmId} maze canvas" style="width:90%" width="${width}" height="${height}"></canvas>`;
+  `
+  <div class="maze-widget ${maze.algorithmId}" id="${maze.algorithmId}-widget">
+  <canvas width="220" height="220" style="width:${widgetWidth ?? widgetSize ?? widgetHeight ?? "auto"}; height:${widgetHeight ?? widgetSize ?? widgetWidth ?? "auto"}" class="maze-canvas"></canvas>
+  <div class="maze-widget-options">
+    <button class="play-pause-button">pause/play</button>
+    <button class="step-button">step</button>
+    <button class="finish-button">finish</button>
+    <button class="finish-button">restart</button>
+  </div>
+</div>
+  `;
 
   document.body.innerHTML += html;
 
