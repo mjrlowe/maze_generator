@@ -5,10 +5,14 @@ export default function createWidget(settings) {
 
   let maze = Maze.create(settings);
 
+  let mazeId = maze.algorithmId + "-" + maze.seed;
+  let styleWidth = widgetWidth ?? widgetSize ?? widgetHeight ?? "auto";
+  let styleHeight = widgetHeight ?? widgetSize ?? widgetWidth ?? "auto";
+
   let html =
   `
-  <div class="maze-widget ${maze.algorithmId}" id="${maze.algorithmId}-widget">
-  <canvas width="220" height="220" style="width:${widgetWidth ?? widgetSize ?? widgetHeight ?? "auto"}; height:${widgetHeight ?? widgetSize ?? widgetWidth ?? "auto"}" class="maze-canvas"></canvas>
+  <div class="maze-widget ${maze.algorithmId}" id="${mazeId}--widget">
+  <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${mazeId}-canvas"></canvas>
   <div class="maze-widget-options">
     <button class="play-pause-button">pause/play</button>
     <button class="step-button">step</button>
@@ -20,7 +24,7 @@ export default function createWidget(settings) {
 
   document.body.innerHTML += html;
 
-  let canvas = document.getElementById(`${maze.algorithmId}-canvas`);
+  let canvas = document.getElementById(mazeId + "-canvas");
 
   maze.display({ canvas });
 
