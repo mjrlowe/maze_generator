@@ -1,0 +1,13 @@
+{
+  "name": "maze_generator",
+  "description": "A module for generating mazes",
+  "version": "0.0.8",
+  "entry": "mod.js",
+  "stable": false,
+  "unlisted": false,
+  "fmt": true,
+  "repository": "https://github.com/thewizardbear/maze_generator",
+  "files": [
+      "*"
+  ]
+}
