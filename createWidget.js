@@ -20,6 +20,7 @@ export default function createWidget(settings) {
         class="maze-image ${buttonName}-image"
         src="${iconImageFolderURL}/${buttonName}.svg" 
         alt="${buttonName}"
+        style="width: 20px"
       />`
     }else{
       return buttonName;
