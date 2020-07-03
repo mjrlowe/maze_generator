@@ -17,7 +17,9 @@ export default function createWidget(settings) {
   <div class="maze-widget ${maze.algorithmId}" id="${widgetId}" style="display: inline-block; text-align: center;">
   <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
-    <button class="play-pause-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">${paused ? "play" : "pause"}</button>
+    <button class="play-pause-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
+      <img src="./images/button/icons/${paused ? "play" : "pause"}.svg"/>
+    </button>
     <button class="step-button" onClick="document.getElementById('${widgetId}').stepMaze()">step</button>
     <button class="finish-button" onClick="document.getElementById('${widgetId}').generateMaze()">finish</button>
     <button class="restart-button" onClick="document.getElementById('${widgetId}').restartMaze()">restart</button>
