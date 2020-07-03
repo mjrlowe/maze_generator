@@ -17,7 +17,7 @@ export default function createWidget(settings) {
   <div class="maze-widget ${maze.algorithmId}" id="${widgetId}" style="display: inline-block; text-align: center;">
   <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
-    <button class="play-pause-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">pause/play</button>
+    <button class="play-pause-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">${paused ? "play" : "pause"}</button>
     <button class="step-button" onClick="document.getElementById('${widgetId}').stepMaze()">step</button>
     <button class="finish-button" onClick="document.getElementById('${widgetId}').generateMaze()">finish</button>
     <button class="restart-button" onClick="document.getElementById('${widgetId}').restartMaze()">restart</button>
@@ -31,21 +31,29 @@ export default function createWidget(settings) {
 
   widget.playPauseMaze = () => {
     paused = !paused;
+    widget.getElementsByClassName("play-pause-button")[0].innerHTML = paused ? "play" : "pause";
   };
 
   widget.stepMaze = () => {
     maze.step();
     maze.display({ canvas });
     paused = true;
+    widget.getElementsByClassName("play-pause-button")[0].innerHTML = "play";
   };
 
   widget.generateMaze = () => {
     maze.generate();
+    widget.getElementsByClassName("play-pause-button")[0].disabled = true;
+    widget.getElementsByClassName("step-button")[0].disabled = true;
+    widget.getElementsByClassName("finish-button")[0].disabled = true;
     maze.display({ canvas });
   };
   
   widget.restartMaze = () => {
     maze.reset();
+    widget.getElementsByClassName("play-pause-button")[0].disabled = false;
+    widget.getElementsByClassName("step-button")[0].disabled = false;
+    widget.getElementsByClassName("finish-button")[0].disabled = false;
     maze.display({ canvas });
   };
 
