@@ -68,6 +68,12 @@ export default function createWidget(settings) {
         maze.display({
           canvas
         });
+
+        if(maze.finishedGenerating){
+          widget.getElementsByClassName("play-pause-button")[0].disabled = true;
+          widget.getElementsByClassName("step-button")[0].disabled = true;
+          widget.getElementsByClassName("finish-button")[0].disabled = true;
+        }
       }
 
       updateCanvas();
