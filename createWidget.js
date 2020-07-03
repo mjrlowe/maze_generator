@@ -28,7 +28,6 @@ export default function createWidget(settings) {
 
   }
 
-
   let html =
   `
   <div class="maze-widget ${maze.algorithmId}" id="${widgetId}" style="display: inline-block; text-align: center;">
@@ -69,16 +68,22 @@ export default function createWidget(settings) {
   widget.generateMaze = () => {
     maze.generate();
     widget.getElementsByClassName("play-pause-button")[0].disabled = true;
+    widget.getElementsByClassName("play-pause-button")[0].opacity = 0.4;
     widget.getElementsByClassName("step-button")[0].disabled = true;
+    widget.getElementsByClassName("step-button")[0].opacity = 0.4;
     widget.getElementsByClassName("finish-button")[0].disabled = true;
+    widget.getElementsByClassName("finish-button")[0].opacity = 0.4;
     maze.display({ canvas });
   };
   
   widget.restartMaze = () => {
     maze.reset();
     widget.getElementsByClassName("play-pause-button")[0].disabled = false;
+    widget.getElementsByClassName("play-pause-button")[0].opacity = 1;
     widget.getElementsByClassName("step-button")[0].disabled = false;
+    widget.getElementsByClassName("step-button")[0].opacity = 1;
     widget.getElementsByClassName("finish-button")[0].disabled = false;
+    widget.getElementsByClassName("finish-button")[0].opacity = 1;
     maze.display({ canvas });
   };
 
