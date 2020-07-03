@@ -19,17 +19,33 @@ export default function createWidget(settings) {
   <div class="maze-widget ${maze.algorithmId}" id="${widgetId}" style="display: inline-block; text-align: center;">
   <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
-    <button class="play-pause-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
-      <img src="${iconImageFolderURL + (paused ? "/play.svg" : "/pause.svg")}" alt=${paused ? "play" : "pause"}/>
+    <button class="play-pause-button maze-widget-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
+      <img 
+        class="maze-image play-pause-image"
+        src="${iconImageFolderURL + (paused ? "/play.svg" : "/pause.svg")}" 
+        alt=${paused ? "play" : "pause"}
+      />
     </button>
-    <button class="step-button" onClick="document.getElementById('${widgetId}').stepMaze()">
-      <img src="${iconImageFolderURL}/step.svg" alt="step"/>
+    <button class="step-button maze-button" onClick="document.getElementById('${widgetId}').stepMaze()">
+      <img 
+        class="maze-image step-image"
+        src="${iconImageFolderURL}/step.svg" 
+        alt="step"
+      />
     </button>
-    <button class="finish-button" onClick="document.getElementById('${widgetId}').generateMaze()">
-      <img src="${iconImageFolderURL}/finish.svg" alt="finish"/>
+    <button class="finish-button maze-button" onClick="document.getElementById('${widgetId}').generateMaze()">
+      <img 
+        class="maze-image finish-image"
+        src="${iconImageFolderURL}/finish.svg"
+        alt="finish"
+      />
     </button>
-    <button class="restart-button" onClick="document.getElementById('${widgetId}').restartMaze()">
-      <img src="${iconImageFolderURL}/restart.svg" alt="restart"/>
+    <button class="restart-button maze-button" onClick="document.getElementById('${widgetId}').restartMaze()">
+      <img
+        class="maze-image restart-image"
+        src="${iconImageFolderURL}/restart.svg"
+        alt="restart"
+      />
     </button>
   </div>
 </div>
