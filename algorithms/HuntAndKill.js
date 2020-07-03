@@ -23,6 +23,8 @@ class HuntAndKill extends Maze {
   }
 
   step() {
+    if(this.finishedGenerating) return false;
+
     //random walk
     if (!this.hunting) {
       this.visited[this.currentCell.y][this.currentCell.x] = true;

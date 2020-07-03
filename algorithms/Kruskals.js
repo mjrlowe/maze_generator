@@ -32,6 +32,8 @@ class Kruskals extends Maze {
   }
 
   step() {
+    if(this.finishedGenerating) return false;
+
     let edge = this.edges.pop();
     let cell1 = {
       x: edge.x,

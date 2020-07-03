@@ -2,6 +2,9 @@ import Maze from "../Maze.js";
 
 class BinaryTree extends Maze {
   step() {
+    if(this.finishedGenerating) return false;
+
+
     let passageDirection = this.prng.random() < 0.5 ? "S" : "E";
     if (this.currentCell.x === this.width - 1) passageDirection = "S";
     if (this.currentCell.y === this.height - 1) passageDirection = "E";
