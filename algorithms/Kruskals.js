@@ -1,4 +1,3 @@
-import DisjointSet from "../DisjointSet.js";
 import Maze from "../Maze.js";
 import {
   dx,
