@@ -35,15 +35,18 @@ export default function createWidget(settings) {
 
   widget.stepMaze = () => {
     maze.step();
+    maze.display({ canvas });
     paused = true;
   };
 
   widget.generateMaze = () => {
     maze.generate();
+    maze.display({ canvas });
   };
   
   widget.restartMaze = () => {
     maze.reset();
+    maze.display({ canvas });
   };
 
   let canvas = document.getElementById(canvasId);
