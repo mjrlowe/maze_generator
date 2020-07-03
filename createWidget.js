@@ -18,7 +18,7 @@ export default function createWidget(settings) {
   <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
     <button class="play-pause-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
-      <img src="./images/button/icons/${paused ? "play" : "pause"}.svg"/>
+      <img src="https://deno.land/x/maze_generator@wip/images/button-icons/${paused ? "play" : "pause"}.svg" alt=${paused ? "play" : "pause"}/>
     </button>
     <button class="step-button" onClick="document.getElementById('${widgetId}').stepMaze()">step</button>
     <button class="finish-button" onClick="document.getElementById('${widgetId}').generateMaze()">finish</button>
