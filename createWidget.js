@@ -12,17 +12,25 @@ export default function createWidget(settings) {
   let styleHeight = widgetHeight ?? widgetSize ?? widgetWidth ?? "auto";
   let paused = settings.paused ?? false;
 
+  const iconImageFolderURL = "https://deno.land/x/maze_generator@wip/images/button-icons";
+
   let html =
   `
   <div class="maze-widget ${maze.algorithmId}" id="${widgetId}" style="display: inline-block; text-align: center;">
   <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
     <button class="play-pause-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
-      <img src="https://deno.land/x/maze_generator@wip/images/button-icons/${paused ? "play" : "pause"}.svg" alt=${paused ? "play" : "pause"}/>
+      <img src="${iconImageFolderURL + (paused ? "/play.svg" : "/pause.svg")}" alt=${paused ? "play" : "pause"}/>
     </button>
-    <button class="step-button" onClick="document.getElementById('${widgetId}').stepMaze()">step</button>
-    <button class="finish-button" onClick="document.getElementById('${widgetId}').generateMaze()">finish</button>
-    <button class="restart-button" onClick="document.getElementById('${widgetId}').restartMaze()">restart</button>
+    <button class="step-button" onClick="document.getElementById('${widgetId}').stepMaze()">
+      <img src="${iconImageFolderURL}/step.svg" alt="step"/>
+    </button>
+    <button class="finish-button" onClick="document.getElementById('${widgetId}').generateMaze()">
+      <img src="${iconImageFolderURL}/finish.svg" alt="finish"/>
+    </button>
+    <button class="restart-button" onClick="document.getElementById('${widgetId}').restartMaze()">
+      <img src="${iconImageFolderURL}/restart.svg" alt="restart"/>
+    </button>
   </div>
 </div>
   `;
@@ -33,14 +41,14 @@ export default function createWidget(settings) {
 
   widget.playPauseMaze = () => {
     paused = !paused;
-    widget.getElementsByClassName("play-pause-button")[0].innerHTML = paused ? "play" : "pause";
+    widget.getElementsByClassName("play-pause-button")[0].innerHTML = `<img src="${iconImageFolderURL + (paused ? "/play.svg" : "/pause.svg")}" alt=${paused ? "play" : "pause"}/>`;
   };
 
   widget.stepMaze = () => {
     maze.step();
     maze.display({ canvas });
     paused = true;
-    widget.getElementsByClassName("play-pause-button")[0].innerHTML = "play";
+    widget.getElementsByClassName("play-pause-button")[0].innerHTML = `<img src="${iconImageFolderURL + (paused ? "/play.svg" : "/pause.svg")}" alt=${paused ? "play" : "pause"}/>`;
   };
 
   widget.generateMaze = () => {
