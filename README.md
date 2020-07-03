@@ -4,9 +4,9 @@
 
 ---
 
-⚠️ This is work-in-progress, and feedback is welcome.
+⚠️ This module is work-in-progress, so a much of it is unstable.
 
-Almost everything is subject to change so this is all very unstable.
+Feedback is welcome. The best way to provide feedback is to open an issue.
 
 ---
 
