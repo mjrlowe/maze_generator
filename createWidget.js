@@ -16,10 +16,10 @@ export default function createWidget(settings) {
 
   function getButtonInnerHTML(buttonName){
     if(true){
-      `<img 
+      return `<img 
         class="maze-image ${buttonName}-image"
         src="${iconImageFolderURL}/${buttonName}.svg" 
-        alt=${buttonName}
+        alt="${buttonName}"
       />`
     }else{
       return buttonName;
