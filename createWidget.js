@@ -8,16 +8,17 @@ export default function createWidget(settings) {
   let mazeId = maze.algorithmId + "-" + maze.seed;
   let styleWidth = widgetWidth ?? widgetSize ?? widgetHeight ?? "auto";
   let styleHeight = widgetHeight ?? widgetSize ?? widgetWidth ?? "auto";
+  let paused = settings.paused ?? false;
 
   let html =
   `
   <div class="maze-widget ${maze.algorithmId}" id="${mazeId}--widget" style="display: inline-block; text-align: center;">
   <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${mazeId}-canvas"></canvas>
   <div class="maze-widget-options">
-    <button class="play-pause-button">pause/play</button>
-    <button class="step-button">step</button>
-    <button class="finish-button">finish</button>
-    <button class="finish-button">restart</button>
+    <button class="play-pause-button" onClick="paused=!paused">pause/play</button>
+    <button class="step-button" onClick="paused=true; maze.step()">step</button>
+    <button class="finish-button" onClick="maze.generate()">finish</button>
+    <button class="restart-button" onClick="maze.reset()">restart</button>
   </div>
 </div>
   `;
@@ -30,8 +31,12 @@ export default function createWidget(settings) {
 
   let updateCanvas = () => {
     setTimeout(() => {
-      maze.step();
-      maze.display({ canvas });
+      if(!paused){
+        maze.step();
+        maze.display({
+          canvas
+        });
+      }
 
       updateCanvas();
     }, 100);
