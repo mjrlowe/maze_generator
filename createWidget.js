@@ -1,15 +1,12 @@
 import Maze from "./Maze.js";
 
 export default function createWidget(settings) {
-  let widgetWidth = 1000, widgetHeight = 700;
 
   let maze = Maze.create(settings);
 
   let mazeId = maze.algorithmId + "-" + maze.seed;
   let widgetId = mazeId + "-widget";
   let canvasId = mazeId + "-canvas";
-  let styleWidth = widgetWidth ?? widgetSize ?? widgetHeight ?? "auto";
-  let styleHeight = widgetHeight ?? widgetSize ?? widgetWidth ?? "auto";
   let paused = settings.paused ?? false;
 
   const iconImageFolderURL =
@@ -30,7 +27,7 @@ export default function createWidget(settings) {
 
   let html = `
   <div class="maze-widget ${maze.algorithmId}" id="${widgetId}">
-  <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-widget-canvas" id="${canvasId}"></canvas>
+  <canvas width="400" height="400" style="width:300px; height:300px" class="maze-widget-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
     <button class="play-pause-button maze-widget-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
       ${getButtonInnerHTML(paused ? "play" : "pause")}
