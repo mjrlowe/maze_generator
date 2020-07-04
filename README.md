@@ -4,7 +4,7 @@
 
 ---
 
-⚠️ This module is work-in-progress, so a much of it is unstable.
+⚠️ This module is work-in-progress, so much of it is unstable.
 
 Feedback is welcome. The best way to provide feedback is to open an issue.
 
