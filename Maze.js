@@ -19,13 +19,15 @@ class Maze {
       mazeSettings.ySize || mazeSettings.size || this.width;
     this.width = Math.min(this.width, 100);
     this.height = Math.min(this.height, 100);
-    this.entrance = this.getXYPosition(mazeSettings.entrance ?? "top left");
-    this.exit = this.getXYPosition(mazeSettings.exit ?? "bottom right");
     this.finishedGenerating = false;
     this.seed = mazeSettings.seed ?? Math.floor(Math.random() * 10e8);
-    // this.removeWallsAtEntranceAndExit = mazeSettings.removeWallsAtEntranceAndExit ?? true;
     this.algorithm = mazeSettings.algorithm;
     this.algorithmId = mazeSettings.algorithmId;
+    
+    this.entrance = this.getXYPosition(mazeSettings.entrance ?? "top left");
+    this.exit = this.getXYPosition(mazeSettings.exit ?? "bottom right");
+    this.entrance.direction = this.entrance.direction ?? this.entrance.x <= 0 ? "W" : this.entrance.x >= this.width-1 ? "E" : this.entrance.y <= 0 ? "N" : this.entrance.y >= this.width-1 ? "S" : " ";
+    this.exit.direction = this.exit.direction ?? this.exit.x <= 0 ? "W" : this.exit.x >= this.width-1 ? "E" : this.exit.y <= 0 ? "N" : this.exit.y >= this.width-1 ? "S" : " ";
 
     if (
       this.algorithmId === "sidewinder" ||

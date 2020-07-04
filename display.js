@@ -13,6 +13,7 @@ export default function display({
   showSolution = false,
   solutionColor = "#F00",
   distanceFrom = maze.start,
+  removeWallsAtEntranceAndExit = true
 }) {
   if (!canvas) {
     console.error("Tried to display maze without a canvas");
@@ -23,6 +24,23 @@ export default function display({
     distances,
     maxDistance,
   } = maze.getDistances(distanceFrom);
+
+  //remove the walls at the entrance and exit if it is set to that
+  let entranceWallBefore;
+  let exitWallBefore;
+  if(removeWallsAtEntranceAndExit){
+    //if the entrance wall is a valid direction
+    if(dx[this.entrance.direction]){
+      entranceWallBefore = maze.walls[entrance.y][entrance.x][entrance.direction]
+      maze.walls[entrance.y][entrance.x][entrance.direction] = false;
+    }
+
+    //if the exit wall is a valid direction
+    if(dx[this.exit.direction]){
+      exitWallBefore = maze.walls[exit.y][exit.x][exit.direction]
+      maze.walls[exit.y][exit.x][exit.direction] = false;
+    }
+  }
 
   let ctx = canvas.getContext("2d");
 
@@ -229,6 +247,21 @@ export default function display({
         solution[i + 1].x * cellSize,
         solution[i + 1].y * cellSize,
       );
+    }
+  }
+
+  //put the walls at the entrance and exit back if they were there before
+  let entranceWallBefore;
+  let exitWallBefore;
+  if(removeWallsAtEntranceAndExit){
+    //re-add the entrance wall if it was taken away to begin with
+    if(dx[this.entrance.direction]){
+      maze.walls[entrance.y][entrance.x][entrance.direction] = entranceWallBefore;
+    }
+
+    //re-add the exit wall if it was taken away to begin with
+    if(dx[this.exit.direction]){
+      maze.walls[exit.y][exit.x][exit.direction] = exitWallBefore;
     }
   }
 
