@@ -251,8 +251,6 @@ export default function display({
   }
 
   //put the walls at the entrance and exit back if they were there before
-  let entranceWallBefore;
-  let exitWallBefore;
   if(removeWallsAtEntranceAndExit){
     //re-add the entrance wall if it was taken away to begin with
     if(dx[this.entrance.direction]){
