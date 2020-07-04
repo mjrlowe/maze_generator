@@ -1,8 +1,18 @@
 import Maze from "./Maze.js";
 
-export default function createWidget(settings) {
+export default function createWidget(mazeSettings={}, displaySettings=mazeSettings, widgetSettings=mazeSettings) {
+  mazeSettings = {
+    size: mazeSettings.height || mazeSettings.ySize || 20,
+    ...mazeSettings
+  }
 
-  let maze = Maze.create(settings);
+  displaySettings = {
+    displayMode: 0,
+    antiAliasing: true,
+    ...displaySettings
+  }
+
+  let maze = Maze.create(mazeSettings);
 
   let mazeId = maze.algorithmId + "-" + maze.seed;
   let widgetId = mazeId + "-widget";
@@ -61,7 +71,7 @@ export default function createWidget(settings) {
     });
 
   let widget = document.getElementById(widgetId);
-  let canvas = document.getElementById(canvasId);
+  displaySettings.canvas = document.getElementById(canvasId);
 
   widget.playPauseMaze = () => {
     paused = !paused;
@@ -71,7 +81,7 @@ export default function createWidget(settings) {
 
   widget.stepMaze = () => {
     maze.step();
-    maze.display({ canvas });
+    maze.display(displaySettings);
     maze.display();
     paused = true;
     widget.getElementsByClassName("play-pause-button")[0].innerHTML =
@@ -83,7 +93,7 @@ export default function createWidget(settings) {
     widget.getElementsByClassName("play-pause-button")[0].disabled = true;
     widget.getElementsByClassName("step-button")[0].disabled = true;
     widget.getElementsByClassName("finish-button")[0].disabled = true;
-    maze.display({ canvas });
+    maze.display(displaySettings);
   };
 
   widget.restartMaze = () => {
@@ -91,18 +101,16 @@ export default function createWidget(settings) {
     widget.getElementsByClassName("play-pause-button")[0].disabled = false;
     widget.getElementsByClassName("step-button")[0].disabled = false;
     widget.getElementsByClassName("finish-button")[0].disabled = false;
-    maze.display({ canvas });
+    maze.display(displaySettings);
   };
 
-  maze.display({ canvas });
+  maze.display(displaySettings);
 
   let updateCanvas = () => {
     setTimeout(() => {
       if (!paused) {
         maze.step();
-        maze.display({
-          canvas,
-        });
+        maze.display(displaySettings);
 
         if (maze.finishedGenerating) {
           widget.getElementsByClassName("play-pause-button")[0].disabled = true;

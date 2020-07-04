@@ -14,7 +14,7 @@ class Maze {
   constructor(mazeSettings) {
     this.prng = mazeSettings.prng ?? Math;
     this.width = mazeSettings.width ||
-      mazeSettings.xSize || mazeSettings.size || mazeSettings.height || mazeSettings.xSize || 30;
+      mazeSettings.xSize || mazeSettings.size || mazeSettings.height || mazeSettings.ySize || 30;
     this.height = mazeSettings.height ||
       mazeSettings.ySize || mazeSettings.size || this.width;
     this.width = Math.min(this.width, 100);
