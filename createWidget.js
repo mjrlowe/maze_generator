@@ -95,7 +95,7 @@ export default function createWidget(settings) {
     maze.display({ canvas });
   };
 
-  let canvas = widget.getElementById(canvasId);
+  let canvas = document.getElementById(canvasId);
 
   maze.display({ canvas });
 
