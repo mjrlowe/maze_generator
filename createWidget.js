@@ -13,6 +13,7 @@ export default function createWidget(settings) {
   let paused = settings.paused ?? false;
 
   const iconImageFolderURL = "https://deno.land/x/maze_generator@wip/images/button-icons";
+  const cssFileURL = "https://deno.land/x/maze_generator@wip/widget-styles.css";
 
   function getButtonInnerHTML(buttonName){
     if(true){
@@ -52,7 +53,7 @@ export default function createWidget(settings) {
   document.body.innerHTML += html;
 
   //add css (test)
-  fetch("./widget-styles.css")
+  fetch(cssFileURL)
   .then(response => response.text())
   .then(data => {
     if(document.getElementById("maze-widget-css") !== undefined){
