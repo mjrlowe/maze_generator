@@ -12,24 +12,23 @@ export default function createWidget(settings) {
   let styleHeight = widgetHeight ?? widgetSize ?? widgetWidth ?? "auto";
   let paused = settings.paused ?? false;
 
-  const iconImageFolderURL = "https://deno.land/x/maze_generator@wip/images/button-icons";
+  const iconImageFolderURL =
+    "https://deno.land/x/maze_generator@wip/images/button-icons";
   const cssFileURL = "https://deno.land/x/maze_generator@wip/widget-styles.css";
 
-  function getButtonInnerHTML(buttonName){
-    if(true){
+  function getButtonInnerHTML(buttonName) {
+    if (true) {
       return `<img 
         class="maze-image ${buttonName}-image"
         src="${iconImageFolderURL}/${buttonName}.svg" 
         alt="${buttonName}"
-      />`
-    }else{
+      />`;
+    } else {
       return buttonName;
     }
-
   }
 
-  let html =
-  `
+  let html = `
   <div class="maze-widget ${maze.algorithmId}" id="${widgetId}">
   <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
@@ -53,24 +52,24 @@ export default function createWidget(settings) {
 
   //add css (test)
   fetch(cssFileURL)
-  .then(response => response.text())
-  .then(data => {
-    if(document.getElementById("maze-widget-css") !== undefined){
-      let styleElement = document.createElement("style");
-      styleElement.innerHTML = data;
-      styleElement.id = "maze-widget-css";
+    .then((response) => response.text())
+    .then((data) => {
+      if (document.getElementById("maze-widget-css") !== undefined) {
+        let styleElement = document.createElement("style");
+        styleElement.innerHTML = data;
+        styleElement.id = "maze-widget-css";
 
-      document.getElementsByTagName("head")[0].appendChild(styleElement);
-    }
-  })
-
+        document.getElementsByTagName("head")[0].appendChild(styleElement);
+      }
+    });
 
   let widget = document.getElementById(widgetId);
   let canvas = document.getElementById(canvasId);
 
   widget.playPauseMaze = () => {
     paused = !paused;
-    widget.getElementsByClassName("play-pause-button")[0].innerHTML = getButtonInnerHTML(paused ? "play" : "pause");
+    widget.getElementsByClassName("play-pause-button")[0].innerHTML =
+      getButtonInnerHTML(paused ? "play" : "pause");
   };
 
   widget.stepMaze = () => {
@@ -78,7 +77,8 @@ export default function createWidget(settings) {
     maze.display({ canvas });
     maze.display();
     paused = true;
-    widget.getElementsByClassName("play-pause-button")[0].innerHTML = getButtonInnerHTML("play");
+    widget.getElementsByClassName("play-pause-button")[0].innerHTML =
+      getButtonInnerHTML("play");
   };
 
   widget.generateMaze = () => {
@@ -88,7 +88,7 @@ export default function createWidget(settings) {
     widget.getElementsByClassName("finish-button")[0].disabled = true;
     maze.display({ canvas });
   };
-  
+
   widget.restartMaze = () => {
     maze.reset();
     widget.getElementsByClassName("play-pause-button")[0].disabled = false;
@@ -101,13 +101,13 @@ export default function createWidget(settings) {
 
   let updateCanvas = () => {
     setTimeout(() => {
-      if(!paused){
+      if (!paused) {
         maze.step();
         maze.display({
-          canvas
+          canvas,
         });
 
-        if(maze.finishedGenerating){
+        if (maze.finishedGenerating) {
           widget.getElementsByClassName("play-pause-button")[0].disabled = true;
           widget.getElementsByClassName("step-button")[0].disabled = true;
           widget.getElementsByClassName("finish-button")[0].disabled = true;

@@ -34,7 +34,7 @@ class ModifiedPrims extends Maze {
   }
 
   step() {
-    if(this.finishedGenerating) return false;
+    if (this.finishedGenerating) return false;
 
     //find index of cell with minimum cost
     let minCost = Infinity;
