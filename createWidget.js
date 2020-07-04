@@ -33,7 +33,7 @@ export default function createWidget(settings) {
   <div class="maze-widget ${maze.algorithmId}" id="${widgetId}">
   <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
-    <button class="play-pause-button maze-widget-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
+    <button class="play-pause-button maze-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
       ${getButtonInnerHTML(paused ? "play" : "pause")}
     </button>
     <button class="step-button maze-button" onClick="document.getElementById('${widgetId}').stepMaze()">
