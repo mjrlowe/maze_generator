@@ -1,4 +1,21 @@
-* {
-  border: red 1px !important;
-  background: aliceblue !important;
+.maze-widget{
+  display: inline-block;
+  text-align: center;
+}
+
+.maze-image {
+  width: 20px;
+}
+
+.maze-button{
+  padding: 0px;
+  margin: 0px 5px 0px 5px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.maze-button:disabled{
+  opacity: 0.4;
+  cursor: default;
 }

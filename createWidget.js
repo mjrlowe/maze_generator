@@ -21,7 +21,6 @@ export default function createWidget(settings) {
         class="maze-image ${buttonName}-image"
         src="${iconImageFolderURL}/${buttonName}.svg" 
         alt="${buttonName}"
-        style="width: 20px"
       />`
     }else{
       return buttonName;
@@ -31,7 +30,7 @@ export default function createWidget(settings) {
 
   let html =
   `
-  <div class="maze-widget ${maze.algorithmId}" id="${widgetId}" style="display: inline-block; text-align: center;">
+  <div class="maze-widget ${maze.algorithmId}" id="${widgetId}">
   <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
     <button class="play-pause-button maze-widget-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
@@ -83,26 +82,20 @@ export default function createWidget(settings) {
   widget.generateMaze = () => {
     maze.generate();
     widget.getElementsByClassName("play-pause-button")[0].disabled = true;
-    widget.getElementsByClassName("play-pause-button")[0].style.opacity = 0.4;
     widget.getElementsByClassName("step-button")[0].disabled = true;
-    widget.getElementsByClassName("step-button")[0].style.opacity = 0.4;
     widget.getElementsByClassName("finish-button")[0].disabled = true;
-    widget.getElementsByClassName("finish-button")[0].style.opacity = 0.4;
     maze.display({ canvas });
   };
   
   widget.restartMaze = () => {
     maze.reset();
     widget.getElementsByClassName("play-pause-button")[0].disabled = false;
-    widget.getElementsByClassName("play-pause-button")[0].style.opacity = 1;
     widget.getElementsByClassName("step-button")[0].disabled = false;
-    widget.getElementsByClassName("step-button")[0].style.opacity = 1;
     widget.getElementsByClassName("finish-button")[0].disabled = false;
-    widget.getElementsByClassName("finish-button")[0].style.opacity = 1;
     maze.display({ canvas });
   };
 
-  let canvas = document.getElementById(canvasId);
+  let canvas = widget.getElementById(canvasId);
 
   maze.display({ canvas });
 
