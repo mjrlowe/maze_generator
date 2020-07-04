@@ -51,6 +51,20 @@ export default function createWidget(settings) {
 
   document.body.innerHTML += html;
 
+  //add css (test)
+  fetch("./widget-styles.css")
+  .then(response => response.text())
+  .then(data => {
+    if(document.getElementById("maze-widget-css") !== undefined){
+      let styleElement = document.createElement("style");
+      styleElement.innerHTML = data;
+      styleElement.id = "maze-widget-css";
+
+      document.getElementsByTagName("head")[0].appendChild(styleElement);
+    }
+  })
+
+
   let widget = document.getElementById(widgetId);
 
   widget.playPauseMaze = () => {
