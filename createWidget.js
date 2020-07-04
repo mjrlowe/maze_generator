@@ -2,7 +2,7 @@ import Maze from "./Maze.js";
 
 export default function createWidget(mazeSettings={}, displaySettings=mazeSettings, widgetSettings=mazeSettings) {
   mazeSettings = {
-    size: mazeSettings.height || mazeSettings.ySize || 20,
+    size: mazeSettings.height || mazeSettings.ySize || 15,
     ...mazeSettings
   }
 
