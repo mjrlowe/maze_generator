@@ -19,7 +19,7 @@ export default function createWidget(settings) {
   function getButtonInnerHTML(buttonName) {
     if (true) {
       return `<img 
-        class="maze-image ${buttonName}-image"
+        class="maze-widget-image maze-widget-${buttonName}-image"
         src="${iconImageFolderURL}/${buttonName}.svg" 
         alt="${buttonName}"
       />`;
@@ -30,18 +30,18 @@ export default function createWidget(settings) {
 
   let html = `
   <div class="maze-widget ${maze.algorithmId}" id="${widgetId}">
-  <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-canvas" id="${canvasId}"></canvas>
+  <canvas width="220" height="220" style="width:${styleWidth}; height:${styleHeight}" class="maze-widget-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
-    <button class="play-pause-button maze-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
+    <button class="play-pause-button maze-widget-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
       ${getButtonInnerHTML(paused ? "play" : "pause")}
     </button>
-    <button class="step-button maze-button" onClick="document.getElementById('${widgetId}').stepMaze()">
+    <button class="step-button maze-widget-button" onClick="document.getElementById('${widgetId}').stepMaze()">
       ${getButtonInnerHTML("step")}
     </button>
-    <button class="finish-button maze-button" onClick="document.getElementById('${widgetId}').generateMaze()">
+    <button class="finish-button maze-widget-button" onClick="document.getElementById('${widgetId}').generateMaze()">
       ${getButtonInnerHTML("finish")}
     </button>
-    <button class="restart-button maze-button" onClick="document.getElementById('${widgetId}').restartMaze()">
+    <button class="restart-button maze-widget-button" onClick="document.getElementById('${widgetId}').restartMaze()">
       ${getButtonInnerHTML("restart")}
     </button>
   </div>

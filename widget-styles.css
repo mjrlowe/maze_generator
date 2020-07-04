@@ -3,11 +3,11 @@
   text-align: center;
 }
 
-.maze-image {
+.maze-widget-image {
   width: 20px;
 }
 
-.maze-button{
+.maze-widget-button{
   padding: 0px;
   margin: 0px 5px 0px 5px;
   background-color: inherit;
@@ -15,7 +15,7 @@
   cursor: pointer;
 }
 
-.maze-button:disabled{
+.maze-widget-button:disabled{
   opacity: 0.4;
   cursor: default;
 }
