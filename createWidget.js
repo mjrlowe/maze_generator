@@ -74,8 +74,10 @@ export default function createWidget(settings) {
   };
 
   widget.stepMaze = () => {
+    console.log(canvas);
     maze.step();
     maze.display({ canvas });
+    maze.display();
     paused = true;
     widget.getElementsByClassName("play-pause-button")[0].innerHTML = getButtonInnerHTML("play");
   };
