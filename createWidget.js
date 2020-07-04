@@ -61,7 +61,7 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
 
   document.body.innerHTML += html;
 
-  //add css (test)
+  //add css
   fetch(cssFileURL)
     .then((response) => response.text())
     .then((data) => {
