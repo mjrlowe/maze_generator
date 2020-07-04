@@ -66,6 +66,7 @@ export default function createWidget(settings) {
 
 
   let widget = document.getElementById(widgetId);
+  console.log(widget, document.getElementById(canvasId))
   let canvas = widget.getElementById(canvasId);
 
   widget.playPauseMaze = () => {
