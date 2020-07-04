@@ -1,3 +1,5 @@
+import {directions} from "./directions.js"
+
 export default function display({
   maze,
   canvas = document.getElementsByTagName("canvas")[0],
@@ -30,13 +32,13 @@ export default function display({
   let exitWallBefore;
   if(removeWallsAtEntranceAndExit){
     //if the entrance wall is a valid direction
-    if(dx[this.entrance.direction]){
+    if(directions.indexOf(this.entrance.direction) !== -1){
       entranceWallBefore = maze.walls[entrance.y][entrance.x][entrance.direction]
       maze.walls[entrance.y][entrance.x][entrance.direction] = false;
     }
 
     //if the exit wall is a valid direction
-    if(dx[this.exit.direction]){
+    if(directions.indexOf(this.exit.direction) !== -1){
       exitWallBefore = maze.walls[exit.y][exit.x][exit.direction]
       maze.walls[exit.y][exit.x][exit.direction] = false;
     }
@@ -253,12 +255,12 @@ export default function display({
   //put the walls at the entrance and exit back if they were there before
   if(removeWallsAtEntranceAndExit){
     //re-add the entrance wall if it was taken away to begin with
-    if(dx[this.entrance.direction]){
+    if(directions.indexOf(this.entrance.direction) !== -1){
       maze.walls[entrance.y][entrance.x][entrance.direction] = entranceWallBefore;
     }
 
     //re-add the exit wall if it was taken away to begin with
-    if(dx[this.exit.direction]){
+    if(directions.indexOf(this.exit.direction) !== -1){
       maze.walls[exit.y][exit.x][exit.direction] = exitWallBefore;
     }
   }
