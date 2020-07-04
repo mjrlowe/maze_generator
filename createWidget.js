@@ -12,12 +12,16 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
     ...displaySettings
   }
 
+  widgetSettings = {
+    paused: false,
+    ...widgetSettings
+  }
+
   let maze = Maze.create(mazeSettings);
 
   let mazeId = maze.algorithmId + "-" + maze.seed;
   let widgetId = mazeId + "-widget";
   let canvasId = mazeId + "-canvas";
-  let paused = settings.paused ?? false;
 
   const iconImageFolderURL =
     "https://deno.land/x/maze_generator@wip/images/button-icons";
@@ -40,7 +44,7 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
   <canvas width="400" height="400" style="width:300px; height:300px" class="maze-widget-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
     <button class="play-pause-button maze-widget-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
-      ${getButtonInnerHTML(paused ? "play" : "pause")}
+      ${getButtonInnerHTML(widgetSettings.paused ? "play" : "pause")}
     </button>
     <button class="step-button maze-widget-button" onClick="document.getElementById('${widgetId}').stepMaze()">
       ${getButtonInnerHTML("step")}
@@ -74,16 +78,16 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
   displaySettings.canvas = document.getElementById(canvasId);
 
   widget.playPauseMaze = () => {
-    paused = !paused;
+    widgetSettings.paused = !widgetSettings.paused;
     widget.getElementsByClassName("play-pause-button")[0].innerHTML =
-      getButtonInnerHTML(paused ? "play" : "pause");
+      getButtonInnerHTML(widgetSettings.paused ? "play" : "pause");
   };
 
   widget.stepMaze = () => {
     maze.step();
     maze.display(displaySettings);
     maze.display();
-    paused = true;
+    widgetSettings.paused = true;
     widget.getElementsByClassName("play-pause-button")[0].innerHTML =
       getButtonInnerHTML("play");
   };
@@ -108,7 +112,7 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
 
   let updateCanvas = () => {
     setTimeout(() => {
-      if (!paused) {
+      if (!widgetSettings.paused) {
         maze.step();
         maze.display(displaySettings);
 
