@@ -66,6 +66,7 @@ export default function createWidget(settings) {
 
 
   let widget = document.getElementById(widgetId);
+  let canvas = widget.getElementById(canvasId);
 
   widget.playPauseMaze = () => {
     paused = !paused;
@@ -94,8 +95,6 @@ export default function createWidget(settings) {
     widget.getElementsByClassName("finish-button")[0].disabled = false;
     maze.display({ canvas });
   };
-
-  let canvas = document.getElementById(canvasId);
 
   maze.display({ canvas });
 
