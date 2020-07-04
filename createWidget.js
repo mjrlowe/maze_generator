@@ -66,7 +66,6 @@ export default function createWidget(settings) {
 
 
   let widget = document.getElementById(widgetId);
-  console.log(widget, document.getElementById(canvasId))
   let canvas = document.getElementById(canvasId);
 
   widget.playPauseMaze = () => {
@@ -75,7 +74,6 @@ export default function createWidget(settings) {
   };
 
   widget.stepMaze = () => {
-    console.log(canvas);
     maze.step();
     maze.display({ canvas });
     maze.display();
