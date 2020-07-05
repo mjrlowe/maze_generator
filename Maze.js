@@ -26,8 +26,10 @@ class Maze {
     
 
     console.log("00:", mazeSettings)
-    
+
     this.entrance = this.getXYPosition(mazeSettings.entrance ?? "top left");
+
+    console.log("gndkj:", mazeSettings.exit ?? "bottom right", this.getXYPosition("bottom right"))
     this.exit = this.getXYPosition(mazeSettings.exit ?? "bottom right");
     console.log("a:", this)
 
