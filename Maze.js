@@ -105,6 +105,12 @@ class Maze {
     if (this.resetVariables) this.resetVariables();
   }
 
+  step() {
+    if(this.finishedGenerating) return false;
+    this.takeStep();
+    return !this.finishedGenerating;
+  }
+
   generate() {
     let timerName = `Generating ${this.algorithm} maze in`;
     console.time(timerName);

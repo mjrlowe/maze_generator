@@ -47,7 +47,6 @@ class Sidewinder extends Maze {
       this.finishedGenerating = true;
     }
 
-    return !this.finishedGenerating;
   }
 }
 

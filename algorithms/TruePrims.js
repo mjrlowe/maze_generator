@@ -87,7 +87,6 @@ export default class TruePrims extends Maze {
   }
 
   takeStep() {
-    if (this.finishedGenerating) return false;
 
     switch (this.state) {
       case this.START:
@@ -100,6 +99,5 @@ export default class TruePrims extends Maze {
         console.error(`State ${this.state} is not valid.`);
     }
 
-    return !this.finishedGenerating;
   }
 }

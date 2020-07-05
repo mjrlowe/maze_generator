@@ -28,7 +28,6 @@ class SimplifiedPrims extends Maze {
   }
 
   takeStep() {
-    if (this.finishedGenerating) return;
 
     let cellIndex = Math.floor(this.prng.random() * this.activeCells.length);
     let cell = this.activeCells[cellIndex];

@@ -34,7 +34,6 @@ class ModifiedPrims extends Maze {
   }
 
   takeStep() {
-    if (this.finishedGenerating) return false;
 
     //find index of cell with minimum cost
     let minCost = Infinity;
@@ -82,7 +81,6 @@ class ModifiedPrims extends Maze {
 
     if (this.activeCells.length === 0) this.finishedGenerating = true;
 
-    return !this.finishedGenerating;
   }
 }
 

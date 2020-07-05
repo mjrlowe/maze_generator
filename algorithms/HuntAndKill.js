@@ -23,7 +23,6 @@ class HuntAndKill extends Maze {
   }
 
   takeStep() {
-    if (this.finishedGenerating) return false;
 
     //random walk
     if (!this.hunting) {
@@ -151,7 +150,6 @@ class HuntAndKill extends Maze {
       }
     }
 
-    return !this.finishedGenerating;
   }
 }
 

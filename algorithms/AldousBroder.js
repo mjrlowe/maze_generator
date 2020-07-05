@@ -25,7 +25,6 @@ class AldousBroder extends Maze {
 
   //called every time the maze needs to be updated
   takeStep() {
-    if (this.finishedGenerating) return false;
 
     let possibleDirections = [];
     if (this.currentCell.y !== 0) possibleDirections.push("N");
@@ -56,7 +55,6 @@ class AldousBroder extends Maze {
       this.finishedGenerating = true;
     }
 
-    return !this.finishedGenerating;
   }
 }
 

@@ -146,7 +146,6 @@ class Wilsons extends Maze {
 
     if (this.remaining === 0) this.finishedGenerating = true;
 
-    return !this.finishedGenerating;
   }
 
   eraseLoopFrom(x, y) {

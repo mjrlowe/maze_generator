@@ -25,8 +25,6 @@ class RecursiveBacktracker extends Maze {
   }
 
   takeStep() {
-    if (this.finishedGenerating) return false;
-
     let unvisitedNeighbors = [];
 
     for (let direction of directions) {
@@ -64,8 +62,6 @@ class RecursiveBacktracker extends Maze {
     if (this.stack.length === 0) {
       this.finishedGenerating = true;
     }
-
-    return !this.finishedGenerating;
   }
 }
 

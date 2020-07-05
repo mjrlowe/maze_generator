@@ -75,15 +75,13 @@ class Eller extends Maze {
   }
 
   takeStep() {
-    if (this.finishedGenerating) return false;
-
+    
     if (this.mode === this.HORIZONTAL) {
       this.horizontalStep();
     } else {
       this.verticalStep();
     }
 
-    return !this.finishedGenerating;
   }
 }
 
