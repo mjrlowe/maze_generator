@@ -37,7 +37,7 @@ class Maze {
     this.entrance.direction = this.entrance.direction ?? this.entrance.x <= 0 ? "W" : this.entrance.x >= this.width-1 ? "E" : this.entrance.y <= 0 ? "N" : this.entrance.y >= this.width-1 ? "S" : " ";
     this.exit.direction = this.exit.direction ?? this.exit.x <= 0 ? "W" : this.exit.x >= this.width-1 ? "E" : this.exit.y <= 0 ? "N" : this.exit.y >= this.width-1 ? "S" : " ";
 
-    console.log("b:", this)
+    console.log("b:", this, this.exit)
 
     if (
       this.algorithmId === "sidewinder" ||
