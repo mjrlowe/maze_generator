@@ -22,7 +22,7 @@ class HuntAndKill extends Maze {
     }
   }
 
-  step() {
+  takeStep() {
     if (this.finishedGenerating) return false;
 
     //random walk

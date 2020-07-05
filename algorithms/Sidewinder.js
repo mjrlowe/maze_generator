@@ -10,7 +10,7 @@ class Sidewinder extends Maze {
     this.runSet = [];
   }
 
-  step() {
+  takeStep() {
     let carveEast = this.prng.random() < 0.5;
 
     if (this.currentCell.y === 0) carveEast = true;

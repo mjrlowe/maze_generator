@@ -86,7 +86,7 @@ export default class TruePrims extends Maze {
     if (this.frontierCells.length === 0) this.finishedGenerating = true;
   }
 
-  step() {
+  takeStep() {
     if (this.finishedGenerating) return false;
 
     switch (this.state) {

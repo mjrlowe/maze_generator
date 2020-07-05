@@ -1,7 +1,7 @@
 import Maze from "../Maze.js";
 
 class BinaryTree extends Maze {
-  step() {
+  takeStep() {
     if (this.finishedGenerating) return false;
 
     let passageDirection = this.prng.random() < 0.5 ? "S" : "E";

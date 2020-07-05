@@ -122,7 +122,7 @@ class Wilsons extends Maze {
     return !this.finishedGenerating;
   }
 
-  step() {
+  takeStep() {
     console.log(this.state);
     switch (this.state) {
       case 0:

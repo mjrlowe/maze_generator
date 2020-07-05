@@ -31,7 +31,7 @@ class Kruskals extends Maze {
     this.edges = this.prng.shuffle(this.edges);
   }
 
-  step() {
+  takeStep() {
     if (this.finishedGenerating) return false;
 
     let edge = this.edges.pop();

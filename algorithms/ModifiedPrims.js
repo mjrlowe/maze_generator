@@ -33,7 +33,7 @@ class ModifiedPrims extends Maze {
     this.visited[startCell.y][startCell.x] = true;
   }
 
-  step() {
+  takeStep() {
     if (this.finishedGenerating) return false;
 
     //find index of cell with minimum cost

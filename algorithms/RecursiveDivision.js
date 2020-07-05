@@ -37,7 +37,7 @@ class RecursiveDivision extends Maze {
     }
   }
 
-  step() {
+  takeStep() {
     if (this.finishedGenerating) return false;
 
     switch (this.state) {

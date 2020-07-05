@@ -24,7 +24,7 @@ class RecursiveBacktracker extends Maze {
     this.currentCell = startCell;
   }
 
-  step() {
+  takeStep() {
     if (this.finishedGenerating) return false;
 
     let unvisitedNeighbors = [];
