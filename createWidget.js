@@ -18,8 +18,6 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
     ...widgetSettings
   }
 
-  console.log(document);
-
   let maze = Maze.create(mazeSettings);
 
   let mazeId = maze.algorithmId + "-" + maze.seed;
