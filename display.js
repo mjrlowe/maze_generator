@@ -39,7 +39,7 @@ export default function display({
 
     //if the exit wall is a valid direction
     if(directions.indexOf(maze.exit.direction) !== -1){
-      exitWallBefore = maze.walls[maze.exit.y][maze.exit.x][exit.direction]
+      exitWallBefore = maze.walls[maze.exit.y][maze.exit.x][maze.exit.direction]
       maze.walls[maze.exit.y][maze.exit.x][maze.exit.direction] = false;
     }
   }
