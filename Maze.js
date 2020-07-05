@@ -24,20 +24,12 @@ class Maze {
     this.algorithm = mazeSettings.algorithm;
     this.algorithmId = mazeSettings.algorithmId;
     
-
-    console.log("00:", mazeSettings)
-
     this.entrance = this.getXYPosition(mazeSettings.entrance ?? "top left");
 
-    console.log("gndkj:", mazeSettings.exit ?? "bottom right", this.getXYPosition("bottom right"),  this.getXYPosition(mazeSettings.exit ?? "bottom right"))
-    let y = this.getXYPosition(mazeSettings.exit ?? "bottom right");
     this.exit = this.getXYPosition(mazeSettings.exit ?? "bottom right");
-    console.log("a:", this.exit, y, this)
 
-    this.entrance.direction = this.entrance.direction ?? this.entrance.x <= 0 ? "W" : this.entrance.x >= this.width-1 ? "E" : this.entrance.y <= 0 ? "N" : this.entrance.y >= this.width-1 ? "S" : " ";
-    this.exit.direction = this.exit.direction ?? this.exit.x <= 0 ? "W" : this.exit.x >= this.width-1 ? "E" : this.exit.y <= 0 ? "N" : this.exit.y >= this.width-1 ? "S" : " ";
-
-    console.log("b:", this, this.exit)
+    this.entrance.direction = this.entrance.direction ?? (this.entrance.x <= 0 ? "W" : this.entrance.x >= this.width-1 ? "E" : this.entrance.y <= 0 ? "N" : this.entrance.y >= this.width-1 ? "S" : " ");
+    this.exit.direction = this.exit.direction ?? (this.exit.x <= 0 ? "W" : this.exit.x >= this.width-1 ? "E" : this.exit.y <= 0 ? "N" : this.exit.y >= this.width-1 ? "S" : " ");
 
     if (
       this.algorithmId === "sidewinder" ||
