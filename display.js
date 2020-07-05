@@ -22,8 +22,6 @@ export default function display({
     return false;
   }
 
-  console.log(document);
-
   let {
     distances,
     maxDistance,

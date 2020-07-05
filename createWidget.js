@@ -14,8 +14,11 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
 
   widgetSettings = {
     paused: false,
+    containerElement: document.body,
     ...widgetSettings
   }
+
+  console.log(document);
 
   let maze = Maze.create(mazeSettings);
 
