@@ -1,5 +1,10 @@
 import Maze from "./Maze.js";
 
+//Node doesn't have a fetch function so we need to fix that
+if (typeof window === 'undefined'){
+  globalThis.fetch = globalThis.fetch ?? require('node-fetch');
+}
+
 export default function createWidget(mazeSettings={}, displaySettings=mazeSettings, widgetSettings=mazeSettings) {
   mazeSettings = {
     size: mazeSettings.height || mazeSettings.ySize || 15,
