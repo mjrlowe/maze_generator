@@ -13,7 +13,7 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
 
   displaySettings = {
     displayMode: 0,
-    antiAliasing: true,
+    antiAliasing: false,
     ...displaySettings
   }
 
@@ -92,7 +92,6 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
   widget.stepMaze = () => {
     maze.step();
     maze.display(displaySettings);
-    maze.display();
     widgetSettings.paused = true;
     widget.getElementsByClassName("play-pause-button")[0].innerHTML =
       getButtonInnerHTML("play");
