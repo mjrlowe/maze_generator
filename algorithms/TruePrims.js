@@ -80,7 +80,7 @@ export default class TruePrims extends Maze {
       cellNeighbors[Math.floor(this.prng.random() * cellNeighbors.length)];
 
     this.removeWall(cell, direction);
-
+    console.log(cell, this.frontierCells)
     this.markCell(cell);
 
     if (this.frontierCells.length === 0) this.finishedGenerating = true;
