@@ -26,8 +26,8 @@ class Wilsons extends Maze {
     return Boolean(this.visits[`${x}:${y}`]);
   }
 
-  addVisit(x, y, dir) {
-    this.visits[`${x}:${y}`] = dir ? dir : "S";
+  addVisit(x, y, dir = "S") {
+    this.visits[`${x}:${y}`] = dir;
     this.visited[y][x]++;
   }
 
