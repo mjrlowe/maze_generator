@@ -24,10 +24,10 @@ export default class TruePrims extends Maze {
   }
 
   isInside(cell) {
-    return this.cellIsInMaze(cell) && this.isSet(cell, this.IN);
+    return this.cellIsInMaze(cell) && maze.walls[cell.y][cell.x][this.IN];
   }
   isFrontier(cell) {
-    return this.cellIsInMaze(cell) && this.isSet(cell, this.FRONTIER);
+    return this.cellIsInMaze(cell) && maze.walls[cell.y][cell.x][this.FRONTIER];
   }
 
   addFrontier(cell) {
