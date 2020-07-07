@@ -20,7 +20,7 @@ export default class TruePrims extends Maze {
   }
 
   isOutside(cell) {
-    return this.cellIsInMaze(cell) && !this.visited[cell.y][cell.x];
+    return this.cellIsInMaze(cell) && !this.visited?.[cell.y]?.[cell.x];
   }
 
   isInside(cell) {
