@@ -38,6 +38,7 @@ export default class TruePrims extends Maze {
   }
 
   markCell(cell) {
+    console.log(this, cell)
     this.visited[cell.y][cell.x]++;
     this.removeWall(cell, this.IN);
     this.addWall(cell, this.FRONTIER);
