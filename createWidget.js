@@ -19,7 +19,7 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
 
   widgetSettings = {
     paused: false,
-    containerElement: document.getElementById("maze-widget-container") ?? document.body,
+    containerElement: document.getElementById("maze-widget-container") ?? document?.getElementsByClassName("maze-widget-container")[0] ?? document.body,
     ...widgetSettings
   }
 
