@@ -56,7 +56,6 @@ class Wilsons extends Maze {
         break;
       }
     }
-    console.log(i);
   }
 
   walkStep() {
@@ -65,6 +64,8 @@ class Wilsons extends Maze {
       let ny = this.y + dy[direction];
 
       if (this.cellIsInMaze({ x: nx, y: ny })) {
+        console.log(67, this)
+
         let x = this.x;
         let y = this.y;
         this.x = nx;
@@ -123,7 +124,6 @@ class Wilsons extends Maze {
   }
 
   takeStep() {
-    console.log(this.state);
     switch (this.state) {
       case 0:
         this.startStep();
