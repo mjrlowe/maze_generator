@@ -56,6 +56,8 @@ class Wilsons extends Maze {
         break;
       }
     }
+
+    console.log("i", i, this)
   }
 
   walkStep() {
