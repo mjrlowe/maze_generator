@@ -46,7 +46,7 @@ class Wilsons extends Maze {
     while (i++ < 10000) {
       this.x = Math.floor(this.prng.random() * this.width);
       this.y = Math.floor(this.prng.random() * this.height);
-      console.log("p", this, this.prng.random(), this.x, Math.floor(this.prng.random() * this.height))
+      console.log("oo", this, this.x, this.y, isNaN(this.x), isNaN(this.y));
       if (!this.visited[this.y][this.x]) {
         this.state = 2;
         this.start = {
