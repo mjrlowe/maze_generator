@@ -67,7 +67,7 @@ class Wilsons extends Maze {
       let ny = this.y + dy[direction];
 
       if (this.cellIsInMaze({ x: nx, y: ny })) {
-        console.log(67, this)
+        console.log(67, nx, ny, JSON.stringify(this))
 
         let x = this.x;
         let y = this.y;
