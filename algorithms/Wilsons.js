@@ -103,7 +103,7 @@ class Wilsons extends Maze {
       let nx = this.x + dx[dir];
       let ny = this.y + dy[dir];
 
-      console.log("🏃‍♀️", JSON.stringify(this));
+      console.log("🏃‍♀️", nx, ny, dir, JSON.stringify(this));
 
       if (this.cellIsInMaze({x: nx, y: ny}) && !this.visited[ny][nx]) {
         this.resetVisits();
