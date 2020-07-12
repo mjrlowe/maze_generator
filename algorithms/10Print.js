@@ -24,7 +24,7 @@ class TenPrint extends Maze {
     this.currentCell.x += 2;
     if (this.currentCell.x >= this.width) {
       this.currentCell.y++;
-      this.currentCell.x = y % 2;
+      this.currentCell.x = this.currentCell.y % 2;
       if (this.currentCell.y >= this.height) this.finishedGenerating = true;
     }
 
