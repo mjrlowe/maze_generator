@@ -14,6 +14,7 @@ import Wilsons from "./algorithms/Wilsons.js";
 import TruePrims from "./algorithms/TruePrims.js";
 import display from "./display.js";
 import createWidget from "./createWidget.js";
+import TenPrint from "./algorithms/10Print.js";
 
 Maze.createWidget = createWidget;
 
@@ -29,7 +30,8 @@ Maze.algorithms = {
   sidewinder: Sidewinder,
   binarytree: BinaryTree,
   trueprims: TruePrims,
-  wilsons: Wilsons
+  wilsons: Wilsons,
+  tenprint: TenPrint
 };
 
 export { default as analyze } from "./analyze.js";
