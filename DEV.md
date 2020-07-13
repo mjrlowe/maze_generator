@@ -23,13 +23,13 @@ E.g:
   "./mod.js",
   "./folder-name/*",
   "./another-folder/**/*",
-  ]
+  ],
 ```
 
 ### Update whether the new release is stable or not in `egg.json`
 
 E.g:  
 
-\[...]
-`"stable": false,`
-\[...]
+```json
+"stable": false,
+```
