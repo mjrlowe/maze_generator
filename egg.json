@@ -8,6 +8,23 @@
   "fmt": true,
   "repository": "https://github.com/thewizardbear/maze_generator",
   "files": [
-      "*"
+      "./algorithms/*",
+      "./examples/*",
+      "./images/**/*",
+      "./.gitignore.js",
+      "./analyze.js",
+      "./createWidget.js",
+      "./DEV.md",
+      "./directions.js",
+      "./display.js",
+      "./egg.json",
+      "./LICENSE",
+      "./Maze.js",
+      "./mod.js",
+      "./package.json",
+      "./print.js",
+      "./README.md",
+      "./solve.js",
+      "./widget-styles.css"
   ]
 }
