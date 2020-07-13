@@ -30,8 +30,8 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
   let canvasId = mazeId + "-canvas";
 
   const iconImageFolderURL =
-    "https://deno.land/x/maze_generator@wip/images/button-icons";
-  const cssFileURL = "https://deno.land/x/maze_generator@wip/widget-styles.css";
+    "https://deno.land/x/maze_generator@0.1.0-alpha.0/images/button-icons";
+  const cssFileURL = "https://deno.land/x/maze_generator@0.1.0-alpha.0/widget-styles.css";
 
   function getButtonInnerHTML(buttonName) {
     if (true) {

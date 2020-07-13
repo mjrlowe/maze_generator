@@ -1,4 +1,4 @@
-import { Maze } from "https://deno.land/x/maze_generator/mod.js";
+import { Maze } from "https://x.nest.land/maze_generator@0.1.0-alpha.0/mod.js";
 
 // 12x12 maze using Eller's algorithm
 let mazeSettings = {
