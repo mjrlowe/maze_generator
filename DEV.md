@@ -26,7 +26,7 @@ E.g:
   ]
 ```
 
-## Update whether the new release is stable or not in `egg.json`
+### Update whether the new release is stable or not in `egg.json`
 
 E.g:  
 
