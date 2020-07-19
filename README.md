@@ -100,7 +100,7 @@ kruskalMaze.display({
 })
 ```
 
-This would display a maze like this:
+This will display a maze similar to this:
 
 ![Kruskal's maze](images/Kruskals-20x20.png)
 
