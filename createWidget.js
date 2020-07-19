@@ -35,7 +35,7 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
   const cssFileURL = "https://x.nest.land/maze_generator@0.1.0-alpha.0/widget-styles.css";
 
   function getButtonInnerHTML(buttonName) {
-    if (imageButtons) {
+    if (settings.imageButtons) {
       return `<img 
         class="maze-widget-image maze-widget-${buttonName}-image"
         src="${iconImageFolderURL}/${buttonName}.svg" 
