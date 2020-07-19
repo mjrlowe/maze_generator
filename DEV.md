@@ -33,3 +33,7 @@ E.g:
 ```json
 "stable": false,
 ```
+
+## After a Release
+
+### Create Github release and document all changes
