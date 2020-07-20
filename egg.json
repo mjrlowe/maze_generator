@@ -22,7 +22,6 @@
       "./LICENSE",
       "./Maze.js",
       "./mod.js",
-      "./package.json",
       "./print.js",
       "./README.md",
       "./solve.js",
