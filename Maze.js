@@ -17,8 +17,6 @@ class Maze {
       mazeSettings.xSize || mazeSettings.size || mazeSettings.height || mazeSettings.ySize || 30;
     this.height = mazeSettings.height ||
       mazeSettings.ySize || mazeSettings.size || this.width;
-    this.width = Math.min(this.width, 100);
-    this.height = Math.min(this.height, 100);
     this.finishedGenerating = false;
     this.seed = mazeSettings.seed ?? Math.floor(Math.random() * 10e8);
     this.algorithm = mazeSettings.algorithm;
