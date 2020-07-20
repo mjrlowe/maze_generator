@@ -112,23 +112,20 @@ class Maze {
   }
 
   generate() {
-    let timerName = `Generating ${this.algorithm} maze in`;
-    console.time(timerName);
+    let timerName = `Generating ${this.algorithm ?? ""} maze in`;
+    // console.time(timerName);
 
     let i = 0;
     while (!this.finishedGenerating && ++i < 1000000) {
       this.step();
     }
 
-    console.timeEnd(timerName);
-    if (this.finishedGenerating) {
-      console.log(`%cMaze completed in ${i} steps`, `color: #1094B3`);
-    } else {
-      console.log(
-        `%cMaze not completed, gave up after ${i} steps`,
-        `color: #F3220D`,
-      );
-    }
+    // console.timeEnd(timerName);
+    // if (this.finishedGenerating) {
+    //   console.log(`%cMaze completed in ${i} steps`);
+    // } else {
+    //   console.log(`%cMaze not completed, gave up after ${i} steps`);
+    // }
 
     return this;
   }
