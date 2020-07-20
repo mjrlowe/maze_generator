@@ -11,7 +11,7 @@
       "./algorithms/*",
       "./examples/*",
       "./images/**/*",
-      "./.gitignore.js",
+      "./.gitignore",
       "./analyze.js",
       "./createWidget.js",
       "./DEV.md",
