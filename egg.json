@@ -17,6 +17,7 @@
       "./DEV.md",
       "./directions.js",
       "./display.js",
+      "./distances.js",
       "./egg.json",
       "./LICENSE",
       "./Maze.js",
