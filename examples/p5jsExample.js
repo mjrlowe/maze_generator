@@ -26,7 +26,7 @@ let moduleLoaded = false;
 let maze; //the maze we will generate and display
 
 function preload() {
-  import("https://x.nest.land/maze_generator@0.1.0-alpha.0/mod.js")
+  import("https://x.nest.land/maze_generator@0.1.0-alpha.1/mod.js")
     .then((module) => {
       moduleLoaded = true;
 

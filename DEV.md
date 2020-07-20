@@ -45,17 +45,17 @@ E.g:
 This should be in the following format:
 
 ```shell
-git tag -a v0.1.0-aplha.0 -m "Version 0.1.0 alpha 0"
+git tag -a v0.0.8 -m "Version 0.0.8"
 ```
 
 (Note the `v` before the version number)
 
 ### 3. Push the release to the Github repository
 
-E.g. for release 0.1.0-alpha.0 you would do:
+E.g. for release 0.1.0-alpha.1 you would do:
 
 ```shell
-git push origin v0.1.0-alpha.0
+git push origin v0.1.0-alpha.1
 ```
 
 ### 4. Publish to nest.land

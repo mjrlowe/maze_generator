@@ -15,7 +15,7 @@ This module is heavily influenced by [Jamis Buck's Coffeescript mazes](https://g
 ## Example Usage
 
 ```javascript
-import {Maze} from "https://x.nest.land/maze_generator@0.1.0-alpha.0/mod.js"
+import {Maze} from "https://x.nest.land/maze_generator@0.1.0-alpha.1/mod.js"
 
 let mazeSettings = {
   width: 12,
