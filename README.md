@@ -2,6 +2,8 @@
 
 **maze\_generator** is a module for easily generating mazes.
 
+![rainbow maze on black background (image)](images/darkBackground-oneLine-recursiveBacktracker-20x20.png)
+
 ---
 
 ⚠️ This module is work-in-progress, so much of it is unstable.
