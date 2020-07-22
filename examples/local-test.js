@@ -4,7 +4,7 @@ import { Maze } from "../mod.js";
 let mazeSettings = {
   width: 12,
   height: 12,
-  algorithm: "ten print",
+  algorithm: "true prims",
 };
 
 //initialize the maze
