@@ -11,7 +11,7 @@ let mazeSettings = {
 let m = Maze.create(mazeSettings);
 
 //generate it
-m.step();
+m.generate();
 
 //print it to the console
 m.printString();
