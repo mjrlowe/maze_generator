@@ -1,102 +1,92 @@
 import Maze from "../Maze.js";
+import {
+  dx,
+  dy,
+  directions,
+  opposite
+} from "../directions.js";
 
-export default class TruePrims extends Maze {
+class TruePrims extends Maze {
   resetVariables() {
-    this.IN = "W";
-    this.FRONTIER = "E";
-    this.START = 1;
-    this.EXPAND = 2;
-    this.DONE = 3;
-    this.frontierCells = [];
-    this.state = this.START;
-
     this.visited = [];
+    this.costs = [];
     for (let y = 0; y < this.height; y++) {
       this.visited[y] = [];
+      this.costs[y] = [];
       for (let x = 0; x < this.width; x++) {
-        this.visited[y][x] = 0;
+        //mark every cell as unvisited
+        this.visited[y][x] = false;
+
+        this.costs[y][x] = {};
+        for (let direction of directions) {
+          let isBorderWall = !this.cellIsInMaze({
+            x: x + dx[direction],
+            y: y + dy[direction]
+          });
+
+          let passageCost = isBorderWall ? Infinity : this.prng.random();
+
+          if((direction === "N" || direction === "W") && !isBorderWall){
+            passageCost == this.costs[y+dy[direction]][x+dx[direction]][opposite[direction]];
+          }
+
+          this.costs[y][x][direction] = passageCost;
+        }
       }
     }
-  }
+    this.totalVisted = 0;
 
-  isOutside(cell) {
-    return this.cellIsInMaze(cell) && !this.visited?.[cell.y]?.[cell.x];
-  }
+    this.activePassages = [];
 
-  isInside(cell) {
-    return this.cellIsInMaze(cell) && maze.walls[cell.y][cell.x][this.IN];
-  }
-  isFrontier(cell) {
-    return this.cellIsInMaze(cell) && maze.walls[cell.y][cell.x][this.FRONTIER];
-  }
-
-  addFrontier(cell) {
-    if (this.isOutside(cell)) {
-      this.frontierCells.push(cell);
-      this.removeWall(cell, this.FRONTIER);
+    let startCell = {
+      x: this.start.x,
+      y: this.start.y,
+    };
+    
+    for(let direction of directions){
+      this.activePassages.push({x: startCell.x, y: startCell.y, direction});
     }
-  }
 
-  markCell(cell) {
-    this.visited[cell.y][cell.x]++;
-    this.removeWall(cell, this.IN);
-    this.addWall(cell, this.FRONTIER);
-
-    let { x, y } = cell;
-
-    this.addFrontier({ x: x - 1, y });
-    this.addFrontier({ x: x + 1, y });
-    this.addFrontier({ x, y: y - 1 });
-    this.addFrontier({ x, y: y + 1 });
-  }
-
-  findNeighborsOf(cell) {
-    let neighbors = [];
-
-    if (this.isInside({ x: cell.x - 1, y: cell.y })) neighbors.push("W");
-    if (this.isInside({ x: cell.x + 1, y: cell.y })) neighbors.push("E");
-    if (this.isInside({ x: cell.x, y: cell.y - 1 })) neighbors.push("N");
-    if (this.isInside({ x: cell.x, y: cell.y + 1 })) neighbors.push("S");
-
-    return neighbors;
-  }
-
-  startStep() {
-    this.markCell({
-      x: Math.floor(this.prng.random() * this.width),
-      y: Math.floor(this.prng.random() * this.height),
-    });
-    this.state = this.EXPAND;
-  }
-
-  expandStep() {
-    let cell = this.frontierCells.splice(
-      Math.floor(this.prng.random() * this.frontierCells),
-      1,
-    )[0];
-
-    let cellNeighbors = this.findNeighborsOf(cell);
-    let direction =
-      cellNeighbors[Math.floor(this.prng.random() * cellNeighbors.length)];
-
-    this.removeWall(cell, direction);
-    this.markCell(cell);
-
-    if (this.frontierCells.length === 0) this.finishedGenerating = true;
+    this.visited[startCell.y][startCell.x] = true;
   }
 
   takeStep() {
 
-    switch (this.state) {
-      case this.START:
-        this.startStep();
-        break;
-      case this.EXPAND:
-        this.expandStep();
-        break;
-      default:
-        console.error(`State ${this.state} is not valid.`);
+    //find index of cell with minimum cost
+    let minCost = Infinity;
+    let passageIndex = 0;
+    this.activePassages.forEach((passage, index) => {
+      if (this.costs[passage.y][passage.x][passage.direction] < minCost) {
+        minCost = this.costs[passage.y][passage.x][passage.direction];
+        passageIndex = index;
+      }
+    });
+
+    let passage = this.activePassages[passageIndex];
+
+    let newCell = {
+      x: passage.x + dx[passage.direction],
+      y: passage.y + dy[passage.direction],
+    };
+ 
+
+    if (this.cellIsInMaze(newCell) && !this.visited[newCell.y][newCell.x] > 0) {
+   
+      this.removeWall({x: passage.x, y: passage.y}, passage.direction);
+      this.visited[newCell.y][newCell.x] = true;
+      this.totalVisted++;
+
+      for(let direction of directions){
+        if(direction !== opposite[passage.direction]) this.activePassages.push({x: newCell.x, y: newCell.y, direction});
+      }
+
+    } else {
+      this.activePassages.splice(passageIndex, 1);
     }
+
+    if (this.activePassages.length === 0 || minCost === Infinity) this.finishedGenerating = true;
 
   }
 }
+
+export default TruePrims;
