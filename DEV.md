@@ -36,6 +36,8 @@ E.g:
 "stable": false,
 ```
 
+### Format all files with `deno fmt`
+
 ## On release
 
 ### 1. Make sure that you are on the right branch and all changes are committed
