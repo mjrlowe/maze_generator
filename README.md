@@ -1,6 +1,6 @@
 # maze\_generator
 
-**maze\_generator** is a module for easily generating mazes.
+**maze\_generator** is a Javascript module for easily generating mazes.
 
 ![rainbow maze on black background (image)](images/darkBackground-oneLine-recursiveBacktracker-20x20.png)
 
@@ -13,6 +13,54 @@ Feedback is welcome. The best way to provide feedback is to open an issue.
 ---
 
 This module is heavily influenced by [Jamis Buck's Coffeescript mazes](https://github.com/jamis/csmazes). It is structured a little differently though and is written entirely in Javascript rather than Coffeescript. It also functions as a module, rather than a library. I aim to eventually add all the functionality that Jamis's CS maze library has.
+
+## Importing the module
+
+### In the browser and in Deno
+
+If you are in a module, then add the following to the top of your code:
+
+```javascript
+import {Maze} from "https://x.nest.land/maze_generator@0.1.0-alpha.1/mod.js";
+```
+
+or, if not, you can use a the `import()` function. For example:
+
+```javascript
+let Maze;
+import("https://x.nest.land/maze_generator@0.1.0-alpha.1/mod.js")
+	.then(module => {
+    Maze = module.Maze;
+  })
+  .error(error => {
+    console.log(`Error loading maze_generator module: ${error}`)
+  })
+```
+You can also import the module from `deno.land/x` if you prefer: `https://deno.land/x/maze_generator@v0.1.0-alpha.1/mod.js`.
+(Note the `v` here, which is not present when importing from `nest.land`.)
+
+
+### In Node
+
+Run:
+
+```shell
+npm install @thewizardbear/maze_generator
+```
+
+And then you import the module in your code by adding the following to the top of your every file that uses the maze_generator module:
+
+```javascript
+import {Maze} from "@thewizardbear/maze_generator";
+```
+
+Alternately, you can you `require`:
+
+```javascript
+let {Maze} = require("@thewizardbear/maze_generator")`
+```
+
+Please note that Node version 14+ is required as `maze_generator` makes use of some ES2020 features such as the nullish coallessing operator (`??`).
 
 ## Example Usage
 
