@@ -25,7 +25,6 @@ class AldousBroder extends Maze {
 
   //called every time the maze needs to be updated
   takeStep() {
-
     let possibleDirections = [];
     if (this.currentCell.y !== 0) possibleDirections.push("N");
     if (this.currentCell.y !== this.height - 1) possibleDirections.push("S");
@@ -54,7 +53,6 @@ class AldousBroder extends Maze {
     if (this.totalVisted >= this.width * this.height) {
       this.finishedGenerating = true;
     }
-
   }
 }
 

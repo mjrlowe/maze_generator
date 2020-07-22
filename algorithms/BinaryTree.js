@@ -22,7 +22,6 @@ class BinaryTree extends Maze {
     ) {
       this.finishedGenerating = true;
     }
-
   }
 }
 

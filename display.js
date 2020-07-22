@@ -1,4 +1,4 @@
-import {directions} from "./directions.js"
+import { directions } from "./directions.js";
 
 export default function display({
   maze,
@@ -15,32 +15,36 @@ export default function display({
   showSolution = false,
   solutionColor = "#F00",
   distanceFrom = maze.start,
-  removeWallsAtEntranceAndExit = true
+  removeWallsAtEntranceAndExit = true,
 }) {
   if (!canvas) {
     console.error("Tried to display maze without a canvas");
     return false;
   }
 
-
   let {
     distances,
     maxDistance,
-  } = coloringMode=== "distance" ? maze.getDistances(distanceFrom) : {distances: null, maxDistance: null};
+  } = coloringMode === "distance"
+    ? maze.getDistances(distanceFrom)
+    : { distances: null, maxDistance: null };
 
   //remove the walls at the entrance and exit if it is set to that
   let entranceWallBefore;
   let exitWallBefore;
-  if(removeWallsAtEntranceAndExit){
+  if (removeWallsAtEntranceAndExit) {
     //if the entrance wall is a valid direction
-    if(directions.indexOf(maze.entrance.direction) !== -1){
-      entranceWallBefore = maze.walls[maze.entrance.y][maze.entrance.x][maze.entrance.direction]
-      maze.walls[maze.entrance.y][maze.entrance.x][maze.entrance.direction] = false;
+    if (directions.indexOf(maze.entrance.direction) !== -1) {
+      entranceWallBefore =
+        maze.walls[maze.entrance.y][maze.entrance.x][maze.entrance.direction];
+      maze.walls[maze.entrance.y][maze.entrance.x][maze.entrance.direction] =
+        false;
     }
 
     //if the exit wall is a valid direction
-    if(directions.indexOf(maze.exit.direction) !== -1){
-      exitWallBefore = maze.walls[maze.exit.y][maze.exit.x][maze.exit.direction]
+    if (directions.indexOf(maze.exit.direction) !== -1) {
+      exitWallBefore =
+        maze.walls[maze.exit.y][maze.exit.x][maze.exit.direction];
       maze.walls[maze.exit.y][maze.exit.x][maze.exit.direction] = false;
     }
   }
@@ -254,15 +258,17 @@ export default function display({
   }
 
   //put the walls at the entrance and exit back if they were there before
-  if(removeWallsAtEntranceAndExit){
+  if (removeWallsAtEntranceAndExit) {
     //re-add the entrance wall if it was taken away to begin with
-    if(directions.indexOf(maze.entrance.direction) !== -1){
-      maze.walls[maze.entrance.y][maze.entrance.x][maze.entrance.direction] = entranceWallBefore;
+    if (directions.indexOf(maze.entrance.direction) !== -1) {
+      maze.walls[maze.entrance.y][maze.entrance.x][maze.entrance.direction] =
+        entranceWallBefore;
     }
 
     //re-add the exit wall if it was taken away to begin with
-    if(directions.indexOf(maze.exit.direction) !== -1){
-      maze.walls[maze.exit.y][maze.exit.x][maze.exit.direction] = exitWallBefore;
+    if (directions.indexOf(maze.exit.direction) !== -1) {
+      maze.walls[maze.exit.y][maze.exit.x][maze.exit.direction] =
+        exitWallBefore;
     }
   }
 

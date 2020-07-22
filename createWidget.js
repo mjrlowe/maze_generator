@@ -1,28 +1,34 @@
 import Maze from "./Maze.js";
 
 //Node doesn't have a fetch function so we need to fix that
-if (typeof window === 'undefined'){
-  globalThis.fetch = globalThis.fetch ?? require('node-fetch');
+if (typeof window === "undefined") {
+  globalThis.fetch = globalThis.fetch ?? require("node-fetch");
 }
 
-export default function createWidget(mazeSettings={}, displaySettings=mazeSettings, widgetSettings=mazeSettings) {
+export default function createWidget(
+  mazeSettings = {},
+  displaySettings = mazeSettings,
+  widgetSettings = mazeSettings,
+) {
   mazeSettings = {
     size: mazeSettings.height || mazeSettings.ySize || 15,
-    ...mazeSettings
-  }
+    ...mazeSettings,
+  };
 
   displaySettings = {
     displayMode: 0,
     antiAliasing: false,
-    ...displaySettings
-  }
+    ...displaySettings,
+  };
 
   widgetSettings = {
     paused: false,
     imageButtons: false,
-    containerElement: document.getElementById("maze-widget-container") ?? document?.getElementsByClassName("maze-widget-container")[0] ?? document.body,
-    ...widgetSettings
-  }
+    containerElement: document.getElementById("maze-widget-container") ??
+      document?.getElementsByClassName("maze-widget-container")[0] ??
+      document.body,
+    ...widgetSettings,
+  };
 
   let maze = Maze.create(mazeSettings);
 
@@ -32,7 +38,8 @@ export default function createWidget(mazeSettings={}, displaySettings=mazeSettin
 
   const iconImageFolderURL =
     "https://x.nest.land/maze_generator@0.1.0/images/button-icons";
-  const cssFileURL = "https://x.nest.land/maze_generator@0.1.0/widget-styles.css";
+  const cssFileURL =
+    "https://x.nest.land/maze_generator@0.1.0/widget-styles.css";
 
   function getButtonInnerHTML(buttonName) {
     if (widgetSettings.imageButtons) {

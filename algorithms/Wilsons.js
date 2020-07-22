@@ -27,7 +27,7 @@ class Wilsons extends Maze {
   }
 
   addVisit(x, y, dir = "S") {
-    console.log("🎻", x, y, dir)
+    console.log("🎻", x, y, dir);
     this.visits[`${x}:${y}`] = dir;
     this.visited[y][x]++;
   }
@@ -59,7 +59,7 @@ class Wilsons extends Maze {
       }
     }
 
-    console.log("i", i, this)
+    console.log("i", i, this);
   }
 
   walkStep() {
@@ -68,7 +68,7 @@ class Wilsons extends Maze {
       let ny = this.y + dy[direction];
 
       if (this.cellIsInMaze({ x: nx, y: ny })) {
-        console.log(67, nx, ny, JSON.stringify(this))
+        console.log(67, nx, ny, JSON.stringify(this));
 
         let x = this.x;
         let y = this.y;
@@ -106,7 +106,7 @@ class Wilsons extends Maze {
 
       console.log("🏃‍♀️", nx, ny, dir, JSON.stringify(this));
 
-      if (this.cellIsInMaze({x: nx, y: ny}) && !this.visited[ny][nx]) {
+      if (this.cellIsInMaze({ x: nx, y: ny }) && !this.visited[ny][nx]) {
         this.resetVisits();
         this.state = 1;
       }
@@ -149,7 +149,6 @@ class Wilsons extends Maze {
     }
 
     if (this.remaining === 0) this.finishedGenerating = true;
-
   }
 
   eraseLoopFrom(x, y) {

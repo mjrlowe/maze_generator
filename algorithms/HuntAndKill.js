@@ -23,7 +23,6 @@ class HuntAndKill extends Maze {
   }
 
   takeStep() {
-
     //random walk
     if (!this.hunting) {
       this.visited[this.currentCell.y][this.currentCell.x] = true;
@@ -149,7 +148,6 @@ class HuntAndKill extends Maze {
         }
       }
     }
-
   }
 }
 

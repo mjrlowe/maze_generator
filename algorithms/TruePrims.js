@@ -3,7 +3,7 @@ import {
   dx,
   dy,
   directions,
-  opposite
+  opposite,
 } from "../directions.js";
 
 class TruePrims extends Maze {
@@ -21,13 +21,17 @@ class TruePrims extends Maze {
         for (let direction of directions) {
           let isBorderWall = !this.cellIsInMaze({
             x: x + dx[direction],
-            y: y + dy[direction]
+            y: y + dy[direction],
           });
 
           let passageCost = isBorderWall ? Infinity : this.prng.random();
 
-          if((direction === "N" || direction === "W") && !isBorderWall){
-            passageCost == this.costs[y+dy[direction]][x+dx[direction]][opposite[direction]];
+          if ((direction === "N" || direction === "W") && !isBorderWall) {
+            passageCost ==
+              this
+                .costs[y + dy[direction]][x + dx[direction]][
+                opposite[direction]
+              ];
           }
 
           this.costs[y][x][direction] = passageCost;
@@ -42,16 +46,15 @@ class TruePrims extends Maze {
       x: this.start.x,
       y: this.start.y,
     };
-    
-    for(let direction of directions){
-      this.activePassages.push({x: startCell.x, y: startCell.y, direction});
+
+    for (let direction of directions) {
+      this.activePassages.push({ x: startCell.x, y: startCell.y, direction });
     }
 
     this.visited[startCell.y][startCell.x] = true;
   }
 
   takeStep() {
-
     //find index of cell with minimum cost
     let minCost = Infinity;
     let passageIndex = 0;
@@ -68,24 +71,24 @@ class TruePrims extends Maze {
       x: passage.x + dx[passage.direction],
       y: passage.y + dy[passage.direction],
     };
- 
 
     if (this.cellIsInMaze(newCell) && !this.visited[newCell.y][newCell.x] > 0) {
-   
-      this.removeWall({x: passage.x, y: passage.y}, passage.direction);
+      this.removeWall({ x: passage.x, y: passage.y }, passage.direction);
       this.visited[newCell.y][newCell.x] = true;
       this.totalVisted++;
 
-      for(let direction of directions){
-        if(direction !== opposite[passage.direction]) this.activePassages.push({x: newCell.x, y: newCell.y, direction});
+      for (let direction of directions) {
+        if (direction !== opposite[passage.direction]) {
+          this.activePassages.push({ x: newCell.x, y: newCell.y, direction });
+        }
       }
-
     } else {
       this.activePassages.splice(passageIndex, 1);
     }
 
-    if (this.activePassages.length === 0 || minCost === Infinity) this.finishedGenerating = true;
-
+    if (this.activePassages.length === 0 || minCost === Infinity) {
+      this.finishedGenerating = true;
+    }
   }
 }
 

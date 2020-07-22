@@ -46,7 +46,6 @@ class Sidewinder extends Maze {
     if (this.currentCell.y >= this.height) {
       this.finishedGenerating = true;
     }
-
   }
 }
 

@@ -30,7 +30,7 @@ Maze.algorithms = {
   sidewinder: Sidewinder,
   binarytree: BinaryTree,
   trueprims: TruePrims,
-  tenprint: TenPrint
+  tenprint: TenPrint,
 };
 
 export { default as analyze } from "./analyze.js";
@@ -50,5 +50,5 @@ export {
   Kruskals,
   BinaryTree,
   Wilsons,
-  TruePrims
+  TruePrims,
 };

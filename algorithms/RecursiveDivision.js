@@ -38,7 +38,6 @@ class RecursiveDivision extends Maze {
   }
 
   takeStep() {
-
     switch (this.state) {
       case this.CHOOSE_REGION:
         this.chooseRegion();
@@ -55,7 +54,6 @@ class RecursiveDivision extends Maze {
           this.state,
         );
     }
-
   }
 
   chooseRegion() {
