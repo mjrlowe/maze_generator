@@ -54,10 +54,10 @@ git tag -a v0.0.8 -m "Version 0.0.8"
 
 ### 3. Push the release to the Github repository
 
-E.g. for release 0.1.0-alpha.1 you would do:
+E.g. for release 0.0.8 you would do:
 
 ```shell
-git push origin v0.1.0-alpha.1
+git push origin v0.0.8
 ```
 
 ### 4. Publish to nest.land
