@@ -3,6 +3,7 @@ import {
   dx,
   dy,
   directions,
+  opposite
 } from "../directions.js";
 
 class TruePrims extends Maze {
