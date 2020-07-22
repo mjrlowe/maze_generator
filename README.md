@@ -48,7 +48,7 @@ Run:
 npm install @thewizardbear/maze_generator
 ```
 
-And then you import the module in your code by adding the following to the top of your every file that uses the maze_generator module:
+And then import the module in your code by adding the following to the top of your every file that uses the maze_generator module:
 
 ```javascript
 import {Maze} from "@thewizardbear/maze_generator";
@@ -60,7 +60,7 @@ Alternately, you can you `require`:
 let {Maze} = require("@thewizardbear/maze_generator")`
 ```
 
-Please note that Node version 14+ is required as `maze_generator` makes use of some ES2020 features such as the nullish coallessing operator (`??`).
+Please note that Node version 14+ is required as `maze_generator` makes use of some ES2020 features such as the nullish coalescing operator (`??`).
 
 ## Example Usage
 
