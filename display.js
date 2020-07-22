@@ -22,10 +22,11 @@ export default function display({
     return false;
   }
 
+
   let {
     distances,
     maxDistance,
-  } = maze.getDistances(distanceFrom);
+  } = coloringMode=== "distance" ? maze.getDistances(distanceFrom) : {distances: null, maxDistance: null};
 
   //remove the walls at the entrance and exit if it is set to that
   let entranceWallBefore;
