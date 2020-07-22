@@ -74,7 +74,7 @@ This is the function which displays the maze.
 
 _Note that this function (currently) only works in a html document with a canvas element._
 
-It takes in an object with the properties listed below.
+It optionally takes in an object with the properties listed below.
 
 | Property | Description | Valid Values | Default Value |
 |-|-|-|-|
