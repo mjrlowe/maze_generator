@@ -11,7 +11,7 @@ import ModifiedPrims from "./algorithms/ModifiedPrims.js";
 import Kruskals from "./algorithms/Kruskals.js";
 import BinaryTree from "./algorithms/BinaryTree.js";
 import Wilsons from "./algorithms/Wilsons.js";
-import TruePrims from "./algorithms/TruePrims.js";
+import TruePrims from "./algorithms/TruePrims2.js";
 import display from "./display.js";
 import createWidget from "./createWidget.js";
 import TenPrint from "./algorithms/10Print.js";
