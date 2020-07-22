@@ -24,12 +24,12 @@ If you are inside a module file or script tag, then add the following to the top
 import {Maze} from "https://x.nest.land/maze_generator@0.1.0-alpha.1/mod.js";
 ```
 
-or, if not, you can use a the `import()` function. For example:
+If not, you can use the dynamic `import()` function. For example:
 
 ```javascript
 let Maze;
 import("https://x.nest.land/maze_generator@0.1.0-alpha.1/mod.js")
-	.then(module => {
+  .then(module => {
     Maze = module.Maze;
   })
   .error(error => {
@@ -48,7 +48,7 @@ Run:
 npm install @thewizardbear/maze_generator
 ```
 
-And then import the module in your code by adding the following to the top of your every file that uses the maze_generator module:
+And then import the maze_generator module in your code by adding the following to the top of every file that uses it:
 
 ```javascript
 import {Maze} from "@thewizardbear/maze_generator";
@@ -91,7 +91,7 @@ Also see [this](https://www.openprocessing.org/sketch/908761) OpenProcessing ske
 
 ## Maze.create()
 
-To create a new maze, use Maze.create(). You can optionally pass in an object with the settings (see below).
+To create a new maze, use `Maze.create()`. You can optionally pass in an object with the settings (see below).
 
 ### Maze settings object
 
