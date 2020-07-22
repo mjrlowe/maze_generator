@@ -30,7 +30,6 @@ Maze.algorithms = {
   sidewinder: Sidewinder,
   binarytree: BinaryTree,
   trueprims: TruePrims,
-  wilsons: Wilsons,
   tenprint: TenPrint
 };
 
