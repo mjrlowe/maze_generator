@@ -36,9 +36,9 @@ import("https://x.nest.land/maze_generator@0.1.0-alpha.1/mod.js")
     console.log(`Error loading maze_generator module: ${error}`)
   })
 ```
+
 You can also import the module from `deno.land/x` if you prefer: `https://deno.land/x/maze_generator@v0.1.0-alpha.1/mod.js`.
 (Note the `v` here, which is not present when importing from `nest.land`.)
-
 
 ### In Node
 
