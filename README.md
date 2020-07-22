@@ -18,7 +18,7 @@ This module is heavily influenced by [Jamis Buck's Coffeescript mazes](https://g
 
 ### In the browser and in Deno
 
-If you are in a module, then add the following to the top of your code:
+If you are inside a Javascript `module`, then add the following to the top of your code:
 
 ```javascript
 import {Maze} from "https://x.nest.land/maze_generator@0.1.0-alpha.1/mod.js";
