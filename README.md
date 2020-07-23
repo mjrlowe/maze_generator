@@ -32,7 +32,7 @@ import("https://x.nest.land/maze_generator@0.1.0/mod.js")
   .then(module => {
     Maze = module.Maze;
   })
-  .error(error => {
+  .catch(error => {
     console.log(`Error loading maze_generator module: ${error}`)
   })
 ```
