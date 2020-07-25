@@ -233,6 +233,8 @@ It takes in three properties, all optional.
     .catch(error => {
       document.getElementById("prims-demo").innerHTML = `Error loading maze_generator module: ${error}`
     })
+</script>
+```
 
 ## .getSolution()
 
