@@ -190,6 +190,27 @@ Maze.create({
 |_______|_____|_____|
 ```
 
+## Maze.createWidget()
+
+> `Maze.createWidget()` is work-in-progress and particuarly unstable.
+
+Call `Maze.createWidget()` somewhere with access to the `document` API (the browser) and it should add a little interactive animated HTML widget to your page that looks something like this:
+
+It takes in three properties, all optional.
+
+1. Maze settings object (see `Maze.create()`)
+2. Display settings object (see `.display()`)
+3. Maze widget settings object (see below)
+
+### Maze widget settings object
+
+| Property | Description | Valid Values | Default Value |
+|-|-|-|-|
+| paused | Whether the generation should be animated when the maze starts. | A boolean value. | `false` |
+| imageButtons | Whether the buttons should be images (`true`) or text (`false`). This is still a bit dodgy at the moment. | A boolean value. | `false` |
+| containerElement | The element that the maze widget should be placed inside of | A HTML element | An element with the id or class `maze-widget-container`, or if none is found the body of the HTML document. |
+
+
 ## .getSolution()
 
 This is a method that returns the solution to the maze in the form of an array of cell positions.
