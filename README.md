@@ -138,6 +138,7 @@ It optionally takes in an object with the properties listed below.
 | solutionColor | The color of the solution if `showSolution` is `true` | A hex value as a string | `"#F00"` |
 | strokeWeight | The thickness of the lines drawn | A number | `4` |
 | removeWallsAtEntranceAndExit | Whether or not the walls should be removed at the entrance and exit of the maze. _Note that this doesn't change the maze, it just means these walls won't be displayed._ | A boolean value | `false` |
+| lineCap | Changes the [`lineCap` canvas context property](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap). | `"butt"`, `"round"` or `"square"` | `"square"` |
 
 ### .display() example usage
 
