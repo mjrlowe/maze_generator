@@ -228,7 +228,7 @@ It takes in three properties, all optional.
         containerElement: document.getElementById("prims-demo")
       }
 
-      Maze.create(mazeSettings, {}, widgetSettings)
+      Maze.createWidget(mazeSettings, {}, widgetSettings)
     })
     .catch(error => {
       document.getElementById("prims-demo").innerHTML = `Error loading maze_generator module: ${error}`
