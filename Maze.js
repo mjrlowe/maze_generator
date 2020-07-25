@@ -82,7 +82,7 @@ class Maze {
 
   static create(settings = {}) {
     settings.algorithmId = settings.algorithm
-      ? settings.algorithm.replace(/[^a-zA-Z01]/g, "").toLowerCase()
+      ? settings.algorithm.replace(/[^a-zA-Z0-9]/g, "").toLowerCase()
       : "recursivebacktracker";   
 
     if (settings.algorithmId === "random") {
