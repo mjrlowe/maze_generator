@@ -91,7 +91,9 @@ class Maze {
       )[Math.floor(Math.random() * Object.keys(this.algorithms).length)];
     }else if(settings.algorithmId === "10print"){
       settings.algorithmId = "tenprint";
-    } else if (!this.algorithms[settings.algorithmId]) {
+    } else if (settings.algorithmId === "prims"){
+      settings.algorithmId = "trueprims";
+    } (!this.algorithms[settings.algorithmId]) {
       console.warn(
         `maze.algorithms["${settings.algorithmId}"] is not defined, defaulting to recursive backtracker`,
       );
