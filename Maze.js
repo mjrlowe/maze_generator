@@ -93,7 +93,7 @@ class Maze {
       settings.algorithmId = "tenprint";
     } else if (settings.algorithmId === "prims"){
       settings.algorithmId = "trueprims";
-    } (!this.algorithms[settings.algorithmId]) {
+    } else if (!this.algorithms[settings.algorithmId]) {
       console.warn(
         `maze.algorithms["${settings.algorithmId}"] is not defined, defaulting to recursive backtracker`,
       );
