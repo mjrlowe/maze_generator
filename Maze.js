@@ -82,13 +82,15 @@ class Maze {
 
   static create(settings = {}) {
     settings.algorithmId = settings.algorithm
-      ? settings.algorithm.replace(/[^a-zA-Z]/g, "").toLowerCase()
-      : "recursivebacktracker";
+      ? settings.algorithm.replace(/[^a-zA-Z01]/g, "").toLowerCase()
+      : "recursivebacktracker";   
 
     if (settings.algorithmId === "random") {
       settings.algorithmId = Object.keys(
         this.algorithms,
       )[Math.floor(Math.random() * Object.keys(this.algorithms).length)];
+    }else if(settings.algorithmId === "10print"){
+      settings.algorithmId = "tenprint";
     } else if (!this.algorithms[settings.algorithmId]) {
       console.warn(
         `maze.algorithms["${settings.algorithmId}"] is not defined, defaulting to recursive backtracker`,
