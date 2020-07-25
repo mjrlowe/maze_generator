@@ -16,7 +16,7 @@ export default function display({
   solutionColor = "#F00",
   distanceFrom = maze.start,
   removeWallsAtEntranceAndExit = true,
-  lineCap = "butt",
+  lineCap = "square",
 }) {
   if (!canvas) {
     console.error("Tried to display maze without a canvas");
