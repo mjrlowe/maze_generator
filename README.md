@@ -218,7 +218,7 @@ It takes in three properties, all optional.
 <div id="prims-demo"></div>
 <script>
   import("https://x.nest.land/maze_generator@0.1.0/mod.js")
-    .then({Maze} => {
+    .then(({Maze}) => {
       const mazeSettings = {
         algorithm: "true prims"
       }
