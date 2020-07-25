@@ -196,6 +196,8 @@ Maze.create({
 
 Call `Maze.createWidget()` somewhere with access to the `document` API (the browser) and it should add a little interactive animated HTML widget to your page that looks something like this:
 
+![maze widget example image](images/maze-widget-example.png)
+
 It takes in three properties, all optional.
 
 1. Maze settings object (see `Maze.create()`)
@@ -210,6 +212,27 @@ It takes in three properties, all optional.
 | imageButtons | Whether the buttons should be images (`true`) or text (`false`). This is still a bit dodgy at the moment. | A boolean value. | `false` |
 | containerElement | The element that the maze widget should be placed inside of | A HTML element | An element with the id or class `maze-widget-container`, or if none is found the body of the HTML document. |
 
+### Example code
+
+```html
+<div id="prims-demo"></div>
+<script>
+  import("https://x.nest.land/maze_generator@0.1.0/mod.js")
+    .then({Maze} => {
+      const mazeSettings = {
+        algorithm: "true prims"
+      }
+
+      const widgetSettings = {
+        paused: true,
+        containerElement: document.getElementById("prims-demo")
+      }
+
+      Maze.create(mazeSettings, {}, widgetSettings)
+    })
+    .catch(error => {
+      document.getElementById("prims-demo").innerHTML = `Error loading maze_generator module: ${error}`
+    })
 
 ## .getSolution()
 
