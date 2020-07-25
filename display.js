@@ -16,6 +16,7 @@ export default function display({
   solutionColor = "#F00",
   distanceFrom = maze.start,
   removeWallsAtEntranceAndExit = true,
+  lineCap = "butt",
 }) {
   if (!canvas) {
     console.error("Tried to display maze without a canvas");
@@ -52,6 +53,7 @@ export default function display({
   let ctx = canvas.getContext("2d");
 
   ctx.imageSmoothingEnabled = antiAliasing;
+  ctx.lineCap = lineCap;
 
   if (typeof colorScheme === "string") {
     colorScheme = colorScheme.toLowerCase();
