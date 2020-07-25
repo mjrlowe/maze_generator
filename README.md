@@ -137,6 +137,7 @@ It optionally takes in an object with the properties listed below.
 | showSolution | Whether or not to show the solution when the maze is complete | `true` or `false` | `false` |
 | solutionColor | The color of the solution if `showSolution` is `true` | A hex value as a string | `"#F00"` |
 | strokeWeight | The thickness of the lines drawn | A number | `4` |
+| removeWallsAtEntranceAndExit | Whether or not the walls should be removed at the entrance and exit of the maze. _Note that this doesn't change the maze, it only doesn't display these walls._ | A boolean value | `false` |
 
 ### .display() example usage
 
