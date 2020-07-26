@@ -22,7 +22,7 @@ E.g:
 
 ```json
 "files": [
-  "README.md",
+  "./README.md",
   "./mod.js",
   "./folder-name/*",
   "./another-folder/**/*",
