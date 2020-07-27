@@ -23,13 +23,6 @@ export default function display({
     return false;
   }
 
-  let {
-    distances,
-    maxDistance,
-  } = coloringMode === "distance"
-    ? maze.getDistances(distanceFrom)
-    : { distances: null, maxDistance: null };
-
   //remove the walls at the entrance and exit if it is set to that
   let entranceWallBefore;
   let exitWallBefore;
@@ -75,6 +68,13 @@ export default function display({
     coloringMode = coloringMode.toLowerCase();
   }
   if (typeof displayMode === "string") displayMode = displayMode.toLowerCase();
+
+  let {
+    distances,
+    maxDistance,
+  } = coloringMode === "distance"
+    ? maze.getDistances(distanceFrom)
+    : { distances: null, maxDistance: null };
 
   if (displayMode === "thin walls") displayMode = 0;
   if (displayMode === "thick walls") displayMode = 1;
