@@ -2,9 +2,11 @@ import { dx, dy } from "./directions.js";
 
 export default function solve(
   maze,
-  startPoint = maze.getXYPosition("top left"),
-  endPoint = maze.getXYPosition("bottom right"),
+  startPoint = "top left",
+  endPoint = "bottom right",
 ) {
+  startPoint = maze.getXYPosition(startPoint);
+  endPoint = maze.getXYPosition(endPoint);
   let { distances, maxDistance } = maze.getDistances(startPoint);
 
   startPoint = {
