@@ -4,10 +4,8 @@ import {
 } from "./directions.js";
 
 export default function calculateDistances(distanceFrom) {
-  let startPoint = this.getXYPosition(
-    distanceFrom ?? this.start ?? "top left",
-  );
-  startPoint = this.cellIsInMaze(startPoint) ? startPoint : this.start;
+ 
+  
   let Q = []; //queue
 
   let discovered = []; //keeps track of which points have been discovered so far so it doesn't loop back on itself
@@ -20,10 +18,28 @@ export default function calculateDistances(distanceFrom) {
       discovered[y][x] = false;
     }
   }
-  discovered[startPoint.y][startPoint.x] = true;
 
-  //enqueue
-  Q.unshift(startPoint);
+  if(distanceFrom.toLowerCase === "solution"){
+    let startPoints = this.getSolution();
+    for(let cell of startPoints){
+      discovered[cell.y][cell.x] = true;
+    
+        //enqueue
+      Q.unshift(cell);
+      
+    }
+    
+  }else{
+    let startPoint = this.getXYPosition(
+      distanceFrom ?? this.start ?? "top left",
+    );
+    startPoint = this.cellIsInMaze(startPoint) ? startPoint : this.start;
+    discovered[startPoint.y][startPoint.x] = true;
+
+    //enqueue
+    Q.unshift(startPoint);
+  }
+
 
   //don't want it to be 0 otherwise we might be dividing by zero
   let maxDistance = 1;
