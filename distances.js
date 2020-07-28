@@ -19,7 +19,7 @@ export default function calculateDistances(distanceFrom) {
     }
   }
 
-  if(distanceFrom.toLowerCase() === "solution"){
+  if(typeof distanceFrom === "string" && distanceFrom.toLowerCase() === "solution"){
     let startPoints = this.getSolution();
     for(let cell of startPoints){
       discovered[cell.y][cell.x] = true;
