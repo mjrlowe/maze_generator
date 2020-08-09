@@ -4,7 +4,7 @@ import { Maze } from "https://x.nest.land/maze_generator@0.1.0/mod.js";
 let mazeSettings = {
   width: 12,
   height: 12,
-  algorithm: "simplified prims",
+  algorithm: "eller's",
 };
 
 //initialize the maze
