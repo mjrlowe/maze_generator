@@ -71,4 +71,4 @@ Use `npm publish`
 
 ### 6. Create a Github release and document all the changes since the last release
 
-### 7. Merge the working branch into master and delete the old branch
+### 7. Merge the working branch into main and delete the old branch
