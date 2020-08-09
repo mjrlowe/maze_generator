@@ -1,10 +1,10 @@
 {
-  "name": "maze_generator",
+  "name": "maze_generator_test",
   "description": "A module for generating mazes",
-  "version": "0.1.2",
+  "version": "0.2.0-aplha.1",
   "entry": "mod.js",
   "stable": false,
-  "unlisted": false,
+  "unlisted": true,
   "fmt": true,
   "repository": "https://github.com/thewizardbear/maze_generator",
   "files": [

@@ -100,9 +100,8 @@ export default function display({
     canvas.height / 2 - maze.height / 2 * cellSize,
   );
 
-  
   ctx.strokeStyle = mainColor;
-  ctx.lineWidth = lineThickness*cellSize;
+  ctx.lineWidth = lineThickness * cellSize;
 
   if (displayMode === 0) { //thin walls
     for (let y = 0; y < maze.height; y++) {
@@ -115,7 +114,6 @@ export default function display({
         ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
       }
     }
-
 
     for (let y = 0; y < maze.height; y++) {
       for (let x = 0; x < maze.width; x++) {
@@ -146,7 +144,6 @@ export default function display({
       }
     }
   } else { //display mode 2: line
-
     ctx.translate(cellSize / 2, cellSize / 2);
 
     for (let y = 0; y < maze.height; y++) {
