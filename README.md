@@ -131,16 +131,17 @@ It optionally takes in an object with the properties listed below.
 | Property | Description | Valid Values | Default Value |
 |-|-|-|-|
 | canvas | The canvas to display the maze on. | A canvas element (e.g. `document. getElementsByTagName("canvas")[0]`). | The first canvas element in the html. |
-| coloringMode | How the cells are colored. | `"normal"`: regular coloring, `"distance"`: each cell is colored by a distance from a point (WIP). More coloring modes coming soon hopefully. Anything other than the valid values specififed defaults to normal coloring. | `"normal"`  |
+| coloringMode | How the cells are colored. | `"normal"`: regular coloring, `"distance"`: each cell is colored by a distance from a point . More coloring modes coming soon hopefully. Anything other than the valid values specififed defaults to normal coloring. | `"normal"`  |
 | colorScheme | The color scheme to use when `coloringMode` is not `"normal"`. | This can either be `"grayscale"`, `"rainbow"` or an array or hex codes. | `"rainbow"` |
 | mainColor | This is the color of the walls (or line). | A hex value as a string | `"#000"` |
 | backgroundColor | Background color and color of the space between walls (unless colorMode isn't `"normal"`) | A hex value as a string | `"#FFF"` |
 | antiAliasing | Whether or not to apply anti-aliasing to the image drawn on the canvas (`imageSmoothingEnabled`). Setting it to false gives crisp edges but it can distort the output for small canvases where the cells do not line up with the canvas pixels well. | `true` or `false` | `false` |
 | showSolution | Whether or not to show the solution when the maze is complete | `true` or `false` | `false` |
 | solutionColor | The color of the solution if `showSolution` is `true` | A hex value as a string | `"#F00"` |
-| strokeWeight | The thickness of the lines drawn | A number | `4` |
+| strokeWeight | The thickness of the lines drawn | A number ≥ 0 | `4` |
 | removeWallsAtEntranceAndExit | Whether or not the walls should be removed at the entrance and exit of the maze. _Note that this doesn't change the maze, it just means these walls won't be displayed._ | A boolean value | `false` |
 | lineCap | Changes the [`lineCap` canvas context property](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap). | `"butt"`, `"round"` or `"square"` | `"square"` |
+| distanceFrom | Where the distance should be measured from if `displayMode` is set to `"distance"` | A valid cell position or `"solution"` | The start cell |
 
 ### .display() example usage
 
