@@ -67,7 +67,6 @@ export default function display({
   if (typeof coloringMode === "string") {
     coloringMode = coloringMode.toLowerCase();
   }
-  if (typeof displayMode === "string") displayMode = displayMode.toLowerCase();
 
   let {
     distances,
@@ -75,10 +74,6 @@ export default function display({
   } = coloringMode === "distance"
     ? maze.getDistances(distanceFrom)
     : { distances: null, maxDistance: null };
-
-  if (displayMode === "thin walls") displayMode = 0;
-  if (displayMode === "thick walls") displayMode = 1;
-  if (displayMode === "line") displayMode = 2;
 
   //slider element stores 0 as a string so we need to convert it back to a number
   lineThickness = Number(lineThickness);
@@ -225,18 +220,16 @@ export default function display({
   }
 
   function getCellColor(cell) {
-    let fillColor = displayMode === 2 ? mainColor : backgroundColor;
+    let fillColor = backgroundColor;
 
     //highlight cells that haven't finished generating differently, depending on the display mode
     //an unfinished cell is one that has all it's walls around it
     //not used for display mode 2 (line) because it looks weird
     if (isUnfinishedCell(cell)) {
-      if (displayMode === 0) {
-        fillColor = lerpBetween(backgroundColor, mainColor, 0.24);
-      } else if (displayMode === 1) {
-        fillColor = lerpBetween(backgroundColor, mainColor, 0.51);
+      if (!asLine) {
+        fillColor = lerpBetween(backgroundColor, mainColor, 0.5);
       } else {
-        fillColor = backgroundColor;
+        fillColor = lerpBetween(backgroundColor, mainColor, 0.03);
       }
     } else {
       if (coloringMode === "distance" || coloringMode === "color by distance") {
