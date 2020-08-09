@@ -85,22 +85,63 @@ class Maze {
       ? settings.algorithm.replace(/[^a-zA-Z0-9]/g, "").toLowerCase()
       : "recursivebacktracker";
 
-    if (settings.algorithmId === "random") {
-      settings.algorithmId = Object.keys(
-        this.algorithms,
-      )[Math.floor(Math.random() * Object.keys(this.algorithms).length)];
-    } else if (settings.algorithmId === "10print") {
-      settings.algorithmId = "tenprint";
-    } else if (settings.algorithmId === "prims") {
-      settings.algorithmId = "trueprims";
-    } else if (!this.algorithms[settings.algorithmId]) {
-      console.warn(
-        `maze.algorithms["${settings.algorithmId}"] is not defined, defaulting to recursive backtracker`,
-      );
-      settings.algorithm = "recursive backtracker";
-      settings.algorithmId = "recursivebacktracker";
+    switch(settings.algorithmId){
+      case "10print":
+      case "tenprint":
+        return new this.algorithms.tenprint(settings);
+
+      case "prim":
+      case "prims":
+      case "true prim":
+      case "true prims":
+        return new this.algorithms.prims(settings);
+      
+      case "random":
+        return new this.algorithms[Object.keys(
+          this.algorithms,
+        )[Math.floor(Math.random() * Object.keys(this.algorithms).length)]](settings);
+
+      case "depthfirstsearch":
+      case "dfs":
+      case "randomizeddepthfirstsearch":
+      case "randomiseddepthfirstsearch":
+      case "rdfs":
+      case "recursivebacktracker":
+        return new this.algorithms.recursivebacktracker(settings);
+      
+      case "kruskal":
+      case "kruskals":
+        return new this.algorithms.kruskals(settings);
+      
+      case "simplifiedprim":
+      case "simplifiedprims":
+        return new this.algorithms.simplifiedprims(settings);
+
+      case "modifiedprim":
+      case "modifiedprims":
+        return new this.algorithms.modifiedprims(settings);
+
+      case "aldousbroder":
+        return new this.algorithms.aldousbroder(settings);
+
+      case "binary":
+      case "binarytree":
+        return new this.algorithms.binarytree(settings);
+
+      case "sidewinder":
+        return new this.algorithms.sidewinder(settings);
+
+      case "huntandkill":
+        return new this.algorithms.huntandkill(settings);
+
+      case "eller":
+      case "ellers":
+        return new this.algorithms.ellers(settings);
+
+      default:
+        throw "Invalid algorithm";
+
     }
-    return new this.algorithms[settings.algorithmId](settings);
   }
 
   reset() {
