@@ -142,6 +142,7 @@ It optionally takes in an object with the properties listed below.
 | removeWallsAtEntranceAndExit | Whether or not the walls should be removed at the entrance and exit of the maze. _Note that this doesn't change the maze, it just means these walls won't be displayed._ | A boolean value | `false` |
 | lineCap | Changes the [`lineCap` canvas context property](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap). | `"butt"`, `"round"` or `"square"` | `"square"` |
 | distanceFrom | Where the distance should be measured from if `displayMode` is set to `"distance"` | A valid cell position or `"solution"` | The start cell |
+| displayMode | How the maze should be displayed. | `0` (line), `1` (block walls), `2` (cell walls) | `1` |
 
 ### .display() example usage
 
