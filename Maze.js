@@ -85,7 +85,7 @@ class Maze {
       ? settings.algorithm.replace(/[^a-zA-Z0-9]/g, "").toLowerCase()
       : "recursivebacktracker";
 
-    switch(settings.algorithmId){
+    switch (settings.algorithmId) {
       case "10print":
       case "tenprint":
         return new this.algorithms.tenprint(settings);
@@ -95,11 +95,13 @@ class Maze {
       case "true prim":
       case "true prims":
         return new this.algorithms.prims(settings);
-      
+
       case "random":
-        return new this.algorithms[Object.keys(
-          this.algorithms,
-        )[Math.floor(Math.random() * Object.keys(this.algorithms).length)]](settings);
+        return new this.algorithms[
+          Object.keys(
+            this.algorithms,
+          )[Math.floor(Math.random() * Object.keys(this.algorithms).length)]
+        ](settings);
 
       case "depthfirstsearch":
       case "dfs":
@@ -108,11 +110,11 @@ class Maze {
       case "rdfs":
       case "recursivebacktracker":
         return new this.algorithms.recursivebacktracker(settings);
-      
+
       case "kruskal":
       case "kruskals":
         return new this.algorithms.kruskals(settings);
-      
+
       case "simplifiedprim":
       case "simplifiedprims":
         return new this.algorithms.simplifiedprims(settings);
@@ -140,7 +142,6 @@ class Maze {
 
       default:
         throw "Invalid algorithm";
-
     }
   }
 

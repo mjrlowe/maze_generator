@@ -4,8 +4,6 @@ import {
 } from "./directions.js";
 
 export default function calculateDistances(distanceFrom) {
- 
-  
   let Q = []; //queue
 
   let discovered = []; //keeps track of which points have been discovered so far so it doesn't loop back on itself
@@ -19,17 +17,18 @@ export default function calculateDistances(distanceFrom) {
     }
   }
 
-  if(typeof distanceFrom === "string" && distanceFrom.toLowerCase() === "solution"){
+  if (
+    typeof distanceFrom === "string" &&
+    distanceFrom.toLowerCase() === "solution"
+  ) {
     let startPoints = this.getSolution();
-    for(let cell of startPoints){
+    for (let cell of startPoints) {
       discovered[cell.y][cell.x] = true;
-    
-        //enqueue
+
+      //enqueue
       Q.unshift(cell);
-      
     }
-    
-  }else{
+  } else {
     let startPoint = this.getXYPosition(
       distanceFrom ?? this.start ?? "top left",
     );
@@ -39,7 +38,6 @@ export default function calculateDistances(distanceFrom) {
     //enqueue
     Q.unshift(startPoint);
   }
-
 
   //don't want it to be 0 otherwise we might be dividing by zero
   let maxDistance = 1;
