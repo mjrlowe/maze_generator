@@ -1,7 +1,7 @@
 {
   "name": "maze_generator_test",
   "description": "A module for generating mazes",
-  "version": "0.2.0-aplha.1",
+  "version": "0.2.0-alpha.2",
   "entry": "mod.js",
   "stable": false,
   "unlisted": true,
