@@ -3,13 +3,13 @@ import { directions } from "./directions.js";
 export default function display({
   maze,
   canvas = document.getElementsByTagName("canvas")[0],
-  displayMode = 1,
+  displayMode = 0,
   cellSize = Math.min(canvas.width / maze.width, canvas.height / maze.height) *
     0.9,
   backgroundColor = "#FFF",
   mainColor = "#000",
   colorScheme = "rainbow",
-  strokeWeight = 4,
+  lineThickness = 0.35,
   antiAliasing = false,
   coloringMode = "normal",
   showSolution = false,
@@ -100,7 +100,11 @@ export default function display({
     canvas.height / 2 - maze.height / 2 * cellSize,
   );
 
-  if (displayMode === 0 || (displayMode === 1 && cellSize <= 3)) { //thin walls
+  
+  ctx.strokeStyle = mainColor;
+  ctx.lineWidth = lineThickness*cellSize;
+
+  if (displayMode === 0) { //thin walls
     for (let y = 0; y < maze.height; y++) {
       for (let x = 0; x < maze.width; x++) {
         ctx.fillStyle = getCellColor({
@@ -112,8 +116,6 @@ export default function display({
       }
     }
 
-    ctx.strokeStyle = mainColor;
-    ctx.lineWidth = strokeWeight;
 
     for (let y = 0; y < maze.height; y++) {
       for (let x = 0; x < maze.width; x++) {
@@ -143,69 +145,7 @@ export default function display({
         }
       }
     }
-  } else if (displayMode === 1) { //thick walls
-    cellSize /= 2;
-
-    ctx.fillStyle = mainColor;
-
-    ctx.translate(cellSize / 2, cellSize / 2);
-
-    ctx.fillRect(
-      -cellSize,
-      -cellSize,
-      cellSize * 2 * maze.width + cellSize,
-      cellSize * 2 * maze.height + cellSize,
-    );
-    ctx.fillStyle = backgroundColor;
-
-    for (let y = 0; y < maze.height; y++) {
-      for (let x = 0; x < maze.width; x++) {
-        ctx.fillStyle = getCellColor({
-          x,
-          y,
-        });
-
-        ctx.fillRect(x * cellSize * 2, y * cellSize * 2, cellSize, cellSize);
-
-        if (!maze.walls[y][x].W) {
-          ctx.fillRect(
-            x * cellSize * 2 - cellSize,
-            y * cellSize * 2,
-            cellSize,
-            cellSize,
-          );
-        }
-        if (!maze.walls[y][x].N) {
-          ctx.fillRect(
-            x * cellSize * 2,
-            y * cellSize * 2 - cellSize,
-            cellSize,
-            cellSize,
-          );
-        }
-        if (!maze.walls[y][x].E && x === maze.width - 1) {
-          ctx.fillRect(
-            x * cellSize * 2 + cellSize,
-            y * cellSize * 2,
-            cellSize,
-            cellSize,
-          );
-        }
-        if (!maze.walls[y][x].S && y === maze.height - 1) {
-          ctx.fillRect(
-            x * cellSize * 2,
-            y * cellSize * 2 + cellSize,
-            cellSize,
-            cellSize,
-          );
-        }
-      }
-    }
-
-    cellSize *= 2;
   } else { //display mode 2: line
-    ctx.strokeStyle = mainColor;
-    ctx.lineWidth = strokeWeight;
 
     ctx.translate(cellSize / 2, cellSize / 2);
 
