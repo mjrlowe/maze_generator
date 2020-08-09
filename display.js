@@ -3,7 +3,7 @@ import { directions } from "./directions.js";
 export default function display({
   maze,
   canvas = document.getElementsByTagName("canvas")[0],
-  displayMode = 0,
+  asLine = false,
   cellSize = Math.min(canvas.width / maze.width, canvas.height / maze.height) *
     0.9,
   backgroundColor = "#FFF",
@@ -81,10 +81,7 @@ export default function display({
   if (displayMode === "line") displayMode = 2;
 
   //slider element stores 0 as a string so we need to convert it back to a number
-  displayMode = Number(displayMode);
-  strokeWeight = Number(strokeWeight);
-
-  //strokeWeight = Math.min(strokeWeight, 40);
+  lineThickness = Number(lineThickness);
 
   //clear the background
   ctx.fillStyle = backgroundColor;
@@ -103,7 +100,7 @@ export default function display({
   ctx.strokeStyle = mainColor;
   ctx.lineWidth = lineThickness * cellSize;
 
-  if (displayMode === 0) { //thin walls
+  if (!asLine) { //thin walls
     for (let y = 0; y < maze.height; y++) {
       for (let x = 0; x < maze.width; x++) {
         ctx.fillStyle = getCellColor({
@@ -143,7 +140,7 @@ export default function display({
         }
       }
     }
-  } else { //display mode 2: line
+  } else { // display paths as line
     ctx.translate(cellSize / 2, cellSize / 2);
 
     for (let y = 0; y < maze.height; y++) {
