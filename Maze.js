@@ -4,6 +4,8 @@ import {
   opposite,
 } from "./directions.js";
 
+import * as algorithms from "./algorithms.js";
+
 import mazeString from "./print.js";
 import display from "./display.js";
 import calculateDistances from "./distances.js";
@@ -88,20 +90,20 @@ class Maze {
     switch (settings.algorithmId) {
       case "10print":
       case "tenprint":
-        return new this.algorithms.tenprint(settings);
+        return new algorithms.TenPrint(settings);
 
       case "prim":
       case "prims":
       case "true prim":
       case "true prims":
-        return new this.algorithms.prims(settings);
+        return new algorithms.TruePrims(settings);
 
-      case "random":
-        return new this.algorithms[
-          Object.keys(
-            this.algorithms,
-          )[Math.floor(Math.random() * Object.keys(this.algorithms).length)]
-        ](settings);
+      // case "random":
+      //   return new algorithms[
+      //     Object.keys(
+      //       algorithms,
+      //     )[Math.floor(Math.random() * Object.keys(algorithms).length)]
+      //   ](settings);
 
       case "depthfirstsearch":
       case "dfs":
@@ -109,36 +111,36 @@ class Maze {
       case "randomiseddepthfirstsearch":
       case "rdfs":
       case "recursivebacktracker":
-        return new this.algorithms.recursivebacktracker(settings);
+        return new algorithms.RecursiveBacktracker(settings);
 
       case "kruskal":
       case "kruskals":
-        return new this.algorithms.kruskals(settings);
+        return new algorithms.Kruskals(settings);
 
       case "simplifiedprim":
       case "simplifiedprims":
-        return new this.algorithms.simplifiedprims(settings);
+        return new algorithms.SimplifiedPrims(settings);
 
       case "modifiedprim":
       case "modifiedprims":
-        return new this.algorithms.modifiedprims(settings);
+        return new algorithms.ModifiedPrims(settings);
 
       case "aldousbroder":
-        return new this.algorithms.aldousbroder(settings);
+        return new algorithms.AldousBroder(settings);
 
       case "binary":
       case "binarytree":
-        return new this.algorithms.binarytree(settings);
+        return new algorithms.BinaryTree(settings);
 
       case "sidewinder":
-        return new this.algorithms.sidewinder(settings);
+        return new algorithms.Sidewinder(settings);
 
       case "huntandkill":
-        return new this.algorithms.huntandkill(settings);
+        return new algorithms.HuntAndKill(settings);
 
       case "eller":
       case "ellers":
-        return new this.algorithms.ellers(settings);
+        return new algorithms.Ellers(settings);
 
       default:
         throw "Invalid algorithm";
