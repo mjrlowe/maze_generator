@@ -94,8 +94,8 @@ class Maze {
 
       case "prim":
       case "prims":
-      case "true prim":
-      case "true prims":
+      case "trueprim":
+      case "trueprims":
         return new algorithms.TruePrims(settings);
 
       // case "random":
