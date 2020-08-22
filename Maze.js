@@ -4,8 +4,6 @@ import {
   opposite,
 } from "./directions.js";
 
-import * as algorithms from "./algorithms.js";
-
 import mazeString from "./print.js";
 import display from "./display.js";
 import calculateDistances from "./distances.js";
@@ -90,19 +88,19 @@ class Maze {
     switch (settings.algorithmId) {
       case "10print":
       case "tenprint":
-        return new algorithms.TenPrint(settings);
+        return new Maze.algorithms.TenPrint(settings);
 
       case "prim":
       case "prims":
       case "trueprim":
       case "trueprims":
-        return new algorithms.TruePrims(settings);
+        return new Maze.algorithms.TruePrims(settings);
 
       // case "random":
-      //   return new algorithms[
+      //   return new Maze.algorithms[
       //     Object.keys(
-      //       algorithms,
-      //     )[Math.floor(Math.random() * Object.keys(algorithms).length)]
+      //       Maze.algorithms,
+      //     )[Math.floor(Math.random() * Object.keys(Maze.algorithms).length)]
       //   ](settings);
 
       case "depthfirstsearch":
@@ -111,36 +109,36 @@ class Maze {
       case "randomiseddepthfirstsearch":
       case "rdfs":
       case "recursivebacktracker":
-        return new algorithms.RecursiveBacktracker(settings);
+        return new Maze.algorithms.RecursiveBacktracker(settings);
 
       case "kruskal":
       case "kruskals":
-        return new algorithms.Kruskals(settings);
+        return new Maze.algorithms.Kruskals(settings);
 
       case "simplifiedprim":
       case "simplifiedprims":
-        return new algorithms.SimplifiedPrims(settings);
+        return new Maze.algorithms.SimplifiedPrims(settings);
 
       case "modifiedprim":
       case "modifiedprims":
-        return new algorithms.ModifiedPrims(settings);
+        return new Maze.algorithms.ModifiedPrims(settings);
 
       case "aldousbroder":
-        return new algorithms.AldousBroder(settings);
+        return new Maze.algorithms.AldousBroder(settings);
 
       case "binary":
       case "binarytree":
-        return new algorithms.BinaryTree(settings);
+        return new Maze.algorithms.BinaryTree(settings);
 
       case "sidewinder":
-        return new algorithms.Sidewinder(settings);
+        return new Maze.algorithms.Sidewinder(settings);
 
       case "huntandkill":
-        return new algorithms.HuntAndKill(settings);
+        return new Maze.algorithms.HuntAndKill(settings);
 
       case "eller":
       case "ellers":
-        return new algorithms.Ellers(settings);
+        return new Maze.algorithms.Ellers(settings);
 
       default:
         throw "Invalid algorithm";
