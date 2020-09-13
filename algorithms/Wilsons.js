@@ -62,7 +62,6 @@ class Wilsons extends Maze {
       }
     }
 
-    console.log("p: ", path)
     for(let c of path){
       this.removeWall({x: c.x, y: c.y}, opposite[c.direction])
       this.markAsVisited(c)

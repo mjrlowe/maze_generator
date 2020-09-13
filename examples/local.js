@@ -4,15 +4,14 @@ import { Maze } from "../mod.js";
 let mazeSettings = {
   width: 12,
   height: 12,
-  algorithm: "wilsons",
+  algorithm: "ellers",
 };
 
 //initialize the maze
 let m = Maze.create(mazeSettings);
 
 //generate it
-for(let i = 0; i < 3; i++)
-m.step();
+m.generate();
 
 
 //print it to the console
