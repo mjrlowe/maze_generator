@@ -31,6 +31,7 @@ Maze.algorithms = {
   BinaryTree,
   TruePrims,
   TenPrint,
+  Wilsons
 };
 
 export {  Maze };

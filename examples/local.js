@@ -4,14 +4,16 @@ import { Maze } from "../mod.js";
 let mazeSettings = {
   width: 12,
   height: 12,
-  algorithm: "true prims",
+  algorithm: "wilsons",
 };
 
 //initialize the maze
 let m = Maze.create(mazeSettings);
 
 //generate it
-m.generate();
+for(let i = 0; i < 200; i++)
+m.step();
+
 
 //print it to the console
 m.printString();

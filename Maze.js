@@ -140,6 +140,10 @@ class Maze {
       case "ellers":
         return new Maze.algorithms.Ellers(settings);
 
+    case "wilson":
+    case "wilsons":
+      return new Maze.algorithms.Wilsons(settings);
+
       default:
         throw "Invalid algorithm";
     }
