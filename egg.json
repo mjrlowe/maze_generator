@@ -1,7 +1,7 @@
 {
-  "name": "maze_generator_test",
+  "name": "maze_generator",
   "description": "A module for generating mazes",
-  "version": "0.2.0-alpha.4",
+  "version": "0.2.0",
   "entry": "mod.js",
   "stable": false,
   "unlisted": true,

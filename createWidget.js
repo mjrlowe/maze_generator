@@ -37,9 +37,9 @@ export default function createWidget(
   let canvasId = mazeId + "-canvas";
 
   const iconImageFolderURL =
-    "https://x.nest.land/maze_generator@0.1.2/images/button-icons";
+    "https://x.nest.land/maze_generator@0.2.0/images/button-icons";
   const cssFileURL =
-    "https://x.nest.land/maze_generator@0.1.2/widget-styles.css";
+    "https://x.nest.land/maze_generator@0.2.0/widget-styles.css";
 
   function getButtonInnerHTML(buttonName) {
     if (widgetSettings.imageButtons) {
