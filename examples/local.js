@@ -11,7 +11,7 @@ let mazeSettings = {
 let m = Maze.create(mazeSettings);
 
 //generate it
-for(let i = 0; i < 200; i++)
+for(let i = 0; i < 3; i++)
 m.step();
 
 
