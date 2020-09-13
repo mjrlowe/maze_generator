@@ -13,6 +13,5 @@ let m = Maze.create(mazeSettings);
 //generate it
 m.generate();
 
-
 //print it to the console
 m.printString();
