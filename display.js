@@ -95,7 +95,7 @@ export default function display({
   ctx.strokeStyle = mainColor;
   ctx.lineWidth = lineThickness * cellSize;
 
-  if (!asLine) { //thin walls
+  if (!asLine) { // draw the walls
     for (let y = 0; y < maze.height; y++) {
       for (let x = 0; x < maze.width; x++) {
         ctx.fillStyle = getCellColor({
@@ -220,32 +220,32 @@ export default function display({
   }
 
   function getCellColor(cell) {
-    let fillColor = backgroundColor;
+    let cellColor = asLine ? mainColor : backgroundColor;
 
     //highlight cells that haven't finished generating differently, depending on the display mode
     //an unfinished cell is one that has all it's walls around it
     //not used for display mode 2 (line) because it looks weird
     if (isUnfinishedCell(cell)) {
       if (!asLine) {
-        fillColor = lerpBetween(backgroundColor, mainColor, 0.5);
+        cellColor = lerpBetween(backgroundColor, mainColor, 0.5);
       } else {
-        fillColor = lerpBetween(backgroundColor, mainColor, 0.03);
+        cellColor = lerpBetween(backgroundColor, mainColor, 0.03);
       }
     } else {
       if (coloringMode === "distance" || coloringMode === "color by distance") {
-        fillColor = interpolate(
+        cellColor = interpolate(
           colorScheme,
           distances[cell.y][cell.x] / maxDistance,
         );
       } else if (coloringMode === "set" || coloringMode === "color by set") {
         if (maze.algorithm === "kruskals") {
-          fillColor = interpolate(
+          cellColor = interpolate(
             colorScheme,
             maze.disjointSubsets.findParent(maze.getCellIndex(cell)) /
               (maze.width * maze.height),
           );
         } else if (maze.algorithm === "ellers") {
-          fillColor = interpolate(
+          cellColor = interpolate(
             colorScheme,
             maze.rowState.setForCell[cell.x] / maze.width,
           );
@@ -253,7 +253,7 @@ export default function display({
       }
     }
 
-    return fillColor;
+    return cellColor;
 
     function interpolate(colorScheme, k = 0, repeats = 1) {
       k = k === 1 ? 1 : k * repeats % 1;
