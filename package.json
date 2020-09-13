@@ -32,6 +32,6 @@
   },
   "homepage": "https://github.com/TheWizardBear/maze_generator#readme",
   "dependencies": {
-    "node-fetch": "^2.6.0"
+    "node-fetch": ">=2.6.1"
   }
 }
