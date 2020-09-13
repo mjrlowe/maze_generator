@@ -4,6 +4,8 @@ The file serves as a reminder to me as to what I need to do when releasing a new
 
 ## Before a release
 
+### Update documentation in `README.md`
+
 ### Replace all version numbers with the new version number
 
 Usually just a "replace all" will suffice for this.

@@ -101,7 +101,7 @@ These are all the properties of the object you can pass in when you write `Maze.
 |-|-|-|-|
 | width (or xSize) | The width of the maze. (How many columns there should be.) | A positive integer. | height or `30` |
 | height (or ySize) | The height of the maze. (How many rows there should be.) | A positive integer. | width or `30` |
-| algorithm | The algorithm to use. | Any one of the following: `"recursive backtracker"`, `"eller's"`, `"sidewinder"`, `"kruskal's"`, `"simplified prim's"`, `"modified prim's"`, `"true prims"`, `"hunt and kill"`, `"binary tree"`, `"aldous broder"`, `"recursive division"`, `"10 print"`, `"random"` (random algorithm). This isn't case sensitive. Characters other than the letters a-z and digits 0-9 are ignored. | `"recursive backtracker"` (`"prims"` defaults to `"true prims"`) |
+| algorithm | The algorithm to use. | Any one of the following: `"recursive backtracker"`, `"eller's"`, `"sidewinder"`, `"kruskal's"`, `"simplified prim's"`, `"modified prim's"`, `"true prim's"`, `"hunt and kill"`, `"binary tree"`, `"aldous broder"`, `"recursive division"`, `"wilson's"`, `"10 print"`, `"random"` (random algorithm). This isn't case sensitive. Characters other than the letters a-z and digits 0-9 are ignored. | `"recursive backtracker"` (`"prims"` defaults to `"true prims"`) |
 | start | Where to start the maze generation from (if there is an option). | An object with both an `x` and `y` property (both integers) or a string referencing a certain point (`"random"` or a certain side or corner such as `"north east"`) | `"random"` for all algorithms except Eller's, binary tree and sidewinder, which are all `{x: 0, y: 0}`. |
 | entrance | Where the solution should start from. | An object with both an `x` and `y` property (and an optional `direction` property: `"N"`, `"S"`, `"E"`, or `"W"`) or a string referencing a certain point (`"random"` or a certain side or corner such as `"north east"`) | `"top left"` |
 | exit | Where the solution should end. | An object with both an `x` and `y` property (and an optional `direction` property: `"N"`, `"S"`, `"E"`, or `"W"`) or a string referencing a certain point (`"random"` or a certain side or corner such as `"north east"`) | `"bottom right"` |
@@ -138,11 +138,11 @@ It optionally takes in an object with the properties listed below.
 | antiAliasing | Whether or not to apply anti-aliasing to the image drawn on the canvas (`imageSmoothingEnabled`). Setting it to false gives crisp edges but it can distort the output for small canvases where the cells do not line up with the canvas pixels well. | `true` or `false` | `false` |
 | showSolution | Whether or not to show the solution when the maze is complete | `true` or `false` | `false` |
 | solutionColor | The color of the solution if `showSolution` is `true` | A hex value as a string | `"#F00"` |
-| strokeWeight | The thickness of the lines drawn | A number ≥ 0 | `4` |
+| lineThickness | The thickness of the lines drawn, as a proportion of the cell size | A number between 0 and 1 | `0.35` |
 | removeWallsAtEntranceAndExit | Whether or not the walls should be removed at the entrance and exit of the maze. _Note that this doesn't change the maze, it just means these walls won't be displayed._ | `true` or `false` | `false` |
 | lineCap | Changes the [`lineCap` canvas context property](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap). | `"butt"`, `"round"` or `"square"` | `"square"` |
 | distanceFrom | Where the distance should be measured from if `displayMode` is set to `"distance"` | A valid cell position or `"solution"` | The start cell |
-| displayMode | How the maze should be displayed. | `0` (line), `1` (block walls), `2` (cell walls) | `1` |
+| asLine | Whether the maze should be displayed as a line or as walls. | `true` or `false` | `false` |
 
 ### .display() example usage
 
