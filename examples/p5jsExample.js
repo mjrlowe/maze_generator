@@ -14,7 +14,6 @@ let mazeSettings = {
 };
 
 let displaySettings = {
-  displayMode: 1,
   backgroundColor: "#FFF",
   mainColor: "#000",
 };
