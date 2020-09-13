@@ -30,9 +30,11 @@ class Wilsons extends Maze {
 
   takeStep() {
 
+    //pick a random cell to start a new path
     this.currentCell =
       this.unvisited[Math.floor(this.prng.random() * this.unvisited.length)];
     let path = [this.currentCell];
+    
     while (!this.visited[this.currentCell.y][this.currentCell.x]) {
       let validNeighbours = [];
       for (let direction of directions) {
@@ -62,9 +64,9 @@ class Wilsons extends Maze {
       }
     }
 
-    for(let c of path){
-      this.removeWall({x: c.x, y: c.y}, opposite[c.direction])
-      this.markAsVisited(c)
+    for(let cell of path){
+      this.removeWall({x: cell.x, y: cell.y}, opposite[cell.direction])
+      this.markAsVisited(cell)
     }
 
     if (this.unvisited.length === 0) this.finishedGenerating = true;
