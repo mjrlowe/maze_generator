@@ -1,0 +1,22 @@
+.maze-widget{
+  display: inline-block;
+  text-align: center;
+}
+
+.maze-widget-image {
+  width: 20px;
+}
+
+.maze-widget-button{
+  padding: 0px;
+  margin: 0px 5px 0px 5px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.maze-widget-button:disabled{
+  opacity: 0.4;
+  cursor: default;
+}
