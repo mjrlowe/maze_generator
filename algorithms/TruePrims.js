@@ -24,7 +24,7 @@ class TruePrims extends Maze {
             y: y + dy[direction],
           });
 
-          let passageCost = isBorderWall ? Infinity : this.prng.random();
+          let passageCost = isBorderWall ? Infinity : this.random();
 
           if ((direction === "N" || direction === "W") && !isBorderWall) {
             passageCost ==

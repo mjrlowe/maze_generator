@@ -1,3 +1,5 @@
+import seedrandom from "https://cdn.skypack.dev/seedrandom@3.0.5";
+
 import {
   dx,
   dy,
@@ -10,9 +12,11 @@ import calculateDistances from "./distances.js";
 import solve from "./solve.js";
 import analyze from "./analyze.js";
 
+console.log(seedrandom())
 class Maze {
   constructor(mazeSettings) {
-    this.prng = mazeSettings.prng ?? Math;
+    this.seed = mazeSettings.seed ?? Date.now()
+    this.random = mazeSettings.prng ?? seedrandom(2);
     this.width = mazeSettings.width ||
       mazeSettings.xSize || mazeSettings.size || mazeSettings.height ||
       mazeSettings.ySize || 30;
@@ -58,7 +62,7 @@ class Maze {
       this.start = this.getXYPosition(mazeSettings.start ?? "random");
     }
 
-    this.prng.shuffle = (arr) => {
+    this.shuffle = (arr) => {
       const isView = ArrayBuffer && ArrayBuffer.isView &&
         ArrayBuffer.isView(arr);
       arr = isView ? arr : arr.slice();
@@ -67,7 +71,7 @@ class Maze {
         tmp,
         idx = arr.length;
       while (idx > 1) {
-        rnd = (this.prng.random() * idx) | 0;
+        rnd = (this.random() * idx) | 0;
 
         tmp = arr[--idx];
         arr[idx] = arr[rnd];
@@ -329,8 +333,8 @@ class Maze {
         break;
       case "random":
         XYPosition = {
-          x: Math.floor(this.prng.random() * this.width),
-          y: Math.floor(this.prng.random() * this.height),
+          x: Math.floor(this.random() * this.width),
+          y: Math.floor(this.random() * this.height),
         };
         break;
       default:

@@ -11,7 +11,7 @@ class Sidewinder extends Maze {
   }
 
   takeStep() {
-    let carveEast = this.prng.random() < 0.5;
+    let carveEast = this.random() < 0.5;
 
     if (this.currentCell.y === 0) carveEast = true;
     if (this.currentCell.x === this.width - 1) carveEast = false;
@@ -29,7 +29,7 @@ class Sidewinder extends Maze {
         //carve north
       } else {
         let cell =
-          this.runSet[Math.floor(this.prng.random() * this.runSet.length)];
+          this.runSet[Math.floor(this.random() * this.runSet.length)];
         this.removeWall(cell, "N");
         this.runSet = [];
       }

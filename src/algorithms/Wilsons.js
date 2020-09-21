@@ -31,7 +31,7 @@ class Wilsons extends Maze {
   takeStep() {
     //pick a random cell to start a new path
     this.currentCell =
-      this.unvisited[Math.floor(this.prng.random() * this.unvisited.length)];
+      this.unvisited[Math.floor(this.random() * this.unvisited.length)];
     let path = [this.currentCell];
 
     while (!this.visited[this.currentCell.y][this.currentCell.x]) {
@@ -45,7 +45,7 @@ class Wilsons extends Maze {
         if (this.cellIsInMaze(neighbour)) validNeighbours.push(neighbour);
       }
       let newCell = validNeighbours[
-        Math.floor(this.prng.random() * validNeighbours.length)
+        Math.floor(this.random() * validNeighbours.length)
       ];
       let cellVisited = false;
       let cellPreviousIndex = -1;

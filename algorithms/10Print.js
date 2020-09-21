@@ -15,7 +15,7 @@ class TenPrint extends Maze {
   }
 
   takeStep() {
-    let passageDirection = this.prng.random() < 0.5 ? "S" : "E";
+    let passageDirection = this.random() < 0.5 ? "S" : "E";
     let neighbor1 = {
       x: this.currentCell.x + dx[passageDirection],
       y: this.currentCell.y + dy[passageDirection],

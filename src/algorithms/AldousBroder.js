@@ -32,7 +32,7 @@ class AldousBroder extends Maze {
     if (this.currentCell.x !== 0) possibleDirections.push("W");
 
     let chosenDirection = possibleDirections[
-      Math.floor(this.prng.random() * possibleDirections.length)
+      Math.floor(this.random() * possibleDirections.length)
     ];
     let newCell = {
       x: this.currentCell.x + dx[chosenDirection],

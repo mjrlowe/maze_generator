@@ -28,7 +28,7 @@ class Kruskals extends Maze {
         }
       }
     }
-    this.edges = this.prng.shuffle(this.edges);
+    this.edges = this.shuffle(this.edges);
   }
 
   takeStep() {

@@ -19,7 +19,7 @@ class Eller extends Maze {
     if (
       !(this.rowState.cells[this.currentCell.x] ===
         this.rowState.cells[this.currentCell.x + 1]) &&
-      (this.currentCell.y === this.width - 1 || this.prng.random() > 0.5)
+      (this.currentCell.y === this.width - 1 || this.random() > 0.5)
     ) {
       this.rowState.merge(this.currentCell.x, this.currentCell.x + 1);
 
@@ -43,10 +43,10 @@ class Eller extends Maze {
     let verticalConnections = [];
     for (let setId in this.rowState.sets) {
       let set = this.rowState.sets[setId];
-      set = this.prng.shuffle(set);
+      set = this.shuffle(set);
 
       let numberOfCellsToConnect =
-        Math.floor(this.prng.random() * (set.length - 1)) + 1;
+        Math.floor(this.random() * (set.length - 1)) + 1;
 
       for (let i = 0; i < numberOfCellsToConnect; i++) {
         verticalConnections.push(set[i]);

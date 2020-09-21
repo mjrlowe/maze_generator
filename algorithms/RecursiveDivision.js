@@ -30,7 +30,7 @@ class RecursiveDivision extends Maze {
       return this.HORIZONTAL;
     } else if (height < width) {
       return this.VERTICAL;
-    } else if (this.prng.random() > 0.5) {
+    } else if (this.random() > 0.5) {
       return this.HORIZONTAL;
     } else {
       return this.VERTICAL;
@@ -77,10 +77,10 @@ class RecursiveDivision extends Maze {
       x: (this.region.x +
         (this.horizontal
           ? 0
-          : Math.floor(this.prng.random() * (this.region.width - 2)))),
+          : Math.floor(this.random() * (this.region.width - 2)))),
       y: (this.region.y +
         (this.horizontal
-          ? Math.floor(this.prng.random() * (this.region.height - 2))
+          ? Math.floor(this.random() * (this.region.height - 2))
           : 0)),
     };
 
@@ -117,11 +117,11 @@ class RecursiveDivision extends Maze {
     let passage = {
       x: (this.wallStartCell.x +
         (this.horizontal
-          ? Math.floor(this.prng.random() * this.region.width)
+          ? Math.floor(this.random() * this.region.width)
           : 0)),
       y: (this.wallStartCell.y +
         (this.horizontal ? 0
-        : Math.floor(this.prng.random() * this.region.height))),
+        : Math.floor(this.random() * this.region.height))),
     };
 
     this.removeWall(passage, this.dir);
