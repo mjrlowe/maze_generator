@@ -44,10 +44,9 @@ class Wilsons extends Maze {
         };
         if (this.cellIsInMaze(neighbour)) validNeighbours.push(neighbour);
       }
-      let newCell =
-        validNeighbours[
-          Math.floor(this.prng.random() * validNeighbours.length)
-        ];
+      let newCell = validNeighbours[
+        Math.floor(this.prng.random() * validNeighbours.length)
+      ];
       let cellVisited = false;
       let cellPreviousIndex = -1;
       path.forEach((pathCell, index) => {

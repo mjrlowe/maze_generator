@@ -9,7 +9,6 @@
       "./algorithms/*",
       "./examples/*",
       "./images/**/*",
-      "./.gitignore",
       "./analyze.js",
       "./createWidget.js",
       "./DEV.md",
