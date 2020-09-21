@@ -3,7 +3,6 @@
   "description": "A module for generating mazes",
   "version": "0.2.0",
   "entry": "/mod.js",
-  "unlisted": true,
   "checkFormat": false,
   "repository": "https://github.com/thewizardbear/maze_generator",
   "files": [
