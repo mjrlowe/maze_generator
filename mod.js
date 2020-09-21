@@ -1,20 +1,20 @@
-import Maze from "./Maze.js";
+import Maze from "./src/Maze.js";
 
-import createWidget from "./createWidget.js";
+import createWidget from "./src/createWidget.js";
 
-import Sidewinder from "./algorithms/Sidewinder.js";
-import RecursiveBacktracker from "./algorithms/RecursiveBacktracker.js";
-import HuntAndKill from "./algorithms/HuntAndKill.js";
-import Ellers from "./algorithms/Ellers.js";
-import AldousBroder from "./algorithms/AldousBroder.js";
-import RecursiveDivision from "./algorithms/RecursiveDivision.js";
-import SimplifiedPrims from "./algorithms/SimplifiedPrims.js";
-import ModifiedPrims from "./algorithms/ModifiedPrims.js";
-import Kruskals from "./algorithms/Kruskals.js";
-import BinaryTree from "./algorithms/BinaryTree.js";
-import Wilsons from "./algorithms/Wilsons.js";
-import TruePrims from "./algorithms/TruePrims.js";
-import TenPrint from "./algorithms/10Print.js";
+import Sidewinder from "./src/algorithms/Sidewinder.js";
+import RecursiveBacktracker from "./src/algorithms/RecursiveBacktracker.js";
+import HuntAndKill from "./src/algorithms/HuntAndKill.js";
+import Ellers from "./src/algorithms/Ellers.js";
+import AldousBroder from "./src/algorithms/AldousBroder.js";
+import RecursiveDivision from "./src/algorithms/RecursiveDivision.js";
+import SimplifiedPrims from "./src/algorithms/SimplifiedPrims.js";
+import ModifiedPrims from "./src/algorithms/ModifiedPrims.js";
+import Kruskals from "./src/algorithms/Kruskals.js";
+import BinaryTree from "./src/algorithms/BinaryTree.js";
+import Wilsons from "./src/algorithms/Wilsons.js";
+import TruePrims from "./src/algorithms/TruePrims.js";
+import TenPrint from "./src/algorithms/10Print.js";
 
 Maze.createWidget = createWidget;
 
