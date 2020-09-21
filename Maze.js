@@ -96,12 +96,12 @@ class Maze {
       case "trueprims":
         return new Maze.algorithms.TruePrims(settings);
 
-      // case "random":
-      //   return new Maze.algorithms[
-      //     Object.keys(
-      //       Maze.algorithms,
-      //     )[Math.floor(Math.random() * Object.keys(Maze.algorithms).length)]
-      //   ](settings);
+      case "random":
+        return new Maze.algorithms[
+          Object.keys(
+            Maze.algorithms,
+          )[Math.floor(Math.random() * Object.keys(Maze.algorithms).length)]
+        ](settings);
 
       case "depthfirstsearch":
       case "dfs":
@@ -143,6 +143,10 @@ class Maze {
       case "wilson":
       case "wilsons":
         return new Maze.algorithms.Wilsons(settings);
+
+      case "recursivedivision":
+      case "division":
+        return new Maze.algorithms.RecursiveDivision(settings);
 
       default:
         throw "Invalid algorithm";
