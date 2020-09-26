@@ -1,5 +1,6 @@
 /*
-Seedrandom v3.0.5 (MIT license)
+This file is an adapted version of seedrandom v3.0.5 (MIT license).
+I am importing the file locally so I don't have to deal with cross-compatability stuff (as Node does not support importing URLs).
 
 https://github.com/davidbau/seedrandom
 
@@ -38,10 +39,6 @@ const width = 256, // each RC4 output is 0 <= x < 256
   mask = width - 1;
   //nodecrypto; // node.js crypto module, initialized at the bottom.
 
-//
-// seedrandom()
-// This is the seedrandom function described above.
-//
 function seedrandom(seed, options, callback) {
   const key = [];
   options = (options == true) ? {

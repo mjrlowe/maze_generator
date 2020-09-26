@@ -11,13 +11,6 @@ import solve from "./solve.js";
 import analyze from "./analyze.js";
 
 import seedrandom from "./seedrandom.js";
-// let seedrandom;
-
-// if (typeof require != "undefined") {
-//   seedrandom = require("seedrandom");
-// }else{
-//   seedrandom = (await import("https://cdn.skypack.dev/seedrandom@3.0.5")).default;
-// }
 
 console.log(seedrandom)
 class Maze {
