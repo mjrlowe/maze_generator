@@ -141,7 +141,7 @@ It optionally takes in an object with the properties listed below.
 | showSolution | Whether or not to show the solution when the maze is complete | `true` or `false` | `false` |
 | solutionColor | The color of the solution if `showSolution` is `true` | A hex value as a string | `"#F00"` |
 | lineThickness | The thickness of the lines drawn, as a proportion of the cell size | A number between 0 and 1 | `0.35` |
-| removeWallsAtEntranceAndExit | Whether or not the walls should be removed at the entrance and exit of the maze. _Note that this doesn't change the maze, it just means these walls won't be displayed._ | `true` or `false` | `false` |
+| removeWallsAtEntranceAndExit | Whether or not the walls should be removed at the entrance and exit of the maze. _Note that this doesn't change the maze, it just means these walls won't be displayed._ | `true` or `false` | `true` |
 | lineCap | Changes the [`lineCap` canvas context property](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap). | `"butt"`, `"round"` or `"square"` | `"square"` |
 | distanceFrom | Where the distance should be measured from if `displayMode` is set to `"distance"` | A valid cell position or `"solution"` | The start cell |
 | asLine | Whether the maze should be displayed as a line or as walls. | `true` or `false` | `false` |
@@ -152,17 +152,19 @@ It optionally takes in an object with the properties listed below.
 let kruskalMaze = Maze.create({
   width: 20,
   height: 20,
+  seed: 100,
   algorithm: "Kruskal's"
 }).generate();
 
 kruskalMaze.display({
-  canvas: document.getElementById("maze-canvas") //Replace this with your canvas element you want to display the maze on.
+  canvas: document.getElementById("maze-canvas"), //Replace this with your canvas element you want to display the maze on.
+  lineThickness: 0.5 //this sets the walls to be the same size as the paths
 })
 ```
 
 This will display a maze similar to this:
 
-![Kruskal's maze](images/Kruskals-20x20.png)
+![Kruskal's maze](images/Kruskals-20x20-100.png)
 
 ## .printString()
 
