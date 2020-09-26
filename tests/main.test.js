@@ -16,6 +16,7 @@ for(let algorithm in Maze.algorithms){
       });
       m.generate();
       b.stop();
+      assertEquals(m.width, 16)
     },
   });
 }

@@ -1,5 +1,3 @@
-import seedrandom from "https://cdn.skypack.dev/seedrandom@3.0.5";
-
 import {
   dx,
   dy,
@@ -12,11 +10,20 @@ import calculateDistances from "./distances.js";
 import solve from "./solve.js";
 import analyze from "./analyze.js";
 
-console.log(seedrandom())
+import seedrandom from "./seedrandom.js";
+// let seedrandom;
+
+// if (typeof require != "undefined") {
+//   seedrandom = require("seedrandom");
+// }else{
+//   seedrandom = (await import("https://cdn.skypack.dev/seedrandom@3.0.5")).default;
+// }
+
+console.log(seedrandom)
 class Maze {
   constructor(mazeSettings) {
     this.seed = mazeSettings.seed ?? Date.now()
-    this.random = mazeSettings.prng ?? seedrandom(2);
+    this.random = mazeSettings.prng ?? seedrandom(this.seed);
     this.width = mazeSettings.width ||
       mazeSettings.xSize || mazeSettings.size || mazeSettings.height ||
       mazeSettings.ySize || 30;
