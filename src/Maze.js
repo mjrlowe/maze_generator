@@ -8,6 +8,7 @@ import mazeString from "./print.js";
 import display from "./display.js";
 import calculateDistances from "./distances.js";
 import solve from "./solve.js";
+import braid from "./braid.js";
 import analyze from "./analyze.js";
 
 import seedrandom from "./seedrandom.js";
@@ -364,6 +365,10 @@ class Maze {
 
   display(settings) {
     return display({ ...settings, maze: this });
+  }
+
+  braid(settings) {
+    return braid({maze: this });
   }
 
   getSolution(
