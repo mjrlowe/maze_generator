@@ -31,7 +31,13 @@ E.g:
   ],
 ```
 
-### Update whether the new release is stable or not in `egg.json`
+### Check that all the other fields are correct `egg.json`
+
+* Version
+* Name
+* Stability
+
+THis is especially important if a test module was released during development.
 
 E.g:  
 
