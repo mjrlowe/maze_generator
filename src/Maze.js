@@ -13,7 +13,6 @@ import analyze from "./analyze.js";
 
 import seedrandom from "./seedrandom.js";
 
-console.log(seedrandom)
 class Maze {
   constructor(mazeSettings) {
     this.seed = mazeSettings.seed ?? Date.now()
