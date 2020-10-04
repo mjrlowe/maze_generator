@@ -97,15 +97,15 @@ function seedrandom(seed, options, callback) {
         }
       }
 
-      // If called as a method of Math (Math.seedrandom()), mutate
-      // Math.random because that is how seedrandom.js has worked since v1.0.
+      /* If called as a method of Math (Math.seedrandom()), mutate
+       Math.random because that is how seedrandom.js has worked since v1.0. */
       if (is_math_call) {
         math[rngname] = prng;
         return seed;
       }
 
-      // Otherwise, it is a newer calling convention, so return the
-      // prng directly.
+      /* Otherwise, it is a newer calling convention, so return the
+      prng directly. */
       else return prng;
     })(
     prng,
@@ -114,16 +114,16 @@ function seedrandom(seed, options, callback) {
     options.state);
 }
 
-//
-// ARC4
-//
-// An ARC4 implementation.  The constructor takes a key in the form of
-// an array of at most (width) integers that should be 0 <= x < (width).
-//
-// The g(count) method returns a pseudorandom integer that concatenates
-// the next (count) outputs from ARC4.  Its return value is a number x
-// that is in the range 0 <= x < (width ^ count).
-//
+/*
+  ARC4
+
+  An ARC4 implementation.  The constructor takes a key in the form of
+  an array of at most (width) integers that should be 0 <= x < (width).
+
+  The g(count) method returns a pseudorandom integer that concatenates
+  the next (count) outputs from ARC4.  Its return value is a number x
+  that is in the range 0 <= x < (width ^ count).
+*/
 function ARC4(key) {
   let t;
   const keylen = key.length,
@@ -168,10 +168,8 @@ function ARC4(key) {
   })(width);
 }
 
-//
 // copy()
 // Copies internal state of ARC4 to or from a plain object.
-//
 function copy(f, t) {
   t.i = f.i;
   t.j = f.j;
@@ -243,13 +241,14 @@ function tostring(a) {
   return String.fromCharCode.apply(0, a);
 }
 
-//
-// When seedrandom.js is loaded, we immediately mix a few bits
-// from the built-in RNG into the entropy pool.  Because we do
-// not want to interfere with deterministic PRNG state later,
-// seedrandom will not call math.random on its own again after
-// initialization.
-//
+
+/* 
+  When seedrandom.js is loaded, we immediately mix a few bits
+  from the built-in RNG into the entropy pool.  Because we do
+  not want to interfere with deterministic PRNG state later,
+  seedrandom will not call math.random on its own again after
+  initialization.
+*/
 mixkey(math.random(), pool);
 
 
