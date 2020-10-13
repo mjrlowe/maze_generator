@@ -14,7 +14,7 @@
     "./egg.json",
     "./LICENSE",
     "./mod.js",
-    "./README.md",
+    "./README.md"
   ],
   "checkAll": true
 }
