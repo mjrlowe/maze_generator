@@ -1,3 +1,10 @@
+/* TODO: 
+* Test that braid method removes all walls
+* Test that kruskals, true prims etc. produce minimum spanning trees
+* Test that print method prints a string (or at least that the getString method returns a string)
+* Test analyze stuff (once implemented)
+*/
+
 import {
   assertEquals,
   assertNotEquals,
