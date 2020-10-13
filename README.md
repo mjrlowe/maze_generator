@@ -243,6 +243,27 @@ It takes in three properties, all optional.
 </script>
 ```
 
+## .braid()
+
+This method braids the maze, removing all dead ends. It returns the maze object so it can be chained.
+
+Try:
+
+```js
+
+import {Maze} from "https://x.nest.land/maze_generator@0.3.0/mod.js";
+
+let mz = Maze.create({algorithm: "modified prims", size: "10"}).generate();
+
+//outputs a modified prims maze
+mz.printString();
+
+mz.braid();
+
+//outputs the same maze but with all the dead ends removed
+mz.printString();
+```
+
 ## .getSolution()
 
 This is a method that returns the solution to the maze in the form of an array of cell positions.
