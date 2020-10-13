@@ -1,8 +1,5 @@
 import Maze from "../Maze.js";
-import {
-  dx,
-  dy,
-} from "../directions.js";
+import { dx, dy } from "../directions.js";
 
 class AldousBroder extends Maze {
   //called when the maze is intitalized

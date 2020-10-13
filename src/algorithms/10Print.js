@@ -1,9 +1,5 @@
 import Maze from "../Maze.js";
-import {
-  opposite,
-  dx,
-  dy,
-} from "../directions.js";
+import { dx, dy, opposite } from "../directions.js";
 
 class TenPrint extends Maze {
   resetVariables() {

@@ -116,12 +116,9 @@ class RecursiveDivision extends Maze {
     // where will the passage through the wall exist?
     let passage = {
       x: (this.wallStartCell.x +
-        (this.horizontal
-          ? Math.floor(this.random() * this.region.width)
-          : 0)),
+        (this.horizontal ? Math.floor(this.random() * this.region.width) : 0)),
       y: (this.wallStartCell.y +
-        (this.horizontal ? 0
-        : Math.floor(this.random() * this.region.height))),
+        (this.horizontal ? 0 : Math.floor(this.random() * this.region.height))),
     };
 
     this.removeWall(passage, this.dir);

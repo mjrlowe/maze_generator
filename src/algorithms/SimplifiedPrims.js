@@ -1,9 +1,5 @@
 import Maze from "../Maze.js";
-import {
-  dx,
-  dy,
-  directions,
-} from "../directions.js";
+import { directions, dx, dy } from "../directions.js";
 
 class SimplifiedPrims extends Maze {
   resetVariables() {

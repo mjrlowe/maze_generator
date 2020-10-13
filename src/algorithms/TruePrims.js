@@ -1,10 +1,5 @@
 import Maze from "../Maze.js";
-import {
-  dx,
-  dy,
-  directions,
-  opposite,
-} from "../directions.js";
+import { directions, dx, dy, opposite } from "../directions.js";
 
 class TruePrims extends Maze {
   resetVariables() {

@@ -1,4 +1,4 @@
-import { opposite, directions, fullNames } from "./directions.js";
+import { directions, fullNames, opposite } from "./directions.js";
 
 export default function analyze(maze) {
   let solution = maze.getSolution();

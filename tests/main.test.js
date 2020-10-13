@@ -6,18 +6,16 @@
 */
 
 import {
+  assert,
   assertEquals,
   assertNotEquals,
-  assert
 } from "https://deno.land/std@0.70.0/testing/asserts.ts";
 import {
+  bench,
   runBenchmarks,
-  bench
 } from "https://deno.land/std@0.70.0/testing/bench.ts";
 
-import {
-  Maze
-} from "../mod.js";
+import { Maze } from "../mod.js";
 
 //benchmarks
 
@@ -34,7 +32,7 @@ for (let algorithm in Maze.algorithms) {
       });
       m.generate();
       b.stop();
-      assertEquals(m.width, 16)
+      assertEquals(m.width, 16);
     },
   });
 }
@@ -62,8 +60,8 @@ Deno.test(
   () => {
     const settings = {
       size: 10,
-      algorithm: "prims"
-    }
+      algorithm: "prims",
+    };
     let maze1 = Maze.create(settings).generate();
     let maze2 = Maze.create(settings).generate();
     assertNotEquals(maze1.seed, maze2.seed);
@@ -78,8 +76,8 @@ Deno.test(
       width: 4,
       height: 23,
       algorithm: "kruskals",
-      seed: Math.floor(Math.random()*100000)
-    }
+      seed: Math.floor(Math.random() * 100000),
+    };
     let maze1 = Maze.create(settings).generate();
     let maze2 = Maze.create(settings).generate();
     assertEquals(maze1.seed, maze2.seed);
@@ -94,8 +92,8 @@ Deno.test(
       width: 4,
       height: 23,
       algorithm: "kruskals",
-      seed: String(Math.floor(Math.random()*100000))
-    }
+      seed: String(Math.floor(Math.random() * 100000)),
+    };
     let maze1 = Maze.create(settings).generate();
     let maze2 = Maze.create(settings).generate();
     assertEquals(maze1.seed, maze2.seed);
@@ -103,13 +101,15 @@ Deno.test(
   },
 );
 
-
 function checkWallsEqual(maze1, maze2) {
-  
   for (let y = 0; y < maze1.height; y++) {
     for (let x = 0; x < maze1.width; x++) {
       for (let direction of ["N", "S", "E", "W"]) {
-        if (maze1.walls[y][x][direction] != maze2.walls[y][x][direction]) return false;
+        if (
+          maze1.walls[y][x][direction] != maze2.walls[y][x][direction]
+        ) {
+          return false;
+        }
       }
     }
   }

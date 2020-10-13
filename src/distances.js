@@ -1,7 +1,4 @@
-import {
-  dx,
-  dy,
-} from "./directions.js";
+import { dx, dy } from "./directions.js";
 
 export default function calculateDistances(distanceFrom) {
   let Q = []; //queue

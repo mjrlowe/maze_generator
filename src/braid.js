@@ -1,15 +1,8 @@
-import {
-  opposite,
-  directions,
-  fullNames,
-  dx,
-  dy
-} from "./directions.js";
+import { directions, dx, dy, fullNames, opposite } from "./directions.js";
 
 export default function braid({
-  maze
+  maze,
 }) {
-
   let deadEnds = [];
   maze.walls.forEach((row, y) => {
     row.forEach((cell, x) => {
@@ -21,8 +14,8 @@ export default function braid({
         deadEnds.push({
           x,
           y,
-          direction: opposite[connectedDirections[0]]
-        })
+          direction: opposite[connectedDirections[0]],
+        });
       }
     });
   });
@@ -41,17 +34,23 @@ export default function braid({
       for (let direction of directions) {
         let neighbor = {
           x: deadEnd.x + dx[direction],
-          y: deadEnd.y + dy[direction]
-        }
-        if (direction != opposite[deadEnd.direction] && maze.cellIsInMaze(neighbor)) {
+          y: deadEnd.y + dy[direction],
+        };
+        if (
+          direction != opposite[deadEnd.direction] &&
+          maze.cellIsInMaze(neighbor)
+        ) {
           unconnectedNeighbors.push({
             ...neighbor,
-            direction
+            direction,
           });
         }
       }
 
-      let chosenNeighbor = unconnectedNeighbors[Math.floor(maze.random() * unconnectedNeighbors.length)];
+      let chosenNeighbor =
+        unconnectedNeighbors[
+          Math.floor(maze.random() * unconnectedNeighbors.length)
+        ];
       maze.removeWall(deadEnd, chosenNeighbor.direction);
     }
   }

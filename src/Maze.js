@@ -1,8 +1,4 @@
-import {
-  dx,
-  dy,
-  opposite,
-} from "./directions.js";
+import { dx, dy, opposite } from "./directions.js";
 
 import mazeString from "./print.js";
 import display from "./display.js";
@@ -15,7 +11,7 @@ import seedrandom from "./seedrandom.js";
 
 class Maze {
   constructor(mazeSettings) {
-    this.seed = mazeSettings.seed ?? Date.now()
+    this.seed = mazeSettings.seed ?? Date.now();
     this.random = mazeSettings.prng ?? seedrandom(this.seed);
     this.width = mazeSettings.width ||
       mazeSettings.xSize || mazeSettings.size || mazeSettings.height ||
@@ -367,7 +363,7 @@ class Maze {
   }
 
   braid(settings) {
-    return braid({maze: this });
+    return braid({ maze: this });
   }
 
   getSolution(
