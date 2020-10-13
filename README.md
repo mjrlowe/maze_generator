@@ -106,7 +106,7 @@ These are all the properties of the object you can pass in when you write `Maze.
 | entrance | Where the solution should start from. | An object with both an `x` and `y` property (and an optional `direction` property: `"N"`, `"S"`, `"E"`, or `"W"`) or a string referencing a certain point (`"random"` or a certain side or corner such as `"north east"`) | `"top left"` |
 | exit | Where the solution should end. | An object with both an `x` and `y` property (and an optional `direction` property: `"N"`, `"S"`, `"E"`, or `"W"`) or a string referencing a certain point (`"random"` or a certain side or corner such as `"north east"`) | `"bottom right"` |
 | seed | The seed for the random number generator. Mazes with the same seed (and all the other settings that affect generation are the same) will always generate exactly the same. | A number or string | If no seed is given a unique one will be generated (using `Date.now()`). |
-| prng | The pseudo-random number generator used during maze generation. This is useful if you want to use your own random number generator function. You can also set `prng` to `Math.random`. | A function that when given no arguments returns a number that is between 0 and 1 (including 0 but not including 1). | `seedrandom(seed)` (using David Bau's [seedrandom](https://github.com/davidbau/seedrandom) package) 
+| prng | The pseudo-random number generator used during maze generation. This is useful if you want to use your own random number generator function. You can also set `prng` to `Math.random`. | A function that when given no arguments returns a number that is between 0 and 1 (including 0 but not including 1). | `seedrandom(seed)` (using David Bau's [seedrandom](https://github.com/davidbau/seedrandom) package) |
 
 You can also use the `size` property instead of `width` and `height` to set both dimentions.
 
@@ -142,7 +142,7 @@ It optionally takes in an object with the properties listed below.
 | solutionColor | The color of the solution if `showSolution` is `true` | A hex value as a string | `"#F00"` |
 | lineThickness | The thickness of the lines drawn, as a proportion of the cell size | A number between 0 and 1 | `0.35` |
 | removeWallsAtEntranceAndExit | Whether or not the walls should be removed at the entrance and exit of the maze. _Note that this doesn't change the maze, it just means these walls won't be displayed._ | `true` or `false` | `true` |
-| lineCap | Changes the [`lineCap` canvas context property](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap). | `"butt"`, `"round"` or `"square"` | `"square"` |
+| lineCap | Changes the [`lineCap`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap) canvas context property. | `"butt"`, `"round"` or `"square"` | `"square"` |
 | distanceFrom | Where the distance should be measured from if `displayMode` is set to `"distance"` | A valid cell position or `"solution"` | The start cell |
 | asLine | Whether the maze should be displayed as a line or as walls. | `true` or `false` | `false` |
 
@@ -162,7 +162,7 @@ kruskalMaze.display({
 })
 ```
 
-This will display a maze similar to this:
+This will display a maze that looks like this:
 
 ![Kruskal's maze](images/Kruskals-20x20-100.png)
 
