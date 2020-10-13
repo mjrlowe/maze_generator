@@ -21,14 +21,14 @@ This module is heavily influenced by [Jamis Buck's Coffeescript mazes](https://g
 If you are inside a Javascript module file or a `type="module"` script tag, then add the following to the top of your code:
 
 ```javascript
-import {Maze} from "https://x.nest.land/maze_generator@0.2.1/mod.js";
+import {Maze} from "https://x.nest.land/maze_generator@0.3.0/mod.js";
 ```
 
 If not, you can use the dynamic `import()` function. For example:
 
 ```javascript
 let Maze;
-import("https://x.nest.land/maze_generator@0.2.1/mod.js")
+import("https://x.nest.land/maze_generator@0.3.0/mod.js")
   .then(module => {
     Maze = module.Maze;
   })
@@ -37,7 +37,7 @@ import("https://x.nest.land/maze_generator@0.2.1/mod.js")
   })
 ```
 
-You can also import the module from `deno.land/x` if you prefer: `https://deno.land/x/maze_generator@v0.2.1/mod.js`.
+You can also import the module from `deno.land/x` if you prefer: `https://deno.land/x/maze_generator@v0.3.0/mod.js`.
 (Note the `v` here, which is not present when importing from `nest.land`.)
 
 ### In Node
@@ -65,7 +65,7 @@ Please note that Node version 14+ is required as `maze_generator` makes use of s
 ## Example Usage
 
 ```javascript
-import {Maze} from "https://x.nest.land/maze_generator@0.2.1/mod.js"
+import {Maze} from "https://x.nest.land/maze_generator@0.3.0/mod.js"
 
 let mazeSettings = {
   width: 12,
@@ -224,7 +224,7 @@ It takes in three properties, all optional.
 ```html
 <div id="prims-demo"></div>
 <script>
-  import("https://x.nest.land/maze_generator@0.2.1/mod.js")
+  import("https://x.nest.land/maze_generator@0.3.0/mod.js")
     .then(({Maze}) => {
       const mazeSettings = {
         algorithm: "true prims"

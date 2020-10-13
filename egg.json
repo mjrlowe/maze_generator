@@ -1,7 +1,7 @@
 {
-  "name": "maze_generator_test_module",
+  "name": "maze_generator",
   "description": "A module for generating mazes",
-  "version": "0.3.0-alpha.2",
+  "version": "0.3.0",
   "unlisted": true,
   "entry": "/mod.js",
   "checkFormat": false,
@@ -11,14 +11,10 @@
     "./examples/**/*",
     "./images/**/*",
     "./tests/**/*",
-    "./DEV.md",
     "./egg.json",
     "./LICENSE",
     "./mod.js",
     "./README.md",
-    "/mod.js",
-    "/mod.js",
-    "/mod.js"
   ],
   "checkAll": true
 }

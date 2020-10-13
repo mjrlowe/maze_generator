@@ -16,7 +16,7 @@ Files which include the module version number:
 * `egg.json`
 * Example code in the `examples` folder
 * `createWidget.js`
-* Example code in README.md
+* Example code in `README.md`
 
 ### Make sure any new folders and files are included in `egg.json`
 
