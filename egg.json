@@ -17,6 +17,7 @@
     "./mod.js",
     "./README.md",
     "/mod.js",
+    "/mod.js",
     "/mod.js"
   ],
   "checkAll": true
