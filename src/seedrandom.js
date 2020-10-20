@@ -183,7 +183,7 @@ function copy(f, t) {
   t.j = f.j;
   t.S = f.S.slice();
   return t;
-}//
+} //
 // flatten()
 // Converts an object tree to nested arrays of strings.
 //

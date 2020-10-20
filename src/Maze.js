@@ -12,7 +12,6 @@ import Wilsons from "./algorithms/Wilsons.js";
 import TruePrims from "./algorithms/TruePrims.js";
 import TenPrint from "./algorithms/10Print.js";
 
-
 const algorithms = {
   RecursiveBacktracker,
   HuntAndKill,
@@ -28,7 +27,6 @@ const algorithms = {
   TenPrint,
   Wilsons,
 };
-
 
 class Maze {
   constructor(settings) {
@@ -104,6 +102,5 @@ class Maze {
     }
   }
 }
-
 
 export default Maze;

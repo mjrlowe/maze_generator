@@ -47,10 +47,9 @@ export default function braid({
         }
       }
 
-      let chosenNeighbor =
-        unconnectedNeighbors[
-          Math.floor(maze.random() * unconnectedNeighbors.length)
-        ];
+      let chosenNeighbor = unconnectedNeighbors[
+        Math.floor(maze.random() * unconnectedNeighbors.length)
+      ];
       maze.removeWall(deadEnd, chosenNeighbor.direction);
     }
   }
