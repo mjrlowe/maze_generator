@@ -12,6 +12,8 @@ import Wilsons from "./algorithms/Wilsons.js";
 import TruePrims from "./algorithms/TruePrims.js";
 import TenPrint from "./algorithms/10Print.js";
 
+import createWidget from "./createWidget.js";
+
 const algorithms = {
   RecursiveBacktracker,
   HuntAndKill,
@@ -102,5 +104,7 @@ class Maze {
     }
   }
 }
+
+Maze.createWidget = createWidget;
 
 export default Maze;
