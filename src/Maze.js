@@ -14,22 +14,6 @@ import TenPrint from "./algorithms/10Print.js";
 
 import createWidget from "./createWidget.js";
 
-const algorithms = {
-  RecursiveBacktracker,
-  HuntAndKill,
-  Kruskals,
-  Ellers,
-  AldousBroder,
-  SimplifiedPrims,
-  RecursiveDivision,
-  ModifiedPrims,
-  Sidewinder,
-  BinaryTree,
-  TruePrims,
-  TenPrint,
-  Wilsons,
-};
-
 class Maze {
   constructor(settings) {
     settings.algorithmId = settings.algorithm
@@ -39,13 +23,13 @@ class Maze {
     switch (settings.algorithmId) {
       case "10print":
       case "tenprint":
-        return new algorithms.TenPrint(settings);
+        return new TenPrint(settings);
 
       case "prim":
       case "prims":
       case "trueprim":
       case "trueprims":
-        return new algorithms.TruePrims(settings);
+        return new TruePrims(settings);
 
       case "random":
         return new algorithms[
@@ -60,44 +44,44 @@ class Maze {
       case "randomiseddepthfirstsearch":
       case "rdfs":
       case "recursivebacktracker":
-        return new algorithms.RecursiveBacktracker(settings);
+        return new RecursiveBacktracker(settings);
 
       case "kruskal":
       case "kruskals":
-        return new algorithms.Kruskals(settings);
+        return new Kruskals(settings);
 
       case "simplifiedprim":
       case "simplifiedprims":
-        return new algorithms.SimplifiedPrims(settings);
+        return new SimplifiedPrims(settings);
 
       case "modifiedprim":
       case "modifiedprims":
-        return new algorithms.ModifiedPrims(settings);
+        return new ModifiedPrims(settings);
 
       case "aldousbroder":
-        return new algorithms.AldousBroder(settings);
+        return new AldousBroder(settings);
 
       case "binary":
       case "binarytree":
-        return new algorithms.BinaryTree(settings);
+        return new BinaryTree(settings);
 
       case "sidewinder":
-        return new algorithms.Sidewinder(settings);
+        return new Sidewinder(settings);
 
       case "huntandkill":
-        return new algorithms.HuntAndKill(settings);
+        return new HuntAndKill(settings);
 
       case "eller":
       case "ellers":
-        return new algorithms.Ellers(settings);
+        return new Ellers(settings);
 
       case "wilson":
       case "wilsons":
-        return new algorithms.Wilsons(settings);
+        return new Wilsons(settings);
 
       case "recursivedivision":
       case "division":
-        return new algorithms.RecursiveDivision(settings);
+        return new RecursiveDivision(settings);
 
       default:
         throw "Invalid algorithm";
