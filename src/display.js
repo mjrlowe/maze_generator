@@ -203,6 +203,9 @@ export default function display({
     }
   }
 
+  //reset transformation matrix
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+
   function isUnfinishedCell(cell) {
     if (maze.walls[cell.y][cell.x].N === false && cell.y > 0) return false;
     if (
