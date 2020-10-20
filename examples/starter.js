@@ -8,7 +8,7 @@ let mazeSettings = {
 };
 
 //initialize the maze
-let m = Maze.create(mazeSettings);
+let m = new Maze(mazeSettings);
 
 //generate it
 m.generate();

@@ -1,6 +1,6 @@
-import Maze from "../Maze.js";
+import Algorithm from "../Algorithm.js";
 
-class BinaryTree extends Maze {
+class BinaryTree extends Algorithm {
   takeStep() {
     let passageDirection = this.random() < 0.5 ? "S" : "E";
     if (this.currentCell.x === this.width - 1) passageDirection = "S";

@@ -30,7 +30,7 @@ export default function createWidget(
     ...widgetSettings,
   };
 
-  let maze = Maze.create(mazeSettings);
+  let maze = new Maze(mazeSettings);
 
   let mazeId = maze.algorithmId + "-" + maze.seed;
   let widgetId = mazeId + "-widget";

@@ -1,7 +1,7 @@
-import Maze from "../Maze.js";
+import Algorithm from "../Algorithm.js";
 import { dx, dy, opposite } from "../directions.js";
 
-class TenPrint extends Maze {
+class TenPrint extends Algorithm {
   resetVariables() {
     this.currentCell = {
       x: 0,

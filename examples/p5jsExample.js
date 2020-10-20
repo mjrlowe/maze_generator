@@ -31,7 +31,7 @@ function preload() {
 
       Maze = module.Maze;
 
-      maze = Maze.create(mazeSettings);
+      maze = new Maze(mazeSettings);
       background(255);
     })
     .catch((error) => {
@@ -66,7 +66,7 @@ function draw() {
 }
 
 function mousePressed() {
-  maze = Maze.create({
+  maze = new Maze({
     ...mazeSettings,
     start: getMouseCell(),
   });

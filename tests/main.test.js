@@ -17,15 +17,31 @@ import {
 
 import { Maze } from "../mod.js";
 
+const algorithms = [
+  "RecursiveBacktracker",
+  "HuntAndKill",
+  "Kruskals",
+  "Ellers",
+  "AldousBroder",
+  "SimplifiedPrims",
+  "RecursiveDivision",
+  "ModifiedPrims",
+  "Sidewinder",
+  "BinaryTree",
+  "TruePrims",
+  "TenPrint",
+  "Wilsons",
+];
+
 //benchmarks
 
-for (let algorithm in Maze.algorithms) {
+for (let algorithm of algorithms) {
   bench({
     name: `Generating a 16x16 ${algorithm} maze`,
     runs: 100,
     func(b) {
       b.start();
-      let m = Maze.create({
+      let m = new Maze({
         width: 16,
         height: 16,
         algorithm,
@@ -42,7 +58,7 @@ bench({
   runs: 300,
   func(b) {
     b.start();
-    let m = Maze.create({
+    let m = new Maze({
       size: 16,
       algorithm: "random",
     });
@@ -62,8 +78,8 @@ Deno.test(
       size: 10,
       algorithm: "prims",
     };
-    let maze1 = Maze.create(settings).generate();
-    let maze2 = Maze.create(settings).generate();
+    let maze1 = new Maze(settings).generate();
+    let maze2 = new Maze(settings).generate();
     assertNotEquals(maze1.seed, maze2.seed);
     assert(!checkWallsEqual(maze1, maze2));
   },
@@ -78,8 +94,8 @@ Deno.test(
       algorithm: "kruskals",
       seed: Math.floor(Math.random() * 100000),
     };
-    let maze1 = Maze.create(settings).generate();
-    let maze2 = Maze.create(settings).generate();
+    let maze1 = new Maze(settings).generate();
+    let maze2 = new Maze(settings).generate();
     assertEquals(maze1.seed, maze2.seed);
     assert(checkWallsEqual(maze1, maze2));
   },
@@ -94,8 +110,8 @@ Deno.test(
       algorithm: "kruskals",
       seed: String(Math.floor(Math.random() * 100000)),
     };
-    let maze1 = Maze.create(settings).generate();
-    let maze2 = Maze.create(settings).generate();
+    let maze1 = new Maze(settings).generate();
+    let maze2 = new Maze(settings).generate();
     assertEquals(maze1.seed, maze2.seed);
     assert(checkWallsEqual(maze1, maze2));
   },

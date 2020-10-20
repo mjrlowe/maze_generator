@@ -1,6 +1,6 @@
-import Maze from "../Maze.js";
+import Algorithm from "../Algorithm.js";
 
-class Eller extends Maze {
+class Eller extends Algorithm {
   resetVariables() {
     this.rowState = new State(this.width).populate();
 

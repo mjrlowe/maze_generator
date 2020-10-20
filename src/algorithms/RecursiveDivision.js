@@ -1,6 +1,6 @@
-import Maze from "../Maze.js";
+import Algorithm from "../Algorithm.js";
 
-class RecursiveDivision extends Maze {
+class RecursiveDivision extends Algorithm {
   resetVariables() {
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {

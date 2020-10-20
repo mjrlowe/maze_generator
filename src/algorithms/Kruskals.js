@@ -1,7 +1,7 @@
-import Maze from "../Maze.js";
+import Algorithm from "../Algorithm.js";
 import { dx, dy } from "../directions.js";
 
-class Kruskals extends Maze {
+class Kruskals extends Algorithm {
   resetVariables() {
     this.disjointSubsets = new DisjointSet(this.width * this.height);
 

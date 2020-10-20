@@ -1,7 +1,7 @@
-import Maze from "../Maze.js";
+import Algorithm from "../Algorithm.js";
 import { directions, dx, dy, opposite } from "../directions.js";
 
-class TruePrims extends Maze {
+class TruePrims extends Algorithm {
   resetVariables() {
     this.visited = [];
     this.costs = [];

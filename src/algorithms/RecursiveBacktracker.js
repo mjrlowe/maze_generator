@@ -1,7 +1,7 @@
-import Maze from "../Maze.js";
+import Algorithm from "../Algorithm.js";
 import { directions, dx, dy } from "../directions.js";
 
-class RecursiveBacktracker extends Maze {
+class RecursiveBacktracker extends Algorithm {
   resetVariables() {
     this.visited = [];
     for (let y = 0; y < this.height; y++) {

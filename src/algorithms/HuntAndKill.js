@@ -1,7 +1,7 @@
-import Maze from "../Maze.js";
+import Algorithm from "../Algorithm.js";
 import { dx, dy } from "../directions.js";
 
-class HuntAndKill extends Maze {
+class HuntAndKill extends Algorithm {
   resetVariables() {
     this.startHuntingFrom = {
       x: this.currentCell.x,

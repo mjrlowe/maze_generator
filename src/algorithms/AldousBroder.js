@@ -1,7 +1,7 @@
-import Maze from "../Maze.js";
+import Algorithm from "../Algorithm.js";
 import { dx, dy } from "../directions.js";
 
-class AldousBroder extends Maze {
+class AldousBroder extends Algorithm {
   //called when the maze is intitalized
   resetVariables() {
     this.visited = [];

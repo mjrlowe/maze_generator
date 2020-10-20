@@ -1,7 +1,7 @@
-import Maze from "../Maze.js";
+import Algorithm from "../Algorithm.js";
 import { directions, dx, dy, opposite } from "../directions.js";
 
-class Wilsons extends Maze {
+class Wilsons extends Algorithm {
   resetVariables() {
     this.unvisited = [];
     this.visited = [];

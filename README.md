@@ -74,7 +74,7 @@ let mazeSettings = {
 }
 
 //initialize the maze
-let m = Maze.create(mazeSettings);
+let m = new Maze(mazeSettings);
 
 //generate it
 m.generate();
@@ -89,13 +89,13 @@ See the examples folder for more examples.
 
 Also see [this](https://www.openprocessing.org/sketch/908761) OpenProcessing sketch.
 
-## Maze.create()
+## new Maze()
 
-To create a new maze, use `Maze.create()`. You can optionally pass in an object with the settings (see below).
+To create a new maze, use `new Maze()`. You can optionally pass in an object with the settings (see below).
 
 ### Maze settings object
 
-These are all the properties of the object you can pass in when you write `Maze.create(mazeSettings)`
+These are all the properties of the object you can pass in when you write `new Maze(mazeSettings)`
 
 | Property | Description | Valid Values | Default Value |
 |-|-|-|-|
@@ -149,7 +149,7 @@ It optionally takes in an object with the properties listed below.
 ### .display() example usage
 
 ```javascript
-let kruskalMaze = Maze.create({
+let kruskalMaze = new Maze({
   width: 20,
   height: 20,
   seed: 100,
@@ -175,7 +175,7 @@ Prints out the maze as a string to the console.
 #### Basic code
 
 ```javascript
-Maze.create({
+new Maze({
   width: 10,
   height: 10
 }).generate().printString()
@@ -207,7 +207,7 @@ Call `Maze.createWidget()` somewhere with access to the `document` API (the brow
 
 It takes in three properties, all optional.
 
-1. Maze settings object (see `Maze.create()`)
+1. Maze settings object (see `new Maze()`)
 2. Display settings object (see `.display()`)
 3. Maze widget settings object (see below)
 
@@ -253,7 +253,7 @@ Try:
 
 import {Maze} from "https://x.nest.land/maze_generator@0.3.0/mod.js";
 
-let mz = Maze.create({algorithm: "modified prims", size: "10"}).generate();
+let mz = new Maze({algorithm: "modified prims", size: "10"}).generate();
 
 //outputs a modified prims maze
 mz.printString();
@@ -270,4 +270,4 @@ This is a method that returns the solution to the maze in the form of an array o
 
 You can optionally pass in a start and end point, but it will default to the top left and bottom right of the maze.
 
-Try `console.log(Maze.create().generate().getSolution())`.
+Try `console.log(new Maze().generate().getSolution())`.
