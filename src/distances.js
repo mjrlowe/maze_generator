@@ -1,14 +1,14 @@
 import { dx, dy } from "./directions.js";
 
-export default function calculateDistances(distanceFrom) {
+export default function calculateDistances({ maze, distanceFrom }) {
   let Q = []; //queue
 
   let discovered = []; //keeps track of which points have been discovered so far so it doesn't loop back on itself
   let distances = [];
-  for (let y = 0; y < this.height; y++) {
+  for (let y = 0; y < maze.algorithm.height; y++) {
     discovered[y] = [];
     distances[y] = [];
-    for (let x = 0; x < this.width; x++) {
+    for (let x = 0; x < maze.algorithm.width; x++) {
       distances[y][x] = 0;
       discovered[y][x] = false;
     }
@@ -18,7 +18,7 @@ export default function calculateDistances(distanceFrom) {
     typeof distanceFrom === "string" &&
     distanceFrom.toLowerCase() === "solution"
   ) {
-    let startPoints = this.getSolution();
+    let startPoints = maze.getSolution();
     for (let cell of startPoints) {
       discovered[cell.y][cell.x] = true;
 
@@ -26,10 +26,12 @@ export default function calculateDistances(distanceFrom) {
       Q.unshift(cell);
     }
   } else {
-    let startPoint = this.getXYPosition(
-      distanceFrom ?? this.start ?? "top left",
+    let startPoint = maze.algorithm.getXYPosition(
+      distanceFrom ?? maze.algorithm.start ?? "top left",
     );
-    startPoint = this.cellIsInMaze(startPoint) ? startPoint : this.start;
+    startPoint = maze.algorithm.cellIsInMaze(startPoint)
+      ? startPoint
+      : maze.algorithm.start;
     discovered[startPoint.y][startPoint.x] = true;
 
     //enqueue
@@ -43,9 +45,9 @@ export default function calculateDistances(distanceFrom) {
     //dequeue
     let v = Q.pop();
 
-    for (let direction in this.walls[v.y][v.x]) {
-      //there's not a wall here so we can go this way
-      if (!this.walls[v.y][v.x][direction]) {
+    for (let direction in maze.algorithm.walls[v.y][v.x]) {
+      //there's not a wall here so we can go maze way
+      if (!maze.algorithm.walls[v.y][v.x][direction]) {
         let x = v.x + dx[direction];
         let y = v.y + dy[direction];
 

@@ -32,7 +32,7 @@ export default function createWidget(
 
   let maze = new Maze(mazeSettings);
 
-  let mazeId = maze.algorithmId + "-" + maze.seed;
+  let mazeId = maze.algorithm.algorithmId + "-" + maze.algorithm.seed;
   let widgetId = mazeId + "-widget";
   let canvasId = mazeId + "-canvas";
 
@@ -54,7 +54,7 @@ export default function createWidget(
   }
 
   let html = `
-  <div class="maze-widget ${maze.algorithmId}" id="${widgetId}">
+  <div class="maze-widget ${maze.algorithm.algorithmId}" id="${widgetId}">
   <canvas width="300" height="300" style="width:220px; height:220px" class="maze-widget-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
     <button class="play-pause-button maze-widget-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
@@ -129,7 +129,7 @@ export default function createWidget(
         maze.step();
         maze.display(displaySettings);
 
-        if (maze.finishedGenerating) {
+        if (maze.algorithm.finishedGenerating) {
           widget.getElementsByClassName("play-pause-button")[0].disabled = true;
           widget.getElementsByClassName("step-button")[0].disabled = true;
           widget.getElementsByClassName("finish-button")[0].disabled = true;

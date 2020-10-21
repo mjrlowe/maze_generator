@@ -1,11 +1,7 @@
-import mazeString from "./print.js";
-import display from "./display.js";
-import calculateDistances from "./distances.js";
-import solve from "./solve.js";
-import braid from "./braid.js";
-import analyze from "./analyze.js";
 import { dx, dy, opposite } from "./directions.js";
 import seedrandom from "./seedrandom.js";
+
+//Private methods should be in Algorithm
 
 class Algorithm {
   constructor(mazeSettings) {
@@ -74,58 +70,6 @@ class Algorithm {
 
       return arr;
     };
-
-    this.reset();
-  }
-
-  reset() {
-    //random seed would go here
-
-    this.currentCell = { ...this.start };
-
-    this.finishedGenerating = false;
-
-    this.solution = [];
-
-    this.walls = [];
-    for (let y = 0; y < this.height; y++) {
-      this.walls[y] = [];
-      for (let x = 0; x < this.width; x++) {
-        this.walls[y][x] = {
-          N: true,
-          S: true,
-          E: true,
-          W: true,
-        };
-      }
-    }
-
-    if (this.resetVariables) this.resetVariables();
-  }
-
-  step() {
-    if (this.finishedGenerating) return false;
-    this.takeStep();
-    return !this.finishedGenerating;
-  }
-
-  generate() {
-    let timerName = `Generating ${this.algorithm ?? ""} maze in`;
-    // console.time(timerName);
-
-    let i = 0;
-    while (!this.finishedGenerating && ++i < 1000000) {
-      this.step();
-    }
-
-    // console.timeEnd(timerName);
-    // if (this.finishedGenerating) {
-    //   console.log(`%cMaze completed in ${i} steps`);
-    // } else {
-    //   console.log(`%cMaze not completed, gave up after ${i} steps`);
-    // }
-
-    return this;
   }
 
   //carve
@@ -278,32 +222,6 @@ class Algorithm {
     XYPosition.direction = possibleDirections[0];
     return XYPosition;
   }
-
-  printString() {
-    console.log(this.getString());
-  }
-
-  display(settings) {
-    return display({ ...settings, maze: this });
-  }
-
-  braid(settings) {
-    return braid({ maze: this });
-  }
-
-  getSolution(
-    start = this.entrance,
-    finish = this.exit,
-  ) {
-    return solve(this, start, finish);
-  }
-
-  getAnalysis() {
-    return analyze(this);
-  }
 }
-
-Algorithm.prototype.getString = mazeString;
-Algorithm.prototype.getDistances = calculateDistances;
 
 export default Algorithm;

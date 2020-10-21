@@ -5,28 +5,28 @@ export default function solve(
   startPoint = "top left",
   endPoint = "bottom right",
 ) {
-  startPoint = maze.getXYPosition(startPoint);
-  endPoint = maze.getXYPosition(endPoint);
+  startPoint = maze.algorithm.getXYPosition(startPoint);
+  endPoint = maze.algorithm.getXYPosition(endPoint);
   let { distances, maxDistance } = maze.getDistances(startPoint);
 
   startPoint = {
-    x: constrain(startPoint.x, 0, maze.width - 1),
-    y: constrain(startPoint.y, 0, maze.height - 1),
+    x: constrain(startPoint.x, 0, maze.algorithm.width - 1),
+    y: constrain(startPoint.y, 0, maze.algorithm.height - 1),
   };
 
   endPoint = {
-    x: constrain(endPoint.x, 0, maze.width - 1),
-    y: constrain(endPoint.y, 0, maze.height - 1),
+    x: constrain(endPoint.x, 0, maze.algorithm.width - 1),
+    y: constrain(endPoint.y, 0, maze.algorithm.height - 1),
   };
 
   let Q = []; //queue
 
   let discovered = []; //keeps track of which points have been discovered so far so it doesn't loop back on itself
   distances = [];
-  for (let y = 0; y < maze.height; y++) {
+  for (let y = 0; y < maze.algorithm.height; y++) {
     discovered[y] = [];
     distances[y] = [];
-    for (let x = 0; x < maze.width; x++) {
+    for (let x = 0; x < maze.algorithm.width; x++) {
       distances[y][x] = 0;
       discovered[y][x] = false;
     }
@@ -65,7 +65,7 @@ export default function solve(
 
       //add extra lines at the beginning and end that go outside of the maze,
       //provided we are removing these walls and that we know what direction it should be
-      if (maze.removeWallsAtEntranceAndExit) {
+      if (maze.algorithm.removeWallsAtEntranceAndExit) {
         if (startPoint.direction !== undefined) {
           solutionPath.unshift({
             x: startPoint.x + dx[startPoint.direction],
@@ -84,9 +84,9 @@ export default function solve(
       return solutionPath;
     }
 
-    for (let direction in maze.walls[v.y][v.x]) {
+    for (let direction in maze.algorithm.walls[v.y][v.x]) {
       //there's not a wall here so we can go this way
-      if (!maze.walls[v.y][v.x][direction]) {
+      if (!maze.algorithm.walls[v.y][v.x][direction]) {
         let x = v.x + dx[direction];
         let y = v.y + dy[direction];
 

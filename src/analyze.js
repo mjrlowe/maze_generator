@@ -18,9 +18,9 @@ export default function analyze(maze) {
 
   let numberOfCellWalls = [0, 0, 0, 0, 0];
 
-  for (let y = 0; y < maze.height; y++) {
-    for (let x = 0; x < maze.width; x++) {
-      let cell = maze.walls[y][x];
+  for (let y = 0; y < maze.algorithm.height; y++) {
+    for (let x = 0; x < maze.algorithm.width; x++) {
+      let cell = maze.algorithm.walls[y][x];
       let neighbors = [];
       if (!cell.N) neighbors.push("N");
       if (!cell.S) neighbors.push("S");
@@ -50,20 +50,21 @@ export default function analyze(maze) {
   let walls = {
     ...numberOfCellWalls,
     mean: numberOfCellWalls.slice(0).reduce((a, b, i) => a + b * i, 0) /
-      (maze.width * maze.height),
+      (maze.algorithm.width * maze.algorithm.height),
     mode: numberOfCellWalls.indexOf(
       numberOfCellWalls.reduce((a, b, i) => Math.max(a, b)),
     ),
     //total doesn't count shared walls twice
-    total: numberOfCellWalls.reduce((a, b) => a + b, 0) / 2 + maze.width +
-      maze.height,
+    total: numberOfCellWalls.reduce((a, b) => a + b, 0) / 2 +
+      maze.algorithm.width +
+      maze.algorithm.height,
   };
 
   // let analysis = {
   //   solution: solution,
   //   deadEnds: deadEnds,
   //   straightPassages: straightPassages,
-  //   totalCells: maze.width*maze.height,
+  //   totalCells: maze.algorithm.width*maze.algorithm.height,
   //   numberOfCellWalls: walls
   // };
 
@@ -71,8 +72,8 @@ export default function analyze(maze) {
 
   let totalNumberOfCells = {
     label: "Total number of cells",
-    value: maze.width * maze.height,
-    string: String(maze.width * maze.height),
+    value: maze.algorithm.width * maze.algorithm.height,
+    string: String(maze.algorithm.width * maze.algorithm.height),
   };
 
   for (let dir of directions) {

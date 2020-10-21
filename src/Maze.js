@@ -12,7 +12,32 @@ import Wilsons from "./algorithms/Wilsons.js";
 import TruePrims from "./algorithms/TruePrims.js";
 import TenPrint from "./algorithms/10Print.js";
 
+const algorithms = {
+  RecursiveBacktracker,
+  Sidewinder,
+  HuntAndKill,
+  Ellers,
+  AldousBroder,
+  RecursiveDivision,
+  SimplifiedPrims,
+  ModifiedPrims,
+  Kruskals,
+  BinaryTree,
+  Wilsons,
+  TruePrims,
+  TenPrint,
+};
+
 import createWidget from "./createWidget.js";
+
+import mazeString from "./print.js";
+import display from "./display.js";
+import calculateDistances from "./distances.js";
+import solve from "./solve.js";
+import braid from "./braid.js";
+import analyze from "./analyze.js";
+
+//Publicly exposed APIs should go in Maze
 
 class Maze {
   constructor(settings) {
@@ -23,20 +48,23 @@ class Maze {
     switch (settings.algorithmId) {
       case "10print":
       case "tenprint":
-        return new TenPrint(settings);
+        this.algorithm = new TenPrint(settings);
+        break;
 
       case "prim":
       case "prims":
       case "trueprim":
       case "trueprims":
-        return new TruePrims(settings);
+        this.algorithm = new TruePrims(settings);
+        break;
 
       case "random":
-        return new algorithms[
+        this.algorithm = new algorithms[
           Object.keys(
             algorithms,
           )[Math.floor(Math.random() * Object.keys(algorithms).length)]
         ](settings);
+        break;
 
       case "depthfirstsearch":
       case "dfs":
@@ -44,51 +72,134 @@ class Maze {
       case "randomiseddepthfirstsearch":
       case "rdfs":
       case "recursivebacktracker":
-        return new RecursiveBacktracker(settings);
+        this.algorithm = new RecursiveBacktracker(settings);
+        break;
 
       case "kruskal":
       case "kruskals":
-        return new Kruskals(settings);
+        this.algorithm = new Kruskals(settings);
+        break;
 
       case "simplifiedprim":
       case "simplifiedprims":
-        return new SimplifiedPrims(settings);
+        this.algorithm = new SimplifiedPrims(settings);
+        break;
 
       case "modifiedprim":
       case "modifiedprims":
-        return new ModifiedPrims(settings);
+        this.algorithm = new ModifiedPrims(settings);
+        break;
 
       case "aldousbroder":
-        return new AldousBroder(settings);
+        this.algorithm = new AldousBroder(settings);
+        break;
 
       case "binary":
       case "binarytree":
-        return new BinaryTree(settings);
+        this.algorithm = new BinaryTree(settings);
+        break;
 
       case "sidewinder":
-        return new Sidewinder(settings);
+        this.algorithm = new Sidewinder(settings);
+        break;
 
       case "huntandkill":
-        return new HuntAndKill(settings);
+        this.algorithm = new HuntAndKill(settings);
+        break;
 
       case "eller":
       case "ellers":
-        return new Ellers(settings);
+        this.algorithm = new Ellers(settings);
+        break;
 
       case "wilson":
       case "wilsons":
-        return new Wilsons(settings);
+        this.algorithm = new Wilsons(settings);
+        break;
 
       case "recursivedivision":
       case "division":
-        return new RecursiveDivision(settings);
+        this.algorithm = new RecursiveDivision(settings);
+        break;
 
       default:
-        throw "Invalid algorithm";
+        throw "Invalid algorithm name";
     }
+
+    this.reset();
+  }
+
+  reset() {
+    this.algorithm.currentCell = { ...this.algorithm.start };
+
+    this.algorithm.finishedGenerating = false;
+
+    this.algorithm.solution = [];
+
+    this.algorithm.walls = [];
+    for (let y = 0; y < this.algorithm.height; y++) {
+      this.algorithm.walls[y] = [];
+      for (let x = 0; x < this.algorithm.width; x++) {
+        this.algorithm.walls[y][x] = {
+          N: true,
+          S: true,
+          E: true,
+          W: true,
+        };
+      }
+    }
+
+    if (this.algorithm.resetVariables) this.algorithm.resetVariables();
+  }
+
+  step() {
+    if (this.algorithm.finishedGenerating) return false;
+    this.algorithm.takeStep();
+    return !this.algorithm.finishedGenerating;
+  }
+
+  generate() {
+    let i = 0;
+    while (!this.algorithm.finishedGenerating && ++i < 1000000) {
+      this.step();
+    }
+
+    return this;
+  }
+
+  printString() {
+    console.log(this.getString());
+  }
+
+  display(settings) {
+    return display({ ...settings, maze: this });
+  }
+
+  braid(settings) {
+    return braid({ maze: this });
+  }
+
+  getSolution(
+    start = this.entrance,
+    finish = this.exit,
+  ) {
+    return solve(this, start, finish);
+  }
+
+  getAnalysis() {
+    return analyze(this);
+  }
+
+  getString() {
+    return mazeString(this);
+  }
+
+  getDistances(distanceFrom) {
+    return calculateDistances({ maze: this, distanceFrom });
   }
 }
 
 Maze.createWidget = createWidget;
 
 export default Maze;
+export { algorithms };

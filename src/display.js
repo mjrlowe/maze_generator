@@ -4,7 +4,11 @@ export default function display({
   maze,
   canvas = document.getElementsByTagName("canvas")[0],
   asLine = false,
-  cellSize = Math.min(canvas.width / maze.width, canvas.height / maze.height) *
+  cellSize =
+    Math.min(
+      canvas.width / maze.algorithm.width,
+      canvas.height / maze.algorithm.height,
+    ) *
     0.9,
   backgroundColor = "#FFF",
   mainColor = "#000",
@@ -14,7 +18,7 @@ export default function display({
   coloringMode = "normal",
   showSolution = false,
   solutionColor = "#F00",
-  distanceFrom = maze.start,
+  distanceFrom = maze.algorithm.start,
   removeWallsAtEntranceAndExit = true,
   lineCap = "square",
 }) {
@@ -28,18 +32,29 @@ export default function display({
   let exitWallBefore;
   if (removeWallsAtEntranceAndExit) {
     //if the entrance wall is a valid direction
-    if (directions.indexOf(maze.entrance.direction) !== -1) {
+    if (directions.indexOf(maze.algorithm.entrance.direction) !== -1) {
       entranceWallBefore =
-        maze.walls[maze.entrance.y][maze.entrance.x][maze.entrance.direction];
-      maze.walls[maze.entrance.y][maze.entrance.x][maze.entrance.direction] =
-        false;
+        maze.algorithm
+          .walls[maze.algorithm.entrance.y][maze.algorithm.entrance.x][
+          maze.algorithm.entrance.direction
+        ];
+      maze.algorithm
+        .walls[maze.algorithm.entrance.y][maze.algorithm.entrance.x][
+        maze.algorithm.entrance.direction
+      ] = false;
     }
 
     //if the exit wall is a valid direction
-    if (directions.indexOf(maze.exit.direction) !== -1) {
+    if (directions.indexOf(maze.algorithm.exit.direction) !== -1) {
       exitWallBefore =
-        maze.walls[maze.exit.y][maze.exit.x][maze.exit.direction];
-      maze.walls[maze.exit.y][maze.exit.x][maze.exit.direction] = false;
+        maze.algorithm
+          .walls[maze.algorithm.exit.y][maze.algorithm.exit.x][
+          maze.algorithm.exit.direction
+        ];
+      maze.algorithm
+        .walls[maze.algorithm.exit.y][maze.algorithm.exit.x][
+        maze.algorithm.exit.direction
+      ] = false;
     }
   }
 
@@ -88,16 +103,16 @@ export default function display({
     0,
     0,
     1,
-    canvas.width / 2 - maze.width / 2 * cellSize,
-    canvas.height / 2 - maze.height / 2 * cellSize,
+    canvas.width / 2 - maze.algorithm.width / 2 * cellSize,
+    canvas.height / 2 - maze.algorithm.height / 2 * cellSize,
   );
 
   ctx.strokeStyle = mainColor;
   ctx.lineWidth = lineThickness * cellSize;
 
   if (!asLine) { // draw the walls
-    for (let y = 0; y < maze.height; y++) {
-      for (let x = 0; x < maze.width; x++) {
+    for (let y = 0; y < maze.algorithm.height; y++) {
+      for (let x = 0; x < maze.algorithm.width; x++) {
         ctx.fillStyle = getCellColor({
           x,
           y,
@@ -107,17 +122,17 @@ export default function display({
       }
     }
 
-    for (let y = 0; y < maze.height; y++) {
-      for (let x = 0; x < maze.width; x++) {
+    for (let y = 0; y < maze.algorithm.height; y++) {
+      for (let x = 0; x < maze.algorithm.width; x++) {
         ctx.strokeStyle = mainColor;
 
-        if (maze.walls[y][x].W) {
+        if (maze.algorithm.walls[y][x].W) {
           line(x * cellSize, y * cellSize, x * cellSize, (y + 1) * cellSize);
         }
-        if (maze.walls[y][x].N) {
+        if (maze.algorithm.walls[y][x].N) {
           line(x * cellSize, y * cellSize, (x + 1) * cellSize, y * cellSize);
         }
-        if (maze.walls[y][x].E && x === maze.width - 1) {
+        if (maze.algorithm.walls[y][x].E && x === maze.algorithm.width - 1) {
           line(
             (x + 1) * cellSize,
             y * cellSize,
@@ -125,7 +140,7 @@ export default function display({
             (y + 1) * cellSize,
           );
         }
-        if (maze.walls[y][x].S && y === maze.height - 1) {
+        if (maze.algorithm.walls[y][x].S && y === maze.algorithm.height - 1) {
           line(
             x * cellSize,
             (y + 1) * cellSize,
@@ -138,23 +153,23 @@ export default function display({
   } else { // display paths as line
     ctx.translate(cellSize / 2, cellSize / 2);
 
-    for (let y = 0; y < maze.height; y++) {
-      for (let x = 0; x < maze.width; x++) {
+    for (let y = 0; y < maze.algorithm.height; y++) {
+      for (let x = 0; x < maze.algorithm.width; x++) {
         ctx.strokeStyle = getCellColor({
           x,
           y,
         });
 
-        if (!maze.walls[y][x].W) {
+        if (!maze.algorithm.walls[y][x].W) {
           line(x * cellSize, y * cellSize, (x - 0.5) * cellSize, y * cellSize);
         }
-        if (!maze.walls[y][x].N) {
+        if (!maze.algorithm.walls[y][x].N) {
           line(x * cellSize, y * cellSize, x * cellSize, (y - 0.5) * cellSize);
         }
-        if (!maze.walls[y][x].E) {
+        if (!maze.algorithm.walls[y][x].E) {
           line(x * cellSize, y * cellSize, (x + 0.5) * cellSize, y * cellSize);
         }
-        if (!maze.walls[y][x].S) {
+        if (!maze.algorithm.walls[y][x].S) {
           line(x * cellSize, y * cellSize, x * cellSize, (y + 0.5) * cellSize);
         }
       }
@@ -167,8 +182,8 @@ export default function display({
       0,
       0,
       1,
-      canvas.width / 2 - maze.width / 2 * cellSize,
-      canvas.height / 2 - maze.height / 2 * cellSize,
+      canvas.width / 2 - maze.algorithm.width / 2 * cellSize,
+      canvas.height / 2 - maze.algorithm.height / 2 * cellSize,
     );
 
     let solution = maze.getSolution();
@@ -191,15 +206,19 @@ export default function display({
   //put the walls at the entrance and exit back if they were there before
   if (removeWallsAtEntranceAndExit) {
     //re-add the entrance wall if it was taken away to begin with
-    if (directions.indexOf(maze.entrance.direction) !== -1) {
-      maze.walls[maze.entrance.y][maze.entrance.x][maze.entrance.direction] =
-        entranceWallBefore;
+    if (directions.indexOf(maze.algorithm.entrance.direction) !== -1) {
+      maze.algorithm
+        .walls[maze.algorithm.entrance.y][maze.algorithm.entrance.x][
+        maze.algorithm.entrance.direction
+      ] = entranceWallBefore;
     }
 
     //re-add the exit wall if it was taken away to begin with
-    if (directions.indexOf(maze.exit.direction) !== -1) {
-      maze.walls[maze.exit.y][maze.exit.x][maze.exit.direction] =
-        exitWallBefore;
+    if (directions.indexOf(maze.algorithm.exit.direction) !== -1) {
+      maze.algorithm
+        .walls[maze.algorithm.exit.y][maze.algorithm.exit.x][
+        maze.algorithm.exit.direction
+      ] = exitWallBefore;
     }
   }
 
@@ -207,18 +226,28 @@ export default function display({
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 
   function isUnfinishedCell(cell) {
-    if (maze.walls[cell.y][cell.x].N === false && cell.y > 0) return false;
     if (
-      maze.walls[cell.y][cell.x].S === false && cell.y < maze.height - 1
+      maze.algorithm.walls[cell.y][cell.x].N === false && cell.y > 0
     ) {
       return false;
     }
     if (
-      maze.walls[cell.y][cell.x].E === false && cell.x < maze.width - 1
+      maze.algorithm.walls[cell.y][cell.x].S === false &&
+      cell.y < maze.algorithm.height - 1
     ) {
       return false;
     }
-    if (maze.walls[cell.y][cell.x].W === false && cell.x > 0) return false;
+    if (
+      maze.algorithm.walls[cell.y][cell.x].E === false &&
+      cell.x < maze.algorithm.width - 1
+    ) {
+      return false;
+    }
+    if (
+      maze.algorithm.walls[cell.y][cell.x].W === false && cell.x > 0
+    ) {
+      return false;
+    }
     return true;
   }
 
@@ -241,16 +270,18 @@ export default function display({
           distances[cell.y][cell.x] / maxDistance,
         );
       } else if (coloringMode === "set" || coloringMode === "color by set") {
-        if (maze.algorithm === "kruskals") {
+        if (maze.algorithm.algorithm === "kruskals") {
           cellColor = interpolate(
             colorScheme,
-            maze.disjointSubsets.findParent(maze.getCellIndex(cell)) /
-              (maze.width * maze.height),
+            maze.algorithm.disjointSubsets.findParent(
+              maze.algorithm.getCellIndex(cell),
+            ) /
+              (maze.algorithm.width * maze.algorithm.height),
           );
-        } else if (maze.algorithm === "ellers") {
+        } else if (maze.algorithm.algorithm === "ellers") {
           cellColor = interpolate(
             colorScheme,
-            maze.rowState.setForCell[cell.x] / maze.width,
+            maze.algorithm.rowState.setForCell[cell.x] / maze.algorithm.width,
           );
         }
       }

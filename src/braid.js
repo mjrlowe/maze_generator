@@ -4,7 +4,7 @@ export default function braid({
   maze,
 }) {
   let deadEnds = [];
-  maze.walls.forEach((row, y) => {
+  maze.algorithm.walls.forEach((row, y) => {
     row.forEach((cell, x) => {
       let connectedDirections = [];
       for (let direction in cell) {
@@ -20,12 +20,12 @@ export default function braid({
     });
   });
 
-  deadEnds = maze.shuffle(deadEnds);
+  deadEnds = maze.algorithm.shuffle(deadEnds);
 
   for (let deadEnd of deadEnds) {
     let connections = 0;
-    for (let direction in maze.walls[deadEnd.y][deadEnd.x]) {
-      if (!maze.walls[deadEnd.y][deadEnd.x][direction]) connections++;
+    for (let direction in maze.algorithm.walls[deadEnd.y][deadEnd.x]) {
+      if (!maze.algorithm.walls[deadEnd.y][deadEnd.x][direction]) connections++;
     }
 
     //if it still is a dead end
@@ -38,7 +38,7 @@ export default function braid({
         };
         if (
           direction != opposite[deadEnd.direction] &&
-          maze.cellIsInMaze(neighbor)
+          maze.algorithm.cellIsInMaze(neighbor)
         ) {
           unconnectedNeighbors.push({
             ...neighbor,
@@ -48,9 +48,9 @@ export default function braid({
       }
 
       let chosenNeighbor = unconnectedNeighbors[
-        Math.floor(maze.random() * unconnectedNeighbors.length)
+        Math.floor(maze.algorithm.random() * unconnectedNeighbors.length)
       ];
-      maze.removeWall(deadEnd, chosenNeighbor.direction);
+      maze.algorithm.removeWall(deadEnd, chosenNeighbor.direction);
     }
   }
   return maze;

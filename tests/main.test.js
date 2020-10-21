@@ -48,7 +48,7 @@ for (let algorithm of algorithms) {
       });
       m.generate();
       b.stop();
-      assertEquals(m.width, 16);
+      assertEquals(m.algorithm.width, 16);
     },
   });
 }
@@ -80,7 +80,7 @@ Deno.test(
     };
     let maze1 = new Maze(settings).generate();
     let maze2 = new Maze(settings).generate();
-    assertNotEquals(maze1.seed, maze2.seed);
+    assertNotEquals(maze1.algorithm.seed, maze2.algorithm.seed);
     assert(!checkWallsEqual(maze1, maze2));
   },
 );
@@ -112,17 +112,18 @@ Deno.test(
     };
     let maze1 = new Maze(settings).generate();
     let maze2 = new Maze(settings).generate();
-    assertEquals(maze1.seed, maze2.seed);
+    assertEquals(maze1.algorithm.seed, maze2.algorithm.seed);
     assert(checkWallsEqual(maze1, maze2));
   },
 );
 
 function checkWallsEqual(maze1, maze2) {
-  for (let y = 0; y < maze1.height; y++) {
-    for (let x = 0; x < maze1.width; x++) {
+  for (let y = 0; y < maze1.algorithm.height; y++) {
+    for (let x = 0; x < maze1.algorithm.width; x++) {
       for (let direction of ["N", "S", "E", "W"]) {
         if (
-          maze1.walls[y][x][direction] != maze2.walls[y][x][direction]
+          maze1.algorithm.walls[y][x][direction] !=
+            maze2.algorithm.walls[y][x][direction]
         ) {
           return false;
         }

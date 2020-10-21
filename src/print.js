@@ -1,18 +1,19 @@
-export default function getMazeString() {
+export default function getString(maze) {
   let str = "";
 
-  this.walls[0].forEach((cell, index) => {
+  maze.algorithm.walls[0].forEach((cell, index) => {
     str += index === 0 ? " " : "_";
     str += cell.N ? "_" : " ";
   });
 
   str += " ";
 
-  this.walls.forEach((row, rowIndex) => {
+  maze.algorithm.walls.forEach((row, rowIndex) => {
     str += "\n";
     str += row[0].W ? "|" : " ";
     row.forEach((cell, columnIndex) => {
-      let eastWallBelow = this.walls[rowIndex + 1]?.[columnIndex].E ?? null;
+      let eastWallBelow = maze.algorithm.walls[rowIndex + 1]?.[columnIndex].E ??
+        null;
       let southWallToRight = row[columnIndex + 1]?.S ?? null;
 
       str += cell.S ? "_" : " ";
