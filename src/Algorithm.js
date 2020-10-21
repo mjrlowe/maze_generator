@@ -41,9 +41,9 @@ class Algorithm {
         : " ");
 
     if (
-      this.algorithmId === "sidewinder" ||
-      this.algorithmId === "binarytree" ||
-      this.algorithmId === "ellers"
+      this.constructor.name === "Sidewinder" ||
+      this.constructor.name === "BinaryTree" ||
+      this.constructor.name === "Ellers"
     ) {
       this.start = { x: 0, y: 0 };
     } else {

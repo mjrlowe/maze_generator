@@ -32,7 +32,7 @@ export default function createWidget(
 
   let maze = new Maze(mazeSettings);
 
-  let mazeId = maze.algorithm.algorithmId + "-" + maze.algorithm.seed;
+  let mazeId = maze.algorithm.constructor.name + "-" + maze.algorithm.seed;
   let widgetId = mazeId + "-widget";
   let canvasId = mazeId + "-canvas";
 
@@ -54,7 +54,7 @@ export default function createWidget(
   }
 
   let html = `
-  <div class="maze-widget ${maze.algorithm.algorithmId}" id="${widgetId}">
+  <div class="maze-widget ${maze.algorithm.constructor.name}" id="${widgetId}">
   <canvas width="300" height="300" style="width:220px; height:220px" class="maze-widget-canvas" id="${canvasId}"></canvas>
   <div class="maze-widget-options">
     <button class="play-pause-button maze-widget-button" onClick="document.getElementById('${widgetId}').playPauseMaze()">
