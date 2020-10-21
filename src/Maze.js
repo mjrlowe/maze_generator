@@ -41,11 +41,12 @@ import analyze from "./analyze.js";
 
 class Maze {
   constructor(settings) {
-    settings.algorithmId = settings.algorithm
+
+    const algorithmName = settings.algorithm
       ? settings.algorithm.replace(/[^a-zA-Z0-9]/g, "").toLowerCase()
       : "recursivebacktracker";
 
-    switch (settings.algorithmId) {
+    switch (algorithmName) {
       case "10print":
       case "tenprint":
         this.algorithm = new TenPrint(settings);
@@ -130,26 +131,7 @@ class Maze {
   }
 
   reset() {
-    this.algorithm.currentCell = { ...this.algorithm.start };
-
-    this.algorithm.finishedGenerating = false;
-
-    this.algorithm.solution = [];
-
-    this.algorithm.walls = [];
-    for (let y = 0; y < this.algorithm.height; y++) {
-      this.algorithm.walls[y] = [];
-      for (let x = 0; x < this.algorithm.width; x++) {
-        this.algorithm.walls[y][x] = {
-          N: true,
-          S: true,
-          E: true,
-          W: true,
-        };
-      }
-    }
-
-    if (this.algorithm.resetVariables) this.algorithm.resetVariables();
+    this.algorithm.reset();
   }
 
   step() {

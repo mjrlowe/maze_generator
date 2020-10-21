@@ -14,8 +14,6 @@ class Algorithm {
       mazeSettings.ySize || mazeSettings.size || this.width;
     this.finishedGenerating = false;
     this.seed = mazeSettings.seed ?? Math.floor(Math.random() * 10e8);
-    this.algorithm = mazeSettings.algorithm;
-    this.algorithmId = mazeSettings.algorithmId;
 
     this.entrance = this.getXYPosition(mazeSettings.entrance ?? "top left");
 
@@ -70,6 +68,29 @@ class Algorithm {
 
       return arr;
     };
+  }
+
+  reset(){
+    this.currentCell = { ...this.start };
+
+    this.finishedGenerating = false;
+
+    this.solution = [];
+
+    this.walls = [];
+    for (let y = 0; y < this.height; y++) {
+      this.walls[y] = [];
+      for (let x = 0; x < this.width; x++) {
+        this.walls[y][x] = {
+          N: true,
+          S: true,
+          E: true,
+          W: true,
+        };
+      }
+    }
+
+    if (this.resetVariables) this.resetVariables();
   }
 
   //carve
