@@ -30,7 +30,7 @@ const algorithms = {
 
 import createWidget from "./createWidget.js";
 
-import {Maze}String from "./print.js";
+import mazeString from "./print.js";
 import display from "./display.js";
 import calculateDistances from "./distances.js";
 import solve from "./solve.js";
