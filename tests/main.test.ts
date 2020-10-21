@@ -96,7 +96,7 @@ Deno.test(
     };
     let maze1 = new Maze(settings).generate();
     let maze2 = new Maze(settings).generate();
-    assertEquals(maze1.seed, maze2.seed);
+    assertEquals(maze1.algorithm.seed, maze2.algorithm.seed);
     assert(checkWallsEqual(maze1, maze2));
   },
 );
@@ -117,7 +117,7 @@ Deno.test(
   },
 );
 
-function checkWallsEqual(maze1, maze2) {
+function checkWallsEqual(maze1: Maze, maze2: Maze) {
   for (let y = 0; y < maze1.algorithm.height; y++) {
     for (let x = 0; x < maze1.algorithm.width; x++) {
       for (let direction of ["N", "S", "E", "W"]) {
