@@ -1,4 +1,4 @@
-import Algorithm from "../Algorithm.js";
+import {Algorithm} from "../Algorithm.js";
 import { directions, dx, dy } from "../directions.js";
 
 class RecursiveBacktracker extends Algorithm {

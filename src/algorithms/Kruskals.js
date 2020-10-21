@@ -1,4 +1,4 @@
-import Algorithm from "../Algorithm.js";
+import {Algorithm} from "../Algorithm.js";
 import { dx, dy } from "../directions.js";
 
 class Kruskals extends Algorithm {

@@ -30,7 +30,7 @@ const algorithms = {
 
 import createWidget from "./createWidget.js";
 
-import mazeString from "./print.js";
+import {Maze}String from "./print.js";
 import display from "./display.js";
 import calculateDistances from "./distances.js";
 import solve from "./solve.js";
@@ -201,5 +201,5 @@ class Maze {
 
 Maze.createWidget = createWidget;
 
-export default Maze;
-export { algorithms };
+// export default Maze;
+export { Maze, algorithms };

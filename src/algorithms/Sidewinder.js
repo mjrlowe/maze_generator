@@ -1,4 +1,4 @@
-import Algorithm from "../Algorithm.js";
+import {Algorithm} from "../Algorithm.js";
 
 class Sidewinder extends Algorithm {
   resetVariables() {

@@ -224,4 +224,4 @@ class Algorithm {
   }
 }
 
-export default Algorithm;
+export {Algorithm};

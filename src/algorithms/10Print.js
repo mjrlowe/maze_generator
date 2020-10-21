@@ -1,4 +1,4 @@
-import Algorithm from "../Algorithm.js";
+import {Algorithm} from "../Algorithm.js";
 import { dx, dy, opposite } from "../directions.js";
 
 class TenPrint extends Algorithm {
