@@ -54,7 +54,7 @@ And then import the maze_generator module in your code by adding the following t
 import {Maze} from "@thewizardbear/maze_generator";
 ```
 
-Alternately, you can you `require`:
+Alternately, you can use `require`:
 
 ```javascript
 let {Maze} = require("@thewizardbear/maze_generator")
