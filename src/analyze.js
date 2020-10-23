@@ -1,7 +1,7 @@
 import { directions, fullNames, opposite } from "./directions.js";
 
 export default function analyze(maze) {
-  let solution = maze.getSolution();
+  const solution = maze.getSolution();
   let deadEnds = {
     total: 0,
     N: 0,
@@ -16,23 +16,30 @@ export default function analyze(maze) {
     EW: 0,
   };
 
+  let gridInfo = [];
+
   let numberOfCellWalls = [0, 0, 0, 0, 0];
 
   for (let y = 0; y < maze.algorithm.height; y++) {
+    gridInfo[y] = [];
     for (let x = 0; x < maze.algorithm.width; x++) {
       let cell = maze.algorithm.walls[y][x];
       let neighbors = [];
+
       if (!cell.N) neighbors.push("N");
       if (!cell.S) neighbors.push("S");
       if (!cell.E) neighbors.push("E");
       if (!cell.W) neighbors.push("W");
 
-      if (neighbors.length === 1) {
+      let isDeadEnd = neighbors.length === 1;
+
+      if (isDeadEnd) {
         deadEnds.total++;
         deadEnds[opposite[neighbors[0]]]++;
       }
 
-      if (neighbors.length === 2 && neighbors[0] === opposite[neighbors[1]]) {
+      let isStraightPassage = neighbors.length === 2 && neighbors[0] === opposite[neighbors[1]];
+      if (isStraightPassage) {
         straightPassages.total++;
         if (neighbors[0] === "N" || neighbors[0] === "S") {
           straightPassages.NS++;
@@ -41,8 +48,14 @@ export default function analyze(maze) {
         }
       }
 
+      gridInfo[y][x] = {neighbors, isDeadEnd, isStraightPassage, isPartOfSolution: false};
+
       numberOfCellWalls[4 - neighbors.length]++;
     }
+  }
+
+  for(let cell of solution){
+    gridInfo[cell.y][cell.x].isPartOfSolution = true;
   }
 
   console.log(numberOfCellWalls.reduce((a, b) => Math.max(a, b)));
@@ -97,6 +110,10 @@ export default function analyze(maze) {
   if (solutionLength.value) {
     analysis.push(solutionLength);
   }
+
+  analysis.push(walls)
+  analysis.push(gridInfo)
+
 
   return analysis;
 }
