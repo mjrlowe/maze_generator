@@ -38,7 +38,8 @@ export default function analyze(maze) {
         deadEnds[opposite[neighbors[0]]]++;
       }
 
-      let isStraightPassage = neighbors.length === 2 && neighbors[0] === opposite[neighbors[1]];
+      let isStraightPassage = neighbors.length === 2 &&
+        neighbors[0] === opposite[neighbors[1]];
       if (isStraightPassage) {
         straightPassages.total++;
         if (neighbors[0] === "N" || neighbors[0] === "S") {
@@ -48,13 +49,18 @@ export default function analyze(maze) {
         }
       }
 
-      gridInfo[y][x] = {neighbors, isDeadEnd, isStraightPassage, isPartOfSolution: false};
+      gridInfo[y][x] = {
+        neighbors,
+        isDeadEnd,
+        isStraightPassage,
+        isPartOfSolution: false,
+      };
 
       numberOfCellWalls[4 - neighbors.length]++;
     }
   }
 
-  for(let cell of solution){
+  for (let cell of solution) {
     gridInfo[cell.y][cell.x].isPartOfSolution = true;
   }
 
@@ -111,9 +117,8 @@ export default function analyze(maze) {
     analysis.push(solutionLength);
   }
 
-  analysis.push(walls)
-  analysis.push(gridInfo)
-
+  analysis.push(walls);
+  analysis.push(gridInfo);
 
   return analysis;
 }

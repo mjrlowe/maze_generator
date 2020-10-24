@@ -1,8 +1,17 @@
-import {Algorithm} from "../Algorithm.js";
+import { Algorithm } from "../Algorithm.js";
 
-class Eller extends Algorithm {
+class Ellers extends Algorithm {
   resetVariables() {
-    this.rowState = new State(this.width).populate();
+    this.cellSets = [];
+    this.sets = {};
+    for (let y = 0; y < this.height; y++) {
+      this.cellSets[y] = [];
+      for (let x = 0; x < this.width; x++) {
+        const setId = y * this.width + x;
+        this.cellSets[y][x] = setId;
+        this.sets[setId] = [{ x, y }];
+      }
+    }
 
     this.HORIZONTAL = 0;
     this.VERTICAL = 1;
@@ -17,11 +26,14 @@ class Eller extends Algorithm {
 
   horizontalStep() {
     if (
-      !(this.rowState.cells[this.currentCell.x] ===
-        this.rowState.cells[this.currentCell.x + 1]) &&
-      (this.currentCell.y === this.width - 1 || this.random() > 0.5)
+      !(this.cellSets[this.currentCell.y][this.currentCell.x] ===
+        this.cellSets[this.currentCell.y][this.currentCell.x + 1]) &&
+      (this.currentCell.y === this.height - 1 || this.random() > 0.5)
     ) {
-      this.rowState.merge(this.currentCell.x, this.currentCell.x + 1);
+      this.merge(
+        { x: this.currentCell.x, y: this.currentCell.y },
+        { x: this.currentCell.x + 1, y: this.currentCell.y },
+      );
 
       this.removeWall(this.currentCell, "E");
     }
@@ -33,7 +45,6 @@ class Eller extends Algorithm {
         this.finishedGenerating = true;
       } else {
         this.mode = this.VERTICAL;
-        this.nextState = this.rowState.next();
         this.cellsToConnectVertically = this.computeVerticals();
       }
     }
@@ -41,33 +52,35 @@ class Eller extends Algorithm {
 
   computeVerticals() {
     let verticalConnections = [];
-    for (let setId in this.rowState.sets) {
-      let set = this.rowState.sets[setId];
-      set = this.shuffle(set);
+    for (let setId in this.sets) {
+      const set = this.sets[setId];
+      const candidates = this.shuffle(set).filter(({ y }) =>
+        y === this.currentCell.y
+      );
+      if (candidates.length > 0) {
+        let numberOfCellsToConnect =
+          Math.floor(this.random() * (candidates.length - 1)) + 1;
 
-      let numberOfCellsToConnect =
-        Math.floor(this.random() * (set.length - 1)) + 1;
-
-      for (let i = 0; i < numberOfCellsToConnect; i++) {
-        verticalConnections.push(set[i]);
+        for (let i = 0; i < numberOfCellsToConnect; i++) {
+          verticalConnections.push(candidates[i]);
+        }
       }
     }
 
-    return verticalConnections.sort();
+    return verticalConnections; //.sort();
   }
 
   verticalStep() {
     //no cells left to connect vertically
     if (this.cellsToConnectVertically.length === 0) {
-      this.rowState = this.nextState.populate();
       this.currentCell.y++;
       this.initializeRow();
     } else {
-      this.currentCell.x = this.cellsToConnectVertically.pop();
+      this.currentCell.x = this.cellsToConnectVertically.pop().x;
 
-      this.nextState.add(
-        this.currentCell.x,
-        this.rowState.cells[this.currentCell.x],
+      this.merge(
+        this.currentCell,
+        { x: this.currentCell.x, y: this.currentCell.y + 1 },
       );
 
       this.removeWall(this.currentCell, "S");
@@ -81,52 +94,17 @@ class Eller extends Algorithm {
       this.verticalStep();
     }
   }
-}
 
-class State {
-  constructor(width, counter) {
-    this.width = width;
-    this.counter = counter ?? 0;
-    this.sets = {};
-    this.cells = [];
-  }
-
-  next() {
-    return new State(this.width, this.counter);
-  }
-
-  populate() {
-    let cell = 0;
-    while (cell < this.width) {
-      if (!this.cells[cell]) {
-        let set = ++this.counter;
-        if (!this.sets[set]) this.sets[set] = [];
-        this.sets[set].push(cell);
-        this.cells[cell] = set;
-      }
-      cell++;
-    }
-
-    return this;
-  }
-
+  //merge the sets of two cells
   merge(sink, target) {
-    let sinkSet = this.cells[sink];
-    let targetSet = this.cells[target];
-
+    let sinkSet = this.cellSets[sink.y][sink.x];
+    let targetSet = this.cellSets[target.y][target.x];
     this.sets[sinkSet] = this.sets[sinkSet].concat(this.sets[targetSet]);
     for (let cell of this.sets[targetSet]) {
-      this.cells[cell] = sinkSet;
+      this.cellSets[cell.y][cell.x] = sinkSet;
     }
     return delete this.sets[targetSet];
   }
-
-  //add cell to set
-  add(cell, set) {
-    this.cells[cell] = set;
-    if (!this.sets[set]) this.sets[set] = [];
-    this.sets[set].push(cell);
-  }
 }
 
-export default Eller;
+export default Ellers;

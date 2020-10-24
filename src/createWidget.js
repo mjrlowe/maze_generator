@@ -1,4 +1,4 @@
-import {Maze} from "./Maze.js";
+import { Maze } from "./Maze.js";
 
 //Node doesn't have a fetch function so we need to fix that
 if (typeof window === "undefined") {

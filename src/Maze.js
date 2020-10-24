@@ -41,7 +41,6 @@ import analyze from "./analyze.js";
 
 class Maze {
   constructor(settings) {
-
     const algorithmName = settings.algorithm
       ? settings.algorithm.replace(/[^a-zA-Z0-9]/g, "").toLowerCase()
       : "recursivebacktracker";
@@ -184,4 +183,4 @@ class Maze {
 Maze.createWidget = createWidget;
 
 // export default Maze;
-export { Maze, algorithms };
+export { algorithms, Maze };

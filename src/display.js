@@ -4,11 +4,10 @@ export default function display({
   maze,
   canvas = document.getElementsByTagName("canvas")[0],
   asLine = false,
-  cellSize =
-    Math.min(
-      canvas.width / maze.algorithm.width,
-      canvas.height / maze.algorithm.height,
-    ) *
+  cellSize = Math.min(
+    canvas.width / maze.algorithm.width,
+    canvas.height / maze.algorithm.height,
+  ) *
     0.9,
   backgroundColor = "#FFF",
   mainColor = "#000",
@@ -33,11 +32,10 @@ export default function display({
   if (removeWallsAtEntranceAndExit) {
     //if the entrance wall is a valid direction
     if (directions.indexOf(maze.algorithm.entrance.direction) !== -1) {
-      entranceWallBefore =
-        maze.algorithm
-          .walls[maze.algorithm.entrance.y][maze.algorithm.entrance.x][
-          maze.algorithm.entrance.direction
-        ];
+      entranceWallBefore = maze.algorithm
+        .walls[maze.algorithm.entrance.y][maze.algorithm.entrance.x][
+        maze.algorithm.entrance.direction
+      ];
       maze.algorithm
         .walls[maze.algorithm.entrance.y][maze.algorithm.entrance.x][
         maze.algorithm.entrance.direction
@@ -46,11 +44,10 @@ export default function display({
 
     //if the exit wall is a valid direction
     if (directions.indexOf(maze.algorithm.exit.direction) !== -1) {
-      exitWallBefore =
-        maze.algorithm
-          .walls[maze.algorithm.exit.y][maze.algorithm.exit.x][
-          maze.algorithm.exit.direction
-        ];
+      exitWallBefore = maze.algorithm
+        .walls[maze.algorithm.exit.y][maze.algorithm.exit.x][
+        maze.algorithm.exit.direction
+      ];
       maze.algorithm
         .walls[maze.algorithm.exit.y][maze.algorithm.exit.x][
         maze.algorithm.exit.direction

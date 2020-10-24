@@ -70,7 +70,7 @@ class Algorithm {
     };
   }
 
-  reset(){
+  reset() {
     this.currentCell = { ...this.start };
 
     this.finishedGenerating = false;
@@ -245,4 +245,4 @@ class Algorithm {
   }
 }
 
-export {Algorithm};
+export { Algorithm };
