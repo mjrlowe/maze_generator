@@ -267,7 +267,7 @@ export default function display({
           distances[cell.y][cell.x] / maxDistance,
         );
       } else if (coloringMode === "set" || coloringMode === "color by set") {
-        if (maze.algorithm.algorithm === "kruskals") {
+        if (maze.algorithm.constructor.name === "Kruskals") {
           cellColor = interpolate(
             colorScheme,
             maze.algorithm.disjointSubsets.findParent(
@@ -275,10 +275,10 @@ export default function display({
             ) /
               (maze.algorithm.width * maze.algorithm.height),
           );
-        } else if (maze.algorithm.algorithm === "ellers") {
+        } else if (maze.algorithm.constructor.name === "Ellers") {
           cellColor = interpolate(
             colorScheme,
-            maze.algorithm.rowState.setForCell[cell.x] / maze.algorithm.width,
+            maze.algorithm.cellSets[cell.y][cell.x] / (maze.algorithm.width*maze.algorithm.height),
           );
         }
       }
