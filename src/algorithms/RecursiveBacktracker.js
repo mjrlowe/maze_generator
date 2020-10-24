@@ -37,7 +37,7 @@ class RecursiveBacktracker extends Algorithm {
       }
     }
 
-    if (unvisitedNeighbors.length > 0 && this.random() < 0.99) {
+    if (unvisitedNeighbors.length > 0) {
       let newCell = unvisitedNeighbors[
         Math.floor(this.random() * unvisitedNeighbors.length)
       ];
