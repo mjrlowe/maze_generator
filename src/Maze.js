@@ -11,6 +11,7 @@ import BinaryTree from "./algorithms/BinaryTree.js";
 import Wilsons from "./algorithms/Wilsons.js";
 import TruePrims from "./algorithms/TruePrims.js";
 import TenPrint from "./algorithms/10Print.js";
+import GrowingTree from "./algorithms/GrowingTree.js";
 
 const algorithms = {
   RecursiveBacktracker,
@@ -26,6 +27,7 @@ const algorithms = {
   Wilsons,
   TruePrims,
   TenPrint,
+  GrowingTree,
 };
 
 import createWidget from "./createWidget.js";
@@ -120,6 +122,10 @@ class Maze {
       case "recursivedivision":
       case "division":
         this.algorithm = new RecursiveDivision(settings);
+        break;
+
+      case "growingtree":
+        this.algorithm = new GrowingTree(settings);
         break;
 
       default:
