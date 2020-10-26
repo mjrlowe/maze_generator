@@ -17,10 +17,15 @@ class GrowingTree extends Algorithm {
     let startCell = { ...this.start };
     this.list.push(startCell);
     this.visited[startCell.y][startCell.x] = 1;
-    this.currentCell = startCell;
   }
 
   takeStep() {
+    // Choose a cell
+    // TODO: Function that receives a param to know which behavior
+    // this.currentCell = this.list[this.list.length - 1];                             // Newest
+    // this.currentCell = this.list[0];                                             // Oldest
+    this.currentCell = this.list[Math.floor(this.random() * this.list.length)]; // Random
+
     let unvisitedNeighbors = [];
 
     for (let direction of directions) {
@@ -51,11 +56,11 @@ class GrowingTree extends Algorithm {
         x: newCell.x,
         y: newCell.y
       });
-
-      this.currentCell = newCell;
     } else {
-      // Add funtion to select the next cell in different ways
-      this.currentCell = this.list.pop(); // For now is the same behavior as Recursive Backtracker
+      const index = this.list.findIndex(
+        (cell) => cell.x === this.currentCell.x && cell.y == this.currentCell.y
+      );
+      this.list.splice(index, 1);
     }
 
     if (this.list.length === 0) {
