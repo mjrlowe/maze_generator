@@ -20,7 +20,8 @@ class GrowingTree extends Algorithm {
   }
 
   takeStep() {
-    this.currentCell = this.list[this.selectCell(this.behavior)];
+    const selectedMethod = this.selectMethod(this.cellSelectionMethod);
+    this.currentCell = this.list[this.selectCell(selectedMethod)];
 
     let unvisitedNeighbors = [];
 
@@ -64,17 +65,40 @@ class GrowingTree extends Algorithm {
     }
   }
 
-  selectCell(behavior) {
-    switch (behavior) {
-      case "random":
-        return Math.floor(this.random() * this.list.length);
-      case "middle":
-        return Math.floor(this.list.length / 2);
+  selectMethod(cellSelectionMethod) {
+    const selectionMethods = ["newest", "oldest", "middle", "random"];
+    let selectedMethods = [];
+    for (const key of Object.keys(cellSelectionMethod)) {
+      if (selectionMethods.includes(key)) {
+        selectedMethods.push({ method: key, weight: cellSelectionMethod[key] });
+      }
+    }
+
+    if (selectedMethods.length == 0) throw "Invalid cell selection method";
+
+    const sum = selectedMethods.reduce((a, b) => a + b.weight, 0);
+    let acc = 0;
+
+    selectedMethods = selectedMethods.map((method) => {
+      return { ...method, weight: (acc += method.weight) };
+    });
+
+    const rand = Math.random() * sum;
+    const res = selectedMethods.find((method) => rand <= method.weight);
+
+    return res.method;
+  }
+
+  selectCell(selectionMethod) {
+    switch (selectionMethod) {
+      case "newest":
+        return this.list.length - 1;
       case "oldest":
         return 0;
-      case "newest":
-      default:
-        return this.list.length - 1;
+      case "middle":
+        return Math.floor(this.list.length / 2);
+      case "random":
+        return Math.floor(this.random() * this.list.length);
     }
   }
 }

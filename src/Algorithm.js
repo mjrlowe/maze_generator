@@ -19,7 +19,7 @@ class Algorithm {
 
     this.exit = this.getXYPosition(mazeSettings.exit ?? "bottom right");
 
-    this.behavior = mazeSettings.behavior ?? "newest";
+    this.cellSelectionMethod = mazeSettings.cellSelectionMethod ?? { random: 1 };
 
     this.entrance.direction = this.entrance.direction ??
       (this.entrance.x <= 0
