@@ -20,11 +20,7 @@ class GrowingTree extends Algorithm {
   }
 
   takeStep() {
-    // Choose a cell
-    // TODO: Function that receives a param to know which behavior
-    // this.currentCell = this.list[this.list.length - 1];                             // Newest
-    // this.currentCell = this.list[0];                                             // Oldest
-    this.currentCell = this.list[Math.floor(this.random() * this.list.length)]; // Random
+    this.currentCell = this.list[this.selectCell(this.behavior)];
 
     let unvisitedNeighbors = [];
 
@@ -65,6 +61,20 @@ class GrowingTree extends Algorithm {
 
     if (this.list.length === 0) {
       this.finishedGenerating = true;
+    }
+  }
+
+  selectCell(behavior) {
+    switch (behavior) {
+      case "random":
+        return Math.floor(this.random() * this.list.length);
+      case "middle":
+        return Math.floor(this.list.length / 2);
+      case "oldest":
+        return 0;
+      case "newest":
+      default:
+        return this.list.length - 1;
     }
   }
 }

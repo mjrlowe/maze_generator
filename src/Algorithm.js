@@ -19,6 +19,8 @@ class Algorithm {
 
     this.exit = this.getXYPosition(mazeSettings.exit ?? "bottom right");
 
+    this.behavior = mazeSettings.behavior ?? "newest";
+
     this.entrance.direction = this.entrance.direction ??
       (this.entrance.x <= 0
         ? "W"
