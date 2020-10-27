@@ -83,7 +83,7 @@ class GrowingTree extends Algorithm {
       return { ...method, weight: (acc += method.weight) };
     });
 
-    const rand = Math.random() * sum;
+    const rand = this.random() * sum;
     const res = selectedMethods.find((method) => rand <= method.weight);
 
     return res.method;
