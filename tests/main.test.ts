@@ -31,6 +31,7 @@ const algorithms = [
   "TruePrims",
   "TenPrint",
   "Wilsons",
+  "GrowingTree",
 ];
 
 //benchmarks
