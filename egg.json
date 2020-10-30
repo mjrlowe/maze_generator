@@ -1,11 +1,10 @@
 {
-  "name": "maze_generator",
+  "name": "maze_generator_test",
   "description": "A module for generating mazes",
-  "version": "0.3.0",
-  "unlisted": false,
+  "version": "0.4.0-alpha.6",
+  "unlisted": true,
   "entry": "/mod.js",
   "checkFormat": false,
-  "repository": "https://github.com/thewizardbear/maze_generator",
   "files": [
     "./src/**/*",
     "./examples/**/*",
@@ -16,5 +15,7 @@
     "./mod.js",
     "./README.md"
   ],
-  "checkAll": true
+  "check": true,
+  "homepage": "https://github.com/thewizardbear/maze_generator",
+  "ignore": []
 }

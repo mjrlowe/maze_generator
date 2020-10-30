@@ -66,6 +66,8 @@ class GrowingTree extends Algorithm {
   }
 
   selectMethod(cellSelectionMethod) {
+    if(typeof cellSelectionMethod === "string") return cellSelectionMethod;
+
     const selectionMethods = ["newest", "oldest", "middle", "random"];
     let selectedMethods = [];
     for (const key of Object.keys(cellSelectionMethod)) {
@@ -99,6 +101,8 @@ class GrowingTree extends Algorithm {
         return Math.floor(this.list.length / 2);
       case "random":
         return Math.floor(this.random() * this.list.length);
+      default:
+        throw "Invalid cell selection method";
     }
   }
 }
