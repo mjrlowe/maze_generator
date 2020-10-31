@@ -9,11 +9,11 @@ import {
   assert,
   assertEquals,
   assertNotEquals,
-} from "https://deno.land/std@0.70.0/testing/asserts.ts";
+} from "https://deno.land/std@0.75.0/testing/asserts.ts";
 import {
   bench,
   runBenchmarks,
-} from "https://deno.land/std@0.70.0/testing/bench.ts";
+} from "https://deno.land/std@0.75.0/testing/bench.ts";
 
 import { Maze } from "../mod.js";
 
