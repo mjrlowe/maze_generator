@@ -2,8 +2,7 @@ import { Algorithm } from "../Algorithm.js";
 import { directions, dx, dy } from "../directions.js";
 
 class GrowingTree extends Algorithm {
-  resetVariables() {
-    this.cellSelectionMethod = mazeSettings.cellSelectionMethod ?? { random: 1 };
+  resetVariables(mazeSettings) {
 
     this.visited = [];
     for (let y = 0; y < this.height; y++) {

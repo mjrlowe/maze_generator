@@ -39,6 +39,8 @@ class Algorithm {
         : this.exit.y >= this.width - 1
         ? "S"
         : " ");
+    
+    this.cellSelectionMethod = mazeSettings.cellSelectionMethod ?? { random: 1 };
 
     if (
       this.constructor.name === "Sidewinder" ||
