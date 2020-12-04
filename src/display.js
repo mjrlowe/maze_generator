@@ -278,7 +278,8 @@ export default function display({
         } else if (maze.algorithm.constructor.name === "Ellers") {
           cellColor = interpolate(
             colorScheme,
-            maze.algorithm.cellSets[cell.y][cell.x] / (maze.algorithm.width*maze.algorithm.height),
+            maze.algorithm.cellSets[cell.y][cell.x] /
+              (maze.algorithm.width * maze.algorithm.height),
           );
         }
       }

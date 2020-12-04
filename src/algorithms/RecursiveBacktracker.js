@@ -21,26 +21,10 @@ class RecursiveBacktracker extends Algorithm {
   }
 
   takeStep() {
-    let unvisitedNeighbors = [];
-
-    for (let direction of directions) {
-      let neighbor = {
-        x: this.currentCell.x + dx[direction],
-        y: this.currentCell.y + dy[direction],
-        direction: direction,
-      };
-
-      if (
-        this.cellIsInMaze(neighbor) && !this.visited[neighbor.y][neighbor.x]
-      ) {
-        unvisitedNeighbors.push(neighbor);
-      }
-    }
+    let unvisitedNeighbors = this.getUnvisitedNeighbors();
 
     if (unvisitedNeighbors.length > 0) {
-      let newCell = unvisitedNeighbors[
-        Math.floor(this.random() * unvisitedNeighbors.length)
-      ];
+      let newCell = this.selectNeighbor(unvisitedNeighbors);
       this.removeWall(this.currentCell, newCell.direction);
       this.visited[newCell.y][newCell.x]++;
       this.totalVisted++;

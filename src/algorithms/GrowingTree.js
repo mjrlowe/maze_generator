@@ -3,7 +3,6 @@ import { directions, dx, dy } from "../directions.js";
 
 class GrowingTree extends Algorithm {
   resetVariables(mazeSettings) {
-
     this.visited = [];
     for (let y = 0; y < this.height; y++) {
       this.visited[y] = [];
@@ -23,40 +22,21 @@ class GrowingTree extends Algorithm {
   takeStep() {
     const selectedMethod = this.selectMethod(this.cellSelectionMethod);
     this.currentCell = this.list[this.selectCell(selectedMethod)];
-
-    let unvisitedNeighbors = [];
-
-    for (let direction of directions) {
-      let neighbor = {
-        x: this.currentCell.x + dx[direction],
-        y: this.currentCell.y + dy[direction],
-        direction: direction
-      };
-
-      if (
-        this.cellIsInMaze(neighbor) &&
-        !this.visited[neighbor.y][neighbor.x]
-      ) {
-        unvisitedNeighbors.push(neighbor);
-      }
-    }
+    const unvisitedNeighbors = this.getUnvisitedNeighbors();
 
     if (unvisitedNeighbors.length > 0) {
-      let newCell =
-        unvisitedNeighbors[
-          Math.floor(this.random() * unvisitedNeighbors.length)
-        ];
+      let newCell = this.selectNeighbor(unvisitedNeighbors);
       this.removeWall(this.currentCell, newCell.direction);
       this.visited[newCell.y][newCell.x]++;
       this.totalVisted++;
 
       this.list.push({
         x: newCell.x,
-        y: newCell.y
+        y: newCell.y,
       });
     } else {
       const index = this.list.findIndex(
-        (cell) => cell.x === this.currentCell.x && cell.y == this.currentCell.y
+        (cell) => cell.x === this.currentCell.x && cell.y == this.currentCell.y,
       );
       this.list.splice(index, 1);
     }
@@ -67,7 +47,7 @@ class GrowingTree extends Algorithm {
   }
 
   selectMethod(cellSelectionMethod) {
-    if(typeof cellSelectionMethod === "string") return cellSelectionMethod;
+    if (typeof cellSelectionMethod === "string") return cellSelectionMethod;
 
     const selectionMethods = ["newest", "oldest", "middle", "random"];
     let selectedMethods = [];

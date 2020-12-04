@@ -1,5 +1,5 @@
 import { Algorithm } from "../Algorithm.js";
-import { dx, dy } from "../directions.js";
+import { directions, dx, dy } from "../directions.js";
 
 class AldousBroder extends Algorithm {
   //called when the maze is intitalized
@@ -22,22 +22,16 @@ class AldousBroder extends Algorithm {
 
   //called every time the maze needs to be updated
   takeStep() {
-    let possibleDirections = [];
-    if (this.currentCell.y !== 0) possibleDirections.push("N");
-    if (this.currentCell.y !== this.height - 1) possibleDirections.push("S");
-    if (this.currentCell.x !== this.width - 1) possibleDirections.push("E");
-    if (this.currentCell.x !== 0) possibleDirections.push("W");
+    let possibleConnections = directions.map((direction) => ({
+      x: this.currentCell.x + dx[direction],
+      y: this.currentCell.y + dy[direction],
+      direction,
+    })).filter((neighbor) => this.cellIsInMaze(neighbor));
 
-    let chosenDirection = possibleDirections[
-      Math.floor(this.random() * possibleDirections.length)
-    ];
-    let newCell = {
-      x: this.currentCell.x + dx[chosenDirection],
-      y: this.currentCell.y + dy[chosenDirection],
-    };
+    const newCell = this.selectNeighbor(possibleConnections);
 
     if (!this.visited[newCell.y][newCell.x]) {
-      this.removeWall(this.currentCell, chosenDirection);
+      this.removeWall(this.currentCell, newCell.direction);
       this.visited[newCell.y][newCell.x] = true;
       this.totalVisted++;
     }

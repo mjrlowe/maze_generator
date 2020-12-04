@@ -24,30 +24,16 @@ class SimplifiedPrims extends Algorithm {
   }
 
   takeStep() {
-    let cellIndex = Math.floor(this.random() * this.activeCells.length);
-    let cell = this.activeCells[cellIndex];
+    const cellIndex = Math.floor(this.random() * this.activeCells.length);
+    this.currentCell = {
+      x: this.activeCells[cellIndex].x,
+      y: this.activeCells[cellIndex].y,
+    };
 
-    let unvisitedNeighbors = [];
-
-    for (let direction of directions) {
-      let neighbor = {
-        x: cell.x + dx[direction],
-        y: cell.y + dy[direction],
-        direction: direction,
-      };
-
-      if (
-        this.cellIsInMaze(neighbor) && !this.visited[neighbor.y][neighbor.x]
-      ) {
-        unvisitedNeighbors.push(neighbor);
-      }
-    }
-
+    const unvisitedNeighbors = this.getUnvisitedNeighbors();
     if (unvisitedNeighbors.length > 0) {
-      let newCell = unvisitedNeighbors[
-        Math.floor(this.random() * unvisitedNeighbors.length)
-      ];
-      this.removeWall(cell, newCell.direction);
+      let newCell = this.selectNeighbor(unvisitedNeighbors);
+      this.removeWall(this.currentCell, newCell.direction);
       this.visited[newCell.y][newCell.x] = true;
       this.totalVisted++;
 

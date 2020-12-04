@@ -24,28 +24,14 @@ class HuntAndKill extends Algorithm {
     if (!this.hunting) {
       this.visited[this.currentCell.y][this.currentCell.x] = true;
 
-      let unvisitedDirections = [];
-      for (let direction of ["N", "S", "E", "W"]) {
-        let neighbour = {
-          x: this.currentCell.x + dx[direction],
-          y: this.currentCell.y + dy[direction],
-        };
-        if (
-          this.cellIsInMaze(neighbour) &&
-          !this.visited[neighbour.y][neighbour.x]
-        ) {
-          unvisitedDirections.push(direction);
-        }
-      }
+      let unvisitedNeighbors = this.getUnvisitedNeighbors();
 
-      if (unvisitedDirections.length > 0) {
-        let chosenDirection = unvisitedDirections[
-          Math.floor(this.random() * unvisitedDirections.length)
-        ];
-        this.removeWall(this.currentCell, chosenDirection);
+      if (unvisitedNeighbors.length > 0) {
+        let newCell = this.selectNeighbor(unvisitedNeighbors);
+        this.removeWall(this.currentCell, newCell.direction);
         this.currentCell = {
-          x: this.currentCell.x + dx[chosenDirection],
-          y: this.currentCell.y + dy[chosenDirection],
+          x: newCell.x,
+          y: newCell.y,
         };
 
         if (
@@ -81,16 +67,6 @@ class HuntAndKill extends Algorithm {
 
       //hunt
     } else {
-      if (!this.visited) {
-        console.log(this.visited, this.currentCell, this.startHuntingFrom, 1);
-      } else if (!this.visited[this.currentCell.y]) {
-        console.log(this.visited, this.currentCell, this.startHuntingFrom, 2);
-      } else if (
-        this.visited[this.currentCell.y][this.currentCell.x] === undefined
-      ) {
-        console.log(this.visited, this.currentCell, this.startHuntingFrom, 3);
-      }
-
       if (!this.visited[this.currentCell.y][this.currentCell.x]) {
         let visitedDirections = [];
         for (let direction of ["N", "S", "E", "W"]) {

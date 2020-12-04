@@ -1,10 +1,10 @@
 import { Maze } from "../mod.js";
 
-// 12x12 maze using Eller's algorithm
+// 20x20 maze using
 let mazeSettings = {
-  width: 12,
-  height: 12,
-  algorithm: "ellers",
+  size: 20,
+  algorithm: "growingtree",
+  cellSelectionMethod: { newest: 1, random: 2, oldest: 7 },
 };
 
 //initialize the maze

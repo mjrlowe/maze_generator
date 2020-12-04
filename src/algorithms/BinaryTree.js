@@ -1,10 +1,15 @@
 import { Algorithm } from "../Algorithm.js";
+import { dx, dy } from "../directions.js";
 
 class BinaryTree extends Algorithm {
   takeStep() {
-    let passageDirection = this.random() < 0.5 ? "S" : "E";
-    if (this.currentCell.x === this.width - 1) passageDirection = "S";
-    if (this.currentCell.y === this.height - 1) passageDirection = "E";
+    const validConnections = ["S", "E"].map((direction) => ({
+      x: this.currentCell.x + dx[direction],
+      y: this.currentCell.y + dy[direction],
+      direction,
+    })).filter((cell) => this.cellIsInMaze(cell));
+
+    const passageDirection = this.selectNeighbor(validConnections).direction;
 
     this.removeWall(this.currentCell, passageDirection);
 

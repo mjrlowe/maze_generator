@@ -1,4 +1,4 @@
-import { dx, dy, opposite } from "./directions.js";
+import { directions, dx, dy, opposite } from "./directions.js";
 import seedrandom from "./seedrandom.js";
 
 //Private methods should be in Algorithm
@@ -39,8 +39,14 @@ class Algorithm {
         : this.exit.y >= this.width - 1
         ? "S"
         : " ");
-    
-    this.cellSelectionMethod = mazeSettings.cellSelectionMethod ?? { random: 1 };
+
+    this.selectNeighbor = mazeSettings.selectNeighbor
+      ? ((neigbors) => mazeSettings.selectNeighbor(neigbors, this.random))
+      : ((neighbors) =>
+        neighbors[Math.floor(this.random() * (neighbors.length))]);
+
+    this.cellSelectionMethod = mazeSettings.cellSelectionMethod ??
+      { random: 1 };
 
     if (
       this.constructor.name === "Sidewinder" ||
@@ -244,6 +250,17 @@ class Algorithm {
 
     XYPosition.direction = possibleDirections[0];
     return XYPosition;
+  }
+
+  getUnvisitedNeighbors() {
+    return directions.map((direction) => ({
+      x: this.currentCell.x + dx[direction],
+      y: this.currentCell.y + dy[direction],
+      direction,
+    })).filter((neighbor) =>
+      this.cellIsInMaze(neighbor) &&
+      !this.visited[neighbor.y][neighbor.x]
+    );
   }
 }
 

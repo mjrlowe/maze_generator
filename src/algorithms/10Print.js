@@ -11,27 +11,29 @@ class TenPrint extends Algorithm {
   }
 
   takeStep() {
-    let passageDirection = this.random() < 0.5 ? "S" : "E";
-    let neighbor1 = {
-      x: this.currentCell.x + dx[passageDirection],
-      y: this.currentCell.y + dy[passageDirection],
-    };
+    const possibleConnections = ["S", "E"].map((direction) => ({
+      x: this.currentCell.x + dx[direction],
+      y: this.currentCell.y + dy[direction],
+      direction,
+    }));
+    const neighbor1 = this.selectNeighbor(possibleConnections);
     let neighbor2 = {
-      x: this.currentCell.x + dx[opposite[passageDirection]],
-      y: this.currentCell.y + dy[opposite[passageDirection]],
+      x: this.currentCell.x + dx[opposite[neighbor1.direction]],
+      y: this.currentCell.y + dy[opposite[neighbor1.direction]],
+      direction: opposite[neighbor1.direction],
     };
 
     if (this.cellIsInMaze(neighbor1) || this.allowOutsideConnections) {
       this.removeWall({
         x: this.currentCell.x,
         y: this.currentCell.y,
-      }, passageDirection);
+      }, neighbor1.direction);
     }
     if (this.cellIsInMaze(neighbor2) || this.allowOutsideConnections) {
       this.removeWall({
         x: this.currentCell.x,
         y: this.currentCell.y,
-      }, opposite[passageDirection]);
+      }, neighbor2.direction);
     }
 
     this.currentCell.x += 2;

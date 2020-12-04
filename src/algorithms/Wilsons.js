@@ -30,18 +30,12 @@ class Wilsons extends Algorithm {
     let path = [this.currentCell];
 
     while (!this.visited[this.currentCell.y][this.currentCell.x]) {
-      let validNeighbours = [];
-      for (let direction of directions) {
-        let neighbour = {
-          x: this.currentCell.x + dx[direction],
-          y: this.currentCell.y + dy[direction],
-          direction,
-        };
-        if (this.cellIsInMaze(neighbour)) validNeighbours.push(neighbour);
-      }
-      let newCell = validNeighbours[
-        Math.floor(this.random() * validNeighbours.length)
-      ];
+      let validNeighbours = directions.map((direction) => ({
+        x: this.currentCell.x + dx[direction],
+        y: this.currentCell.y + dy[direction],
+        direction,
+      })).filter((neighbour) => this.cellIsInMaze(neighbour));
+      let newCell = this.selectNeighbor(validNeighbours);
       let cellVisited = false;
       let cellPreviousIndex = -1;
       path.forEach((pathCell, index) => {
