@@ -21,14 +21,14 @@ This module is heavily influenced by [Jamis Buck's Coffeescript mazes](https://g
 If you are inside a Javascript module file or a `type="module"` script tag, then add the following to the top of your code:
 
 ```javascript
-import {Maze} from "https://x.nest.land/maze_generator@0.3.0/mod.js";
+import {Maze} from "https://x.nest.land/maze_generator@0.4.0/mod.js";
 ```
 
 If not, you can use the dynamic `import()` function. For example:
 
 ```javascript
 let Maze;
-import("https://x.nest.land/maze_generator@0.3.0/mod.js")
+import("https://x.nest.land/maze_generator@0.4.0/mod.js")
   .then(module => {
     Maze = module.Maze;
   })
@@ -37,7 +37,7 @@ import("https://x.nest.land/maze_generator@0.3.0/mod.js")
   })
 ```
 
-You can also import the module from `deno.land/x` if you prefer: `https://deno.land/x/maze_generator@v0.3.0/mod.js`.
+You can also import the module from `deno.land/x` if you prefer: `https://deno.land/x/maze_generator@v0.4.0/mod.js`.
 (Note the `v` here, which is not present when importing from `nest.land`.)
 
 ### In Node
@@ -57,7 +57,7 @@ import {Maze} from "@thewizardbear/maze_generator";
 Alternately, you can use `require`:
 
 ```javascript
-let {Maze} = require("@thewizardbear/maze_generator")
+const {Maze} = require("@thewizardbear/maze_generator")
 ```
 
 Please note that Node version 14+ is required as `maze_generator` makes use of some ES2020 features such as the nullish coalescing operator (`??`).
@@ -65,16 +65,16 @@ Please note that Node version 14+ is required as `maze_generator` makes use of s
 ## Example Usage
 
 ```javascript
-import {Maze} from "https://x.nest.land/maze_generator@0.3.0/mod.js"
+import {Maze} from "https://x.nest.land/maze_generator@0.4.0/mod.js"
 
-let mazeSettings = {
+const mazeSettings = {
   width: 12,
   height: 12,
   algorithm: "recursive backtracker"
 }
 
 //initialize the maze
-let m = new Maze(mazeSettings);
+const m = new Maze(mazeSettings);
 
 //generate it
 m.generate();
@@ -102,7 +102,7 @@ These are all the properties of the object you can pass in when you write `new M
 | width (or xSize) | The width of the maze. (How many columns there should be.) | A positive integer. | height or `30` |
 | height (or ySize) | The height of the maze. (How many rows there should be.) | A positive integer. | width or `30` |
 | algorithm | The algorithm to use. | Any one of the following: `"recursive backtracker"`, `"eller's"`, `"sidewinder"`, `"kruskal's"`, `"simplified prim's"`, `"modified prim's"`, `"true prim's"`, `"hunt and kill"`, `"binary tree"`, `"aldous broder"`, `"recursive division"`, `"wilson's"`, `"10 print"`, `"growing tree"`, `"random"` (random algorithm). This isn't case sensitive. Characters other than the letters a-z and digits 0-9 are ignored. | `"recursive backtracker"` (`"prim's"` defaults to `"true prim's"`) |
-| cellSelectionMethod | Cell selection method for `"growing tree"` algorithm. | An object with one or more of the following properties: `newest` (Recursive Backtracker), `oldest`, `middle`, `random` (simplified Prim's) with the weight (probability) as the values. Alternatively, you can just use one cell selection method, and pass in the string (e.g. `"middle"`). | `"random"` (simplified Prim's) |
+| cellSelectionMethod | Cell selection method for `"growing tree"` algorithm. | An object with one or more of the following properties: `newest` (recursive backtracker), `oldest`, `middle`, `random` (simplified Prim's) with the weight (probability) as the values. Alternatively, you can just use one cell selection method, and pass in the string (e.g. `"middle"`). | `"random"` (simplified Prim's) |
 | start | Where to start the maze generation from (if there is an option). | An object with both an `x` and `y` property (both integers) or a string referencing a certain point (`"random"` or a certain side or corner such as `"north east"`) | `"random"` for all algorithms except Eller's, binary tree and sidewinder, which are all `{x: 0, y: 0}`. |
 | entrance | Where the solution should start from. | An object with both an `x` and `y` property (and an optional `direction` property: `"N"`, `"S"`, `"E"`, or `"W"`) or a string referencing a certain point (`"random"` or a certain side or corner such as `"north east"`) | `"top left"` |
 | exit | Where the solution should end. | An object with both an `x` and `y` property (and an optional `direction` property: `"N"`, `"S"`, `"E"`, or `"W"`) or a string referencing a certain point (`"random"` or a certain side or corner such as `"north east"`) | `"bottom right"` |
@@ -151,7 +151,7 @@ It optionally takes in an object with the properties listed below.
 ### .display() example usage
 
 ```javascript
-let kruskalMaze = new Maze({
+const kruskalMaze = new Maze({
   width: 20,
   height: 20,
   seed: 100,
@@ -226,7 +226,7 @@ It takes in three properties, all optional.
 ```html
 <div id="prims-demo"></div>
 <script>
-  import("https://x.nest.land/maze_generator@0.3.0/mod.js")
+  import("https://x.nest.land/maze_generator@0.4.0/mod.js")
     .then(({Maze}) => {
       const mazeSettings = {
         algorithm: "true prims"
@@ -253,9 +253,9 @@ Try:
 
 ```js
 
-import {Maze} from "https://x.nest.land/maze_generator@0.3.0/mod.js";
+import {Maze} from "https://x.nest.land/maze_generator@0.4.0/mod.js";
 
-let mz = new Maze({algorithm: "modified prims", size: "10"}).generate();
+const mz = new Maze({algorithm: "modified prims", size: "10"}).generate();
 
 //outputs a modified prims maze
 mz.printString();
