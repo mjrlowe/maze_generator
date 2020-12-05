@@ -5,7 +5,7 @@ import seedrandom from "./seedrandom.js";
 
 class Algorithm {
   constructor(mazeSettings) {
-    this.seed = mazeSettings.seed ?? Date.now();
+    this.seed = String(mazeSettings.seed ?? Date.now());
     this.random = mazeSettings.prng ?? seedrandom(this.seed);
     this.width = mazeSettings.width ||
       mazeSettings.xSize || mazeSettings.size || mazeSettings.height ||
