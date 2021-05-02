@@ -22,7 +22,7 @@ class TruePrims extends Algorithm {
           let passageCost = isBorderWall ? Infinity : this.random();
 
           if ((direction === "N" || direction === "W") && !isBorderWall) {
-            passageCost ==
+            passageCost =
               this
                 .costs[y + dy[direction]][x + dx[direction]][
                 opposite[direction]
@@ -33,7 +33,6 @@ class TruePrims extends Algorithm {
         }
       }
     }
-    this.totalVisted = 0;
 
     this.activePassages = [];
 
@@ -70,7 +69,6 @@ class TruePrims extends Algorithm {
     if (this.cellIsInMaze(newCell) && !this.visited[newCell.y][newCell.x] > 0) {
       this.removeWall({ x: passage.x, y: passage.y }, passage.direction);
       this.visited[newCell.y][newCell.x] = true;
-      this.totalVisted++;
 
       for (let direction of directions) {
         if (direction !== opposite[passage.direction]) {
