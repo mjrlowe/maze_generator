@@ -34,7 +34,7 @@ class TruePrims extends Algorithm {
       }
     }
 
-    this.totalVisted = 0;
+    this.totalVisited = 0;
     this.activePassages = [];
 
     let startCell = {
@@ -70,7 +70,7 @@ class TruePrims extends Algorithm {
     if (this.cellIsInMaze(newCell) && !this.visited[newCell.y][newCell.x] > 0) {
       this.removeWall({ x: passage.x, y: passage.y }, passage.direction);
       this.visited[newCell.y][newCell.x] = true;
-      this.totalVisted++;
+      this.totalVisited++;
 
       for (let direction of directions) {
         if (direction !== opposite[passage.direction]) {
